@@ -79,7 +79,8 @@ const helmetFontStyles = {
 /*
  *  BBC REITH QALAM
  */
-const reithQalamFallback = 'Arial, Verdana, Geneva, Helvetica, sans-serif;';
+const reithQalamFallback =
+  '"Times New Roman", Arial, Verdana, Geneva, Helvetica, sans-serif;';
 const reithQalamFontFamily = `font-family: "BBC Reith Qalam", ${reithQalamFallback}`;
 
 const reithQalamStyles = {
@@ -160,7 +161,7 @@ const chineseFontStyles = {
 /*
  *  GUJARATI
  */
-const gujaratiFontFamily = `font-family: "Mukta Vaani", Rasa, "Noto Sans Gujarati", "Hind vadodara", Shruti, Gautami, "Gujarati Sangam MN", "Gujarati MT", sans-serif;`;
+const gujaratiFontFamily = `font-family: "Noto Sans Gujarati", Rasa, "Hind vadodara", Shruti, Gautami, "Gujarati Sangam MN", "Gujarati MT", sans-serif;`;
 
 const gujaratiStyles = {
   sansRegular: `
@@ -305,7 +306,7 @@ const tamilStyles = {
 /*
  *  TELUGU
  */
-const teluguFontFamily = `font-family: Mallanna, "Noto Sans Telugu", "Hind Guntur", Gautami, "Kohinoor Telugu", sans-serif;`;
+const teluguFontFamily = `font-family: "Noto Sans Telugu", "Hind Guntur", Gautami, "Kohinoor Telugu", sans-serif;`;
 
 const teluguStyles = {
   sansRegular: `

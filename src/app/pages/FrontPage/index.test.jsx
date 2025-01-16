@@ -1,12 +1,9 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
-import fetchMock from 'fetch-mock';
 import { BrowserRouter } from 'react-router-dom';
 import { render, act } from '@testing-library/react';
 import { RequestContextProvider } from '#contexts/RequestContext';
 import { ToggleContextProvider } from '#contexts/ToggleContext';
-import pidginFrontPageData from '#data/pidgin/frontpage/index-light';
-import pidginMostReadData from '#data/pidgin/mostRead';
+import serbianFrontPageData from '#data/serbian/frontpage/lat.json';
 import getInitialData from '#app/routes/frontPage/getInitialData';
 import { FRONT_PAGE } from '#app/routes/utils/pageTypes';
 import { ServiceContextProvider } from '../../contexts/ServiceContext';
@@ -34,7 +31,6 @@ const requestContextData = ({ service = 'pidgin' }) => ({
   showAdsBasedOnLocation: true,
 });
 
-// eslint-disable-next-line react/prop-types
 const FrontPageWithContext = ({
   isAmp = false,
   service = 'pidgin',
@@ -67,20 +63,12 @@ jest.mock('uuid', () => {
   };
 });
 
-jest.mock('#containers/ChartbeatAnalytics', () => {
+jest.mock('../../components/ChartbeatAnalytics', () => {
   return () => <div>chartbeat</div>;
 });
 
-jest.mock('#containers/ATIAnalytics/amp', () => {
+jest.mock('../../components/ATIAnalytics/amp', () => {
   return () => <div>Amp ATI analytics</div>;
-});
-
-jest.mock('#containers/PageHandlers/withVariant', () => Component => {
-  return props => (
-    <div id="VariantContainer">
-      <Component {...props} />
-    </div>
-  );
 });
 
 jest.mock('#containers/PageHandlers/withContexts', () => Component => {
@@ -94,14 +82,6 @@ jest.mock('#containers/PageHandlers/withContexts', () => Component => {
 jest.mock('#containers/PageHandlers/withPageWrapper', () => Component => {
   return props => (
     <div id="PageWrapperContainer">
-      <Component {...props} />
-    </div>
-  );
-});
-
-jest.mock('#containers/PageHandlers/withLoading', () => Component => {
-  return props => (
-    <div id="LoadingContainer">
       <Component {...props} />
     </div>
   );
@@ -132,24 +112,23 @@ jest.mock('#containers/PageHandlers/withContexts', () => Component => {
 });
 
 describe('Front Page', () => {
+  beforeEach(() => {
+    delete process.env.SIMORGH_APP_ENV;
+    fetch.mockResponse(JSON.stringify(serbianFrontPageData));
+  });
+
   afterEach(() => {
-    fetchMock.restore();
+    jest.clearAllMocks();
+    fetch.resetMocks();
   });
 
   describe('Assertions', () => {
     it('should render visually hidden text as h1', async () => {
-      fetchMock.mock(
-        'http://localhost/some-front-page-path.json',
-        JSON.stringify(pidginFrontPageData),
-      );
       const { pageData } = await getInitialData({
-        path: 'some-front-page-path',
-        service: 'pidgin',
+        path: '/serbian/lat',
+        service: 'serbian',
+        variant: 'lat',
       });
-      fetchMock.mock(
-        ' /pidgin/mostread.json',
-        JSON.stringify(pidginMostReadData),
-      );
 
       let container;
       await act(async () => {
@@ -175,17 +154,10 @@ describe('Front Page', () => {
     });
 
     it('should render front page sections', async () => {
-      fetchMock.mock(
-        'http://localhost/some-front-page-path.json',
-        JSON.stringify(pidginFrontPageData),
-      );
-      fetchMock.mock(
-        '/pidgin/mostread.json',
-        JSON.stringify(pidginMostReadData),
-      );
       const { pageData } = await getInitialData({
-        path: 'some-front-page-path',
-        service: 'pidgin',
+        path: '/serbian/lat',
+        service: 'serbian',
+        variant: 'lat',
       });
 
       let container;
@@ -196,10 +168,58 @@ describe('Front Page', () => {
       });
 
       const sections = container.querySelectorAll('section');
-      expect(sections).toHaveLength(3);
+      expect(sections).toHaveLength(6);
       sections.forEach(section => {
         expect(section.getAttribute('role')).toEqual('region');
       });
+    });
+
+    it('should render images with the .webp image extension', async () => {
+      process.env.SIMORGH_ICHEF_BASE_URL = 'https://ichef.test.bbci.co.uk';
+
+      const { pageData } = await getInitialData({
+        path: '/serbian/lat',
+        service: 'serbian',
+        variant: 'lat',
+      });
+
+      const { path } = pageData.content.groups[0].items[0].indexImage;
+      const imageURL = `https://ichef.test.bbci.co.uk/ace/ws/660${path}.webp`;
+      const expectedWebpSrcSetURLs = [
+        `https://ichef.test.bbci.co.uk/ace/ws/70${path}.webp 70w`,
+        `https://ichef.test.bbci.co.uk/ace/ws/95${path}.webp 95w`,
+        `https://ichef.test.bbci.co.uk/ace/ws/144${path}.webp 144w`,
+        `https://ichef.test.bbci.co.uk/ace/ws/183${path}.webp 183w`,
+        `https://ichef.test.bbci.co.uk/ace/ws/240${path}.webp 240w`,
+        `https://ichef.test.bbci.co.uk/ace/ws/320${path}.webp 320w`,
+        `https://ichef.test.bbci.co.uk/ace/ws/660${path}.webp 660w`,
+      ].join(', ');
+
+      const expectedJPGSrcSetURLs = [
+        `https://ichef.test.bbci.co.uk/ace/ws/70${path} 70w`,
+        `https://ichef.test.bbci.co.uk/ace/ws/95${path} 95w`,
+        `https://ichef.test.bbci.co.uk/ace/ws/144${path} 144w`,
+        `https://ichef.test.bbci.co.uk/ace/ws/183${path} 183w`,
+        `https://ichef.test.bbci.co.uk/ace/ws/240${path} 240w`,
+        `https://ichef.test.bbci.co.uk/ace/ws/320${path} 320w`,
+        `https://ichef.test.bbci.co.uk/ace/ws/660${path} 660w`,
+      ].join(', ');
+
+      let container;
+      await act(async () => {
+        container = render(
+          <FrontPageWithContext pageData={pageData} />,
+        ).container;
+      });
+
+      const promoImage = container.querySelectorAll(
+        'div[data-e2e="story-promo"] picture',
+      )[0];
+      const [webpSource, jpgSource, img] = promoImage.childNodes;
+
+      expect(webpSource.srcset).toEqual(expectedWebpSrcSetURLs);
+      expect(jpgSource.srcset).toEqual(expectedJPGSrcSetURLs);
+      expect(img.src).toEqual(imageURL);
     });
   });
 });

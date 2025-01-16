@@ -1,0 +1,154 @@
+{
+  "data": {
+    "title": "BBC News Gahuza",
+    "description": "",
+    "pageType": "home",
+    "curations": [
+      {
+        "summaries": [
+          {
+            "type": "article",
+            "title": "Intambara yo kubohoza ikivuko ca Hudaydah yatanguye muri Yemen",
+            "firstPublished": "2018-06-13T11:18:02.000Z",
+            "lastPublished": "2018-06-13T11:18:02.000Z",
+            "link": "https://www.bbc.com/gahuza/23204135",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/8226/test/_63681333_002564611-1.jpg",
+            "description": "Urunani rurongowe na Arabia Saudite rwatanguye ibitero ku kivuko gifise akamaro kanini muri Yemen ca Hudaydah, kiri mu minwe y'abagwani.",
+            "imageAlt": "ikivuko ca Hudaydah",
+            "id": "9a5c4dba-11be-f24e-911f-b8eb7a4c3dc0"
+          },
+          {
+            "type": "article",
+            "title": "Inama y’umuryango wa Afrika y’ubuseruko yibanda ku ndyane hagati y’Uburundi n’Urwanda",
+            "firstPublished": "2019-02-01T11:17:48.000Z",
+            "lastPublished": "2019-02-01T11:17:48.000Z",
+            "link": "https://www.bbc.com/gahuza/23229461",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/33F3/test/_63699231_arusha.jpg",
+            "description": "Inama y’umuryango wa Afrika y’ubuseruko yibanda ku ndyane hagati y’Uburundi n’Urwanda",
+            "imageAlt": "EAC",
+            "id": "d616d9fc-6106-684b-99a0-a244f1cd8681"
+          },
+          {
+            "type": "article",
+            "title": "Rwanda, indwara yibasiye uturere dutatu",
+            "firstPublished": "2018-06-13T10:43:48.000Z",
+            "lastPublished": "2018-06-13T10:43:48.000Z",
+            "link": "https://www.bbc.com/gahuza/23204126",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/D816/test/_63681355_4cb93475-2464-47d3-9f39-10c6c8a49991.jpg",
+            "description": "Ministeri y'ubuhinzi irabuza ingendo z'amatungo ku mpavu iyo ari yo yose mu rwego rwo kurinda ko iyi ndwara yakwadukira n'uduce itarageramo.",
+            "imageAlt": "mu rwanda juin",
+            "id": "536e5787-f7a4-5e4a-af3e-fef5870052ce"
+          }
+        ],
+        "activePage": 1,
+        "pageCount": 1,
+        "curationId": "urn:bbc:tipo:list:b55960e8-c62b-4717-bdfb-995f598e7ec7",
+        "curationType": "tipo-curation",
+        "position": 0,
+        "title": "BBC News Gahuza Top Stories",
+        "visualProminence": "HIGH",
+        "visualStyle": "COLLECTION"
+      },
+      {
+        "summaries": [
+          {
+            "type": "article",
+            "title": "gfggghfghdghd",
+            "firstPublished": "2016-03-14T11:55:54.000Z",
+            "lastPublished": "2016-03-14T11:55:54.000Z",
+            "link": "https://www.bbc.com/gahuza/amakuru-23029740",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/145B1/test/_63477338_63477331.jpg",
+            "description": "ffdgdghfhfhfghdfgdfgdgdhdfg",
+            "imageAlt": "vcgfghfgh",
+            "id": "d39ed048-9ec0-c946-adbe-4d92f698f14a"
+          },
+          {
+            "type": "article",
+            "title": "Ifarasi iramenya ko umuntu ashavuye canke anezerewe",
+            "firstPublished": "2016-02-11T12:10:28.000Z",
+            "lastPublished": "2016-02-11T12:10:28.000Z",
+            "link": "https://www.bbc.com/gahuza/amakuru-23022558",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/14F4D/test/_63473858_141022192445_paul_kagame_640x360_reuters_nocredit.jpg",
+            "description": "Abategetsi bo mu bushikiranganji bw’imigenderanire bwa Amerika, bavuga ko babonye ivyemeza ko reta y’Urwanda ifise uruhara mu mabi amaze imisi akorerwa mu gihugu kibanyi c’Uburundi.",
+            "imageAlt": "Prezida w'Urwanda Paul Kagame",
+            "id": "cbe19d17-dbda-fa48-9f27-37752e0752ac"
+          },
+          {
+            "type": "article",
+            "title": "Ifarasi iramenya ko umuntu ashavuye canke anezerewe 1",
+            "firstPublished": "2016-02-11T12:10:46.000Z",
+            "lastPublished": "2016-02-11T12:10:46.000Z",
+            "link": "https://www.bbc.com/gahuza/amakuru-23022559",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/14F4D/test/_63473858_141022192445_paul_kagame_640x360_reuters_nocredit.jpg",
+            "description": "Abategetsi bo mu bushikiranganji bw’imigenderanire bwa Amerika, bavuga ko babonye ivyemeza ko reta y’Urwanda ifise uruhara mu mabi amaze imisi akorerwa mu gihugu kibanyi c’Uburundi.",
+            "imageAlt": "Prezida w'Urwanda Paul Kagame",
+            "id": "7f823991-068a-3d4c-bfb6-1e0338defff9"
+          }
+        ],
+        "activePage": 1,
+        "pageCount": 1,
+        "curationId": "urn:bbc:tipo:list:34ccccca-9497-4d39-b6e1-39c10d327070",
+        "curationType": "tipo-curation",
+        "position": 1,
+        "title": "Ivyo BBC Gahuza ibahitiramwo",
+        "visualProminence": "HIGH",
+        "visualStyle": "COLLECTION"
+      },
+      {
+        "curationId": "urn:bbc:programmes:available-episodes:bbc_gahuza_radio",
+        "curationType": "available-episodes",
+        "position": 2,
+        "title": "Radio Schedule",
+        "visualProminence": "NORMAL",
+        "visualStyle": "NONE",
+        "radioSchedule": [
+          {
+            "id": "p0h6phdp",
+            "state": "next",
+            "startTime": "2024-02-27T16:29:30.000Z",
+            "link": "/gahuza/bbc_gahuza_radio/w172zkg8dlvdp5w",
+            "brandTitle": "Amakuru ya Gahuzamiryango",
+            "summary": "Amakuru yo hirya no hino yibanda cyane cyane ku karere k'ibiyaga bigari muri Afrika, n'amakuru mpuzamakungu.",
+            "duration": "PT30M"
+          },
+          {
+            "id": "p0h6hg1k",
+            "state": "onDemand",
+            "startTime": "2024-02-26T16:29:30.000Z",
+            "link": "/gahuza/bbc_gahuza_radio/w172zkg8dlv9s8s",
+            "brandTitle": "Amakuru ya Gahuzamiryango",
+            "summary": "Amakuru yo hirya no hino yibanda cyane cyane ku karere k'ibiyaga bigari muri Afrika, n'amakuru mpuzamakungu.",
+            "duration": "PT30M"
+          },
+          {
+            "id": "p0h64qm6",
+            "state": "onDemand",
+            "startTime": "2024-02-24T05:00:00.000Z",
+            "link": "/gahuza/bbc_gahuza_radio/w3ct6750",
+            "brandTitle": "Imvo n'Imvano",
+            "summary": "Ikiganiro gicukumbuye ku bibazo bitandukanye.",
+            "duration": "PT59M"
+          },
+          {
+            "id": "p0h62dm0",
+            "state": "onDemand",
+            "startTime": "2024-02-23T16:29:30.000Z",
+            "link": "/gahuza/bbc_gahuza_radio/w172zkg81bjx79b",
+            "brandTitle": "Amakuru ya Gahuzamiryango",
+            "summary": "Amakuru yo hirya no hino yibanda cyane cyane ku karere k'ibiyaga bigari muri Afrika, n'amakuru mpuzamakungu.",
+            "duration": "PT30M"
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "atiAnalytics": {
+        "contentId": "urn:bbc:tipo:topic:c897lqqzkgkt",
+        "contentType": "index-home",
+        "pageIdentifier": "gahuza.page",
+        "pageTitle": "BBC News Gahuza"
+      }
+    }
+  },
+  "contentType": "application/json; charset=utf-8"
+}

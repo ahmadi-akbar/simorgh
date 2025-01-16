@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { node, bool, string, oneOf, shape } from 'prop-types';
 import {
   GEL_SPACING_HLF,
   GEL_SPACING,
@@ -23,20 +22,12 @@ import {
   getDoublePica,
 } from '#psammead/gel-foundations/src/typography';
 import {
-  C_EBON,
-  C_METAL,
-  C_SHADOW,
-} from '#psammead/psammead-styles/src/colours';
-import {
   getSansRegular,
   getSerifMedium,
 } from '#psammead/psammead-styles/src/font-styles';
-import { scriptPropType } from '#psammead/gel-foundations/src/prop-types';
 import { grid } from '#psammead/psammead-styles/src/detection';
 import ImageGridItem from './ImageStyles';
 import TextGridItem from './TextStyles';
-
-const PROMO_TYPES = oneOf(['top', 'regular', 'leading']);
 
 const wrapperTopStoryStyles = `
   @media (min-width: ${GEL_GROUP_5_SCREEN_WIDTH_MIN}) {
@@ -127,7 +118,7 @@ const headlineTypography = script => ({
 });
 
 export const Headline = styled.h3`
-  color: ${C_EBON};
+  color: ${props => props.theme.palette.EBON};
   margin: 0; /* Reset */
   padding-bottom: ${GEL_SPACING};
   ${({ service }) => getSerifMedium(service)}
@@ -136,13 +127,6 @@ export const Headline = styled.h3`
     !promoHasImage &&
     `display: inline-block;`} /* Needed for aligning Media Indicator with Headline */
 `;
-
-Headline.propTypes = {
-  script: shape(scriptPropType).isRequired,
-  service: string.isRequired,
-  promoHasImage: bool,
-  promoType: PROMO_TYPES,
-};
 
 Headline.defaultProps = {
   promoHasImage: true,
@@ -177,7 +161,7 @@ const summaryStyles = {
 export const Summary = styled.p`
   ${({ script }) => script && getLongPrimer(script)};
   ${({ service }) => getSansRegular(service)}
-  color: ${C_SHADOW};
+  color: ${props => props.theme.palette.SHADOW};
   margin: 0; /* Reset */
   padding-bottom: ${GEL_SPACING};
 
@@ -185,13 +169,6 @@ export const Summary = styled.p`
 
   ${({ promoType }) => summaryStyles[promoType]}
 `;
-
-Summary.propTypes = {
-  script: shape(scriptPropType).isRequired,
-  service: string.isRequired,
-  promoHasImage: bool,
-  promoType: PROMO_TYPES,
-};
 
 Summary.defaultProps = {
   promoHasImage: true,
@@ -201,7 +178,7 @@ Summary.defaultProps = {
 // `display: inline-block` has been used to resolve Focus Indicator bug in Firefox high contrast mode.
 export const Link = styled.a`
   position: static;
-  color: ${C_EBON};
+  color: ${props => props.theme.palette.EBON};
   text-decoration: none;
   overflow-wrap: break-word;
   display: inline-block;
@@ -224,18 +201,18 @@ export const Link = styled.a`
   }
 
   &:visited {
-    color: ${C_METAL};
+    color: ${props => props.theme.palette.METAL};
   }
 `;
 
 const StoryPromo = ({
   image,
   info,
-  promoType,
-  dir,
-  displayImage,
-  mediaIndicator,
-  mediaIndicatorIsInline,
+  promoType = 'regular',
+  dir = 'ltr',
+  displayImage = true,
+  mediaIndicator = null,
+  mediaIndicatorIsInline = false,
   ...props
 }) => {
   const renderImage = displayImage && (
@@ -276,24 +253,6 @@ const StoryPromo = ({
       )}
     </StoryPromoWrapper>
   );
-};
-
-StoryPromo.propTypes = {
-  dir: oneOf(['ltr', 'rtl']),
-  image: node.isRequired,
-  info: node.isRequired,
-  promoType: PROMO_TYPES,
-  displayImage: bool,
-  mediaIndicator: node,
-  mediaIndicatorIsInline: bool,
-};
-
-StoryPromo.defaultProps = {
-  dir: 'ltr',
-  promoType: 'regular',
-  displayImage: true,
-  mediaIndicator: null,
-  mediaIndicatorIsInline: false,
 };
 
 export default StoryPromo;

@@ -1,0 +1,165 @@
+{
+  "data": {
+    "title": "BBC News Somali",
+    "description": "",
+    "pageType": "home",
+    "curations": [
+      {
+        "summaries": [
+          {
+            "type": "article",
+            "title": "NHS staff with long Covid face losing their pay",
+            "firstPublished": "2023-01-30T15:09:32.000Z",
+            "lastPublished": "2023-01-30T15:14:02.000Z",
+            "link": "https://www.bbc.com/news/health-23553049",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/12153/test/_63976047_jellyfish.jpg",
+            "description": "Analysis by BBC Panorama suggests between 5,00 and 10,00 NHS staff risk losing their pay.",
+            "imageAlt": "A jellyfish",
+            "id": "753f9c8e-99ba-45e1-ac97-525e9bae18d2"
+          },
+          {
+            "type": "article",
+            "title": "Ciidamada Kenya oo dilay 20 qof oo ah Dagaalyahano Soomaaliya",
+            "firstPublished": "2019-02-01T11:32:33.000Z",
+            "lastPublished": "2019-02-01T11:32:33.000Z",
+            "link": "https://www.bbc.com/somali/23229325",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/DF0B/test/_63699075_a927b152-283c-4651-b6ca-214a833bd3d6.jpg",
+            "description": "Iska hor imaadkan ayaa yimi kadib markii ay ciidamada kenya dariiq ay adeegsanayeen ay u galeen kooxda all-shabaab",
+            "imageAlt": "Ciidamada Kenya",
+            "id": "5b4d26da-4b08-4844-b4c0-f4151a4b5472"
+          },
+          {
+            "type": "article",
+            "title": "At least 4 people have been killed in Somalia last two days",
+            "firstPublished": "2019-02-01T11:28:12.000Z",
+            "lastPublished": "2019-02-01T11:28:12.000Z",
+            "link": "https://www.bbc.com/somali/23229315",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/1494B/test/_63699248__105291263_c7f54b81-8ecb-4eec-a0e3-07c695af77f8-1.jpg",
+            "description": "The conflict between Shabab and Somali military started last hours in Thursday evening .",
+            "imageAlt": "conflict",
+            "id": "95f4960e-ecdd-cf41-af5e-d2135a959490"
+          },
+          {
+            "type": "article",
+            "title": "Daanyeer wiil yar ka dafay dhabta hooyadii kadibna dilay",
+            "firstPublished": "2018-11-15T11:40:16.000Z",
+            "lastPublished": "2018-11-15T11:40:16.000Z",
+            "link": "https://www.bbc.com/somali/23222390",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/7EC1/test/_63694423_008159637-1.jpg",
+            "description": "Wiil yar oo 12 maalmood jira ayaa ku dhintay isbitaal ku yaalo Hindiya kadib markii uu daanyeer hooyadiis ka dafay uuna maalin cadeey khaarijiyay",
+            "imageAlt": "ilma xadoow",
+            "id": "0f4f5878-3422-4c46-bf50-e7019a395530"
+          }
+        ],
+        "activePage": 1,
+        "pageCount": 1,
+        "curationId": "urn:bbc:tipo:list:e44cda10-1b99-4386-a548-f5ec8c982693",
+        "curationType": "tipo-curation",
+        "position": 0,
+        "title": "BBC News Somali Top Stories",
+        "visualProminence": "HIGH",
+        "visualStyle": "COLLECTION"
+      },
+      {
+        "summaries": [
+          {
+            "type": "article",
+            "title": "Uganda oo sheegtay ka baxida Soomaaliya 22",
+            "firstPublished": "2016-06-23T15:58:36.000Z",
+            "lastPublished": "2016-06-23T15:58:36.000Z",
+            "link": "https://www.bbc.com/somali/23055610",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/C561/test/_63492505_150419131354_amisom_640x360_afp.jpg",
+            "description": "Uganda oo sheegtay ka baxida Soomaaliya",
+            "imageAlt": "Soomaaliya",
+            "id": "00e5f10a-ed74-834c-9380-26a8a72f815f"
+          },
+          {
+            "type": "article",
+            "title": "Uganda oo sheegtay ka baxida Soomaaliya 23",
+            "firstPublished": "2016-06-23T15:59:22.000Z",
+            "lastPublished": "2016-06-23T15:59:22.000Z",
+            "link": "https://www.bbc.com/somali/23055612",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/C561/test/_63492505_150419131354_amisom_640x360_afp.jpg",
+            "description": "Uganda oo sheegtay ka baxida Soomaaliya",
+            "imageAlt": "Soomaaliya",
+            "id": "763a0816-a306-2445-b88f-afe6453a1510"
+          },
+          {
+            "type": "article",
+            "title": "Uganda oo sheegtay ka baxida Soomaaliya 24",
+            "firstPublished": "2016-06-23T15:59:54.000Z",
+            "lastPublished": "2016-06-23T15:59:54.000Z",
+            "link": "https://www.bbc.com/somali/23055613",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/C561/test/_63492505_150419131354_amisom_640x360_afp.jpg",
+            "description": "Uganda oo sheegtay ka baxida Soomaaliya",
+            "imageAlt": "Soomaaliya",
+            "id": "0212acbb-5382-7043-ba2c-1250a3ad3fe4"
+          }
+        ],
+        "activePage": 1,
+        "pageCount": 1,
+        "curationId": "urn:bbc:tipo:list:785d80dd-9257-44fc-b5e6-a3f39407e708",
+        "curationType": "tipo-curation",
+        "position": 1,
+        "title": "Xul",
+        "visualProminence": "HIGH",
+        "visualStyle": "COLLECTION"
+      },
+      {
+        "curationId": "urn:bbc:programmes:available-episodes:bbc_somali_radio",
+        "curationType": "available-episodes",
+        "position": 2,
+        "title": "Radio Schedule",
+        "visualProminence": "NORMAL",
+        "visualStyle": "NONE",
+        "radioSchedule": [
+          {
+            "id": "p0h6nbqw",
+            "state": "next",
+            "startTime": "2024-02-27T13:59:30.000Z",
+            "link": "/somali/bbc_somali_radio/w172zkffyw7q2d8",
+            "brandTitle": "Dunida Iyo Maanta",
+            "summary": "Barnaamij aan ku eegno wararkii ugu dambeeyay ee caalamka iyo Soomaalida.",
+            "duration": "PT1H"
+          },
+          {
+            "id": "p0h6kmmz",
+            "state": "onDemand",
+            "startTime": "2024-02-27T04:00:00.000Z",
+            "link": "/somali/bbc_somali_radio/w172zkfvp7k0j5l",
+            "brandTitle": "Idaacadda Subaxnimo",
+            "summary": "Barnaamijka aroornimo ee soo bandhiga wararka gogoldhaca u ah maalinta iyo cayaaraha.",
+            "duration": "PT29M"
+          },
+          {
+            "id": "p0h6ggw0",
+            "state": "onDemand",
+            "startTime": "2024-02-26T13:59:30.000Z",
+            "link": "/somali/bbc_somali_radio/w172zkffyw7m5h5",
+            "brandTitle": "Dunida Iyo Maanta",
+            "summary": "Barnaamij aan ku eegno wararkii ugu dambeeyay ee caalamka iyo Soomaalida.",
+            "duration": "PT1H"
+          },
+          {
+            "id": "p0h6csjv",
+            "state": "onDemand",
+            "startTime": "2024-02-26T04:00:00.000Z",
+            "link": "/somali/bbc_somali_radio/w172zkfvp7jxm8h",
+            "brandTitle": "Idaacadda Subaxnimo",
+            "summary": "Barnaamijka aroornimo ee soo bandhiga wararka gogoldhaca u ah maalinta iyo cayaaraha.",
+            "duration": "PT29M"
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "atiAnalytics": {
+        "contentId": "urn:bbc:tipo:topic:cqe6npp928lt",
+        "contentType": "index-home",
+        "pageIdentifier": "somali.page",
+        "pageTitle": "BBC News Somali"
+      }
+    }
+  },
+  "contentType": "application/json; charset=utf-8"
+}

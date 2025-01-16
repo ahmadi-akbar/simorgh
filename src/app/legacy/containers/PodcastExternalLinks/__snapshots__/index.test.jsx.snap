@@ -160,7 +160,7 @@ exports[`PodcastExternalLinks Should render external links 1`] = `
               Apple
             </span>
             <span
-              class="emotion-10 emotion-11"
+              class="emotion-10"
             >
               , A brand podcast, внешняя
             </span>
@@ -187,7 +187,7 @@ exports[`PodcastExternalLinks Should render external links 1`] = `
               Spotify
             </span>
             <span
-              class="emotion-10 emotion-11"
+              class="emotion-10"
             >
               , A brand podcast, внешняя
             </span>
@@ -214,7 +214,7 @@ exports[`PodcastExternalLinks Should render external links 1`] = `
               RSS
             </span>
             <span
-              class="emotion-10 emotion-11"
+              class="emotion-10"
             >
               , A brand podcast, внешняя
             </span>
@@ -226,22 +226,22 @@ exports[`PodcastExternalLinks Should render external links 1`] = `
         dir="ltr"
       >
         <a
-          aria-labelledby="externalLinkId-Download"
+          aria-labelledby="externalLinkId-Загрузить-эпизод"
           class="emotion-8 emotion-9"
           dir="ltr"
           href="https://bbc.com"
         >
           <span
-            id="externalLinkId-Download"
+            id="externalLinkId-Загрузить-эпизод"
             role="text"
           >
             <span
-              lang="en-GB"
+              lang="ru"
             >
-              Download
+              Загрузить эпизод
             </span>
             <span
-              class="emotion-10 emotion-11"
+              class="emotion-10"
             >
               , A brand podcast, внешняя
             </span>

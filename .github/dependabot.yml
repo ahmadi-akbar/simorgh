@@ -1,0 +1,49 @@
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    ignore:
+      - dependency-name: '@loadable/*'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'webpack'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'winston'
+      - dependency-name: eslint
+        update-types: ['version-update:semver-major']
+      # Latest version of Emotion contains a memory leak that needs resolved: https://github.com/emotion-js/emotion/issues/3221
+      - dependency-name: '@emotion/*'
+      # Opera Mini unsupported packages
+      - dependency-name: 'uuid' # https://github.com/bbc/simorgh/pull/11840
+      - dependency-name: '@types/uuid' # https://github.com/bbc/simorgh/pull/11840
+    labels:
+      - 'dependencies'
+    groups:
+      babel:
+        patterns:
+          - '@babel/*'
+          - 'babel-*'
+      emotion:
+        patterns:
+          - '@emotion/*'
+      next:
+        patterns:
+          - '@next/*'
+          - 'next'
+          - 'next-*'
+      storybook:
+        patterns:
+          - '@storybook/*'
+          - 'storybook'
+          - '@esbuild/*'
+      bbc:
+        patterns:
+          - '@bbc/*'
+      loadable-minor-patch:
+        patterns:
+          - '@loadable/*'
+      webpack-minor-patch:
+        patterns:
+          - 'webpack'
+          - 'webpack-*'

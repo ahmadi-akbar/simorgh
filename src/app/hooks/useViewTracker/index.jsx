@@ -1,12 +1,10 @@
 import { useContext, useEffect, useState, useRef } from 'react';
-import path from 'ramda/src/path';
-import pathOr from 'ramda/src/pathOr';
 import prop from 'ramda/src/prop';
 
-import { sendEventBeacon } from '#containers/ATIAnalytics/beacon';
-import { EventTrackingContext } from '#app/contexts/EventTrackingContext';
-import useTrackingToggle from '#hooks/useTrackingToggle';
-import OPTIMIZELY_CONFIG from '#lib/config/optimizely';
+import { sendEventBeacon } from '../../components/ATIAnalytics/beacon';
+import { EventTrackingContext } from '../../contexts/EventTrackingContext';
+import useTrackingToggle from '../useTrackingToggle';
+import OPTIMIZELY_CONFIG from '../../lib/config/optimizely';
 import { ServiceContext } from '../../contexts/ServiceContext';
 
 const EVENT_TYPE = 'view';
@@ -14,11 +12,13 @@ const VIEWED_DURATION_MS = 1000;
 const MIN_VIEWED_PERCENT = 0.5;
 
 const useViewTracker = (props = {}) => {
-  const componentName = path(['componentName'], props);
-  const format = path(['format'], props);
-  const advertiserID = path(['advertiserID'], props);
-  const url = path(['url'], props);
-  const optimizely = path(['optimizely'], props);
+  const componentName = props?.componentName;
+  const format = props?.format;
+  const advertiserID = props?.advertiserID;
+  const url = props?.url;
+  const optimizely = props?.optimizely;
+  const optimizelyMetricNameOverride = props?.optimizelyMetricNameOverride;
+  const detailedPlacement = props?.detailedPlacement;
 
   const observer = useRef();
   const timer = useRef(null);
@@ -26,13 +26,12 @@ const useViewTracker = (props = {}) => {
   const [eventSent, setEventSent] = useState(false);
   const { trackingIsEnabled } = useTrackingToggle(componentName);
   const eventTrackingContext = useContext(EventTrackingContext);
+
   const { pageIdentifier, platform, producerId, statsDestination } =
     eventTrackingContext;
-  const campaignID = pathOr(
-    path(['campaignID'], eventTrackingContext),
-    ['campaignID'],
-    props,
-  );
+
+  const campaignID = props?.campaignID || eventTrackingContext?.campaignID;
+
   const { service } = useContext(ServiceContext);
 
   const initObserver = async () => {
@@ -73,17 +72,24 @@ const useViewTracker = (props = {}) => {
 
         if (shouldSendEvent) {
           if (optimizely) {
+            const eventName = OPTIMIZELY_CONFIG.viewClickAttributeId;
+
             const overrideAttributes = {
               ...optimizely.user.attributes,
-              [`viewed_${OPTIMIZELY_CONFIG.viewClickAttributeId}`]: true,
+              [`viewed_${eventName}`]: true,
             };
 
             optimizely.track(
-              'component_views',
+              optimizelyMetricNameOverride
+                ? `${optimizelyMetricNameOverride}_views`
+                : 'component_views',
               optimizely.user.id,
               overrideAttributes,
             );
           }
+
+          const optimizelyVariation =
+            optimizely?.getVariation(OPTIMIZELY_CONFIG.ruleKey) || null;
 
           sendEventBeacon({
             campaignID,
@@ -97,6 +103,11 @@ const useViewTracker = (props = {}) => {
             type: EVENT_TYPE,
             advertiserID,
             url,
+            detailedPlacement,
+            ...(optimizelyVariation &&
+              optimizelyVariation !== 'off' && {
+                experimentVariant: optimizelyVariation,
+              }),
           });
           setEventSent(true);
           observer.current.disconnect();
@@ -127,6 +138,8 @@ const useViewTracker = (props = {}) => {
     advertiserID,
     url,
     optimizely,
+    optimizelyMetricNameOverride,
+    detailedPlacement,
   ]);
 
   return async element => {

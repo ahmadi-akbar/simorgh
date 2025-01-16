@@ -5,10 +5,10 @@ import {
   articleDataPath,
   cpsAssetPageDataPath,
   frontPageDataPath,
-  IdxDataPath,
+  homePageDataPath,
+  tipoHomeDataPath,
   legacyAssetPageDataPath,
   mostReadDataRegexPath,
-  mostWatchedDataPath,
   onDemandRadioDataPath,
   onDemandTvDataPath,
   topicDataPath,
@@ -52,13 +52,7 @@ export default server => {
       const [shouldRedirect, redirectUrl] = removeTrailingSlash(req.url);
       return shouldRedirect ? res.redirect(301, redirectUrl) : next();
     })
-    .use(
-      expressStaticGzip(PUBLIC_DIRECTORY, {
-        enableBrotli: true,
-        orderPreference: ['br'],
-        redirect: false,
-      }),
-    )
+    .use(expressStaticGzip(PUBLIC_DIRECTORY, { redirect: false }))
     .get(articleDataPath, async ({ params }, res, next) => {
       const { service, id, variant } = params;
 
@@ -82,20 +76,25 @@ export default server => {
 
       sendDataFile(res, dataFilePath, next);
     })
+    .get(
+      [homePageDataPath, tipoHomeDataPath],
+      async ({ params }, res, next) => {
+        const { service, variant } = params;
+
+        const dataFilePath = constructDataFilePath({
+          pageType: 'homePage',
+          service,
+          variant,
+        });
+
+        sendDataFile(res, dataFilePath, next);
+      },
+    )
+
     .get(mostReadDataRegexPath, async ({ params }, res, next) => {
       const { service, variant } = params;
       const dataFilePath = constructDataFilePath({
         pageType: 'mostRead',
-        service,
-        variant,
-      });
-
-      sendDataFile(res, dataFilePath, next);
-    })
-    .get(mostWatchedDataPath, async ({ params }, res, next) => {
-      const { service, variant } = params;
-      const dataFilePath = constructDataFilePath({
-        pageType: 'mostWatched',
         service,
         variant,
       });
@@ -169,16 +168,16 @@ export default server => {
       sendDataFile(res, `${dataFilePath}.json`, next);
     })
     .get(topicDataPath, async ({ params }, res, next) => {
-      const { service, variant, id } = params;
+      const { service, id, variant = '' } = params;
 
       const dataFilePath = path.join(
         process.cwd(),
         'data',
         service,
         variant,
+        'topics',
         id,
       );
-
       sendDataFile(res, `${dataFilePath}.json`, next);
     })
     .get(cpsAssetPageDataPath, async ({ params }, res, next) => {
@@ -211,11 +210,6 @@ export default server => {
         variant,
       });
 
-      sendDataFile(res, dataFilePath, next);
-    })
-    .get(IdxDataPath, async ({ params }, res, next) => {
-      const { idx } = params;
-      const dataFilePath = path.join(process.cwd(), 'data', idx, 'index.json');
       sendDataFile(res, dataFilePath, next);
     })
     .get(africaEyeTVDataPath, async ({ params }, res, next) => {

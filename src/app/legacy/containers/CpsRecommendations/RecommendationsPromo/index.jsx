@@ -11,16 +11,7 @@ import {
 } from '#psammead/gel-foundations/src/breakpoints';
 import { getSerifMedium } from '#psammead/psammead-styles/src/font-styles';
 import { getPica } from '#psammead/gel-foundations/src/typography';
-import {
-  C_METAL,
-  C_GREY_2,
-  C_GREY_10,
-  C_GHOST,
-} from '#psammead/psammead-styles/src/colours';
-import { shape, string, oneOfType } from 'prop-types';
-import { optimoStoryItem, storyItem } from '#models/propTypes/storyItem';
 
-import { ARTICLE_PAGE } from '../../../../routes/utils/pageTypes';
 import { RequestContext } from '../../../../contexts/RequestContext';
 import { ServiceContext } from '../../../../contexts/ServiceContext';
 import Grid from '../../../components/Grid';
@@ -32,7 +23,7 @@ const StyledPromoWrapper = styled.div`
   position: relative;
   padding: ${GEL_SPACING};
   margin-top: ${GEL_SPACING};
-  background-color: ${props => (props.isArticlePage ? C_GHOST : C_GREY_2)};
+  background-color: ${props => props.theme.palette.GHOST};
 `;
 
 const ImageWrapper = styled.div`
@@ -52,7 +43,7 @@ const ImageWrapper = styled.div`
 
 const TextWrapper = styled.div`
   display: inline-block;
-  width: calc(100% - 7.5rem);
+  width: ${props => (props.theme.isLite ? '100%' : 'calc(100% - 7.5rem)')};
   padding: 0 ${GEL_SPACING};
   vertical-align: top;
   height: 100%;
@@ -68,7 +59,7 @@ const TextWrapper = styled.div`
 
 const Link = styled.a`
   position: static;
-  color: ${C_GREY_10};
+  color: ${props => props.theme.palette.GREY_10};
   text-decoration: none;
   overflow-wrap: break-word;
 
@@ -90,28 +81,26 @@ const Link = styled.a`
   }
 
   &:visited {
-    color: ${C_METAL};
+    color: ${props => props.theme.palette.METAL};
   }
 `;
 
 const StyledHeadline = styled.div`
   ${({ service }) => getSerifMedium(service)}
   ${({ script }) => getPica(script)}
-  color: ${C_GREY_10};
+  color: ${props => props.theme.palette.GREY_10};
   margin: 0;
   height: 100%;
   display: flex;
   align-items: center;
 `;
 
-const RecommendationsPromo = ({ promo, eventTrackingData }) => {
+const RecommendationsPromo = ({ promo, eventTrackingData = null }) => {
   const { script, service } = useContext(ServiceContext);
+  const { isLite } = useContext(RequestContext);
   const handleClickTracking = useCombinedClickTrackerHandler(eventTrackingData);
 
   const { headline, url, indexImage } = extractPromoData({ promo });
-
-  const { pageType } = useContext(RequestContext);
-  const isArticle = pageType === ARTICLE_PAGE;
 
   return (
     <Grid
@@ -125,13 +114,12 @@ const RecommendationsPromo = ({ promo, eventTrackingData }) => {
       }}
       enableGelGutters
     >
-      <StyledPromoWrapper
-        data-e2e="story-promo-wrapper"
-        isArticlePage={isArticle}
-      >
-        <ImageWrapper>
-          <RecommendationsImage indexImage={indexImage} lazyLoad />
-        </ImageWrapper>
+      <StyledPromoWrapper data-e2e="story-promo-wrapper">
+        {!isLite && (
+          <ImageWrapper>
+            <RecommendationsImage indexImage={indexImage} lazyLoad />
+          </ImageWrapper>
+        )}
         <TextWrapper>
           <StyledHeadline script={script} service={service}>
             <Link
@@ -145,24 +133,6 @@ const RecommendationsPromo = ({ promo, eventTrackingData }) => {
       </StyledPromoWrapper>
     </Grid>
   );
-};
-
-RecommendationsPromo.propTypes = {
-  promo: oneOfType([shape(storyItem), shape(optimoStoryItem)]).isRequired,
-  eventTrackingData: shape({
-    block: shape({
-      componentName: string,
-    }),
-    link: shape({
-      componentName: string,
-      url: string,
-      format: string,
-    }),
-  }),
-};
-
-RecommendationsPromo.defaultProps = {
-  eventTrackingData: null,
 };
 
 export default RecommendationsPromo;

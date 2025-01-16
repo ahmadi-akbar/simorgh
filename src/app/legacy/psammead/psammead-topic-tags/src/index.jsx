@@ -1,11 +1,6 @@
 import React, { forwardRef } from 'react';
-import { string, shape, node, func } from 'prop-types';
 import styled from '@emotion/styled';
-import {
-  C_LUNAR,
-  C_EBON,
-  C_METAL,
-} from '#psammead/psammead-styles/src/colours';
+import { LUNAR } from '#app/components/ThemeProvider/palette';
 import {
   GEL_SPACING_HLF,
   GEL_SPACING,
@@ -13,7 +8,6 @@ import {
 } from '#psammead/gel-foundations/src/spacings';
 import { getSansRegular } from '#psammead/psammead-styles/src/font-styles';
 import { getBrevier } from '#psammead/gel-foundations/src/typography';
-import { scriptPropType } from '#psammead/gel-foundations/src/prop-types';
 
 const MIN_TAG_HEIGHT = '2.75rem'; // 44px
 
@@ -49,31 +43,34 @@ const SingleTopicTagItem = styled.div`
     min-height: ${MIN_TAG_HEIGHT};
     padding: ${GEL_SPACING} ${GEL_SPACING_DBL};
     align-items: center;
-    background-color: ${({ backgroundColour }) => backgroundColour};
+    background-color: ${({ backgroundColour, theme }) =>
+      theme.isDarkUi ? theme.palette.GREY_7 : backgroundColour};
     text-decoration: none;
-    color: ${C_EBON};
+    color: ${({ theme }) =>
+      theme.isDarkUi ? theme.palette.GREY_2 : theme.palette.EBON};
 
     &:hover,
     &:focus {
       text-decoration: underline;
     }
     &:visited {
-      color: ${C_METAL};
+      color: ${({ theme }) =>
+        theme.isDarkUi ? theme.palette.GREY_2 : theme.palette.METAL};
     }
   }
 `;
 
-export const TopicTag = forwardRef(({ name, link, onClick }, ref) => (
+export const TopicTag = forwardRef(({ name, link, onClick = null }, ref) => (
   <a href={link} onClick={onClick} ref={ref}>
     {name}
   </a>
 ));
 
 export const TopicTags = ({
-  children,
+  children = [],
   script,
   service,
-  tagBackgroundColour,
+  tagBackgroundColour = LUNAR,
 }) => {
   const hasMultipleChildren = children.length > 1;
 
@@ -111,24 +108,4 @@ export const TopicTags = ({
       )}
     </>
   );
-};
-
-TopicTag.propTypes = {
-  name: string.isRequired,
-  link: string.isRequired,
-  onClick: func,
-};
-
-TopicTag.defaultProps = { onClick: null };
-
-TopicTags.propTypes = {
-  children: node,
-  script: shape(scriptPropType).isRequired,
-  service: string.isRequired,
-  tagBackgroundColour: string,
-};
-
-TopicTags.defaultProps = {
-  children: [],
-  tagBackgroundColour: C_LUNAR,
 };

@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import 'isomorphic-fetch';
-import { string } from 'prop-types';
+import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import moment from 'moment';
 import {
@@ -19,23 +18,17 @@ import {
 import { getLongPrimer } from '#psammead/gel-foundations/src/typography';
 import { getSansRegular } from '#psammead/psammead-styles/src/font-styles';
 import SectionLabel from '#psammead/psammead-section-label/src';
-import {
-  C_LUNAR,
-  C_EBON,
-  C_METAL,
-} from '#psammead/psammead-styles/src/colours';
 import { RequestContext } from '#contexts/RequestContext';
 import RadioSchedule from '#components/RadioSchedule';
 import webLogger from '#lib/logger.web';
 import { RADIO_SCHEDULE_FETCH_ERROR } from '#lib/logger.const';
 import { ServiceContext } from '../../../../contexts/ServiceContext';
 import processRadioSchedule from '../utilities/processRadioSchedule';
-import radioSchedulesShape from '../utilities/radioScheduleShape';
 
 const logger = webLogger();
 
 const RadioScheduleSection = styled.section`
-  background-color: ${C_LUNAR};
+  background-color: ${props => props.theme.palette.LUNAR};
   padding: 0 ${GEL_MARGIN_ABOVE_400PX};
   content-visibility: auto;
   contain-intrinsic-size: 59.375rem;
@@ -87,7 +80,7 @@ const RadioScheduleSectionLabel = styled(SectionLabel)`
 const RadioFrequencyLink = styled.a`
   ${({ script }) => script && getLongPrimer(script)}
   ${({ service }) => service && getSansRegular(service)}
-  color: ${C_EBON};
+  color: ${props => props.theme.palette.EBON};
   text-decoration: none;
 
   &:hover,
@@ -96,11 +89,16 @@ const RadioFrequencyLink = styled.a`
   }
 
   &:visited {
-    color: ${C_METAL};
+    color: ${props => props.theme.palette.METAL};
   }
 `;
 
-const CanonicalRadioSchedule = ({ initialData, endpoint, lang, className }) => {
+const CanonicalRadioSchedule = ({
+  initialData,
+  endpoint,
+  lang = null,
+  className = '',
+}) => {
   const {
     service,
     script,
@@ -114,6 +112,10 @@ const CanonicalRadioSchedule = ({ initialData, endpoint, lang, className }) => {
 
   const { header, frequenciesPageUrl, frequenciesPageLabel, durationLabel } =
     radioScheduleConfig;
+
+  const {
+    palette: { LUNAR },
+  } = useTheme();
 
   useEffect(() => {
     if (!radioSchedule) {
@@ -160,10 +162,11 @@ const CanonicalRadioSchedule = ({ initialData, endpoint, lang, className }) => {
 
   return (
     <RadioScheduleSection
-      className={className}
       role="region"
       aria-labelledby="Radio-Schedule"
+      data-testid="radio-schedule"
       {...(lang && { lang })}
+      {...(className && { className })}
     >
       <RadioScheduleSectionLabel
         script={script}
@@ -171,7 +174,7 @@ const CanonicalRadioSchedule = ({ initialData, endpoint, lang, className }) => {
         service={service}
         dir={dir}
         bar={false}
-        backgroundColor={C_LUNAR}
+        backgroundColor={LUNAR}
       >
         {header}
       </RadioScheduleSectionLabel>
@@ -189,19 +192,6 @@ const CanonicalRadioSchedule = ({ initialData, endpoint, lang, className }) => {
       </RadioScheduleWrapper>
     </RadioScheduleSection>
   );
-};
-
-CanonicalRadioSchedule.propTypes = {
-  endpoint: string.isRequired,
-  initialData: radioSchedulesShape,
-  lang: string,
-  className: string,
-};
-
-CanonicalRadioSchedule.defaultProps = {
-  initialData: undefined,
-  lang: null,
-  className: '',
 };
 
 export default CanonicalRadioSchedule;

@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import styled from '@emotion/styled';
-import { string, node } from 'prop-types';
 import {
   GEL_GROUP_3_SCREEN_WIDTH_MIN,
   GEL_GROUP_3_SCREEN_WIDTH_MAX,
@@ -12,17 +11,16 @@ import {
   GEL_SPACING_TRPL,
   GEL_SPACING_QUAD,
 } from '#psammead/gel-foundations/src/spacings';
-import MostReadContainer from '#containers/MostRead';
-import mostReadShape from '#containers/MostRead/utilities/mostReadShape';
-import ATIAnalytics from '#containers/ATIAnalytics';
-import LinkedData from '#containers/LinkedData';
-import ChartbeatAnalytics from '#containers/ChartbeatAnalytics';
 import ComscoreAnalytics from '#containers/ComscoreAnalytics';
-import MetadataContainer from '#containers/Metadata';
 import Grid, { GelPageGrid } from '#components/Grid';
-import IndexPageContainer from '#components/PageLayout/IndexPageContainer';
 import IndexHeading from '#containers/IndexHeading';
+import IndexPageContainer from '#components/PageLayout/IndexPageContainer';
+import MostRead from '../../components/MostRead/Canonical';
+import ATIAnalytics from '../../components/ATIAnalytics';
+import ChartbeatAnalytics from '../../components/ChartbeatAnalytics';
+import MetadataContainer from '../../components/Metadata';
 import { ServiceContext } from '../../contexts/ServiceContext';
+import LinkedData from '../../components/LinkedData';
 
 const MarginWrapper = styled.div`
   @media (min-width: ${GEL_GROUP_3_SCREEN_WIDTH_MIN}) and (max-width: ${GEL_GROUP_3_SCREEN_WIDTH_MAX}) {
@@ -38,7 +36,7 @@ const MarginWrapper = styled.div`
   }
 `;
 
-const MostReadPage = ({ pageData, mostReadEndpointOverride }) => {
+const MostReadPage = ({ pageData }) => {
   const {
     brandName,
     lang,
@@ -86,14 +84,16 @@ const MostReadPage = ({ pageData, mostReadEndpointOverride }) => {
     </>
   );
 
-  MostReadWrapper.propTypes = {
-    children: node.isRequired,
-  };
+  const {
+    metadata: { atiAnalytics },
+  } = pageData;
+
+  const atiData = { ...atiAnalytics, pageTitle: `${header} - ${brandName}` };
 
   return (
     <>
-      <ATIAnalytics data={pageData} />
-      <ChartbeatAnalytics data={pageData} />
+      <ATIAnalytics atiData={atiData} />
+      <ChartbeatAnalytics title={header} />
       <ComscoreAnalytics />
       <MetadataContainer
         title={header}
@@ -104,23 +104,13 @@ const MostReadPage = ({ pageData, mostReadEndpointOverride }) => {
       <LinkedData type="WebPage" seoTitle={header} />
       <main role="main" data-e2e="most-read">
         <IndexPageContainer>
-          <MostReadContainer
-            mostReadEndpointOverride={mostReadEndpointOverride}
-            wrapper={MostReadWrapper}
-            columnLayout="oneColumn"
-            initialData={pageData}
-            serverRenderOnAmp
-          />
+          <MostReadWrapper>
+            <MostRead data={pageData} columnLayout="oneColumn" size="default" />
+          </MostReadWrapper>
         </IndexPageContainer>
       </main>
     </>
   );
 };
-MostReadPage.propTypes = {
-  pageData: mostReadShape.isRequired,
-  mostReadEndpointOverride: string,
-};
-MostReadPage.defaultProps = {
-  mostReadEndpointOverride: null,
-};
+
 export default MostReadPage;

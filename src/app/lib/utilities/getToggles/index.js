@@ -6,8 +6,10 @@ import {
   CONFIG_FETCH_ERROR,
   CONFIG_ERROR,
   TOGGLE_API_RESPONSE_TIME,
+  CONFIG_RESPONSE_EMPTY_ERROR,
 } from '#lib/logger.const';
 import getOriginContext from '#contexts/RequestContext/getOriginContext';
+import { getEnvConfig } from '../getEnvConfig';
 
 const logger = nodeLogger(__filename);
 const NS_PER_SEC = 1e9;
@@ -34,9 +36,9 @@ const logResponseTime = async (url, origin, service, timeout) => {
 };
 
 const getToggles = async (service, cache) => {
-  const environment = process.env.SIMORGH_APP_ENV || 'local';
+  const environment = getEnvConfig().SIMORGH_APP_ENV || 'local';
   const timeout =
-    parseInt(process.env.SIMORGH_CONFIG_TIMEOUT_SECONDS, 10) * 1000;
+    parseInt(getEnvConfig().SIMORGH_CONFIG_TIMEOUT_SECONDS, 10) * 1000;
   const localToggles = defaultToggles[environment];
   if (!localToggles.enableFetchingToggles.enabled) {
     return localToggles;
@@ -46,6 +48,14 @@ const getToggles = async (service, cache) => {
   const url = constructTogglesEndpoint(service, origin);
 
   const cachedResponse = cache && cache.get(url);
+
+  if (cachedResponse === '') {
+    logger.error(CONFIG_RESPONSE_EMPTY_ERROR, {
+      url,
+      service,
+    });
+  }
+
   if (cachedResponse) {
     return {
       ...localToggles,

@@ -1,9 +1,9 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 import {
   isNull,
   suppressPropWarnings,
 } from '#psammead/psammead-test-helpers/src';
+import { render } from '../../../components/react-testing-library-with-providers';
 import { ServiceContextProvider } from '../../../contexts/ServiceContext';
 import ArticleTimestamp from '.';
 import {
@@ -19,16 +19,11 @@ const regexUpdatedDatetime =
   /Updated [0-9]{1,2} \w+ [0-9]{4}[,] [0-9]{2}[:][0-9]{2} \w+/;
 const regexUpdatedDate = /^Updated [0-9]{1,2} \w+ [0-9]{4}$/;
 
-// eslint-disable-next-line react/prop-types
-const WrappedArticleTimestamp = ({ service, ...props }) => (
+const WrappedArticleTimestamp = ({ service = 'news', ...props }) => (
   <ServiceContextProvider service={service}>
     <ArticleTimestamp {...props} />
   </ServiceContextProvider>
 );
-
-WrappedArticleTimestamp.defaultProps = {
-  service: 'news',
-};
 
 describe('ArticleTimestamp', () => {
   let originalDate;

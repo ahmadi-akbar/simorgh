@@ -1,9 +1,6 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import styled from '@emotion/styled';
-import { C_CLOUD_LIGHT } from '#psammead/psammead-styles/src/colours';
 import { GEL_SPACING_DBL } from '#psammead/gel-foundations/src/spacings';
-import { string, shape, arrayOf, oneOf, element, bool } from 'prop-types';
-import { scriptPropType } from '#psammead/gel-foundations/src/prop-types';
 
 import { EpisodeContext } from './helpers';
 import Episode from './Episode';
@@ -30,25 +27,28 @@ const StyledEpisodeListItem = styled.li`
     padding-bottom: 0;
   }
   &:not(:last-child) {
-    border-bottom: 1px ${C_CLOUD_LIGHT} solid;
+    border-bottom: 1px ${props => props.theme.palette.CLOUD_LIGHT} solid;
   }
 `;
 
 const EpisodeList = ({
-  children,
+  children = [],
   script,
   service,
-  dir,
-  darkMode,
-  ulProps,
-  liProps,
+  dir = 'ltr',
+  ulProps = {},
+  liProps = {},
 }) => {
+  const episodeListContextValue = useMemo(
+    () => ({ script, service, dir }),
+    [script, service, dir],
+  );
   if (!children.length) return null;
 
   const hasMultipleChildren = children.length > 1;
 
   return (
-    <EpisodeContext.Provider value={{ script, service, dir, darkMode }}>
+    <EpisodeContext.Provider value={episodeListContextValue}>
       {hasMultipleChildren ? (
         <StyledEpisodeList role="list" {...ulProps}>
           {children.map(child => (
@@ -62,24 +62,6 @@ const EpisodeList = ({
       )}
     </EpisodeContext.Provider>
   );
-};
-
-EpisodeList.propTypes = {
-  children: arrayOf(element),
-  script: shape(scriptPropType).isRequired,
-  service: string.isRequired,
-  dir: oneOf(['ltr', 'rtl']),
-  darkMode: bool,
-  ulProps: shape({}),
-  liProps: shape({}),
-};
-
-EpisodeList.defaultProps = {
-  children: [],
-  dir: 'ltr',
-  darkMode: false,
-  ulProps: {},
-  liProps: {},
 };
 
 EpisodeList.Episode = Episode;

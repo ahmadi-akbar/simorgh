@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { number, bool, objectOf, string } from 'prop-types';
-import { C_LUNAR, C_SHADOW } from '#psammead/psammead-styles/src/colours';
 import {
   BBC_BLOCKS,
   BBC_BLOCKS_DARK_MODE,
@@ -20,7 +18,9 @@ const StyledImagePlaceholder = styled.div`
   position: relative;
   height: 0;
   overflow: hidden;
-  background-color: ${({ darkMode }) => (darkMode ? C_SHADOW : C_LUNAR)};
+  background-color: ${({ darkPlaceholder = false }) =>
+    props =>
+      darkPlaceholder ? props.theme.palette.SHADOW : props.theme.palette.LUNAR};
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 60px 17px;
@@ -31,12 +31,12 @@ const StyledImagePlaceholder = styled.div`
     background-size: 93px 27px;
   }
   width: 100%;
-  background-image: ${({ darkMode }) =>
-    darkMode ? bgImageDark : bgImageRegular};
+  background-image: ${({ darkPlaceholder = false }) =>
+    darkPlaceholder ? bgImageDark : bgImageRegular};
 `;
 
 const ImagePlaceholder = props => {
-  const { forwardStyle, ratio } = props;
+  const { forwardStyle = null, ratio } = props;
 
   return (
     <StyledImagePlaceholder
@@ -45,17 +45,6 @@ const ImagePlaceholder = props => {
       {...props}
     />
   );
-};
-
-ImagePlaceholder.propTypes = {
-  ratio: number.isRequired,
-  darkMode: bool,
-  forwardStyle: objectOf(string),
-};
-
-ImagePlaceholder.defaultProps = {
-  darkMode: false,
-  forwardStyle: null,
 };
 
 export default ImagePlaceholder;

@@ -1,7 +1,10 @@
 /* eslint-disable no-console */
 
 import React from 'react';
-import { renderHook, act } from '@testing-library/react-hooks';
+import {
+  renderHook,
+  act,
+} from '#app/components/react-testing-library-with-providers';
 
 import { EventTrackingContextProvider } from '#contexts/EventTrackingContext';
 import { RequestContextProvider } from '#contexts/RequestContext';
@@ -87,7 +90,7 @@ const defaultToggles = {
   },
 };
 
-const wrapper = ({ pageData, children, toggles = defaultToggles }) => (
+const wrapper = ({ pageData, atiData, children, toggles = defaultToggles }) => (
   <RequestContextProvider
     bbcOrigin="https://www.test.bbc.com"
     pageType={STORY_PAGE}
@@ -97,7 +100,7 @@ const wrapper = ({ pageData, children, toggles = defaultToggles }) => (
   >
     <ServiceContextProvider service="pidgin">
       <ToggleContextProvider toggles={toggles}>
-        <EventTrackingContextProvider pageData={pageData}>
+        <EventTrackingContextProvider data={pageData} atiData={atiData}>
           {children}
         </EventTrackingContextProvider>
       </ToggleContextProvider>
@@ -154,15 +157,12 @@ describe('Expected use', () => {
 
   it('should skip initialising IntersectionObserver when eventTracking toggle is disabled', async () => {
     const { result } = renderHook(() => useViewTracker(trackingData), {
-      wrapper,
-      initialProps: {
-        pageData: fixtureData,
-        toggles: {
-          eventTracking: {
-            enabled: false,
-          },
-        },
-      },
+      wrapper: props =>
+        wrapper({
+          ...props,
+          pageData: fixtureData,
+          toggles: { eventTracking: { enabled: false } },
+        }),
     });
     const element = document.createElement('div');
 
@@ -199,12 +199,71 @@ describe('Expected use', () => {
     expect(global.fetch).not.toHaveBeenCalled();
   });
 
-  it('should send event to ATI and return correct tracking url when element is 50% or more in view for more than 1 second', async () => {
-    const { result } = renderHook(() => useViewTracker(trackingData), {
-      wrapper,
-      initialProps: {
-        pageData: fixtureData,
+  it('should use "optimizelyMetricNameOverride" property if provided in eventTrackingData object', async () => {
+    const mockOptimizelyTrack = jest.fn();
+    const mockUserId = 'test';
+    const mockAttributes = { foo: 'bar' };
+
+    const mockOptimizely = {
+      optimizely: {
+        track: mockOptimizelyTrack,
+        user: { attributes: mockAttributes, id: mockUserId },
+        getVariation: jest.fn(() => 'off'),
       },
+      optimizelyMetricNameOverride: 'myEvent',
+    };
+
+    const {
+      metadata: { atiAnalytics },
+    } = fixtureData;
+
+    const { result } = renderHook(
+      () => useViewTracker({ ...trackingData, ...mockOptimizely }),
+      {
+        wrapper: props =>
+          wrapper({ ...props, pageData: fixtureData, atiData: atiAnalytics }),
+      },
+    );
+    const element = document.createElement('div');
+
+    await result.current(element);
+
+    const observerInstance = getObserverInstance(element);
+
+    act(() => {
+      triggerIntersection({
+        changes: [{ isIntersecting: true }],
+        observer: observerInstance,
+      });
+    });
+
+    act(() => {
+      jest.advanceTimersByTime(1100);
+    });
+
+    const [[, options]] = global.IntersectionObserver.mock.calls;
+
+    expect(global.IntersectionObserver).toHaveBeenCalledTimes(1);
+    expect(options).toEqual({ threshold: [0.5] });
+    expect(mockOptimizelyTrack).toHaveBeenCalledTimes(1);
+    expect(mockOptimizelyTrack).toHaveBeenCalledWith(
+      'myEvent_views',
+      mockUserId,
+      {
+        foo: 'bar',
+        viewed_wsoj: true,
+      },
+    );
+  });
+
+  it('should send event to ATI and return correct tracking url when element is 50% or more in view for more than 1 second', async () => {
+    const {
+      metadata: { atiAnalytics },
+    } = fixtureData;
+
+    const { result } = renderHook(() => useViewTracker(trackingData), {
+      wrapper: props =>
+        wrapper({ ...props, pageData: fixtureData, atiData: atiAnalytics }),
     });
     const element = document.createElement('div');
 
@@ -248,11 +307,13 @@ describe('Expected use', () => {
   });
 
   it('should only send one view event when mutiple elements are viewed', async () => {
+    const {
+      metadata: { atiAnalytics },
+    } = fixtureData;
+
     const { result } = renderHook(() => useViewTracker(trackingData), {
-      wrapper,
-      initialProps: {
-        pageData: fixtureData,
-      },
+      wrapper: props =>
+        wrapper({ ...props, pageData: fixtureData, atiData: atiAnalytics }),
     });
     const elementA = document.createElement('div');
     const elementB = document.createElement('div');
@@ -282,11 +343,13 @@ describe('Expected use', () => {
   });
 
   it('should send one view event for multiple observed elements when at least one of them is in view', async () => {
+    const {
+      metadata: { atiAnalytics },
+    } = fixtureData;
+
     const { result } = renderHook(() => useViewTracker(trackingData), {
-      wrapper,
-      initialProps: {
-        pageData: fixtureData,
-      },
+      wrapper: props =>
+        wrapper({ ...props, pageData: fixtureData, atiData: atiAnalytics }),
     });
     const element = document.createElement('div');
 
@@ -309,17 +372,17 @@ describe('Expected use', () => {
   });
 
   it('should send multiple view events for multiple hook instances', async () => {
+    const {
+      metadata: { atiAnalytics },
+    } = fixtureData;
+
     const { result: resultA } = renderHook(() => useViewTracker(trackingData), {
-      wrapper,
-      initialProps: {
-        pageData: fixtureData,
-      },
+      wrapper: props =>
+        wrapper({ ...props, pageData: fixtureData, atiData: atiAnalytics }),
     });
     const { result: resultB } = renderHook(() => useViewTracker(trackingData), {
-      wrapper,
-      initialProps: {
-        pageData: fixtureData,
-      },
+      wrapper: props =>
+        wrapper({ ...props, pageData: fixtureData, atiData: atiAnalytics }),
     });
     const elementA = document.createElement('div');
     const elementB = document.createElement('div');
@@ -349,11 +412,13 @@ describe('Expected use', () => {
   });
 
   it('should disconnect IntersectionObserver after event is sent', async () => {
+    const {
+      metadata: { atiAnalytics },
+    } = fixtureData;
+
     const { result } = renderHook(() => useViewTracker(trackingData), {
-      wrapper,
-      initialProps: {
-        pageData: fixtureData,
-      },
+      wrapper: props =>
+        wrapper({ ...props, pageData: fixtureData, atiData: atiAnalytics }),
     });
 
     const element = document.createElement('div');
@@ -447,11 +512,13 @@ describe('Expected use', () => {
   });
 
   it('should not send event to ATI more than once when element is scrolled in and out of view', async () => {
+    const {
+      metadata: { atiAnalytics },
+    } = fixtureData;
+
     const { result } = renderHook(() => useViewTracker(trackingData), {
-      wrapper,
-      initialProps: {
-        pageData: fixtureData,
-      },
+      wrapper: props =>
+        wrapper({ ...props, pageData: fixtureData, atiData: atiAnalytics }),
     });
     const element = document.createElement('div');
 
@@ -498,13 +565,15 @@ describe('Expected use', () => {
   });
 
   it('should be able to override the campaignID that is sent to ATI', async () => {
+    const {
+      metadata: { atiAnalytics },
+    } = fixtureData;
+
     const { result } = renderHook(
       () => useViewTracker({ ...trackingData, campaignID: 'custom-campaign' }),
       {
-        wrapper,
-        initialProps: {
-          pageData: fixtureData,
-        },
+        wrapper: props =>
+          wrapper({ ...props, pageData: fixtureData, atiData: atiAnalytics }),
       },
     );
     const element = document.createElement('div');
@@ -543,16 +612,19 @@ describe('Expected use', () => {
       optimizely: {
         track: mockOptimizelyTrack,
         user: { attributes: mockAttributes, id: mockUserId },
+        getVariation: jest.fn(() => 'off'),
       },
     };
+
+    const {
+      metadata: { atiAnalytics },
+    } = fixtureData;
 
     const { result } = renderHook(
       () => useViewTracker({ ...trackingData, ...mockOptimizely }),
       {
-        wrapper,
-        initialProps: {
-          pageData: fixtureData,
-        },
+        wrapper: props =>
+          wrapper({ ...props, pageData: fixtureData, atiData: atiAnalytics }),
       },
     );
     const element = document.createElement('div');

@@ -1,5 +1,4 @@
 import pathOr from 'ramda/src/pathOr';
-
 import nodeLogger from '#lib/logger.node';
 import { PODCAST_SERVICE_MISSING } from '#lib/logger.const';
 
@@ -32,7 +31,7 @@ const getRssLink = brandPid => ({
 // Burmese podcast experiment - remove hardcoded linkText when rolling out to other services
 const getDownloadLink = versionId => ({
   linkUrl: `https://open.live.bbc.co.uk/mediaselector/6/redir/version/2.0/mediaset/audio-nondrm-download-low/proto/https/vpid/${versionId}.mp3`,
-  linkText: 'ဒေါင်းလုပ်လုပ် ရယူရန်',
+  linkText: `Download`,
   linkType: 'download',
 });
 
@@ -46,14 +45,10 @@ export const getPodcastExternalLinks = async (
     const linkData = await podcastExternalLinks[service]();
     if (!linkData) return [];
     if (!brandPid) return [];
-    let downloadLink = [];
+
     const links = pathOr([], ['default', variant, brandPid], linkData);
-    // Burmese podcast experiment
-    if (service === 'burmese' && brandPid === 'p02pc9lh') {
-      downloadLink = getDownloadLink(versionId);
-      return [...links, getRssLink(brandPid), downloadLink];
-    }
-    return [...links, getRssLink(brandPid)];
+
+    return [...links, getRssLink(brandPid), getDownloadLink(versionId)];
   } catch (err) {
     logger.warn(PODCAST_SERVICE_MISSING, {
       service,

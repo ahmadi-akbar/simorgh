@@ -125,6 +125,16 @@ describe('getAppType', () => {
       summary: 'should return amp for amp',
     },
     {
+      platform: 'app',
+      expected: 'mobile-app',
+      summary: 'should return mobile-app for app',
+    },
+    {
+      platform: 'lite',
+      expected: 'lite',
+      summary: 'should return lite for lite',
+    },
+    {
       platform: 'canonical',
       expected: 'responsive',
       summary: 'should return responsive for amp',
@@ -454,7 +464,7 @@ describe('getEventInfo', () => {
     format: 'format',
     detailedPlacement: 'detailed-placement',
     advertiserID: 'mundo',
-    variant: 'a/b-test',
+    experimentVariant: 'a/b-test',
   };
 
   it('should return url section', () => {

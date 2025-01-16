@@ -1,9 +1,3 @@
-import {
-  C_POSTBOX,
-  C_WHITE,
-  C_GHOST,
-  C_POSTBOX_30,
-} from '../../../legacy/psammead/psammead-styles/src/colours';
 import '#psammead/moment-timezone-include/tz/Asia/Baku';
 import '#psammead/psammead-locales/moment/az';
 import latinWithDiacritics from '../../../components/ThemeProvider/fontScripts/latinWithDiacritics';
@@ -38,7 +32,6 @@ export const service: DefaultServiceConfig = {
     service: 'azeri',
     serviceName: 'Azərbaycanca',
     languageName: 'Azerbaijani',
-    themeColor: `${C_POSTBOX}`,
     twitterCreator: '@bbcazeri',
     twitterSite: '@bbcazeri',
     noBylinesPolicy:
@@ -49,13 +42,6 @@ export const service: DefaultServiceConfig = {
     manifestPath: '/manifest.json',
     swPath: '/sw.js',
     frontPageTitle: 'Xəbərlər, Qaynar Xəbərlər, Analiz, Video',
-    theming: {
-      brandBackgroundColour: `${C_POSTBOX}`,
-      brandLogoColour: `${C_WHITE}`,
-      brandForegroundColour: `${C_GHOST}`,
-      brandHighlightColour: `${C_WHITE}`,
-      brandBorderColour: `${C_POSTBOX_30}`,
-    },
     showAdPlaceholder: true,
     showRelatedTopics: true,
     translations: {
@@ -79,6 +65,18 @@ export const service: DefaultServiceConfig = {
         mediaPlayer: 'Media player',
         audioPlayer: 'Audio player',
         videoPlayer: 'Video player',
+      },
+      liveExperiencePage: {
+        liveLabel: 'Canlı',
+        liveCoverage: 'Canlı reportaj',
+        breaking: 'Təcili xəbər',
+        postedAt: 'Xəbərin vaxtı',
+        summary: 'Xülasə',
+        shareButtonText: 'Paylaş',
+      },
+      downloads: {
+        instructions: 'You can download and view today’s news.',
+        title: 'File Download',
       },
       gist: 'Xülasə',
       error: {
@@ -141,7 +139,7 @@ export const service: DefaultServiceConfig = {
           },
           accept: 'OK',
           reject: 'Nəyin dəyişdiyini öyrənin',
-          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/your-data-matters',
+          rejectUrl: 'https://www.bbc.com/usingthebbc/privacy-policy/',
         },
         cookie: {
           amp: {
@@ -154,7 +152,7 @@ export const service: DefaultServiceConfig = {
                 linkText: 'kukilər',
                 last: ' kimi texnologiyalardan istifadə edərək sizə ən yaxşı onlayn təcrübəni vermək, məzmunu və reklamları sizə uyğunlaşdırmaq üçün brauzerinizdən axtarış məlumatlarını toplayırıq. Buna razı olduğunuzu, lütfən, bizə bildirin.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
               manage: 'Seçimlərimi idarə edin',
             },
@@ -170,7 +168,7 @@ export const service: DefaultServiceConfig = {
                   'Veb səhifələrimizin işləməsi üçün bəzi məhdud məlumatları razılığınız olmadan cihazınızda saxlayırıq.',
                 para4: {
                   text: 'Veb səhifələrimizin işləməsi üçün cihazınızda saxladığımız lazımi məlumatlar haqqında daha ətraflı oxuyun.',
-                  url: 'https://www.bbc.co.uk/usingthebbc/strictly-necessary-cookies/',
+                  url: 'https://www.bbc.com/usingthebbc/cookies/strictly-necessary-cookies/',
                 },
                 para5:
                   'Seçim üstünlüklərinizi cihazınızda saxlamaq üçün lokal yaddaşdan istifadə edirik.',
@@ -203,13 +201,13 @@ export const service: DefaultServiceConfig = {
                 linkText: 'kukilərdən',
                 last: ' sizə ən yaxşı onlayn təcrübəni vermək üçün istifadə edirik. Lütfən, bütün bu kukilərlə razı olduğunuzu bizə bildirin.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
             },
             accept: 'Bəli, razıyam',
             reject: 'Xeyr, kökləmələrə keçin',
             rejectUrl:
-              'https://www.bbc.co.uk/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
+              'https://www.bbc.com/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
           },
         },
       },
@@ -268,11 +266,6 @@ export const service: DefaultServiceConfig = {
       numberOfItems: 5,
       hasMostRead: true,
     },
-    mostWatched: {
-      header: 'Ən çox baxılanlar',
-      numberOfItems: 10,
-      hasMostWatched: true,
-    },
     radioSchedule: {
       hasRadioSchedule: false,
     },
@@ -285,7 +278,7 @@ export const service: DefaultServiceConfig = {
         text: 'BBC News-a niyə etibar etməlisiniz',
       },
       externalLink: {
-        href: 'https://www.bbc.co.uk/editorialguidelines/guidance/feeds-and-links',
+        href: 'https://www.bbc.com/editorialguidelines/guidance/feeds-and-links',
         text: 'Bizim kənar keçidlərə dair yanaşmamız barədə oxuyun.',
       },
       links: [
@@ -302,7 +295,7 @@ export const service: DefaultServiceConfig = {
           text: 'Məxfilik siyasəti',
         },
         {
-          href: 'https://www.bbc.co.uk/privacy/cookies/managing/cookie-settings.html',
+          href: 'https://www.bbc.com/usingthebbc/cookies/',
           text: 'Cookies',
         },
         {
@@ -310,9 +303,13 @@ export const service: DefaultServiceConfig = {
           text: 'BBC ilə Əlaqə',
         },
         {
+          href: 'https://www.bbc.com/ws/languages',
+          text: 'BBC News digər dillərdə',
+        },
+        {
           id: 'COOKIE_SETTINGS',
-          href: 'https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/',
-          text: 'AdChoices / Do Not Sell My Info',
+          href: '#',
+          text: 'Do not share or sell my info',
           lang: 'en-GB',
         },
       ],
@@ -337,8 +334,8 @@ export const service: DefaultServiceConfig = {
         url: '/azeri/topics/cde15l4vn02t',
       },
       {
-        title: 'Video',
-        url: '/azeri/media/video',
+        title: 'COP29',
+        url: '/azeri/topics/cv2dz9j8ywyt',
       },
     ],
   },

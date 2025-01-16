@@ -1,5 +1,8 @@
 /* eslint-disable global-require */
-import { renderHook, act } from '@testing-library/react-hooks';
+import {
+  renderHook,
+  act,
+} from '#app/components/react-testing-library-with-providers';
 import Cookies from 'js-cookie';
 
 import useConsentBanners from '.';
@@ -20,11 +23,16 @@ beforeAll(() => {
 });
 
 beforeEach(() => {
-  global.document.domain = 'www.bbc.com';
-  global.window.location.origin = 'https://www.bbc.com';
+  global.window.location = new URL('https://www.bbc.com');
   Cookies.set(PRIVACY_COOKIE, DEFAULT_PRIVACY_COOKIE);
   Cookies.set(EXPLICIT_COOKIE, DEFAULT_EXPLICIT_COOKIE);
   Cookies.set(POLICY_COOKIE, DEFAULT_POLICY_COOKIE);
+});
+
+afterAll(() => {
+  const { location } = window;
+  delete global.window.location;
+  global.window.location = { ...location };
 });
 
 describe('useConsentBanners', () => {
@@ -63,6 +71,8 @@ describe('useConsentBanners', () => {
         {
           expires: 365,
           domain: '.bbc.com',
+          sameSite: 'None',
+          secure: true,
         },
       );
       expect(result.current.showPrivacyBanner).toBe(true);
@@ -80,6 +90,8 @@ describe('useConsentBanners', () => {
         {
           expires: 365,
           domain: '.bbc.com',
+          sameSite: 'None',
+          secure: true,
         },
       );
       expect(result.current.showPrivacyBanner).toBe(true);
@@ -97,6 +109,8 @@ describe('useConsentBanners', () => {
         {
           expires: 365,
           domain: '.bbc.com',
+          sameSite: 'None',
+          secure: true,
         },
       );
       expect(result.current.showPrivacyBanner).toBe(true);
@@ -104,7 +118,7 @@ describe('useConsentBanners', () => {
     });
 
     it('sets PRIVACY_COOKIE without domain restrictions', () => {
-      global.document.domain = 'www.bbc.co.uk';
+      global.window.location = new URL('https://www.bbc.co.uk');
       Cookies.set(PRIVACY_COOKIE, null);
       cookieSetterSpy.mockClear();
 
@@ -116,6 +130,8 @@ describe('useConsentBanners', () => {
         {
           expires: 365,
           domain: '.bbc.co.uk',
+          sameSite: 'None',
+          secure: true,
         },
       );
       expect(fetch).not.toHaveBeenCalled();
@@ -156,6 +172,8 @@ describe('useConsentBanners', () => {
       expect(cookieSetterSpy).toHaveBeenCalledWith(POLICY_COOKIE, '000', {
         expires: 365,
         domain: '.bbc.com',
+        sameSite: 'None',
+        secure: true,
       });
       expect(cookieSetterSpy).toHaveBeenCalledTimes(1);
       expect(fetch).not.toHaveBeenCalled();
@@ -185,6 +203,8 @@ describe('useConsentBanners', () => {
       expect(cookieSetterSpy).toHaveBeenCalledWith(POLICY_COOKIE, '000', {
         expires: 365,
         domain: '.bbc.com',
+        sameSite: 'None',
+        secure: true,
       });
       expect(result.current.showCookieBanner).toBe(true);
       expect(result.current.showPrivacyBanner).toBe(false);
@@ -192,7 +212,7 @@ describe('useConsentBanners', () => {
     });
 
     it('sets POLICY_COOKIE without domain restrictions', () => {
-      global.document.domain = 'www.test.bbc.com';
+      global.window.location = new URL('https://www.test.bbc.com');
       Cookies.set(EXPLICIT_COOKIE, '0');
       Cookies.set(POLICY_COOKIE, null);
       cookieSetterSpy.mockClear();
@@ -202,6 +222,8 @@ describe('useConsentBanners', () => {
       expect(cookieSetterSpy).toHaveBeenCalledWith(POLICY_COOKIE, '000', {
         expires: 365,
         domain: '.bbc.com',
+        sameSite: 'None',
+        secure: true,
       });
       expect(fetch).not.toHaveBeenCalled();
     });
@@ -246,6 +268,40 @@ describe('useConsentBanners', () => {
       );
       expect(fetch).toHaveBeenCalledTimes(2);
     });
+
+    it('should set EXPLICIT_COOKIE to 1 for requests made within the UK', () => {
+      cookieSetterSpy.mockClear();
+
+      const { result } = renderHook(() => useConsentBanners(true));
+
+      act(() => {
+        result.current.handleCookieBannerAccepted();
+      });
+
+      expect(cookieSetterSpy).toHaveBeenCalledWith(EXPLICIT_COOKIE, '1', {
+        domain: '.bbc.com',
+        expires: 365,
+        sameSite: 'None',
+        secure: true,
+      });
+    });
+
+    it('should set EXPLICIT_COOKIE to 2 for requests made outside the UK', () => {
+      cookieSetterSpy.mockClear();
+
+      const { result } = renderHook(() => useConsentBanners(false));
+
+      act(() => {
+        result.current.handleCookieBannerAccepted();
+      });
+
+      expect(cookieSetterSpy).toHaveBeenCalledWith(EXPLICIT_COOKIE, '2', {
+        domain: '.bbc.com',
+        expires: 365,
+        sameSite: 'None',
+        secure: true,
+      });
+    });
   });
 
   describe('handleCookieBannerRejected', () => {
@@ -267,6 +323,40 @@ describe('useConsentBanners', () => {
         expect.anything(),
       );
       expect(fetch).not.toHaveBeenCalled();
+    });
+
+    it('should set EXPLICIT_COOKIE to 1 for requests made within the UK', () => {
+      cookieSetterSpy.mockClear();
+
+      const { result } = renderHook(() => useConsentBanners(true));
+
+      act(() => {
+        result.current.handleCookieBannerRejected();
+      });
+
+      expect(cookieSetterSpy).toHaveBeenCalledWith(EXPLICIT_COOKIE, '1', {
+        domain: '.bbc.com',
+        expires: 365,
+        sameSite: 'None',
+        secure: true,
+      });
+    });
+
+    it('should set EXPLICIT_COOKIE to 2 for requests made outside the UK', () => {
+      cookieSetterSpy.mockClear();
+
+      const { result } = renderHook(() => useConsentBanners(false));
+
+      act(() => {
+        result.current.handleCookieBannerRejected();
+      });
+
+      expect(cookieSetterSpy).toHaveBeenCalledWith(EXPLICIT_COOKIE, '2', {
+        domain: '.bbc.com',
+        expires: 365,
+        sameSite: 'None',
+        secure: true,
+      });
     });
   });
 });

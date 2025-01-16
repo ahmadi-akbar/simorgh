@@ -1,9 +1,3 @@
-import {
-  C_POSTBOX,
-  C_WHITE,
-  C_GHOST,
-  C_POSTBOX_30,
-} from '../../../legacy/psammead/psammead-styles/src/colours';
 import thai from '../../../components/ThemeProvider/fontScripts/thai';
 import '#psammead/moment-timezone-include/tz/Asia/Bangkok';
 import '#psammead/psammead-locales/moment/th';
@@ -38,7 +32,6 @@ export const service: DefaultServiceConfig = {
     service: 'thai',
     serviceName: 'Thai',
     languageName: 'Thai',
-    themeColor: `${C_POSTBOX}`,
     twitterCreator: '@bbc_thailand',
     twitterSite: '@bbc_thailand',
     noBylinesPolicy:
@@ -49,13 +42,6 @@ export const service: DefaultServiceConfig = {
     manifestPath: '/manifest.json',
     swPath: '/sw.js',
     frontPageTitle: 'ข่าว ข่าววันนี้ ข่าวล่าสุด วีดีโอ',
-    theming: {
-      brandBackgroundColour: `${C_POSTBOX}`,
-      brandLogoColour: `${C_WHITE}`,
-      brandForegroundColour: `${C_GHOST}`,
-      brandHighlightColour: `${C_WHITE}`,
-      brandBorderColour: `${C_POSTBOX_30}`,
-    },
     showAdPlaceholder: false,
     showRelatedTopics: true,
     translations: {
@@ -80,6 +66,18 @@ export const service: DefaultServiceConfig = {
         mediaPlayer: 'มีเดีย เพลเยอร์',
         audioPlayer: 'ออดิโอ เพลเยอร์',
         videoPlayer: 'วิดีโอ เพลเยอร์',
+      },
+      liveExperiencePage: {
+        liveLabel: 'สด',
+        liveCoverage: 'รายงานสด',
+        breaking: 'ด่วน',
+        postedAt: 'โพสต์ทาง',
+        summary: 'สรุป',
+        shareButtonText: 'แชร์"',
+      },
+      downloads: {
+        instructions: 'You can download and view today’s news.',
+        title: 'File Download',
       },
       gist: 'สรุป',
       error: {
@@ -134,7 +132,7 @@ export const service: DefaultServiceConfig = {
           },
           accept: 'ตกลง',
           reject: 'ดูว่ามีอะไรเปลี่ยนแปลงไปบ้าง',
-          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/your-data-matters',
+          rejectUrl: 'https://www.bbc.com/usingthebbc/privacy-policy/',
         },
         cookie: {
           amp: {
@@ -148,7 +146,7 @@ export const service: DefaultServiceConfig = {
                 linkText: 'คุกกีส์',
                 last: ' และข้อมูลการเข้าเว็บไซต์ต่าง ๆ ที่ถูกจัดเก็บไว้ เพื่อทำให้คุณได้รับประสบการณ์ที่ดีที่สุดในโลกออนไลน์ และทำให้เนื้อหาและโฆษณาที่คุณได้รับตรงกับความสนใจของคุณ กรุณาแจ้งให้เราทราบว่าคุณยอมรับหรือไม่',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
               manage: 'จัดการการตั้งค่าของฉัน',
             },
@@ -164,7 +162,7 @@ export const service: DefaultServiceConfig = {
                   'เพื่อให้หน้าเว็บของเราทำงานได้ดี เราจึงต้องเก็บสารสนเทศบางอย่างในวงจำกัดไว้บนอุปกรณ์ของคุณ โดยไม่ได้ขอความยินยอมเสียก่อน',
                 para4: {
                   text: 'อ่านเพิ่มเติมเกี่ยวกับสารสนเทศที่จำเป็นต่อการทำงานของหน้าเว็บ ซึ่งเราเก็บไว้บนอุปกรณ์ของคุณ',
-                  url: 'https://www.bbc.co.uk/usingthebbc/strictly-necessary-cookies/',
+                  url: 'https://www.bbc.com/usingthebbc/cookies/strictly-necessary-cookies/',
                 },
                 para5:
                   'เราใช้ local storage เก็บรักษาข้อมูลตัวเลือกความยินยอมของคุณ บนอุปกรณ์ของคุณเอง',
@@ -197,13 +195,13 @@ export const service: DefaultServiceConfig = {
                 linkText: 'คุกกีส์',
                 last: ' เพื่อให้คุณได้รับประสบการณ์ที่ดีที่สุดในโลกออนไลน์ กรุณาแจ้งให้เราทราบว่า คุณยอมรับคุกกีส์ทั้งหมดนี้',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
             },
             accept: 'ยอมรับ',
             reject: 'ไม่ยอมรับ ไปที่การตั้งค่า',
             rejectUrl:
-              'https://www.bbc.co.uk/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
+              'https://www.bbc.com/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
           },
         },
       },
@@ -260,11 +258,6 @@ export const service: DefaultServiceConfig = {
       lastUpdated: 'อัพเดทล่าสุดเมื่อเวลา',
       numberOfItems: 5,
       hasMostRead: true,
-    },
-    mostWatched: {
-      header: 'มียอดชมมากที่สุด',
-      numberOfItems: 10,
-      hasMostWatched: true,
     },
     radioSchedule: {
       hasRadioSchedule: false,
@@ -337,9 +330,13 @@ export const service: DefaultServiceConfig = {
           text: 'ติดต่อบีบีซี',
         },
         {
+          href: 'https://www.bbc.com/ws/languages',
+          text: 'บีบีซีนิวส์ภาษาอื่น ๆ',
+        },
+        {
           id: 'COOKIE_SETTINGS',
-          href: 'https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/',
-          text: 'AdChoices / Do Not Sell My Info',
+          href: '#',
+          text: 'Do not share or sell my info',
           lang: 'en-GB',
         },
       ],

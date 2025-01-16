@@ -4,13 +4,15 @@ import { useContext } from 'react';
 import { css, jsx, Theme } from '@emotion/react';
 import moment from 'moment';
 import path from 'ramda/src/path';
-import VisuallyHiddenText from '../../../legacy/psammead/psammead-visually-hidden-text/src';
+import VisuallyHiddenText from '../../VisuallyHiddenText';
 import formatDuration from '../../../lib/utilities/formatDuration';
 import Promo from '../../../legacy/components/Promo';
 import { DESKTOP, TABLET, MOBILE, SMALL } from './dataStructures';
 import { styles } from './index.styles';
 import { ServiceContext } from '../../../contexts/ServiceContext';
 import { CurationGridProps } from '../types';
+import { RequestContext } from '../../../contexts/RequestContext';
+import LiveLabel from '../../LiveLabel';
 
 const getStyles = (promoCount: number, i: number, mq: Theme['mq']) => {
   return css({
@@ -29,16 +31,21 @@ const getStyles = (promoCount: number, i: number, mq: Theme['mq']) => {
   });
 };
 
-const HiearchicalGrid = ({ promos, headingLevel }: CurationGridProps) => {
+const HiearchicalGrid = ({
+  summaries,
+  headingLevel,
+  isFirstCuration,
+}: CurationGridProps) => {
+  const { isAmp } = useContext(RequestContext);
   const { translations } = useContext(ServiceContext);
 
   const audioTranslation = path(['media', 'audio'], translations);
   const videoTranslation = path(['media', 'video'], translations);
   const photoGalleryTranslation = path(['media', 'photogallery'], translations);
   const durationTranslation = path(['media', 'duration'], translations);
-  if (!promos || promos.length < 3) return null;
+  if (!summaries || summaries.length < 3) return null;
 
-  const promoItems = promos.slice(0, 12);
+  const promoItems = summaries.slice(0, 12);
   return (
     <div data-testid="hierarchical-grid">
       <ul role="list" css={styles.list} data-testid="topic-promos">
@@ -46,9 +53,17 @@ const HiearchicalGrid = ({ promos, headingLevel }: CurationGridProps) => {
           const duration = moment.duration(promo.duration, 'seconds');
           const separator = ',';
           const formattedDuration = formatDuration({ duration, separator });
-          const durationString = `${durationTranslation}, ${formattedDuration}`;
+          const durationString = `, ${durationTranslation} ${formattedDuration}`;
 
           const useLargeImages = i === 0 && promoItems.length >= 3;
+
+          const isFirstPromo = i === 0;
+
+          const lazyLoadImages = !(isFirstPromo && isFirstCuration);
+
+          const fetchpriority =
+            isFirstPromo && isFirstCuration ? 'high' : undefined;
+
           const showDuration =
             promo.duration && ['video', 'audio'].includes(promo.type);
           const isMedia = ['video', 'audio', 'photogallery'].includes(
@@ -58,6 +73,8 @@ const HiearchicalGrid = ({ promos, headingLevel }: CurationGridProps) => {
             (promo.type === 'audio' && `${audioTranslation}, `) ||
             (promo.type === 'video' && `${videoTranslation}, `) ||
             (promo.type === 'photogallery' && `${photoGalleryTranslation}, `);
+
+          const { isLive } = promo;
 
           return (
             <li
@@ -72,11 +89,15 @@ const HiearchicalGrid = ({ promos, headingLevel }: CurationGridProps) => {
                   useLargeImages={useLargeImages}
                   src={promo.imageUrl || ''}
                   alt={promo.imageAlt}
-                  loading="lazy"
+                  lazyLoad={lazyLoadImages}
+                  fetchpriority={fetchpriority}
+                  isAmp={isAmp}
                 >
-                  <Promo.MediaIcon type={promo.type}>
-                    {showDuration ? promo.duration : ''}
-                  </Promo.MediaIcon>
+                  {isMedia && (
+                    <Promo.MediaIcon type={promo.type}>
+                      {showDuration ? promo.duration : ''}
+                    </Promo.MediaIcon>
+                  )}
                 </Promo.Image>
                 <Promo.Heading
                   as={`h${headingLevel}`}
@@ -108,16 +129,28 @@ const HiearchicalGrid = ({ promos, headingLevel }: CurationGridProps) => {
                       href={promo.link}
                       className="focusIndicatorDisplayBlock"
                     >
-                      {promo.title}
+                      {isLive ? (
+                        <LiveLabel
+                          {...(isFirstPromo && {
+                            className: 'first-promo',
+                          })}
+                        >
+                          {promo.title}
+                        </LiveLabel>
+                      ) : (
+                        promo.title
+                      )}
                     </Promo.A>
                   )}
                 </Promo.Heading>
                 <Promo.Body className="promo-paragraph" css={styles.body}>
                   {promo.description}
                 </Promo.Body>
-                <Promo.Timestamp className="promo-timestamp">
-                  {promo.firstPublished}
-                </Promo.Timestamp>
+                {!isLive ? (
+                  <Promo.Timestamp className="promo-timestamp">
+                    {promo.lastPublished}
+                  </Promo.Timestamp>
+                ) : null}
               </Promo>
             </li>
           );

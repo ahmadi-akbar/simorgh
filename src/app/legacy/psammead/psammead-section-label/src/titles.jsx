@@ -1,9 +1,6 @@
 /* eslint-disable jsx-a11y/aria-role */
 import React from 'react';
 import styled from '@emotion/styled';
-import { oneOf, shape, string } from 'prop-types';
-
-import { scriptPropType } from '#psammead/gel-foundations/src/prop-types';
 import {
   GEL_GROUP_3_SCREEN_WIDTH_MIN,
   MEDIA_QUERY_TYPOGRAPHY,
@@ -16,8 +13,8 @@ import {
   getLongPrimer,
   getDoublePica,
 } from '#psammead/gel-foundations/src/typography';
-import { C_EBON, C_GHOST } from '#psammead/psammead-styles/src/colours';
 import { getSansBold } from '#psammead/psammead-styles/src/font-styles';
+import { GHOST } from '#app/components/ThemeProvider/palette';
 
 const minClickableHeightPx = 44;
 const minClickableHeightRem = minClickableHeightPx / 16;
@@ -36,7 +33,7 @@ const FlexColumn = styled.span`
 `;
 
 const SectionLabelLink = styled.a`
-  color: ${C_EBON};
+  color: ${props => props.theme.palette.EBON};
   text-decoration: none;
 
   &:focus,
@@ -44,12 +41,6 @@ const SectionLabelLink = styled.a`
     text-decoration: underline;
   }
 `;
-
-SectionLabelLink.propTypes = {
-  href: string.isRequired,
-  labelId: string.isRequired,
-  className: string,
-};
 
 const FlexRow = styled.span`
   display: flex;
@@ -74,7 +65,9 @@ const titleMargins = `
 const Title = styled.span`
   ${({ script }) => script && getDoublePica(script)};
   ${({ service }) => getSansBold(service)}
-  background-color: ${props => props.backgroundColor};
+  background-color: ${({ backgroundColor, theme }) =>
+    theme.isDarkUi ? theme.palette.GREY_10 : backgroundColor};
+  color: ${({ theme }) => theme.isDarkUi && theme.palette.GREY_2};
   ${titleMargins};
   ${paddingDir}: ${GEL_SPACING};
 
@@ -86,18 +79,11 @@ const Title = styled.span`
   align-items: center;
 `;
 
-Title.propTypes = {
-  dir: oneOf(['ltr', 'rtl']).isRequired,
-  id: string.isRequired,
-  script: shape(scriptPropType).isRequired,
-  service: string.isRequired,
-};
-
 const IndexLinkCta = styled.span`
   ${({ script }) => script && getLongPrimer(script)};
   ${({ service }) => getSansBold(service)};
   ${titleMargins};
-  color: ${C_EBON};
+  color: ${props => props.theme.palette.EBON};
   background-color: ${props => props.backgroundColor};
   white-space: nowrap;
   ${paddingReverseDir}: ${GEL_SPACING_DBL};
@@ -107,19 +93,13 @@ const IndexLinkCta = styled.span`
   align-items: center;
 `;
 
-IndexLinkCta.propTypes = {
-  dir: oneOf(['ltr', 'rtl']).isRequired,
-  script: shape(scriptPropType).isRequired,
-  service: string.isRequired,
-};
-
 export const PlainTitle = ({
   children: title,
   dir,
   labelId,
   script,
   service,
-  backgroundColor,
+  backgroundColor = GHOST,
 }) => (
   <FlexColumn>
     <FlexRow>
@@ -136,19 +116,6 @@ export const PlainTitle = ({
   </FlexColumn>
 );
 
-PlainTitle.propTypes = {
-  children: string.isRequired,
-  dir: oneOf(['ltr', 'rtl']).isRequired,
-  labelId: string.isRequired,
-  script: shape(scriptPropType).isRequired,
-  service: string.isRequired,
-  backgroundColor: string,
-};
-
-PlainTitle.defaultProps = {
-  backgroundColor: C_GHOST,
-};
-
 export const LinkTitle = ({
   children: title,
   dir,
@@ -157,7 +124,7 @@ export const LinkTitle = ({
   linkText,
   script,
   service,
-  backgroundColor,
+  backgroundColor = GHOST,
 }) => (
   <SectionLabelLink
     href={href}
@@ -188,18 +155,3 @@ export const LinkTitle = ({
     </FlexColumn>
   </SectionLabelLink>
 );
-
-LinkTitle.propTypes = {
-  children: string.isRequired,
-  dir: oneOf(['ltr', 'rtl']).isRequired,
-  href: string.isRequired,
-  labelId: string.isRequired,
-  linkText: string.isRequired,
-  script: shape(scriptPropType).isRequired,
-  service: string.isRequired,
-  backgroundColor: string,
-};
-
-LinkTitle.defaultProps = {
-  backgroundColor: C_GHOST,
-};

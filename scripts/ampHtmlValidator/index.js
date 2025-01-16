@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-const fetch = require('isomorphic-fetch');
 const amphtmlValidator = require('amphtml-validator');
 const { getPageUrls } = require('../../cypress/support/helpers/getPageUrls');
 
@@ -7,16 +6,11 @@ const environment = 'local';
 const isSmoke = true;
 const baseUrl = 'http://localhost:7080';
 const pageTypes = [
-  'frontPage',
   'articles',
-  'liveRadio',
   'photoGalleryPage',
   'mostReadPage',
-  'onDemandAudio',
-  'onDemandTV',
   'mediaAssetPage',
   'storyPage',
-  'idxPage',
   'featureIndexPage',
 ];
 
@@ -59,7 +53,7 @@ const validate = async ({ validator, url }) => {
   return result;
 };
 
-const runValidator = async verbose => {
+const runValidator = async () => {
   const validator = await amphtmlValidator.getInstance();
 
   const urls = pageTypes
@@ -67,20 +61,21 @@ const runValidator = async verbose => {
     .flat()
     .filter(url => !excludedUrls.includes(url));
 
-  return Promise.all(urls.map(url => validate({ validator, url }))).then(
-    results => {
-      results.forEach(result => {
-        if (result.status === 'PASS') {
-          if (verbose) printResult(result);
-        } else {
-          printResult(result);
-          process.exitCode = 1;
-        }
-      });
+  // include kyrgyz homepage in amp validator tests
+  const urlsToValidate = [...urls, '/kyrgyz'];
 
-      printSummary(results);
-    },
-  );
+  return Promise.all(
+    urlsToValidate.map(url => validate({ validator, url })),
+  ).then(results => {
+    results.forEach(result => {
+      printResult(result);
+      if (result.status !== 'PASS') {
+        process.exitCode = 1;
+      }
+    });
+
+    printSummary(results);
+  });
 };
 
 module.exports = {

@@ -1,5 +1,10 @@
 /* eslint-disable no-console */
-const fetch = require('isomorphic-fetch');
+
+// https://github.com/node-fetch/node-fetch/issues/1624#issuecomment-1407717012
+const dns = require('node:dns');
+
+dns.setDefaultResultOrder('ipv4first');
+
 const { JSDOM } = require('jsdom');
 const retry = require('retry');
 
@@ -24,10 +29,10 @@ const faultTolerantDomFetch = ({ url, runScripts, headers }) =>
       try {
         const response = await fetch(url, headers && { headers });
         const html = await response.text();
-        const dom = new JSDOM(
-          html,
-          runScripts ? { runScripts: 'dangerously' } : {},
-        );
+        const dom = new JSDOM(html, {
+          url,
+          ...(runScripts ? { runScripts: 'dangerously' } : {}),
+        });
 
         resolve(dom);
       } catch (error) {

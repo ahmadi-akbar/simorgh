@@ -1,0 +1,63 @@
+{
+  "data": {
+    "title": "BBC News नेपाली",
+    "description": "बीबीसी नेपाली सेवाले विश्व घटनाका साथै स्थानीय र क्षेत्रीय घटनाका विश्वसनीय समाचार प्रस्तुत गर्दछ।",
+    "pageType": "home",
+    "curations": [
+      {
+        "summaries": [
+          {
+            "type": "article",
+            "title": "How a traffic accident stopped a city of 18 million",
+            "firstPublished": "2018-08-06T11:17:55.000Z",
+            "lastPublished": "2018-08-06T11:17:55.000Z",
+            "link": "https://www.bbc.com/nepali/23210854",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/193A/test/_63685460_abd9adbd-894c-4616-826b-0327af7f0e35.jpg",
+            "description": "For more than a week, Bangladesh has been gripped by mass protests triggered by the death of two children in a traffic accident.",
+            "imageAlt": "Students protesting",
+            "id": "16b1db1d-7363-0540-83e6-a05315222d68"
+          },
+          {
+            "type": "article",
+            "title": "Indonesia: Lombok quake kills dozens while thousands evacuated",
+            "firstPublished": "2018-08-06T11:15:37.000Z",
+            "lastPublished": "2018-08-06T11:15:37.000Z",
+            "link": "https://www.bbc.com/nepali/23210795",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/1265E/test/_63685357_048519321-1.jpg",
+            "description": "Withness speak of choas and terror, as more than 90 people die on the island of Lombok",
+            "imageAlt": "Lombok quake",
+            "id": "d97b8b2b-9310-5548-9460-0159dbb0cd4c"
+          },
+          {
+            "type": "article",
+            "title": "सेक्यूरिटी गार्ड मार्ने व्यक्ति पक्राउ",
+            "firstPublished": "2018-01-30T09:44:42.000Z",
+            "lastPublished": "2018-01-30T09:44:42.000Z",
+            "link": "https://www.bbc.com/nepali/news-23184393",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/8877/test/_63653943_suspect-nepal_police.jpg",
+            "description": "अनुसन्धान गर्दै जाँदा राजन थापा क्षेत्रीलाई मिति १५ गते दिउँसो काठमाण्डौंको बाङगेमुढाबाट पक्राउ गरिएको।",
+            "imageAlt": "राजन थापा क्षेत्री",
+            "id": "edc3e916-1534-8a46-8d46-45d645f139c7"
+          }
+        ],
+        "activePage": 1,
+        "pageCount": 1,
+        "curationId": "urn:bbc:tipo:list:67f8a638-371a-4863-84d4-ae662c2c6f98",
+        "curationType": "tipo-curation",
+        "position": 0,
+        "title": "अन‌ि यो पनि",
+        "visualProminence": "HIGH",
+        "visualStyle": "COLLECTION"
+      }
+    ],
+    "metadata": {
+      "atiAnalytics": {
+        "contentId": "urn:bbc:tipo:topic:c897lqqz91gt",
+        "contentType": "index-home",
+        "pageIdentifier": "nepali.page",
+        "pageTitle": "BBC News नेपाली"
+      }
+    }
+  },
+  "contentType": "application/json; charset=utf-8"
+}

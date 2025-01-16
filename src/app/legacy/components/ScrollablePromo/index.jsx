@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { arrayOf, shape, string, oneOfType, object, number } from 'prop-types';
 import {
   GEL_SPACING,
   GEL_SPACING_DBL,
@@ -7,7 +6,6 @@ import {
 
 import { getDoublePica } from '#psammead/gel-foundations/src/typography';
 import { getSansRegular } from '#psammead/psammead-styles/src/font-styles';
-import { C_SHADOW } from '#psammead/psammead-styles/src/colours';
 import styled from '@emotion/styled';
 import path from 'ramda/src/path';
 import pathOr from 'ramda/src/pathOr';
@@ -42,7 +40,8 @@ const LabelComponent = styled.strong`
   ${({ script }) => script && getDoublePica(script)};
   ${({ service }) => getSansRegular(service)}
   margin-bottom: ${GEL_SPACING_DBL};
-  color: ${C_SHADOW};
+  color: ${({ theme }) =>
+    theme.isDarkUi ? theme.palette.GREY_2 : theme.palette.SHADOW};
 
   ${({ dir }) =>
     `
@@ -58,7 +57,7 @@ const LabelComponent = styled.strong`
 `}
 `;
 
-const ScrollablePromo = ({ blocks, blockGroupIndex }) => {
+const ScrollablePromo = ({ blocks, blockGroupIndex = null }) => {
   const { script, service, dir, translations } = useContext(ServiceContext);
 
   const eventTrackingData = {
@@ -126,22 +125,6 @@ const ScrollablePromo = ({ blocks, blockGroupIndex }) => {
       )}
     </GridItemMediumNoMargin>
   );
-};
-
-ScrollablePromo.propTypes = {
-  blocks: arrayOf(
-    shape({
-      type: string.isRequired,
-      model: shape({
-        blocks: arrayOf(oneOfType([string, object])),
-      }).isRequired,
-    }),
-  ).isRequired,
-  blockGroupIndex: number,
-};
-
-ScrollablePromo.defaultProps = {
-  blockGroupIndex: null,
 };
 
 export default ScrollablePromo;

@@ -5,6 +5,9 @@ import {
   ChineseService,
   ZhongwenService,
   UkrainianService,
+  UzbekService,
+  Direction,
+  Variants,
 } from './global';
 import { Translations } from './translations';
 
@@ -28,6 +31,10 @@ export type UkrainianConfig = {
   [key in UkrainianService['variant']]: ServiceConfig;
 };
 
+export type UzbekConfig = {
+  [key in UzbekService['variant']]: ServiceConfig;
+};
+
 export type ServiceConfig = {
   lang: string;
   articleAuthor: string;
@@ -41,7 +48,7 @@ export type ServiceConfig = {
   serviceLocalizedName?: string;
   defaultImage: string;
   defaultImageAltText: string;
-  dir: string;
+  dir: Direction;
   externalLinkText: string;
   imageCaptionOffscreenText: string;
   videoCaptionOffscreenText: string;
@@ -59,7 +66,6 @@ export type ServiceConfig = {
   altCalendar?: {
     formatDate: (gregorianMoment: unknown) => string | null;
   };
-  themeColor: string;
   twitterCreator: string;
   twitterSite: string;
   noBylinesPolicy?: string | null;
@@ -71,28 +77,19 @@ export type ServiceConfig = {
   frontPageTitle: string;
   passportHomes?: string[];
   iTunesAppId?: number;
-  theming: {
-    brandBackgroundColour: string;
-    brandLogoColour: string;
-    brandForegroundColour: string;
-    brandHighlightColour: string;
-    brandBorderColour: string;
-  };
   showAdPlaceholder: boolean;
   showRelatedTopics: boolean;
   podcastPromo?: PodcastPromo;
   disclaimer?: {
-    para1: string;
-    para2: {
+    para1: {
       text: string;
       url: string;
       isExternal: boolean;
     };
-    para3: string;
+    para2: string;
   };
   translations: Translations;
   mostRead: MostRead;
-  mostWatched: MostWatched;
   radioSchedule?: RadioSchedule;
   recommendations?: Recommendations;
   footer: Footer;
@@ -100,10 +97,11 @@ export type ServiceConfig = {
   navigation?: {
     title: string;
     url: string;
+    hideOnLiteSite?: boolean;
   }[];
   scriptLink?: {
     text: string;
-    variant: string;
+    variant: Variants;
   };
   timezone: string;
   liveRadioOverrides?: {
@@ -111,6 +109,7 @@ export type ServiceConfig = {
       [key: string]: string;
     };
   };
+  googleSiteVerification?: string;
 };
 
 export type PodcastPromo = {
@@ -134,15 +133,8 @@ export type PodcastPromo = {
 export interface MostRead {
   header: string;
   lastUpdated: string;
-  numberOfItems?: number;
+  numberOfItems: number;
   hasMostRead: boolean;
-  onIdxPage?: boolean;
-}
-
-export interface MostWatched {
-  header: string;
-  numberOfItems?: number;
-  hasMostWatched: boolean;
 }
 
 export interface RadioSchedule {
@@ -151,8 +143,6 @@ export interface RadioSchedule {
   frequenciesPageLabel?: string;
   header?: string;
   durationLabel?: string;
-  onIdxPage?: boolean;
-  idxPagePosition?: string;
 }
 
 export interface Recommendations {
@@ -163,20 +153,17 @@ export interface Recommendations {
   };
 }
 
+export interface FooterLink {
+  href: string;
+  text: string;
+  id?: string | null;
+  lang?: string;
+}
+
 export interface Footer {
-  trustProjectLink?: {
-    href: string;
-    text: string;
-  };
-  externalLink?: {
-    href: string;
-    text: string;
-  };
-  links?: {
-    href: string;
-    text: string;
-    id?: string | null;
-    lang?: string | null;
-  }[];
+  trustProjectLink?: FooterLink;
+  externalLink?: FooterLink;
+  links?: FooterLink[];
   copyrightText?: string;
+  collectiveNewsroomText?: string;
 }

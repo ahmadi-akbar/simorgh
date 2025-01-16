@@ -14,6 +14,8 @@ import getAmpDestination from './getAmpDestination';
 
 export const getDestination = (platform, statsDestination) => {
   const destinationIDs = {
+    DEFAULT: 596068,
+    DEFAULT_TEST: 596068,
     NEWS_PS: 598285,
     NEWS_LANGUAGES_PS: 598291,
     NEWS_GNL: 598287,
@@ -70,8 +72,20 @@ export const getDestination = (platform, statsDestination) => {
   return destinationIDs[statsDestination] || destinationIDs.NEWS_PS;
 };
 
-export const getAppType = platform =>
-  platform === 'amp' ? 'amp' : 'responsive';
+export const getAppType = platform => {
+  switch (platform) {
+    case 'amp':
+      return 'amp';
+    case 'app':
+      return 'mobile-app';
+    case 'lite':
+      return 'lite';
+    case 'canonical':
+      return 'responsive';
+    default:
+      return 'responsive';
+  }
+};
 
 export const isLocServeCookieSet = platform => {
   if (platform === 'amp') {
@@ -257,7 +271,7 @@ export const getEventInfo = ({
   pageIdentifier = '',
   componentName = '',
   campaignID = '',
-  variant = '', // not a service variant - used for A/B testing
+  experimentVariant = '',
   format = '',
   detailedPlacement = '',
   advertiserID = '',
@@ -266,7 +280,7 @@ export const getEventInfo = ({
   const generalPlacement = pageIdentifier;
   const creation = componentName;
 
-  return `PUB-[${campaignID}]-[${creation}]-[${variant}]-[${format}]-[${generalPlacement}]-[${detailedPlacement}]-[${advertiserID}]-[${url}]`;
+  return `PUB-[${campaignID}]-[${creation}]-[${experimentVariant}]-[${format}]-[${generalPlacement}]-[${detailedPlacement}]-[${advertiserID}]-[${url}]`;
 };
 
 export const getThingAttributes = (attribute, articleData) => {
