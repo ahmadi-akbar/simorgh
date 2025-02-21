@@ -1,0 +1,389 @@
+{
+  "data": {
+    "title": "BBC News Afrique",
+    "description": "",
+    "pageType": "home",
+    "curations": [
+      {
+        "summaries": [
+          {
+            "type": "article",
+            "title": "OVERTYPED",
+            "firstPublished": "2018-07-09T12:24:38.000Z",
+            "lastPublished": "2018-07-09T12:24:38.000Z",
+            "link": "https://www.bbc.com/afrique/23207464",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/4FD6/test/_63683402_048023982-1.jpg",
+            "description": "Au Mali, la campagne en vue de la présidentielle du 29 juillet prochain a été lancée samedi pour 21 jours. Dimanche deux rassemblements majeurs ont été tenus à Bamako.",
+            "imageAlt": "Crowds cheer in a stadium at a campaign rally in Bamako.",
+            "id": "162377de-914a-314b-bcaf-ea6c42942751"
+          },
+          {
+            "type": "article",
+            "title": "Template article 3",
+            "firstPublished": "2023-08-15T14:11:28.287Z",
+            "lastPublished": "2023-08-15T14:11:28.287Z",
+            "link": "https://www.bbc.com/mundo/articles/czmkdrzdwkno",
+            "imageUrl": "https://ichef.bbci.co.uk/ace/standard/{width}/cpsdevpb/4414/test/146c2c30-3b75-11ee-93b4-83c41441672b.jpg",
+            "description": "Probo lorem partem pro ex, unum prima expetenda eos ne. Melius viderer quaestio nec te.",
+            "imageAlt": "Bird",
+            "id": "czmkdrzdwkno"
+          },
+          {
+            "type": "article",
+            "title": "Obama speechless at Ant's divorce",
+            "firstPublished": "2018-10-16T11:32:54.000Z",
+            "lastPublished": "2018-10-16T11:32:54.000Z",
+            "link": "https://www.bbc.com/afrique/23219709",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/0DC9/test/_63692530_049987760-1.jpg",
+            "description": "TV presenter Ant McPartlin and his estranged wife Lisa Armstrong have been granted a divorce.",
+            "imageAlt": "Photo of Ant McPartlin and former wife smiling in front of a group of fans",
+            "id": "42576178-7f01-c14b-8ef5-32febb1dd6c4"
+          },
+          {
+            "type": "article",
+            "title": "Macron inaugure le TGV au Maroc",
+            "firstPublished": "2018-11-15T11:18:31.000Z",
+            "lastPublished": "2018-11-15T11:18:31.000Z",
+            "link": "https://www.bbc.com/afrique/23222399",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/1161/test/_63694440_043549290-1.jpg",
+            "description": "Le président Emmanuel Macron se rend jeudi au Maroc pour une visite de quelques heures.",
+            "imageAlt": "Macron pendant l inauguration du tgv",
+            "id": "625cdde8-911d-db45-aebf-cf70373255f7"
+          }
+        ],
+        "activePage": 1,
+        "pageCount": 1,
+        "curationId": "urn:bbc:tipo:list:0fa07975-8996-4264-b722-e220a4c5eda1",
+        "curationType": "tipo-curation",
+        "position": 0,
+        "title": "À la une",
+        "visualProminence": "HIGH",
+        "visualStyle": "COLLECTION"
+      },
+      {
+        "summaries": [
+          {
+            "type": "article",
+            "title": "This is the headline of the article",
+            "firstPublished": "2023-07-28T20:51:59.819Z",
+            "lastPublished": "2023-07-28T20:51:59.819Z",
+            "link": "https://www.bbc.com/mundo/articles/cmyk0d45ddpo",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/1243/test/36c8a940-b134-11ee-9627-8141b3381959.jpg",
+            "description": "This is the summary of the article",
+            "imageAlt": "test",
+            "id": "cmyk0d45ddpo"
+          }
+        ],
+        "activePage": 1,
+        "pageCount": 1,
+        "curationId": "urn:bbc:tipo:list:89df7c50-e6ca-472c-aed4-8e4eb6c08045",
+        "curationType": "tipo-curation",
+        "position": 1,
+        "title": "This is the title of the curation",
+        "visualProminence": "MAXIMUM",
+        "visualStyle": "BANNER"
+      },
+      {
+        "summaries": [
+          {
+            "type": "article",
+            "title": "Headline of the first article",
+            "firstPublished": "2023-05-31T14:57:35.971Z",
+            "lastPublished": "2023-05-31T14:57:35.971Z",
+            "link": "https://www.bbc.com/mundo/articles/c77qvvm012vo",
+            "imageUrl": "https://ichef.bbci.co.uk/ace/standard/{width}/cpsdevpb/90d0/test/b0a42fe0-ffbf-11ed-980d-ad3b774efdb4.png",
+            "description": "summary text",
+            "imageAlt": "alt text",
+            "id": "c77qvvm012vo"
+          },
+          {
+            "type": "article",
+            "title": "Harry Kane: el Tottenham debería \"hacer caja\" con el delantero para la reconstrucción",
+            "firstPublished": "2023-06-06T14:10:34.719Z",
+            "lastPublished": "2023-06-15T15:43:19.177Z",
+            "link": "https://www.bbc.com/mundo/articles/c57d6p258lvo",
+            "imageUrl": "https://ichef.bbci.co.uk/ace/standard/{width}/cpsdevpb/c7b1/test/86c48e80-0538-11ee-aa87-8dac976de138.jpg",
+            "description": "El conjunto londinense tiene el difícil dilema de si deja marchar al máximo goleador de su historia o reconstruye el equipo alrededor de él.",
+            "imageAlt": "Harry Kane",
+            "id": "c57d6p258lvo"
+          },
+          {
+            "type": "article",
+            "title": " “Por qué detestamos a los extranjeros”",
+            "firstPublished": "2023-11-14T17:01:12.364Z",
+            "lastPublished": "2023-11-14T17:01:12.364Z",
+            "link": "https://www.bbc.com/mundo/articles/crd06j96mjlo",
+            "imageUrl": "https://ichef.bbci.co.uk/ace/standard/{width}/cpsdevpb/8383/test/136d0520-5623-11ee-b251-fd487cacd038.jpg",
+            "description": "Una mezcla tóxica de pobreza, drogas y miedo ha resultado en un juego de culpas en el que los inmigrantes se han convertido en chivos expiatorios en Sudáfrica.",
+            "imageAlt": "Zandile Dabula",
+            "id": "crd06j96mjlo"
+          }
+        ],
+        "activePage": 1,
+        "pageCount": 1,
+        "curationId": "urn:bbc:tipo:list:0743951a-c247-45a0-bf5a-0e26507c2283",
+        "curationType": "tipo-curation",
+        "position": 2,
+        "title": "Billboard multiple items - this is the curation title",
+        "visualProminence": "MAXIMUM",
+        "visualStyle": "BANNER"
+      },
+      {
+        "summaries": [
+          {
+            "type": "article",
+            "title": "Cameroun: pas d'intervention extérieure",
+            "firstPublished": "2018-07-09T12:21:15.000Z",
+            "lastPublished": "2018-07-09T12:21:15.000Z",
+            "link": "https://www.bbc.com/afrique/23207415",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/10A8E/test/_63683286_040595322-1.jpg",
+            "description": "L'ancien gardien de buts des Lions indomptables, Joseph Antoine Bell, pense que la crise anglophone ne nécessite pas une intervention extérieure.",
+            "imageAlt": "Le drapeau camerounais hissé par deux soldats",
+            "id": "745df3ac-8e74-ff41-868f-556f8aea8ad6"
+          },
+          {
+            "type": "article",
+            "title": "Un supercalculateur en Côte d'Ivoire",
+            "firstPublished": "2018-07-09T11:19:01.000Z",
+            "lastPublished": "2018-07-09T11:19:01.000Z",
+            "link": "https://www.bbc.com/afrique/23207406",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/43BA/test/_63683371_9abdd114-4925-4515-b159-a1f5511f1084.jpg",
+            "description": "Le campus de Bingerville à Abidjan, la capitale de la Côte d'Ivoire, possède désormais un ordinateur surpuissant capable d'effectuer des calculs complexes à très grande vitesse.",
+            "imageAlt": "Ordinateur supercalculateur",
+            "id": "0dafcaff-9b96-7c41-a572-e7ab306ee0cd"
+          },
+          {
+            "type": "link",
+            "title": "Acoutez en direct",
+            "firstPublished": "",
+            "lastPublished": "",
+            "link": "https://www.test.bbc.com/afrique/bbc_afrique_radio/liveradio",
+            "imageUrl": "https://ichef.bbci.co.uk/ace/standard/{width}/cpsprodpb/36D1/production/_127933041__63970643_bbc-news-world-service-logo-nc.png",
+            "description": "",
+            "imageAlt": "",
+            "id": "https%3A%2F%2Fwww.test.bbc.com%2Fafrique%2Fbbc_afrique_radio%2Fliveradio"
+          }
+        ],
+        "activePage": 1,
+        "pageCount": 1,
+        "curationId": "urn:bbc:tipo:list:b327c1d9-9454-4061-9d79-f27a313f6fec",
+        "curationType": "tipo-curation",
+        "position": 3,
+        "title": "Choix de la rédaction",
+        "visualProminence": "HIGH",
+        "visualStyle": "COLLECTION"
+      },
+      {
+        "curationId": "urn:bbc:programmes:available-episodes:bbc_afrique_radio",
+        "curationType": "available-episodes",
+        "position": 4,
+        "title": "Radio Schedule",
+        "visualProminence": "NORMAL",
+        "visualStyle": "NONE",
+        "radioSchedule": [
+          {
+            "id": "p0h55kgb",
+            "state": "next",
+            "startTime": "2024-02-19T18:10:00.000Z",
+            "link": "/afrique/bbc_afrique_radio/w172z9h4xjm21l8",
+            "brandTitle": "A Vous L'antenne",
+            "summary": "Du lundi au vendredi les auditeurs réagissent à chaud sur les sujets qui rythment l'actualité ",
+            "duration": "PT20M"
+          },
+          {
+            "id": "p0h537p5",
+            "state": "onDemand",
+            "startTime": "2024-02-19T12:20:00.000Z",
+            "link": "/afrique/bbc_afrique_radio/w172z9fxrfq0d2x",
+            "brandTitle": "A Vous L'antenne",
+            "summary": "Du lundi au vendredi les auditeurs réagissent à chaud sur les sujets qui rythment l'actualité ",
+            "duration": "PT10M"
+          },
+          {
+            "id": "p0h537p3",
+            "state": "onDemand",
+            "startTime": "2024-02-19T12:10:00.000Z",
+            "link": "/afrique/bbc_afrique_radio/w172z9lfpg0sjtn",
+            "brandTitle": "Au Coeur De L'actu",
+            "summary": "Un jour, un thème pour aller plus en profondeur sur les sujets qui font bouger l’Afrique",
+            "duration": "PT10M"
+          },
+          {
+            "id": "p0h523rx",
+            "state": "onDemand",
+            "startTime": "2024-02-19T09:02:00.000Z",
+            "link": "/afrique/bbc_afrique_radio/w172z9fxrfpzzqp",
+            "brandTitle": "A Vous L'antenne",
+            "summary": "Du lundi au vendredi les auditeurs réagissent à chaud sur les sujets qui rythment l'actualité ",
+            "duration": "PT10M"
+          }
+        ]
+      },
+      {
+        "curationId": "urn:bbc:onward-journeys:most:read?=site=News",
+        "curationType": "most-popular",
+        "position": 5,
+        "title": "Les plus lus",
+        "visualProminence": "NORMAL",
+        "visualStyle": "RANKED",
+        "link": "https://www.bbc.com/afrique/popular/read",
+        "mostRead": {
+          "generated": "2024-02-19T14:17:57.254Z",
+          "lastRecordTimeStamp": "2021-05-04T11:53:00Z",
+          "firstRecordTimeStamp": "2021-05-04T10:53:00Z",
+          "items": [
+            {
+              "id": "c140434e-ef3b-a347-b1fd-455fb263e139",
+              "rank": 1,
+              "title": "Commémoration du massacre de Soweto 36",
+              "href": "/afrique/23053028",
+              "timestamp": 1466154800000
+            },
+            {
+              "id": "8dfb243a-ab8d-374a-9dab-f478d9ce0bb4",
+              "rank": 2,
+              "title": "Commémoration du massacre de Soweto 20",
+              "href": "/afrique/23052943",
+              "timestamp": 1466092863000
+            },
+            {
+              "id": "34ce798a-96c4-5444-b0c2-ba6487a88c92",
+              "rank": 3,
+              "title": "Commémoration du massacre de Soweto 28",
+              "href": "/afrique/23052999",
+              "timestamp": 1466154407000
+            },
+            {
+              "id": "44e8bed2-d2c8-9c41-acb5-071cad14cfb7",
+              "rank": 4,
+              "title": "Commémoration du massacre de Soweto 45",
+              "href": "/afrique/23053275",
+              "timestamp": 1466160488000
+            },
+            {
+              "id": "0dafcaff-9b96-7c41-a572-e7ab306ee0cd",
+              "rank": 5,
+              "title": "Un supercalculateur en Côte d'Ivoire",
+              "href": "/afrique/23207406",
+              "timestamp": 1531135141000
+            },
+            {
+              "id": "da6e6871-c335-294c-aed4-ec006199a746",
+              "rank": 6,
+              "title": "Af Sud : des candidats de l’ANC abattus",
+              "href": "/afrique/monde-23061718",
+              "timestamp": 1469011960000
+            },
+            {
+              "id": "1949bdae-38e4-0748-9969-ddec3444a52b",
+              "rank": 7,
+              "title": "Commémoration du massacre de Soweto 37",
+              "href": "/afrique/23053029",
+              "timestamp": 1466154871000
+            },
+            {
+              "id": "8078e9b6-57bd-ee49-83c8-76ef49449be5",
+              "rank": 8,
+              "title": "Commémoration du massacre de Soweto 27",
+              "href": "/afrique/23052997",
+              "timestamp": 1466154067000
+            },
+            {
+              "id": "1a078192-0370-de48-bd06-c336103aab12",
+              "rank": 9,
+              "title": "Thai cave rescue continues",
+              "href": "/afrique/23207350",
+              "timestamp": 1531136948000
+            },
+            {
+              "id": "439ba4f6-910e-8a4e-b2cb-11ec6aeea823",
+              "rank": 10,
+              "title": "Euro 2016 : la France première du groupe africa",
+              "href": "/afrique/region-23056013",
+              "timestamp": 1467034614000
+            },
+            {
+              "id": "745df3ac-8e74-ff41-868f-556f8aea8ad6",
+              "rank": 11,
+              "title": "Cameroun: pas d'intervention extérieure",
+              "href": "/afrique/23207415",
+              "timestamp": 1531138875000
+            },
+            {
+              "id": "42576178-7f01-c14b-8ef5-32febb1dd6c4",
+              "rank": 12,
+              "title": "Obama speechless at Ant's divorce",
+              "href": "/afrique/23219709",
+              "timestamp": 1539689574000
+            },
+            {
+              "id": "e668da0b-df4d-7048-a329-855a4cb143ff",
+              "rank": 13,
+              "title": "Commémoration du massacre de Soweto 12",
+              "href": "/afrique/23052922",
+              "timestamp": 1466091734000
+            },
+            {
+              "id": "32e4242e-43e4-d349-a0ac-cbaf76be2aae",
+              "rank": 14,
+              "title": "Commémoration du massacre de Soweto 19",
+              "href": "/afrique/23052941",
+              "timestamp": 1466092777000
+            },
+            {
+              "id": "e28f2887-33a3-6a48-8d32-96403ec9bf15",
+              "rank": 15,
+              "title": "Dubrovnik",
+              "href": "/news/education-23190404",
+              "timestamp": 1520510237000
+            },
+            {
+              "id": "d85c0aea-88b8-0b47-9c74-1fb969eaed22",
+              "rank": 16,
+              "title": "Un Casque bleu a été tué à Kidal dans le Nord du Mali",
+              "href": "/afrique/23066064",
+              "timestamp": 1470654016000
+            },
+            {
+              "id": "d8749100-675a-3e4b-956e-cb0546ce0bc5",
+              "rank": 17,
+              "title": "Un fils de Zuma devant les juges",
+              "href": "/afrique/23207326",
+              "timestamp": 1531134456000
+            },
+            {
+              "id": "d58a18f6-b5d9-d344-bc5a-de06579083c6",
+              "rank": 18,
+              "title": "PGL: En images Mohamed Ali, une légende de la boxe áäâç€",
+              "href": "/afrique/monde-23056115",
+              "timestamp": 1467039961000
+            },
+            {
+              "id": "f443131e-49cf-0044-96f1-6def6da3a1b6",
+              "rank": 19,
+              "title": "Commémoration du massacre de Soweto",
+              "href": "/afrique/23052808",
+              "timestamp": 1466088521000
+            },
+            {
+              "id": "a875861f-5788-5448-8d99-ded9c38ef94b",
+              "rank": 20,
+              "title": "Debut de campagne electorale au Mali",
+              "href": "/afrique/23207375",
+              "timestamp": 1531138371000
+            }
+          ]
+        }
+      }
+    ],
+    "metadata": {
+      "atiAnalytics": {
+        "contentId": "urn:bbc:tipo:topic:cjln1ww62p1t",
+        "contentType": "index-home",
+        "pageIdentifier": "afrique.page",
+        "pageTitle": "BBC News Afrique"
+      }
+    }
+  },
+  "contentType": "application/json; charset=utf-8"
+}

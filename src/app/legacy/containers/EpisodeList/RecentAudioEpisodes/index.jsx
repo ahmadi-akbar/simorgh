@@ -1,9 +1,7 @@
 /* eslint-disable jsx-a11y/aria-role */
 import React, { useContext } from 'react';
-import { arrayOf, shape, string, number } from 'prop-types';
 import styled from '@emotion/styled';
 import pathOr from 'ramda/src/pathOr';
-import VisuallyHiddenText from '#psammead/psammead-visually-hidden-text/src';
 import {
   formatDuration,
   formatUnixTimestamp,
@@ -24,6 +22,7 @@ import EpisodeList from '#containers/EpisodeList';
 import useViewTracker from '#hooks/useViewTracker';
 import useClickTrackerHandler from '#hooks/useClickTrackerHandler';
 import { ServiceContext } from '../../../../contexts/ServiceContext';
+import VisuallyHiddenText from '../../../../components/VisuallyHiddenText';
 
 const Spacer = styled.aside`
   position: relative;
@@ -46,7 +45,12 @@ const InlineDiv = styled.div`
   display: inline;
 `;
 
-const RecentAudioEpisodes = ({ masterBrand, episodes, brandId, pageType }) => {
+const RecentAudioEpisodes = ({
+  masterBrand,
+  episodes,
+  brandId = '',
+  pageType,
+}) => {
   const { translations, service, script, dir, timezone, datetimeLocale } =
     useContext(ServiceContext);
   const eventTrackingData = {
@@ -172,25 +176,6 @@ const RecentAudioEpisodes = ({ masterBrand, episodes, brandId, pageType }) => {
       </EpisodeList>
     </Spacer>
   );
-};
-
-RecentAudioEpisodes.propTypes = {
-  masterBrand: string.isRequired,
-  brandId: string,
-  pageType: string.isRequired,
-  episodes: arrayOf(
-    shape({
-      id: string.isRequired,
-      brandTitle: string.isRequired,
-      episodeTitle: string,
-      timestamp: number.isRequired,
-      duration: string.isRequired,
-    }),
-  ).isRequired,
-};
-
-RecentAudioEpisodes.defaultProps = {
-  brandId: '',
 };
 
 export default RecentAudioEpisodes;

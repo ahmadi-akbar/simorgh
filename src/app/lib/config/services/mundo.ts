@@ -1,9 +1,3 @@
-import {
-  C_POSTBOX,
-  C_WHITE,
-  C_GHOST,
-  C_POSTBOX_30,
-} from '../../../legacy/psammead/psammead-styles/src/colours';
 import latinWithDiacritics from '../../../components/ThemeProvider/fontScripts/latinWithDiacritics';
 import '#psammead/moment-timezone-include/tz/GMT';
 import '#psammead/psammead-locales/moment/es';
@@ -18,6 +12,7 @@ export const service: DefaultServiceConfig = {
     articleTimestampSuffix: '',
     atiAnalyticsAppName: 'news-mundo',
     atiAnalyticsProducerId: '62',
+    atiAnalyticsProducerName: 'MUNDO',
     chartbeatDomain: 'mundo.bbc.co.uk',
     brandName: 'BBC News Mundo',
     product: 'BBC News',
@@ -38,7 +33,6 @@ export const service: DefaultServiceConfig = {
     service: 'mundo',
     serviceName: 'News Mundo',
     languageName: 'Spanish',
-    themeColor: `${C_POSTBOX}`,
     twitterCreator: '@bbcmundo',
     twitterSite: '@bbcmundo',
     noBylinesPolicy:
@@ -50,13 +44,6 @@ export const service: DefaultServiceConfig = {
     swPath: '/sw.js',
     frontPageTitle: 'Noticias',
     iTunesAppId: 515255747,
-    theming: {
-      brandBackgroundColour: `${C_POSTBOX}`,
-      brandLogoColour: `${C_WHITE}`,
-      brandForegroundColour: `${C_GHOST}`,
-      brandHighlightColour: `${C_WHITE}`,
-      brandBorderColour: `${C_POSTBOX_30}`,
-    },
     showAdPlaceholder: true,
     showRelatedTopics: true,
     translations: {
@@ -82,6 +69,18 @@ export const service: DefaultServiceConfig = {
         mediaPlayer: 'Reproductor multimedia',
         audioPlayer: 'Reproductor de audio',
         videoPlayer: 'Reproductor de video',
+      },
+      liveExperiencePage: {
+        liveLabel: 'En vivo',
+        liveCoverage: 'Cobertura en vivo',
+        breaking: 'Último momento',
+        postedAt: 'Publicado',
+        summary: 'Puntos clave',
+        shareButtonText: 'Compartir',
+      },
+      downloads: {
+        instructions: 'You can download and view today’s news.',
+        title: 'File Download',
       },
       gist: 'Sumario',
       error: {
@@ -115,6 +114,14 @@ export const service: DefaultServiceConfig = {
           callToActionLinkUrl: 'https://www.bbc.com/mundo',
         },
       },
+      byline: {
+        articleInformation: 'Información del artículo',
+        author: 'Autor',
+        listItemImage: 'Imagen del autor',
+        published: 'Fecha de publicación',
+        reportingFrom: 'Informa desde',
+        role: 'Título del autor',
+      },
       consentBanner: {
         privacy: {
           title: 'Hemos actualizado nuestra política de privacidad y cookies',
@@ -136,7 +143,7 @@ export const service: DefaultServiceConfig = {
           },
           accept: 'Ok',
           reject: 'Descubre lo que ha cambiado',
-          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/your-data-matters',
+          rejectUrl: 'https://www.bbc.com/usingthebbc/privacy-policy/',
         },
         cookie: {
           amp: {
@@ -151,7 +158,7 @@ export const service: DefaultServiceConfig = {
                 linkText: 'cookies',
                 last: ', y recogemos datos de búsqueda para ofrecerte la mejor experiencia online y personalizar el contenido y la publicidad que se te muestra. Por favor, déjanos saber si estás de acuerdo.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
               manage: 'Administrar mi configuración',
             },
@@ -168,7 +175,7 @@ export const service: DefaultServiceConfig = {
                   'Para que nuestras páginas web funcionen, almacenamos cierta información limitada en tu dispositivo sin tu consentimiento.',
                 para4: {
                   text: 'Lee más más sobre la información esencial que almacenamos en tu dispositivo para que nuestras páginas web funcionen (en inglés).',
-                  url: 'https://www.bbc.co.uk/usingthebbc/strictly-necessary-cookies/',
+                  url: 'https://www.bbc.com/usingthebbc/cookies/strictly-necessary-cookies/',
                 },
                 para5:
                   'Usamos almacenamiento local para guardar tus preferencias de consentimiento en tu dispositivo.',
@@ -201,13 +208,13 @@ export const service: DefaultServiceConfig = {
                 linkText: 'cookies',
                 last: ' para ofrecerte la mejor experiencia online. Déjanos saber si aceptas todas estas cookies.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
             },
             accept: 'Sí, estoy de acuerdo',
             reject: 'No, llévame a la configuración',
             rejectUrl:
-              'https://www.bbc.co.uk/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
+              'https://www.bbc.com/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
           },
         },
       },
@@ -228,6 +235,7 @@ export const service: DefaultServiceConfig = {
         nextRadioShow: 'Próximo programa',
         duration: 'Duración',
         recentEpisodes: 'Más',
+        closeVideo: 'Salir',
       },
       socialEmbed: {
         caption: {
@@ -263,17 +271,83 @@ export const service: DefaultServiceConfig = {
       },
       topStoriesTitle: 'Principales noticias',
       featuresAnalysisTitle: 'No te lo pierdas',
+      latestMediaTitle: 'Más videos',
+      ugc: {
+        // No JavaScript
+        noJsHeading: 'Disculpa, página no encontrada',
+        noJsDescription:
+          'Para cargar esta página, por favor habilita JavaScript o intenta con otro navegador',
+
+        // Optional
+        optional: 'opcional',
+
+        // File upload
+        fileUploadLiveRegionText: 'Esto es lo que estás enviando:',
+        fileUploadLiveRegionUpdateText: 'Eliminado',
+        fileUploadListHeading: 'Esto es lo que estás enviando:',
+        fileUploadButton: 'Selecciona un archivo',
+        fileUploadRemoveButton: 'Selecciona un archivo',
+
+        // Submit button
+        submitButton: 'Enviar',
+
+        // Validation
+        validationRequired: 'Algo está faltando.',
+        validationInvalidEmail:
+          'Algo no luce bien. Por favor, introduce una dirección de correo electrónico correcta.',
+        validationInvalidTelephone: undefined,
+        validationFilesNotEnough:
+          'No hay suficientes archivos. Por favor añade al menos {{minFiles}}.',
+        validationFilesTooMany:
+          'Hay demasiados archivos. Puedes añadir {{maxFiles}}. ',
+        validationFilesInvalidType:
+          'Disculpa, no podemos utilizar este tipo de archivo. Por favor, utiliza {{fileTypes}}.',
+        validationFilesTooSmall:
+          'Este archivo no es correcto. Intenta seleccionar otro.',
+        validationFilesSizeExceeded:
+          'Disculpa, estos archivos son muy pesados. Solo puedes cargar hasta 1,2 GB a la vez.',
+        validationWordLimit: 'Máximo {{wordLimit}} palabras.',
+
+        // Messaging
+        removalGuidelineText:
+          'Si has enviado algo para un programa o en línea, no podremos eliminarlo una vez que lo usemos.',
+        retentionPeriodDays:
+          'Mantendremos tu envío durante {{days}} días y si no lo usamos, lo eliminaremos junto con la demás información que nos enviaste.',
+        referenceNumber: 'Número de referencia',
+        submissionInfoSignedOutMessage:
+          'Quizás quieres tomar nota de estos detalles para futura referencia.',
+        privacyInfoHtml:
+          'No te preocupes, tu información está protegida. Lee nuestra {{privacyInfoLink}} para más detalles.',
+        emailToHtml:
+          'Escribe a {{emailLink}} si cambiaste de opinión. Incluye el número de referencia y simplemente déjanos saber que ya no quieres que usemos tu contribución.',
+
+        // Form Screen
+        dataPolicyHeading: 'Nuestra política de manejo de datos',
+
+        // Uploading Screen
+        uploadingHeading: 'Subiendo tus archivos...',
+        uploadingDescription: 'Por favor, espera hasta que haya finalizado.',
+        // Success Screen
+        successHeading: 'Mensaje enviado',
+        successDescription: 'Gracias por contactarnos.',
+        privacyPolicyLinkHref:
+          'https://www.bbc.com/mundo/institucional-36400009',
+        privacyPolicyLinkText: 'Política de privacidad',
+
+        // Error Screen
+        errorHeading: 'Disculpa, hubo un problema al subir esto.',
+        errorDescription: 'Por favor, regresa e inténtalo más tarde.',
+
+        // Closed Screen
+        closedHeading: 'Esta convocatoria ya está cerrada.',
+        closedDescription: 'Esto cierra el {{date}}.',
+      },
     },
     mostRead: {
       header: 'Más leídas',
       lastUpdated: 'Última actualización:',
       numberOfItems: 10,
       hasMostRead: true,
-    },
-    mostWatched: {
-      header: 'Más vistos',
-      numberOfItems: 10,
-      hasMostWatched: true,
     },
     radioSchedule: {
       hasRadioSchedule: false,
@@ -316,9 +390,13 @@ export const service: DefaultServiceConfig = {
           text: 'Escribe a BBC Mundo',
         },
         {
+          href: 'https://www.bbc.com/ws/languages',
+          text: 'Otros idiomas',
+        },
+        {
           id: 'COOKIE_SETTINGS',
-          href: 'https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/',
-          text: 'AdChoices / Do Not Sell My Info',
+          href: '#',
+          text: 'Do not share or sell my info',
           lang: 'en-GB',
         },
       ],
@@ -341,7 +419,7 @@ export const service: DefaultServiceConfig = {
       },
       {
         title: 'Hay Festival',
-        url: '/mundo/noticias-36795069',
+        url: '/mundo/topics/cr50y7p7qyqt',
       },
       {
         title: 'Economía',
@@ -362,14 +440,6 @@ export const service: DefaultServiceConfig = {
       {
         title: 'Tecnología',
         url: '/mundo/topics/cyx5krnw38vt',
-      },
-      {
-        title: 'Centroamérica Cuenta',
-        url: '/mundo/noticias-43826245',
-      },
-      {
-        title: 'BBC Extra',
-        url: '/mundo/noticias-48908206',
       },
     ],
   },

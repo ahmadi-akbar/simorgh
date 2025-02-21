@@ -1,5 +1,4 @@
 import React, { memo } from 'react';
-import { string } from 'prop-types';
 import { Helmet } from 'react-helmet';
 
 const Instagram = ({ id }) => (
@@ -12,7 +11,7 @@ const Instagram = ({ id }) => (
       />
     </Helmet>
     <amp-instagram
-      data-captioned
+      data-captioned="true"
       data-shortcode={id}
       height="1"
       layout="responsive"
@@ -91,16 +90,6 @@ const Facebook = ({ source }) => {
     </>
   );
 };
-
-const sharedPropTypes = {
-  id: string.isRequired,
-};
-
-Instagram.propTypes = sharedPropTypes;
-Twitter.propTypes = sharedPropTypes;
-YouTube.propTypes = sharedPropTypes;
-TikTok.propTypes = sharedPropTypes;
-Facebook.propTypes = { ...sharedPropTypes, source: string.isRequired };
 
 export default {
   instagram: memo(Instagram),

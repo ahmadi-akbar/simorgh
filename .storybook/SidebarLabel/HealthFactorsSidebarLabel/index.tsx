@@ -1,16 +1,17 @@
-import React from 'react';
-/** @jsx jsx */ import { jsx } from '@emotion/core';
+/** @jsx jsx */
+import { jsx } from '@emotion/react';
 import styles from './index.styles';
 import {
   Recommend,
   Warning,
   Activity,
-} from '../../DocsDecorator/HealthFactors/Icons/icons';
+} from '../../DocsDecorator/HealthFactors/Icons';
 import ThemeProvider from '../../../src/app/components/ThemeProvider';
 import { getActionCount } from '../../helpers/healthFactors';
-import VisuallyHiddenText from '../../../src/app/legacy/psammead/psammead-visually-hidden-text/src';
+import { SidebarLabelProps } from '../types';
+import VisuallyHiddenText from '../../../src/app/components/VisuallyHiddenText';
 
-const HealthFactorsSidebarLabel = ({ metadata, name }) => {
+const HealthFactorsSidebarLabel = ({ metadata, name }: SidebarLabelProps) => {
   const actionCount = getActionCount(metadata);
 
   const hasIcon =

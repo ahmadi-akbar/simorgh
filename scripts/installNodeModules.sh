@@ -1,12 +1,12 @@
 #!/bin/bash
 if [ "$1" = "--production" ]; then
-  echo "Installing Simorgh's node modules"
-  rm -rf node_modules | yarn workspaces focus --all --production
-  echo "Installing NextJS app node modules"
-  cd ws-nextjs-app && rm -rf node_modules | yarn workspaces focus --all --production
+  echo "Removing node modules"
+  rm -rf node_modules
+  echo "Installing 'production' node modules"
+  yarn workspaces focus --production
 else
-  echo "Installing Simorgh's node modules"
-  rm -rf node_modules | yarn install --immutable --check-cache
-  echo "Installing NextJS app node modules"
-  cd ws-nextjs-app && rm -rf node_modules | yarn install --immutable --check-cache
+  echo "Removing node modules"
+  rm -rf node_modules
+  echo "Installing all node modules"
+  yarn install --immutable --check-cache
 fi

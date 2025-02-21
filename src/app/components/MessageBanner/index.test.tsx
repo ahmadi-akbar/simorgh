@@ -1,12 +1,23 @@
 import React from 'react';
-import isLive from '#lib/utilities/isLive';
-import { render, screen } from '../react-testing-library-with-providers';
+import {
+  fireEvent,
+  render,
+  screen,
+} from '../react-testing-library-with-providers';
 import MessageBanner from '.';
 import { kyrgyzMessageBannerOnePromo } from './fixtures';
+import * as viewTracking from '../../hooks/useViewTracker';
+import * as clickTracking from '../../hooks/useClickTrackerHandler';
 
 describe('MessageBanner', () => {
+  const summary = kyrgyzMessageBannerOnePromo.summaries[0];
+  const eventTrackingData = { componentName: 'message-banner' };
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   describe('for a curation with 1 summary', () => {
-    const summary = kyrgyzMessageBannerOnePromo.summaries[0];
     it('should render a section with role region', () => {
       render(
         <MessageBanner
@@ -93,7 +104,7 @@ describe('MessageBanner', () => {
       );
       const image = screen.getByAltText('');
       expect(image.getAttribute('src')).toEqual(
-        summary.imageUrl.replace('{width}', 'raw'),
+        'https://ichef.test.bbci.co.uk/ace/ws/224/cpsdevpb/66b8/test/d1be6bc0-8114-11ed-bd83-8f15ba358e41.png',
       );
     });
 
@@ -110,44 +121,97 @@ describe('MessageBanner', () => {
       const image = screen.getByAltText('');
       expect(image).toBeInTheDocument();
     });
-    describe('Presence on live environment', () => {
-      const originalEnvironment = process.env.SIMORGH_APP_ENV;
+  });
 
-      afterEach(() => {
-        process.env.SIMORGH_APP_ENV = originalEnvironment;
-      });
-      it('should not render banner when the environment is live', () => {
-        process.env.SIMORGH_APP_ENV = 'live';
+  describe('view tracking', () => {
+    const viewTrackerSpy = jest.spyOn(viewTracking, 'default');
 
-        // if islive is true, do not show banner
-        const { container } = render(
-          <MessageBanner
-            heading={kyrgyzMessageBannerOnePromo.title}
-            description={summary.description}
-            link={summary.link}
-            linkText={summary.title}
-            image={summary.imageUrl}
-          />,
-        );
-        expect(container).toBeEmptyDOMElement();
-        expect(isLive()).toBe(true);
-      });
+    it('should not be enabled if event tracking data not provided', () => {
+      render(
+        <MessageBanner
+          heading={kyrgyzMessageBannerOnePromo.title}
+          description={summary.description}
+          link={summary.link}
+          linkText={summary.title}
+          image={summary.imageUrl}
+        />,
+      );
 
-      it('should render banner when the environment is not live', () => {
-        process.env.SIMORGH_APP_ENV = 'non-live';
-        // if isLive is false do show banner
-        const { container } = render(
-          <MessageBanner
-            heading={kyrgyzMessageBannerOnePromo.title}
-            description={summary.description}
-            link={summary.link}
-            linkText={summary.title}
-            image={summary.imageUrl}
-          />,
-        );
-        expect(container).not.toBeEmptyDOMElement();
-        expect(isLive()).toBe(false);
-      });
+      expect(viewTrackerSpy).toHaveBeenCalledWith(undefined);
+    });
+
+    it('should register view tracker if event tracking data provided', () => {
+      render(
+        <MessageBanner
+          heading={kyrgyzMessageBannerOnePromo.title}
+          description={summary.description}
+          link={summary.link}
+          linkText={summary.title}
+          image={summary.imageUrl}
+          eventTrackingData={eventTrackingData}
+        />,
+      );
+
+      expect(viewTrackerSpy).toHaveBeenCalledWith(eventTrackingData);
+    });
+  });
+
+  describe('click tracking', () => {
+    const clickTrackerSpy = jest
+      .spyOn(clickTracking, 'default')
+      .mockImplementation();
+
+    it('should not be enabled if event tracking data not provided', () => {
+      const { container } = render(
+        <MessageBanner
+          heading={kyrgyzMessageBannerOnePromo.title}
+          description={summary.description}
+          link={summary.link}
+          linkText={summary.title}
+          image={summary.imageUrl}
+        />,
+      );
+
+      expect(clickTrackerSpy).toHaveBeenCalledWith(undefined);
+
+      const [callToActionLink] = container.getElementsByTagName('a');
+      fireEvent.click(callToActionLink);
+      expect(callToActionLink.onclick).toBeFalsy();
+    });
+
+    it('should register click tracker if event tracking data provided', () => {
+      render(
+        <MessageBanner
+          heading={kyrgyzMessageBannerOnePromo.title}
+          description={summary.description}
+          link={summary.link}
+          linkText={summary.title}
+          image={summary.imageUrl}
+          eventTrackingData={eventTrackingData}
+        />,
+      );
+
+      expect(clickTrackerSpy).toHaveBeenCalledWith(eventTrackingData);
+    });
+
+    it('should handle a click event when call to action link clicked', () => {
+      clickTrackerSpy.mockRestore();
+
+      const { container } = render(
+        <MessageBanner
+          heading={kyrgyzMessageBannerOnePromo.title}
+          description={summary.description}
+          link={summary.link}
+          linkText={summary.title}
+          image={summary.imageUrl}
+          eventTrackingData={eventTrackingData}
+        />,
+      );
+
+      const [callToActionLink] = container.getElementsByTagName('a');
+      fireEvent.click(callToActionLink);
+
+      expect(callToActionLink.onclick).toBeTruthy();
     });
   });
 });

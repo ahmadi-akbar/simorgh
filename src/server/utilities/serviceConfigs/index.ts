@@ -50,6 +50,7 @@ import { service as ukrainian } from '../../../app/lib/config/services/ukrainian
 import { service as urdu } from '../../../app/lib/config/services/urdu';
 import { service as uzbek } from '../../../app/lib/config/services/uzbek';
 import { service as vietnamese } from '../../../app/lib/config/services/vietnamese';
+import { service as ws } from '../../../app/lib/config/services/ws';
 import { service as yoruba } from '../../../app/lib/config/services/yoruba';
 import { service as zhongwen } from '../../../app/lib/config/services/zhongwen';
 
@@ -57,8 +58,8 @@ import { Services, Variants } from '../../../app/models/types/global';
 import { ServiceConfig } from '../../../app/models/types/serviceConfig';
 
 type AllServices = {
-  [s in Services]: {
-    [v in Variants]: ServiceConfig;
+  [_service in Services]: {
+    [_variant in Variants]: ServiceConfig;
   };
 };
 
@@ -108,6 +109,7 @@ export default {
   urdu,
   uzbek,
   vietnamese,
+  ws,
   yoruba,
   zhongwen,
 } as AllServices;

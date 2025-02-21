@@ -1,9 +1,3 @@
-import {
-  C_POSTBOX,
-  C_WHITE,
-  C_GHOST,
-  C_POSTBOX_30,
-} from '../../../legacy/psammead/psammead-styles/src/colours';
 import cyrillic from '../../../components/ThemeProvider/fontScripts/latin';
 import '#psammead/moment-timezone-include/tz/GMT';
 import '#psammead/psammead-locales/moment/ru';
@@ -36,7 +30,7 @@ const headerFooterTranslations = {
       },
       accept: 'ОК',
       reject: 'Посмотреть, что изменилось',
-      rejectUrl: 'https://www.bbc.co.uk/usingthebbc/your-data-matters',
+      rejectUrl: 'https://www.bbc.com/usingthebbc/privacy-policy/',
     },
     cookie: {
       amp: {
@@ -50,7 +44,7 @@ const headerFooterTranslations = {
             linkText: 'cookies',
             last: ', а также собираем данные, чтобы вам было удобно пользоваться сайтом и чтобы содержание и реклама, которую вы видите, соответствовали вашим запросам. Пожалуйста, сообщите, согласны ли вы.',
             linkUrl:
-              'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+              'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
           },
           manage: 'Изменить мои установки',
         },
@@ -66,7 +60,7 @@ const headerFooterTranslations = {
               'Для того чтобы наши веб-страницы работали, мы храним ограниченную информацию о вашем девайсе без вашего согласия.',
             para4: {
               text: 'Прочесть подробнее о базовой информации, которую мы храним на вашем устройстве, чтобы на нем отображались наши веб-страницы (на англ. языке).',
-              url: 'https://www.bbc.co.uk/usingthebbc/strictly-necessary-cookies/',
+              url: 'https://www.bbc.com/usingthebbc/cookies/strictly-necessary-cookies/',
             },
             para5:
               'Мы используем местные серверы для хранения согласованных вами преференций для вашего девайса.',
@@ -99,13 +93,13 @@ const headerFooterTranslations = {
             linkText: 'cookies',
             last: ', чтобы вам было удобно пользоваться сайтом. Сообщите нам, что вы согласны с использованием этих cookies.',
             linkUrl:
-              'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+              'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
           },
         },
         accept: 'Да',
         reject: 'Нет, мне надо посмотреть настройки',
         rejectUrl:
-          'https://www.bbc.co.uk/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
+          'https://www.bbc.com/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
       },
     },
   },
@@ -131,6 +125,18 @@ export const mainTranslations = {
     mediaPlayer: 'Медиа плеер',
     audioPlayer: 'Аудио плеер',
     videoPlayer: 'Видео плеер',
+  },
+  liveExperiencePage: {
+    liveLabel: 'Онлайн',
+    liveCoverage: 'Онлайн-трансляция',
+    breaking: 'Срочно',
+    postedAt: 'Отправлено в',
+    summary: 'Коротко',
+    shareButtonText: 'Поделиться',
+  },
+  downloads: {
+    instructions: 'You can download and view today’s news.',
+    title: 'File Download',
   },
   gist: 'Коротко',
   error: {
@@ -170,7 +176,7 @@ export const mainTranslations = {
     listItemImage: 'Добавить фото',
     published: 'Опубликовано',
     reportingFrom: 'Место сообщения',
-    role: 'Должность',
+    role: 'Место работы',
   },
   media: {
     noJs: 'Для просмотра этого контента вам надо включить JavaScript или использовать другой браузер',
@@ -201,6 +207,8 @@ export const mainTranslations = {
     recentEpisodes: 'Прошлые передачи',
     episodes: 'передачи',
     podcastExternalLinks: 'Этот подкаст доступен на',
+    download: 'Загрузить эпизод',
+    closeVideo: 'Выйти',
   },
   socialEmbed: {
     caption: {
@@ -234,7 +242,72 @@ export const mainTranslations = {
   },
   topStoriesTitle: 'Главное',
   featuresAnalysisTitle: 'Не пропустите',
+  latestMediaTitle: 'Актуальное',
   infoBannerLabel: 'Информация',
+  ugc: {
+    // No JavaScript
+    noJsHeading: undefined,
+    noJsDescription: undefined,
+
+    // Optional
+    optional: 'Дополнительное поле',
+
+    // File upload
+    fileUploadLiveRegionText: undefined,
+    fileUploadLiveRegionUpdateText: undefined,
+    fileUploadListHeading: 'Вы загружаете:',
+    fileUploadButton: 'Выбрать файл',
+    fileUploadRemoveButton: undefined,
+
+    // Submit button
+    submitButton: 'Отправить',
+
+    // Validation
+    validationRequired: 'Чего-то не хватает.',
+    validationInvalidEmail: 'Что-то не так. Пожалуйста, впишите верный адрес.',
+    validationInvalidTelephone: undefined,
+    validationFilesNotEnough:
+      'Файлов недостаточно. Минимальное число файлов: {{minFiles}}.',
+    validationFilesTooMany:
+      'Слишком много файлов. Максимальное число файлов: {{maxFiles}}.',
+    validationFilesInvalidType:
+      'Извините, мы не можем использовать файлы такого типа. Выберите из списка {{fileTypes}}.',
+    validationFilesTooSmall: 'Файл сломан. Выберите другой файл.',
+    validationFilesSizeExceeded:
+      'Извините, но ваши файлы слишком большие. Файлы не должны превышать 1,2 гигабайта.',
+    validationWordLimit: 'Максимум {{wordLimit}} слов',
+
+    // Messaging
+    retentionPeriodDays: undefined,
+    referenceNumber: 'Запишите этот номер',
+    submissionInfoSignedOutMessage: 'Запишите эти детали для вашего сведения.',
+    privacyInfoHtml: undefined,
+    emailToHtml:
+      'Если вы передумали и не хотите, чтобы мы это использовали, просто отправьте нам сообщение на {{emailLink}}. Не забудьте регистрационный номер отправления.',
+    removalGuidelineText:
+      'Если вы прислали что-то для передачи или онлайн-страницы, мы не сможем удалить ваш материал после того, как он был использован.',
+
+    // Form Screen
+    dataPolicyHeading: undefined,
+
+    // Uploading Screen
+    uploadingHeading: 'Файлы загружаются...',
+    uploadingDescription: 'Пожалуйста, подождите.',
+
+    // Success Screen
+    successHeading: 'Письмо отправлено',
+    successDescription: 'Спасибо за контакт!',
+    privacyPolicyLinkHref: undefined,
+    privacyPolicyLinkText: undefined,
+
+    // Error Screen
+    errorHeading: 'Ваше сообщение не отправлено',
+    errorDescription: 'Попробуйте отправить еще раз',
+
+    // Closed Screen
+    closedHeading: 'Прием закрыт',
+    closedDescription: 'Прием закрылся {{date}}.',
+  },
 };
 
 export const service: DefaultServiceConfig = {
@@ -246,6 +319,7 @@ export const service: DefaultServiceConfig = {
     articleTimestampSuffix: '',
     atiAnalyticsAppName: 'news-russian',
     atiAnalyticsProducerId: '75',
+    atiAnalyticsProducerName: 'RUSSIAN',
     chartbeatDomain: 'russian.bbc.co.uk',
     brandName: 'BBC News Русская служба',
     product: 'BBC News',
@@ -266,7 +340,6 @@ export const service: DefaultServiceConfig = {
     service: 'russian',
     serviceName: 'Russian',
     languageName: 'Russian',
-    themeColor: `${C_POSTBOX}`,
     twitterCreator: '@bbcrussian',
     twitterSite: '@bbcrussian',
     noBylinesPolicy:
@@ -278,52 +351,40 @@ export const service: DefaultServiceConfig = {
     swPath: '/sw.js',
     frontPageTitle: 'Главная',
     iTunesAppId: 504278066,
-    theming: {
-      brandBackgroundColour: `${C_POSTBOX}`,
-      brandLogoColour: `${C_WHITE}`,
-      brandForegroundColour: `${C_GHOST}`,
-      brandHighlightColour: `${C_WHITE}`,
-      brandBorderColour: `${C_POSTBOX_30}`,
-    },
     showAdPlaceholder: true,
     showRelatedTopics: true,
+    googleSiteVerification: 'D-aEHUiyVaMoUJXjVRbDVkxS0dLTMUZLD3dLPTnWO4Q',
     mostRead: {
       header: 'Самое популярное',
       lastUpdated: 'Последнее обновление:',
       numberOfItems: 10,
       hasMostRead: true,
     },
-    mostWatched: {
-      header: 'Самое популярное видео',
-      numberOfItems: 10,
-      hasMostWatched: true,
-    },
     podcastPromo: {
-      title: 'Подкаст',
-      brandTitle: 'Что это было?',
+      title: 'WhatsApp',
+      brandTitle: 'Канал Би-би-си в WhatsApp',
       brandDescription:
-        'Мы быстро, просто и понятно объясняем, что случилось, почему это важно и что будет дальше.',
+        'Тут мы публикуем только главные новости и самые интересные тексты. Канал доступен для нероссийских номеров.',
       image: {
-        src: 'https://ichef.bbci.co.uk/images/ic/$recipe/p0776f5z.jpg',
-        alt: 'Что это было?',
+        src: 'https://ichef.bbci.co.uk/images/ic/$recipe/p0jq48n8.png',
+        alt: 'WhatsApp',
       },
       linkLabel: {
-        text: 'эпизоды',
-        href: 'https://www.bbc.com/russian/media-47937790',
+        text: 'Подписывайтесь',
+        href: 'https://whatsapp.com/channel/0029VaZ437k4Y9li4jkzIU0G',
       },
       skipLink: {
-        text: 'Пропустить %title% и продолжить чтение.',
-        endTextVisuallyHidden: 'Конец истории %title%',
+        text: 'Пропустить Реклама WhatsApp-канала и продолжить чтение.',
+        endTextVisuallyHidden: 'Конец истории Реклама WhatsApp-канала',
       },
     },
     disclaimer: {
-      para1: 'Подпишитесь на нашу рассылку ”',
-      para2: {
-        text: 'Контекст',
+      para1: {
+        text: 'Подпишитесь на нашу рассылку «Контекст»:',
         url: 'https://www.bbc.com/russian/resources/idt-b34bb7dd-f094-4722-92eb-cf7aff8cc1bc',
         isExternal: false,
       },
-      para3: '”: она поможет вам разобраться в событиях.',
+      para2: ' она поможет вам разобраться в событиях.',
     },
     radioSchedule: {
       hasRadioSchedule: false,
@@ -362,9 +423,13 @@ export const service: DefaultServiceConfig = {
           text: 'Связаться с Би-би-си',
         },
         {
+          href: 'https://www.bbc.com/ws/languages',
+          text: 'Би-би-си на других языках',
+        },
+        {
           id: 'COOKIE_SETTINGS',
-          href: 'https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/',
-          text: 'AdChoices / Do Not Sell My Info',
+          href: '#',
+          text: 'Do not share or sell my info',
           lang: 'en-GB',
         },
       ],
@@ -382,20 +447,24 @@ export const service: DefaultServiceConfig = {
         url: '/russian/topics/cez0n29ggrdt',
       },
       {
+        title: 'Сводка потерь',
+        url: '/russian/topics/cqx9qqylwvgt',
+      },
+      {
         title: 'Истории',
-        url: '/russian/features-50983593',
+        url: '/russian/topics/cv27xky1pppt',
       },
       {
         title: 'Видео',
-        url: '/russian/in-depth-54439028',
+        url: '/russian/topics/c44vyp57qy4t',
       },
       {
         title: 'Фильмы',
-        url: '/russian/in-depth-48104242',
+        url: '/russian/topics/cl4x0jkk3e5t',
       },
       {
         title: 'Подкасты',
-        url: '/russian/media-47937790',
+        url: '/russian/topics/c3l19z3z0p2t',
       },
     ],
   },

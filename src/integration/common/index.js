@@ -7,8 +7,8 @@ import runFooterTests from './footer';
 import runAmpFooterTests from './footer.amp';
 import runHeaderTests from './header';
 import runMainHeadingTests from './mainHeading';
-import runMediaPlaceholderTests from './mediaPlaceholder';
-import runMediaPlayerEmbedTests from './mediaPlayerEmbed';
+import runMediaPlayerAudioTests from './mediaPlayerAudio';
+import runMediaPlayerTests from './mediaPlayer';
 import runRadioScheduleTests from './radioSchedule';
 import runRecentEpisodesTests from './recentEpisodes';
 import runCrossPlatformSEOTests from './SEO';
@@ -18,6 +18,16 @@ import runImageTests from './image';
 import runAppleItunesAppBannerTests from './appleItunesAppBanner';
 import runStoryPromoTests from './storyPromo';
 import runSectionTests from './sections';
+import runMostReadTests from './mostReadTests';
+import runAmpAdsTests from './ads.amp';
+import runCanonicalAdsTests from './ads.canonical';
+import runFlourishCanonicalEmbedTests from './flourishEmbed.canonical';
+import runFlourishAmpEmbedTests from './flourishEmbed.amp';
+import runCanonicalEmbedHtmlTests from './embedHtml.canonical';
+import runAmpEmbedHtmlTests from './embedHtml.amp';
+import runEmbedImagesTests from './embedImages';
+import runAmpIframeTests from './ampIframe.amp';
+import runLiteSiteTests from './liteSite.lite';
 
 const runCommonCrossPlatformTests = service => {
   runA11yTests();
@@ -38,8 +48,9 @@ export {
   runAmpFooterTests,
   runHeaderTests,
   runMainHeadingTests,
-  runMediaPlaceholderTests,
-  runMediaPlayerEmbedTests,
+  runMediaPlayerAudioTests,
+  runMediaPlayerTests,
+  runMostReadTests,
   runRadioScheduleTests,
   runRecentEpisodesTests,
   runCrossPlatformSEOTests,
@@ -49,4 +60,13 @@ export {
   runAppleItunesAppBannerTests,
   runStoryPromoTests,
   runSectionTests,
+  runAmpAdsTests,
+  runCanonicalAdsTests,
+  runFlourishCanonicalEmbedTests,
+  runFlourishAmpEmbedTests,
+  runCanonicalEmbedHtmlTests,
+  runAmpEmbedHtmlTests,
+  runEmbedImagesTests,
+  runAmpIframeTests,
+  runLiteSiteTests,
 };

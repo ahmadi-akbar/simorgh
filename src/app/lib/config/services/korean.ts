@@ -1,9 +1,3 @@
-import {
-  C_POSTBOX,
-  C_WHITE,
-  C_GHOST,
-  C_POSTBOX_30,
-} from '../../../legacy/psammead/psammead-styles/src/colours';
 import noAscendersOrDescenders from '../../../components/ThemeProvider/fontScripts/noAscOrDesc';
 import '#psammead/moment-timezone-include/tz/Asia/Seoul';
 import withContext from '../../../contexts/utils/withContext';
@@ -18,6 +12,7 @@ export const service: DefaultServiceConfig = {
     articleTimestampSuffix: '에 업데이트 됨',
     atiAnalyticsAppName: 'news-korean',
     atiAnalyticsProducerId: '57',
+    atiAnalyticsProducerName: 'KOREAN',
     chartbeatDomain: 'korean.bbc.co.uk',
     brandName: 'BBC News 코리아',
     product: 'BBC News',
@@ -38,7 +33,6 @@ export const service: DefaultServiceConfig = {
     service: 'korean',
     serviceName: 'Korean',
     languageName: 'Korean',
-    themeColor: `${C_POSTBOX}`,
     twitterCreator: '@bbcnews',
     twitterSite: '@bbcnews',
     noBylinesPolicy:
@@ -49,13 +43,6 @@ export const service: DefaultServiceConfig = {
     manifestPath: '/manifest.json',
     swPath: '/sw.js',
     frontPageTitle: '홈페이지',
-    theming: {
-      brandBackgroundColour: `${C_POSTBOX}`,
-      brandLogoColour: `${C_WHITE}`,
-      brandForegroundColour: `${C_GHOST}`,
-      brandHighlightColour: `${C_WHITE}`,
-      brandBorderColour: `${C_POSTBOX_30}`,
-    },
     showAdPlaceholder: false,
     showRelatedTopics: true,
     translations: {
@@ -79,6 +66,18 @@ export const service: DefaultServiceConfig = {
         mediaPlayer: '미디어 플레이어',
         audioPlayer: '오디오 플레이어',
         videoPlayer: '비디오 플레이어',
+      },
+      liveExperiencePage: {
+        liveLabel: 'Live',
+        liveCoverage: '생중계',
+        breaking: '속보',
+        postedAt: '작성',
+        summary: '요약',
+        shareButtonText: '공유',
+      },
+      downloads: {
+        instructions: '오늘의 뉴스를 다운받아 보실 수 있습니다',
+        title: '파일 다운로드',
       },
       gist: '요약',
       error: {
@@ -140,7 +139,7 @@ export const service: DefaultServiceConfig = {
           },
           accept: '네',
           reject: '변경사항을 확인하세요',
-          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/your-data-matters',
+          rejectUrl: 'https://www.bbc.com/usingthebbc/privacy-policy/',
         },
         cookie: {
           amp: {
@@ -153,7 +152,7 @@ export const service: DefaultServiceConfig = {
                 linkText: '쿠키',
                 last: ', 웹브라우징 데이터 수집과 같은 기술을 통해 이용자에게 최적의 온라인 경험과 맞춤 콘텐츠, 광고를 제공하고 있습니다. 이에 동의하십니까?',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
               manage: '나의 설정 바꾸기',
             },
@@ -169,7 +168,7 @@ export const service: DefaultServiceConfig = {
                   '홈페이지를 가동하기 위해 사용자의 동의 없이 기기의 정보를 제한적으로 저장합니다.',
                 para4: {
                   text: '홈페이지를 가동하기 위해 사용자 기기에서 저장하는 필수적인 정보에 대해 더 읽어보기',
-                  url: 'https://www.bbc.co.uk/usingthebbc/strictly-necessary-cookies/',
+                  url: 'https://www.bbc.com/usingthebbc/cookies/strictly-necessary-cookies/',
                 },
                 para5:
                   '사용자의 정보 수집 동의 여부는 로컬 스토리지에 저장됩니다.',
@@ -202,13 +201,13 @@ export const service: DefaultServiceConfig = {
                 linkText: '쿠키',
                 last: ' 정보를 이용합니다. 쿠키 수집에 동의하십니까?',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
             },
             accept: '네, 동의합니다',
             reject: '아니요, 설정 화면으로 이동합니다',
             rejectUrl:
-              'https://www.bbc.co.uk/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
+              'https://www.bbc.com/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
           },
         },
       },
@@ -228,6 +227,7 @@ export const service: DefaultServiceConfig = {
         nextRadioShow: '다음 라디오 방송',
         duration: '방송 길이',
         recentEpisodes: '이전',
+        closeVideo: '나가기',
       },
       socialEmbed: {
         caption: {
@@ -259,19 +259,15 @@ export const service: DefaultServiceConfig = {
           'Sorry, we can’t display this part of the story on this lightweight mobile page.',
         linkText: 'View the full version of the page to see all the content.',
       },
-      topStoriesTitle: '주요뉴스',
+      topStoriesTitle: '주요 뉴스',
       featuresAnalysisTitle: '이 시간 이슈',
+      latestMediaTitle: '최신 뉴스',
     },
     mostRead: {
       header: 'TOP 뉴스',
       lastUpdated: '마지막 업데이트일',
       numberOfItems: 10,
       hasMostRead: true,
-    },
-    mostWatched: {
-      header: '인기 콘텐츠',
-      numberOfItems: 10,
-      hasMostWatched: true,
     },
     radioSchedule: {
       hasRadioSchedule: true,
@@ -291,24 +287,24 @@ export const service: DefaultServiceConfig = {
         text: 'BBC News를 신뢰할 수 있는 이유',
       },
       externalLink: {
-        href: 'https://www.bbc.co.uk/editorialguidelines/guidance/feeds-and-links',
+        href: 'https://www.bbc.com/editorialguidelines/guidance/feeds-and-links',
         text: '외부 링크에 대한 본사 정책 보기',
       },
       links: [
         {
-          href: 'https://www.bbc.co.uk/usingthebbc/terms/',
+          href: 'https://www.bbc.com/usingthebbc/terms/',
           text: '이용 약관',
         },
         {
-          href: 'https://www.bbc.co.uk/aboutthebbc',
+          href: 'https://www.bbc.com/aboutthebbc',
           text: 'BBC 소개',
         },
         {
-          href: 'https://www.bbc.co.uk/usingthebbc/privacy/',
+          href: 'https://www.bbc.com/usingthebbc/privacy/',
           text: '개인정보취급방침',
         },
         {
-          href: 'https://www.bbc.co.uk/usingthebbc/cookies/',
+          href: 'https://www.bbc.com/usingthebbc/cookies/',
           text: '쿠키정책',
         },
         {
@@ -316,9 +312,13 @@ export const service: DefaultServiceConfig = {
           text: '고객센터',
         },
         {
+          href: 'https://www.bbc.com/ws/languages',
+          text: '다른 언어로 보기',
+        },
+        {
           id: 'COOKIE_SETTINGS',
-          href: 'https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/',
-          text: 'AdChoices / Do Not Sell My Info',
+          href: '#',
+          text: 'Do not share or sell my info',
           lang: 'en-GB',
         },
       ],
@@ -333,6 +333,10 @@ export const service: DefaultServiceConfig = {
       {
         title: '비디오',
         url: '/korean/topics/cnwng7v0e54t',
+      },
+      {
+        title: '라디오',
+        url: '/korean/bbc_korean_radio/programmes/w13xttll',
       },
       {
         title: '다운로드',

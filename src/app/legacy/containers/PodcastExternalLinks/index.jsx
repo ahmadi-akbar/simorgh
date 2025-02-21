@@ -1,11 +1,8 @@
 /* eslint-disable jsx-a11y/aria-role */
 import React, { useContext } from 'react';
-import { arrayOf, shape, string } from 'prop-types';
 import pathOr from 'ramda/src/pathOr';
 import styled from '@emotion/styled';
-import { C_CLOUD_LIGHT, C_SHADOW } from '#psammead/psammead-styles/src/colours';
 import { getSansRegular } from '#psammead/psammead-styles/src/font-styles';
-import VisuallyHiddenText from '#psammead/psammead-visually-hidden-text/src';
 import {
   GEL_GROUP_2_SCREEN_WIDTH_MIN,
   GEL_GROUP_3_SCREEN_WIDTH_MIN,
@@ -20,8 +17,10 @@ import { getGreatPrimer } from '#psammead/gel-foundations/src/typography';
 import useViewTracker from '#hooks/useViewTracker';
 import useClickTrackerHandler from '#hooks/useClickTrackerHandler';
 
+import idSanitiser from '#app/lib/utilities/idSanitiser';
 import { ServiceContext } from '../../../contexts/ServiceContext';
 import Link from './Link';
+import VisuallyHiddenText from '../../../components/VisuallyHiddenText';
 
 const EN_GB_LANG = 'en-GB';
 
@@ -35,8 +34,8 @@ const ExternalLinkTextLangs = {
 };
 
 const Wrapper = styled.aside`
-  border-top: 0.0625rem ${C_CLOUD_LIGHT} solid;
-  border-bottom: 0.0625rem ${C_CLOUD_LIGHT} solid;
+  border-top: 0.0625rem ${props => props.theme.palette.CLOUD_LIGHT} solid;
+  border-bottom: 0.0625rem ${props => props.theme.palette.CLOUD_LIGHT} solid;
   margin: 0;
   padding: 0;
   margin-bottom: ${GEL_SPACING};
@@ -48,7 +47,7 @@ const Wrapper = styled.aside`
 const ThirdPartyLinksTitle = styled.h2`
   ${({ script }) => getGreatPrimer(script)}
   ${({ service }) => getSansRegular(service)}
-  color: ${C_SHADOW};
+  color: ${props => props.theme.palette.SHADOW};
   margin: 0;
   margin-top: 1rem;
   @media (min-width: ${GEL_GROUP_2_SCREEN_WIDTH_MIN}) {
@@ -71,13 +70,14 @@ const StyledListItem = styled.li`
   display: inline-block;
   &:not(:first-of-type) > a > span {
     ${({ dir }) =>
-      dir === 'rtl'
-        ? `
+      props =>
+        dir === 'rtl'
+          ? `
       padding-right: 1rem;
-      border-right: 0.0625rem ${C_CLOUD_LIGHT} solid;`
-        : `
+      border-right: 0.0625rem ${props.theme.palette.CLOUD_LIGHT} solid;`
+          : `
       padding-left: 1rem;
-      border-left: 0.0625rem ${C_CLOUD_LIGHT} solid;
+      border-left: 0.0625rem ${props.theme.palette.CLOUD_LIGHT} solid;
       `}
   }
 `;
@@ -125,14 +125,25 @@ const PodcastExternalLinks = ({ brandTitle, links }) => {
     ['media', 'podcastExternalLinks'],
     translations,
   );
+  const downloadLinkTranslation = pathOr(
+    'Download',
+    ['media', 'download'],
+    translations,
+  );
   const hasMultipleLinks = links.length > 1;
   const firstLink = links[0];
+  const lastLink = links[links.length - 1];
+
+  if (lastLink.linkType === 'download') {
+    lastLink.linkText = downloadLinkTranslation;
+  }
 
   return (
     <Wrapper
       role="complementary"
       aria-labelledby="third-party-links"
       ref={viewTrackerRef}
+      data-e2e="podcast-links"
     >
       <ThirdPartyLinksTitle
         script={script}
@@ -147,11 +158,15 @@ const PodcastExternalLinks = ({ brandTitle, links }) => {
             <StyledListItem dir={dir} key={`${linkText}`}>
               {/* line 147 and id={`externalLinkId-${linkText}`} in line 152 are a temporary fix for the a11y nested span's bug experienced in TalkBack, refer to the following issue: https://github.com/bbc/simorgh/issues/9652 */}
               <PodcastExternalLink
-                linkText={linkText}
                 linkUrl={linkUrl}
-                aria={{ 'aria-labelledby': `externalLinkId-${linkText}` }}
+                aria={{
+                  'aria-labelledby': `externalLinkId-${idSanitiser(linkText)}`,
+                }}
               >
-                <span role="text" id={`externalLinkId-${linkText}`}>
+                <span
+                  role="text"
+                  id={`externalLinkId-${idSanitiser(linkText)}`}
+                >
                   <span lang={ExternalLinkTextLangs[linkText] || lang}>
                     {linkText}
                   </span>
@@ -178,23 +193,6 @@ const PodcastExternalLinks = ({ brandTitle, links }) => {
       )}
     </Wrapper>
   );
-};
-
-PodcastExternalLinks.propTypes = {
-  brandTitle: string.isRequired,
-  links: arrayOf(
-    shape({
-      linkText: string.isRequired,
-      linkUrl: string.isRequired,
-    }),
-  ).isRequired,
-};
-
-PodcastExternalLink.propTypes = {
-  linkText: string.isRequired,
-  linkUrl: string.isRequired,
-  children: string.isRequired,
-  aria: string.isRequired,
 };
 
 export default PodcastExternalLinks;

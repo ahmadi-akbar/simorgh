@@ -1,7 +1,9 @@
 import React from 'react';
-import { render, waitFor } from '@testing-library/react';
-import { shouldMatchSnapshot } from '#psammead/psammead-test-helpers/src';
-import { C_GHOST } from '#psammead/psammead-styles/src/colours';
+import { GHOST } from '../../../components/ThemeProvider/palette';
+import {
+  render,
+  waitFor,
+} from '../../../components/react-testing-library-with-providers';
 import {
   ImageWithPlaceholder,
   AmpImageWithPlaceholder,
@@ -35,7 +37,7 @@ describe('ImageWithPlaceholder', () => {
       expect(preloadLink).toBeInTheDocument();
       expect(preloadLink.rel).toEqual('preload');
       expect(preloadLink.href).toEqual(
-        'https://ichef.bbci.co.uk/news/640/cpsprodpb/E7DB/production/_101655395_paulineclayton.jpg',
+        'https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/E7DB/production/_101655395_paulineclayton.jpg',
       );
     });
   });
@@ -61,7 +63,7 @@ describe('ImageWithPlaceholder', () => {
 
     await waitFor(() => {
       expect(document.querySelector('amp-img')).toHaveStyle({
-        backgroundColor: `${C_GHOST}`,
+        backgroundColor: `${GHOST}`,
       });
     });
   });
@@ -71,20 +73,25 @@ describe('ImageWithPlaceholder', () => {
 
     await waitFor(() => {
       expect(document.querySelector('amp-img')).not.toHaveStyle({
-        backgroundColor: `${C_GHOST}`,
+        backgroundColor: `${GHOST}`,
       });
     });
   });
 
-  shouldMatchSnapshot(
-    'should not provide non-js fallback',
-    <LazyLoadImageWithPlaceholder fallback={false} />,
-  );
+  it('should not provide non-js fallback', () => {
+    const { container } = render(
+      <LazyLoadImageWithPlaceholder fallback={false} />,
+    );
+    expect(container).toMatchSnapshot();
+  });
 
-  shouldMatchSnapshot('should render an image', <ImageWithPlaceholder />);
+  it('should render an image', () => {
+    const { container } = render(<ImageWithPlaceholder />);
+    expect(container).toMatchSnapshot();
+  });
 
-  shouldMatchSnapshot(
-    'should render an AMP image',
-    <AmpImageWithPlaceholder />,
-  );
+  it('should render an AMP image', () => {
+    const { container } = render(<AmpImageWithPlaceholder />);
+    expect(container).toMatchSnapshot();
+  });
 });

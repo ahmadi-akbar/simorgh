@@ -1,19 +1,24 @@
 import React from 'react';
-import { render, act } from '@testing-library/react';
+import { act } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { RequestContextProvider } from '#contexts/RequestContext';
-import pidginMostReadData from '#data/pidgin/mostRead';
-import * as analyticsUtils from '#lib/analyticsUtils';
+import { data as pidginMostReadData } from '#data/pidgin/mostRead/index.json';
 import { ToggleContextProvider } from '#contexts/ToggleContext';
 import { MOST_READ_PAGE } from '#app/routes/utils/pageTypes';
+import { render } from '../../components/react-testing-library-with-providers';
 import { ServiceContextProvider } from '../../contexts/ServiceContext';
 import MostReadPage from './MostReadPage';
 
 fetch.mockResponse(JSON.stringify(pidginMostReadData));
 
-analyticsUtils.getAtUserId = jest.fn();
+jest.mock('#lib/analyticsUtils', () => {
+  return {
+    ...jest.requireActual('#lib/analyticsUtils'),
+    getAtUserId: jest.fn(),
+  };
+});
 
-jest.mock('../../legacy/containers/ChartbeatAnalytics', () => {
+jest.mock('../../components/ChartbeatAnalytics', () => {
   const ChartbeatAnalytics = () => <div>chartbeat</div>;
   return ChartbeatAnalytics;
 });
@@ -39,7 +44,9 @@ const MostReadPageWithContext = () => (
 
 describe('Most Read Page Main', () => {
   it('should match snapshot for most read page', () => {
-    const { container } = render(<MostReadPageWithContext />);
+    const { container } = render(<MostReadPageWithContext service="pidgin" />, {
+      service: 'pidgin',
+    });
 
     expect(container).toMatchSnapshot();
   });
@@ -47,13 +54,15 @@ describe('Most Read Page Main', () => {
   it('shoulder render most read page', async () => {
     let container;
     await act(async () => {
-      container = await render(<MostReadPageWithContext />).container;
+      container = await render(<MostReadPageWithContext service="pidgin" />, {
+        service: 'pidgin',
+      }).container;
     });
 
     expect(container.querySelector('h1').textContent).toEqual(
-      'De one we dem de read well well',
+      'Di one wey oda users dey read well well',
     );
     expect(container.querySelector('ol')).toBeInTheDocument();
-    expect(container.querySelectorAll('li a').length).toEqual(10);
+    expect(container.querySelectorAll('li a').length).toEqual(5);
   });
 });

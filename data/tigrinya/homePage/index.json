@@ -1,0 +1,108 @@
+{
+  "data": {
+    "title": "ዜና - BBC News ትግርኛ",
+    "description": "ብድምጽን ስእልን ጽሑፍን ንዝቐርብ: ዕለታውን ሰበር ዜናታትን ዛንታታት ቢቢሲን ንምክትታል፡ ናብ ድሕረ ገጻት መርበብ ሓበሬታና ብጽሑ። ቢቢሲ፡ ርጡብን እሙንን ዘቤታውን ዓለማውን ዜናታትን ኣመለኻኸታን የቕርብ። ከምኡ እውን ዘዛኒ መደባት፡ ንቢዝነስ፡ ሳይንስ፡ ቴክኖሎጂን ጥዕናን ዝምልከት ትሕዝቶታት የቕርብ እዩ’ሞ ንኽትከታትሉና ናብ መርበብ ሓበሬታ ቢቢሲ ንዕድመኩም",
+    "pageType": "home",
+    "curations": [
+      {
+        "summaries": [
+          {
+            "type": "article",
+            "title": "Jewish Groups in scathing attack on Corbyn",
+            "firstPublished": "2018-03-26T13:15:48.000Z",
+            "lastPublished": "2018-03-26T13:15:48.000Z",
+            "link": "https://www.bbc.com/tigrinya/23193856",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/BBFE/test/_63662184_000008267-1.jpg",
+            "description": "\"Enough is enough,\" Jewish groups have said in a letter accusing Jeremy Corbyn of failing to tackle anti-Semitism.",
+            "imageAlt": "Jeremy Corbyn",
+            "id": "8fbbc340-9c26-ce44-9a43-8b817a71c3f9"
+          },
+          {
+            "type": "article",
+            "title": "Hello",
+            "firstPublished": "2017-10-25T13:14:48.000Z",
+            "lastPublished": "2017-10-25T13:14:48.000Z",
+            "link": "https://www.bbc.com/tigrinya/23160271",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/4893/test/_63597581_042592668-1.jpg",
+            "description": "Tesfalem is undertaking a cps training",
+            "imageAlt": "Chinese president Xi Jinping",
+            "id": "db99a172-2886-394c-bbb4-da2b8a2c6495"
+          },
+          {
+            "type": "article",
+            "title": "ኣል-ሸባብ መን እዩ?",
+            "firstPublished": "2017-08-22T08:26:06.000Z",
+            "lastPublished": "2017-08-22T08:26:06.000Z",
+            "link": "https://www.bbc.com/tigrinya/news-23144324",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/85BE/test/_63583243__93837400_alshabab2012getty.jpg",
+            "description": "ኣብታ ሃገር መሓውራቱ ካብ ዝዝርግሕ ጀሚሩ ኣሸሓት ሂወቶምን ንብረቶምነ ስኢኖም፤ ሚልዮናት ድማ ካብ ሃገሮም ተመዛቢሎም። እዚ ጉጅለ መን እዩ? ዝፈፀሞም መጥቃዐቲታት",
+            "imageAlt": "ኣል-ሸባብ",
+            "id": "69129126-4200-9d44-9fbf-c008a84ff08e"
+          }
+        ],
+        "activePage": 1,
+        "pageCount": 1,
+        "curationId": "urn:bbc:tipo:list:9ffb3847-cc51-4d71-b1ef-0197241280a0",
+        "curationType": "tipo-curation",
+        "position": 0,
+        "title": "Top Stories",
+        "visualProminence": "HIGH",
+        "visualStyle": "COLLECTION"
+      },
+      {
+        "summaries": [
+          {
+            "type": "article",
+            "title": "\"ዓለም እንተረሰዓትና ፈጣሪ ኣሎና\"",
+            "firstPublished": "2017-08-24T10:53:24.000Z",
+            "lastPublished": "2017-08-24T10:53:24.000Z",
+            "link": "https://www.bbc.com/tigrinya/news-23149942",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/0F3A/test/_63589830_gettyimages-679086218.jpg",
+            "description": "ኣሻሓት ኤርትራውያን ብቕልውላው የመን ይሳቐዩ ኣለዉ።",
+            "imageAlt": "ተቓውሞ የመን",
+            "id": "a2f94458-c131-0b4f-9a46-bd1ade12ba01"
+          },
+          {
+            "type": "article",
+            "title": "ጉዕዞ፡ ብሓይሊ ጻጸ፡ ብእትንቅሳቕስ ኣውቶቡስ",
+            "firstPublished": "2017-07-24T12:09:24.000Z",
+            "lastPublished": "2017-07-24T12:09:24.000Z",
+            "link": "https://www.bbc.com/tigrinya/news-23141494",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/D225/test/_63579735_af4355b4-6cb8-44fb-bf45-6454ffd9b73a.jpg",
+            "description": "ኣስታት 40 ዝኾኑ ተማሃሮ ዩኒቨሪሲቲ ቴክኖሎጂ ኢንዶሄቨን ኔዘርላንድስ ክሊማዊ ዕንወት ኣብ ምግታእ ተራ ዘለዋ ብፎርሚክ ኣሲድ እትንቅሳቕስ ኣውቶቡስ ይሰርሑ።",
+            "imageAlt": "ጻጸ",
+            "id": "c1f307b3-19ff-e04c-b066-57560cdc86e3"
+          },
+          {
+            "type": "article",
+            "title": "መራሕቲ ሃገራት ዓለም ስደተኛታት ኮይኖም እንተዝርከቡኸ?",
+            "firstPublished": "2017-08-22T08:23:22.000Z",
+            "lastPublished": "2017-08-22T08:23:22.000Z",
+            "link": "https://www.bbc.com/tigrinya/news-23143804",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/15B06/test/_63583888_mediaitem63582643.jpg",
+            "description": "ዓብደላ ኣል ኦማሪ ሶርያዊ ስደተኛ እዩ። መራሕቲ ሃገራት ዓለም ኣብቲ ንሱን ካልኦትን ግዳያት ዝኾኑሉ ስደት እንተዝርከቡስ እንታይኮን ምመሰሉ ንዝብል ሕቶ ብስእሊ ገሊፅዎሎ። ካብ ቅብኢታቱ ገሊኦም",
+            "imageAlt": "ትራምፕ",
+            "id": "4ceee736-49b6-cb42-b585-32440cf25eed"
+          }
+        ],
+        "activePage": 1,
+        "pageCount": 1,
+        "curationId": "urn:bbc:tipo:list:596ab598-3bee-4763-a89f-ebccdf7a0a18",
+        "curationType": "tipo-curation",
+        "position": 1,
+        "title": "ኣዘራረብቲ ዛዕባታት",
+        "visualProminence": "HIGH",
+        "visualStyle": "COLLECTION"
+      }
+    ],
+    "metadata": {
+      "atiAnalytics": {
+        "contentId": "urn:bbc:tipo:topic:c6zr6pp4e4xt",
+        "contentType": "index-home",
+        "pageIdentifier": "tigrinya.page",
+        "pageTitle": "ዜና - BBC News ትግርኛ"
+      }
+    }
+  },
+  "contentType": "application/json; charset=utf-8"
+}

@@ -1,6 +1,11 @@
 import { css, Theme } from '@emotion/react';
 
+const IMAGE_WIDTH = 184;
+const IMAGE_WIDTH_GROUP_3_MIN_WIDTH = 224;
+
 const styles = {
+  IMAGE_WIDTH,
+  IMAGE_WIDTH_GROUP_3_MIN_WIDTH,
   container: () =>
     css({
       paddingTop: '2rem',
@@ -17,7 +22,7 @@ const styles = {
         background:
           'linear-gradient(-120deg, #A20219 0%, #180109 54%, #180109 90%)',
       },
-      [mq.HIGH_CONTRAST]: {
+      [mq.FORCED_COLOURS]: {
         border: '0.1875rem solid transparent',
       },
     }),
@@ -41,44 +46,26 @@ const styles = {
       paddingBottom: '1rem',
       color: palette.WHITE,
     }),
-  imageLtr: ({ mq }: Theme) =>
+  image: ({ mq }: Theme) =>
     css({
-      maxWidth: '184px',
+      maxWidth: `${IMAGE_WIDTH}px`,
       [mq.GROUP_3_MIN_WIDTH]: {
-        maxWidth: '224px',
-        bottom: 0,
-        right: 0,
+        maxWidth: `${IMAGE_WIDTH_GROUP_3_MIN_WIDTH}px`,
+        insetInlineEnd: 0,
         position: 'absolute',
       },
 
       img: { objectPosition: 'top' },
     }),
-  imageRtl: ({ mq }: Theme) =>
-    css({
-      maxWidth: '184px',
-      [mq.GROUP_3_MIN_WIDTH]: {
-        maxWidth: '224px',
-        bottom: 0,
-        left: 0,
-        position: 'absolute',
-      },
-      img: { objectPosition: 'top' },
-    }),
-  linkBackground: ({ mq, palette }: Theme) =>
+  callToActionLink: ({ mq, palette }: Theme) =>
     css({
       padding: '1rem',
       backgroundColor: palette.WHITE,
       margin: '0 1rem 1rem 1rem',
       width: '100%',
-      textDecoration: 'none',
-      '&:hover': {
+      color: palette.BLACK,
+      '&:hover, &:focus': {
         backgroundColor: '#F6F6F6',
-        textDecoration: 'underline',
-        color: palette.BLACK,
-      },
-      '&:focus': {
-        backgroundColor: '#F6F6F6',
-        textDecoration: 'underline',
         color: palette.BLACK,
       },
       [mq.GROUP_3_MIN_WIDTH]: {
@@ -87,19 +74,8 @@ const styles = {
         margin: '0 0 1.5rem 0',
         paddingBottom: '1rem',
       },
-    }),
-  link: ({ palette }: Theme) =>
-    css({
-      color: palette.BLACK,
-      textDecoration: 'none',
-      '&:hover, &:focus': {
-        textDecoration: 'underline',
-        color: palette.BLACK,
-      },
-      paddingInlineStart: '0.5rem',
-      verticalAlign: 'middle',
-      '&:visited': {
-        color: palette.BLACK,
+      '& span': {
+        paddingInlineStart: '0.5rem',
       },
     }),
   chevron: () =>
@@ -109,12 +85,6 @@ const styles = {
       height: '1rem',
       verticalAlign: 'middle',
       fill: 'currentcolor',
-    }),
-  linkAndChevron: () =>
-    css({
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'center',
     }),
   flex: ({ mq }: Theme) =>
     css({

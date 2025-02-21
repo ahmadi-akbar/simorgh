@@ -1,31 +1,30 @@
 import { matchPath } from 'react-router-dom';
 import {
-  articlePath,
   articleDataPath,
-  articleSwPath,
   articleManifestPath,
-  frontPagePath,
+  articlePath,
+  articleSwPath,
+  cpsAssetPageDataPath,
+  cpsAssetPagePath,
   frontPageDataPath,
   frontPageManifestPath,
+  frontPagePath,
   frontPageSwPath,
-  homePagePath,
-  homePageManifestPath,
-  homePageSwPath,
-  cpsAssetPagePath,
-  cpsAssetPageDataPath,
-  podcastEpisodePath,
-  podcastBrandPath,
+  legacyAssetPageDataPath,
+  legacyAssetPagePath,
   liveRadioPath,
+  mostReadDataRegexPath,
   onDemandRadioPath,
   onDemandTvPath,
-  mostReadDataRegexPath,
-  mostWatchedDataPath,
-  mostWatchedPagePath,
-  legacyAssetPagePath,
-  legacyAssetPageDataPath,
-  secondaryColumnDataRegexPath,
+  podcastBrandPath,
+  podcastEpisodePath,
   recommendationsDataRegex,
+  secondaryColumnDataRegexPath,
+  topicPath,
 } from './index';
+
+import serviceConfig from '../../../lib/config/services/loadableConfig';
+import { getFrontPageRegex, getHomePageRegex } from './utils/index';
 
 jest.mock('#server/utilities/serviceConfigs', () => ({
   news: {},
@@ -102,66 +101,33 @@ describe('articleDataPath', () => {
 });
 
 describe('frontPagePath', () => {
-  const validRoutes = [
-    '/news',
-    '/persian',
-    '/news.amp',
-    '/persian.amp',
-    '/news/simp',
-    '/persian/trad',
-    '/news/lat.amp',
-    '/persian/cyr.amp',
-  ];
-  shouldMatchValidRoutes(validRoutes, frontPagePath);
-
   const invalidRoutes = [
     '/news/home',
     '/persian/c5jje4ejkqvo.amp',
     '/iplayer',
     '/news/foobar',
     '/news/foobar.amp',
+    '/kyrgyz',
+    '/kyrgyz.amp',
+    '/ukchina/simp',
+    '/ukchina/trad',
+    '/serbian/lat.amp',
+    '/serbian/cyr.amp',
   ];
   shouldNotMatchInvalidRoutes(invalidRoutes, frontPagePath);
 });
 
 describe('frontPageDataPath', () => {
-  const validRoutes = [
-    '/news.json',
-    '/persian.json',
-    '/news/cyr.json',
-    '/persian/trad.json',
-  ];
-  shouldMatchValidRoutes(validRoutes, frontPageDataPath);
-
   const invalidRoutes = [
     '/news/data.json',
     '/iplayer.json',
     '/news/foobar.json',
     '/persian/.json',
+    '/persian.json',
+    '/serbian/cyr.json',
+    '/ukchina/trad.json',
   ];
   shouldNotMatchInvalidRoutes(invalidRoutes, frontPageDataPath);
-});
-
-describe('homePagePath', () => {
-  const validRoutes = [
-    '/news/tipohome',
-    '/persian/tipohome',
-    '/news/tipohome.amp',
-    '/persian/tipohome.amp',
-    '/news/simp/tipohome',
-    '/persian/trad/tipohome',
-    '/news/lat/tipohome.amp',
-    '/persian/cyr/tipohome.amp',
-  ];
-  shouldMatchValidRoutes(validRoutes, homePagePath);
-
-  const invalidRoutes = [
-    '/news/tipohome/simp',
-    '/news/tipohome/simp.amp',
-    '/tipohome/persian',
-    '/tipohome/persian.amp',
-  ];
-  shouldNotMatchInvalidRoutes(invalidRoutes, homePagePath);
 });
 
 describe('articleSwPath', () => {
@@ -221,41 +187,12 @@ describe('frontPageManifestPath', () => {
   shouldNotMatchInvalidRoutes(invalidRoutes, frontPageManifestPath);
 });
 
-describe('homePageSwPath', () => {
-  const validRoutes = ['/news/tipohome/sw.js', '/persian/tipohome/sw.js'];
-  shouldMatchValidRoutes(validRoutes, homePageSwPath);
-
-  const invalidRoutes = [
-    '/news/articles/tipohome/sw.js',
-    '/persian/tipohome/sw',
-    '/persian/simp/tipohome/sw.js',
-  ];
-  shouldNotMatchInvalidRoutes(invalidRoutes, homePageSwPath);
-});
-
-describe('homePageManifestPath', () => {
-  const validRoutes = [
-    '/news/tipohome/manifest.json',
-    '/persian/tipohome/manifest.json',
-  ];
-  shouldMatchValidRoutes(validRoutes, homePageManifestPath);
-
-  const invalidRoutes = [
-    '/news/articles/tipohome/manifest.json',
-    '/hausa/tipohome/manifest',
-    '/hausa/simp/tipohome/manifest.json',
-  ];
-  shouldNotMatchInvalidRoutes(invalidRoutes, homePageManifestPath);
-});
-
 describe('onDemandRadioPath', () => {
   const validRoutes = [
     '/indonesia/bbc_indonesian_radio/w34rfd4k', // onDemand radio any media id
-    '/hausa/bbc_hausa_radio/abcd1234.amp', // onDemand radio amp w/ any media id
     '/persian/bbc_abcdefg_radio/hijklmn', // onDemand radio with a-z inside service id and for media id
     '/arabic/bbc_arabic_radio/radioschedule', // default radio schedule route
     '/indonesia/bbc_indonesian_radio/programmes/w34rfd4k', // onDemand radio brand any media id
-    '/indonesia/bbc_indonesian_radio/programmes/w34rfd4k.amp', // onDemand radio brand amp any media id
     '/zhongwen/simp/bbc_cantonese_radio/w5192pdkg', // onDemand radio with valid variant
   ];
   shouldMatchValidRoutes(validRoutes, onDemandRadioPath);
@@ -268,6 +205,8 @@ describe('onDemandRadioPath', () => {
     '/persian/foobar/abcd1234.amp',
     '/indonesia/bbc_indonesian_radio/programmes/',
     '/zhongwen/troll/bbc_cantonese_radio/w5192pdkg', // onDemand radio with invalid variant
+    '/hausa/bbc_hausa_radio/abcd1234.amp', // onDemand radio amp w/ any media id
+    '/indonesia/bbc_indonesian_radio/programmes/w34rfd4k.amp', // onDemand radio brand amp any media id
   ];
   shouldNotMatchInvalidRoutes(invalidRoutes, onDemandRadioPath);
 });
@@ -276,7 +215,6 @@ describe('liveRadioPath', () => {
   const validRoutes = [
     '/hausa/bbc_hausa_radio/liveradio', // default live radio
     '/persian/bbc_dari_radio/liveradio', // live radio other service
-    '/hausa/bbc_hausa_radio/liveradio.amp', // live radio amp
     '/hausa/bbc_persian_radio/liveradio', // service with non matching live radio service id
   ];
   shouldMatchValidRoutes(validRoutes, liveRadioPath);
@@ -284,6 +222,7 @@ describe('liveRadioPath', () => {
   const invalidRoutes = [
     '/hausa/bbc_hausa_radio/', // live radio with no media id
     '/hausa/bbc_hausa_radio/.amp', // live radio with no media id amp
+    '/hausa/bbc_hausa_radio/liveradio.amp', // live radio amp
     '/foobar/bbc_hausa_radio/liveradio', // live radio w/ unknown service
     '/persian/foobar/liveradio', // live radio w/ non-formatted service id
     '/persian/foobar/liveradio.amp', // live radio w/ non-formatted service id amp
@@ -293,17 +232,15 @@ describe('liveRadioPath', () => {
 });
 
 describe('podcastEpisodePath', () => {
-  const validRoutes = [
-    '/arabic/podcasts/654joro456/j0r0r0j',
-    '/burmese/podcasts/987ger/ald321.amp',
-    '/zhongwen/trad/podcasts/938495544/jf84hgf0sa.amp',
-  ];
+  const validRoutes = ['/arabic/podcasts/654joro456/j0r0r0j'];
   shouldMatchValidRoutes(validRoutes, podcastEpisodePath);
 
   const invalidRoutes = [
     '/burmese/podcast/98fjf9302/294fjfms', // podcast brand page
     '/burmese/98fjf9302/294fjfms', // podcast missing
     '/zhongwen/trad/39ddjd8d9/39djdwwiw.amp', // variant without podcast
+    '/burmese/podcasts/987ger/ald321.amp',
+    '/zhongwen/trad/podcasts/938495544/jf84hgf0sa.amp',
   ];
   shouldNotMatchInvalidRoutes(invalidRoutes, podcastEpisodePath);
 });
@@ -311,9 +248,7 @@ describe('podcastEpisodePath', () => {
 describe('podcastBrandPath', () => {
   const validRoutes = [
     '/arabic/podcasts/432rpk234',
-    '/burmese/podcasts/657mnayr.amp',
     '/zhongwen/trad/podcasts/457mcg155',
-    '/zhongwen/trad/podcasts/938495544.amp',
   ];
   shouldMatchValidRoutes(validRoutes, podcastBrandPath);
 
@@ -322,6 +257,8 @@ describe('podcastBrandPath', () => {
     '/arabic/bbc_arabic_radio/podcasts/6865933', // includes masterbrand
     '/zhongwen/trad/94jf92oe', // variant without podcast
     '/zhongwen/trad/39ddjd8d9amp', // variant without podcast
+    '/zhongwen/trad/podcasts/938495544.amp',
+    '/burmese/podcasts/657mnayr.amp',
   ];
   shouldNotMatchInvalidRoutes(invalidRoutes, podcastBrandPath);
 });
@@ -337,38 +274,6 @@ describe('mostReadDataRegexPath', () => {
     '/news/trad/mostread.json',
   ];
   shouldNotMatchInvalidRoutes(invalidRoutes, mostReadDataRegexPath);
-});
-
-describe('mostWatchedDataPath', () => {
-  const validRoutes = [
-    '/news/mostwatched.json',
-    '/zhongwen/mostwatched/simp.json',
-  ];
-  shouldMatchValidRoutes(validRoutes, mostWatchedDataPath);
-
-  const invalidRoutes = [
-    '/foobar/mostwatched.json',
-    '/foobar/mostwatched',
-    '/foobar/mostwatched.js',
-    '/news/trad/mostwatched.json',
-  ];
-  shouldNotMatchInvalidRoutes(invalidRoutes, mostWatchedDataPath);
-});
-
-describe('mostWatchedPagePath', () => {
-  const validRoutes = [
-    '/pidgin/media/video',
-    '/pashto/media/video',
-    '/zhongwen/simp/media/video',
-  ];
-  shouldMatchValidRoutes(validRoutes, mostWatchedPagePath);
-
-  const invalidRoutes = [
-    '/foobar/media/video',
-    '/pidgin/video/media',
-    '/zhongwen/media/video/simp',
-  ];
-  shouldNotMatchInvalidRoutes(invalidRoutes, mostWatchedPagePath);
 });
 
 describe('secondaryColumnDataRegexPath', () => {
@@ -409,10 +314,6 @@ describe('onDemandTvPath', () => {
   const validRoutes = [
     '/indonesia/bbc_indonesian_tv/tv/w34rfd4k',
     '/indonesia/bbc_indonesian_tv/tv_programmes/w4321',
-    '/indonesia/bbc_indonesian_tv/tv/w34rfd4k.amp',
-    '/indonesia/bbc_indonesian_tv/tv_programmes/w4321.amp',
-    '/persian/bbc_persian_tv/tv_programmes/abcd1234.amp',
-    '/persian/bbc_persian_tv/tv/abcd4321.amp',
   ];
   shouldMatchValidRoutes(validRoutes, onDemandTvPath);
 
@@ -427,6 +328,10 @@ describe('onDemandTvPath', () => {
     '/persian/foobar/abcd1234.amp',
     '/indonesia/bbc_indonesian_tv/tv_programmes/',
     '/indonesia/bbc_indonesian_tv/tv/',
+    '/indonesia/bbc_indonesian_tv/tv/w34rfd4k.amp',
+    '/indonesia/bbc_indonesian_tv/tv_programmes/w4321.amp',
+    '/persian/bbc_persian_tv/tv_programmes/abcd1234.amp',
+    '/persian/bbc_persian_tv/tv/abcd4321.amp',
   ];
   shouldNotMatchInvalidRoutes(invalidRoutes, onDemandTvPath);
 });
@@ -448,6 +353,7 @@ describe('cpsAssetPagePath', () => {
     '/zhongwen/simp/test-12345678.amp',
     '/cymrufyw/etholiad-2017-39407507',
     '/cymrufyw/etholiad-2017-39407507.amp',
+    '/news/world-middle+east-10642960.amp',
   ];
 
   shouldMatchValidRoutes(validRoutes, cpsAssetPagePath);
@@ -535,4 +441,147 @@ describe('legacyAssetPageDataPath', () => {
     return `${path}.json`;
   });
   shouldNotMatchInvalidRoutes(invalidDataRoutes, legacyAssetPageDataPath);
+});
+
+describe('frontPage -> homePage migration', () => {
+  const services = Object.keys(serviceConfig);
+
+  const servicesNotCoveredByWorldService = [
+    'sport',
+    'scotland',
+    'newsround',
+    'news',
+    'naidheachdan',
+    'cymrufyw',
+    'archive',
+  ];
+
+  const worldServices = services.filter(
+    service => !servicesNotCoveredByWorldService.includes(service),
+  );
+
+  const serviceToRoute = service => `/${service}`;
+
+  const homepageServices = worldServices.map(serviceToRoute);
+
+  const migratedServices = [
+    'afaanoromoo',
+    'afrique',
+    'amharic',
+    'arabic',
+    'azeri',
+    'bengali',
+    'burmese',
+    'gahuza',
+    'gujarati',
+    'hausa',
+    'hindi',
+    'igbo',
+    'indonesia',
+    'japanese',
+    'kyrgyz',
+    'korean',
+    'marathi',
+    'mundo',
+    'nepali',
+    'pashto',
+    'persian',
+    'pidgin',
+    'portuguese',
+    'punjabi',
+    'russian',
+    'serbian',
+    'sinhala',
+    'somali',
+    'swahili',
+    'tamil',
+    'telugu',
+    'thai',
+    'tigrinya',
+    'turkce',
+    'ukrainian',
+    'urdu',
+    'uzbek',
+    'vietnamese',
+    'yoruba',
+    'zhongwen',
+  ];
+  const migratedWorldServiceRoutes = migratedServices.map(serviceToRoute);
+
+  const liveFrontPageServices = worldServices.filter(
+    service => !migratedServices.includes(service),
+  );
+
+  const liveFrontPageRoutes = liveFrontPageServices.map(serviceToRoute);
+
+  const originalApplicationEnvironment = process.env.SIMORGH_APP_ENV;
+
+  afterEach(() => {
+    process.env.SIMORGH_APP_ENV = originalApplicationEnvironment;
+  });
+
+  describe.each(['local', 'test'])(
+    `homePage regex on the %s environment`,
+    environment => {
+      process.env.SIMORGH_APP_ENV = environment;
+
+      const homePageRegex = getHomePageRegex(services);
+
+      shouldMatchValidRoutes(homepageServices, homePageRegex);
+    },
+  );
+
+  describe.each(['local', 'test'])(
+    `frontPage regex on the %s environment`,
+    environment => {
+      process.env.SIMORGH_APP_ENV = environment;
+
+      const frontPageRegex = getFrontPageRegex(services);
+
+      shouldNotMatchInvalidRoutes(homepageServices, frontPageRegex);
+    },
+  );
+
+  describe(`frontPage regex on the live environment`, () => {
+    process.env.SIMORGH_APP_ENV = 'live';
+
+    const frontPageRegex = getFrontPageRegex(services);
+
+    shouldMatchValidRoutes(liveFrontPageRoutes, frontPageRegex);
+
+    shouldNotMatchInvalidRoutes(migratedWorldServiceRoutes, frontPageRegex);
+  });
+
+  describe(`homePage regex on the live environment`, () => {
+    process.env.SIMORGH_APP_ENV = 'live';
+
+    const homePageRegex = getHomePageRegex(services);
+
+    shouldMatchValidRoutes(migratedWorldServiceRoutes, homePageRegex);
+
+    shouldNotMatchInvalidRoutes(liveFrontPageRoutes, homePageRegex);
+  });
+});
+
+describe('topicPath', () => {
+  const validRoutes = [
+    '/zhongwen/topics/cd6qem06z92t/trad',
+    '/zhongwen/topics/c1ez1k4emn0t/trad',
+    '/serbian/topics/cr50vdy9q6wt/lat',
+    '/serbian/topics/c2lej05e1eqt/lat',
+    '/pidgin/topics/c2dwqd1zr92t',
+  ];
+  shouldMatchValidRoutes(validRoutes, topicPath);
+
+  const invalidRoutes = [
+    '/serbian/lat/topics/c2lej05e1eqt',
+    '/serbian/lat/topics/c2lej05qwesae1eqt',
+    '/zhongwen/c1ez1k4emn0t',
+    '/zhongwen/trad/topics',
+    '/hindi/topic/c5jje4ejkqv',
+    '/mundo/topic/',
+    '/serbian/topic/c5jje4ejkqvo/foobar',
+    '/urdu/topic/c5jje4ejkqvo/.amp',
+  ];
+  shouldNotMatchInvalidRoutes(invalidRoutes, topicPath);
 });

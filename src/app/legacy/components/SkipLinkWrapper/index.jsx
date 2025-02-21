@@ -1,11 +1,10 @@
-import React from 'react';
-import { node, string, shape } from 'prop-types';
+/** @jsx jsx */
+import { jsx } from '@emotion/react';
 import styled from '@emotion/styled';
 import detokenise from '#psammead/psammead-detokeniser/src';
-import { visuallyHiddenTextStyle } from '#psammead/psammead-visually-hidden-text/src';
-import { C_EBON, C_WHITE } from '#psammead/psammead-styles/src/colours';
 import { getSansBold } from '#psammead/psammead-styles/src/font-styles';
 import { GEL_BREVIER } from '#psammead/gel-foundations/src/typography';
+import { visuallyHiddenStyle } from '../../../lib/styles.const';
 
 const BORDER_WIDTH = '0.125rem';
 const GEL_SPACING_PLUS_HALF = `0.75rem`;
@@ -17,9 +16,9 @@ const Wrapper = styled.div`
 const SkipLink = styled.a`
   ${({ service }) => getSansBold(service)}
   ${GEL_BREVIER}
-  background-color: ${C_WHITE};
-  border: ${BORDER_WIDTH} solid ${C_EBON};
-  color: ${C_EBON};
+  background-color: ${props => props.theme.palette.WHITE};
+  border: ${BORDER_WIDTH} solid ${props => props.theme.palette.EBON};
+  color: ${props => props.theme.palette.EBON};
   display: block;
   left: 0;
   line-height: 1;
@@ -30,12 +29,12 @@ const SkipLink = styled.a`
   z-index: 10;
 
   &:not(:focus):not(:active) {
-    ${visuallyHiddenTextStyle}
+    ${visuallyHiddenStyle}
   }
 `;
 
 const EndText = styled.p`
-  ${visuallyHiddenTextStyle}
+  ${visuallyHiddenStyle}
 `;
 
 const SkipLinkWrapper = ({
@@ -57,15 +56,6 @@ const SkipLinkWrapper = ({
       </EndText>
     </Wrapper>
   );
-};
-
-SkipLinkWrapper.propTypes = {
-  service: string.isRequired,
-  children: node.isRequired,
-  endTextId: string.isRequired,
-  text: string.isRequired,
-  endTextVisuallyHidden: string.isRequired,
-  terms: shape({}).isRequired,
 };
 
 export default SkipLinkWrapper;
