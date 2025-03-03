@@ -125,9 +125,8 @@
         "visualStyle": "BANNER"
       }
     ],
-    "activePage": null,
-    "pageCount": null,
-    "variantTopicId": null
+    "activePage": 1,
+    "pageCount": 1
   },
   "contentType": "application/json; charset=utf-8"
 }

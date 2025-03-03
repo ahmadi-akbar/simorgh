@@ -1,9 +1,6 @@
 import React from 'react';
-import { withServicesKnob } from '#psammead/psammead-storybook-helpers/src';
-import { withKnobs } from '@storybook/addon-knobs';
 import styled from '@emotion/styled';
-import { ToggleContextProvider } from '#contexts/ToggleContext';
-import { ServiceContextProvider } from '../../../contexts/ServiceContext';
+import { ServiceContextProvider } from '#contexts/ServiceContext';
 import ScrollablePromo from '.';
 import {
   threeLinks,
@@ -14,60 +11,111 @@ import {
   twoLinksWithNoImages,
   truncatedTextInSingleLink,
   arabicText,
+  topStoriesBlocks,
+  topStoriesBlocksWithLiveItem,
+  mostReadBlocks,
+  mostReadBlocksRTL,
 } from './helpers/fixtureData';
-import ThemeProvider from '../../../components/ThemeProvider';
 
 const BackGround = styled.div`
   background-color: #f6f6f6;
   padding: 2rem;
 `;
-// eslint-disable-next-line react/prop-types
-const ScrollablePromoComponent = ({ data, service, script, dir }) => (
-  <ThemeProvider service={service}>
-    <ToggleContextProvider>
-      <BackGround>
-        <ServiceContextProvider service={service} script={script} dir={dir}>
-          <ScrollablePromo blocks={data} />
-        </ServiceContextProvider>
-      </BackGround>
-    </ToggleContextProvider>
-  </ThemeProvider>
+
+const ScrollablePromoComponent = ({
+  data,
+  service,
+  experimentVariant = null,
+}) => (
+  <ServiceContextProvider service={service}>
+    <ScrollablePromo blocks={data} experimentVariant={experimentVariant} />
+  </ServiceContextProvider>
 );
 
 export default {
-  title: 'components/scrollable promo component',
+  title: 'Components/Scrollable Promo',
   ScrollablePromoComponent,
-  decorators: [withKnobs, withServicesKnob()],
 };
 
-export const ThreeLinks = props => (
-  <ScrollablePromoComponent data={threeLinks} {...props} />
+export const ThreeLinks = (_, { service }) => (
+  <BackGround>
+    <ScrollablePromoComponent data={threeLinks} service={service} />
+  </BackGround>
 );
 
-export const OnlyOneLink = props => (
-  <ScrollablePromoComponent data={oneLinkOnly} {...props} />
+export const OnlyOneLink = (_, { service }) => (
+  <BackGround>
+    <ScrollablePromoComponent data={oneLinkOnly} service={service} />
+  </BackGround>
 );
 
-export const OneLinkWithNoTitle = props => (
-  <ScrollablePromoComponent data={oneLinkWithNoTitle} {...props} />
+export const OneLinkWithNoTitle = (_, { service }) => (
+  <BackGround>
+    <ScrollablePromoComponent data={oneLinkWithNoTitle} service={service} />
+  </BackGround>
 );
 
-export const MoreThanThreeLinks = props => (
-  <ScrollablePromoComponent data={moreThanThreeLinks} {...props} />
+export const MoreThanThreeLinks = (_, { service }) => (
+  <BackGround>
+    <ScrollablePromoComponent data={moreThanThreeLinks} service={service} />
+  </BackGround>
 );
 
-export const NoImagesInData = props => (
-  <ScrollablePromoComponent data={twoLinksWithNoImages} {...props} />
+export const NoImagesInData = (_, { service }) => (
+  <BackGround>
+    <ScrollablePromoComponent data={twoLinksWithNoImages} service={service} />
+  </BackGround>
 );
 
-export const TruncatedTextInSingleLink = props => (
-  <ScrollablePromoComponent data={truncatedTextInSingleLink} {...props} />
+export const TruncatedTextInSingleLink = (_, { service }) => (
+  <BackGround>
+    <ScrollablePromoComponent
+      data={truncatedTextInSingleLink}
+      service={service}
+    />
+  </BackGround>
 );
 
-export const ArabicText = props => (
-  <ScrollablePromoComponent data={arabicText} {...props} />
+export const ArabicText = () => (
+  <BackGround>
+    <ScrollablePromoComponent data={arabicText} service="arabic" />
+  </BackGround>
 );
 
-export const WithTimestamp = props => (
-  <ScrollablePromoComponent data={oneLinkWithTimestamp} {...props} />
+export const WithTimestamp = (_, { service }) => (
+  <BackGround>
+    <ScrollablePromoComponent data={oneLinkWithTimestamp} service={service} />
+  </BackGround>
+);
+
+export const OJTopBarTopStories = (_, { service }) => (
+  <ScrollablePromoComponent
+    data={topStoriesBlocks}
+    service={service}
+    experimentVariant={'A'}
+  />
+);
+
+export const OJTopBarTopStoriesWithLiveLabel = (_, { service }) => (
+  <ScrollablePromoComponent
+    data={topStoriesBlocksWithLiveItem}
+    service={service}
+    experimentVariant={'A'}
+  />
+);
+
+export const OJTopBarMostRead = (_, { service }) => (
+  <ScrollablePromoComponent
+    data={mostReadBlocks}
+    service={service}
+    experimentVariant={'B'}
+  />
+);
+
+export const OJTopBarMostReadRTL = () => (
+  <ScrollablePromoComponent
+    data={mostReadBlocksRTL}
+    service="arabic"
+    experimentVariant={'B'}
+  />
 );

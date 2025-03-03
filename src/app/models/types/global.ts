@@ -1,3 +1,11 @@
+import * as PAGE_TYPES from '../../routes/utils/pageTypes';
+
+export type Environments = 'local' | 'test' | 'live';
+
+export type Platforms = 'amp' | 'canonical' | 'app' | 'lite';
+
+export type Direction = 'rtl' | 'ltr';
+
 export type SocialEmbedProviders =
   | 'facebook'
   | 'twitter'
@@ -5,21 +13,22 @@ export type SocialEmbedProviders =
   | 'youtube'
   | 'tiktok';
 
-export type PageTypes =
-  | 'article'
-  | 'frontPage'
-  | 'media'
-  | 'mostRead'
-  | 'mostWatched'
-  | 'error'
-  | 'IDX'
-  | 'FIX'
-  | 'MAP'
-  | 'STY'
-  | 'PGL'
-  | 'CSP'
-  | 'TOPIC'
-  | 'HOME';
+export type PageTypes = (typeof PAGE_TYPES)[keyof typeof PAGE_TYPES];
+
+export type Toggles =
+  | {
+      [key: string]: {
+        enabled: boolean;
+        value?: string | number;
+      };
+    }
+  | { _environment: string };
+
+export type MvtExperiment = {
+  experimentName: string;
+  variation: string;
+  type: 'experiment' | 'feature';
+};
 
 export type SerbianService = {
   service: 'serbian';
@@ -41,11 +50,17 @@ export type UkrainianService = {
   variant: 'default' | 'ru-UA';
 };
 
+export type UzbekService = {
+  service: 'uzbek';
+  variant: 'default' | 'cyr' | 'lat';
+};
+
 export type ServicesWithVariants =
   | SerbianService
   | ChineseService
   | ZhongwenService
-  | UkrainianService;
+  | UkrainianService
+  | UzbekService;
 
 export type ServicesWithNoVariants = {
   service:
@@ -90,8 +105,8 @@ export type ServicesWithNoVariants = {
     | 'tigrinya'
     | 'turkce'
     | 'urdu'
-    | 'uzbek'
     | 'vietnamese'
+    | 'ws'
     | 'yoruba';
   variant: 'default';
 };

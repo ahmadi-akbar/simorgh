@@ -1,9 +1,3 @@
-import {
-  C_POSTBOX,
-  C_WHITE,
-  C_GHOST,
-  C_POSTBOX_30,
-} from '../../../legacy/psammead/psammead-styles/src/colours';
 import devanagari from '../../../components/ThemeProvider/fontScripts/devanagari';
 import '#psammead/moment-timezone-include/tz/Asia/Kolkata';
 import '#psammead/psammead-locales/moment/mr';
@@ -18,6 +12,7 @@ export const service: DefaultServiceConfig = {
     articleTimestampSuffix: '',
     atiAnalyticsAppName: 'news-marathi',
     atiAnalyticsProducerId: '59',
+    atiAnalyticsProducerName: 'MARATHI',
     chartbeatDomain: 'marathi.bbc.co.uk',
     brandName: 'BBC News मराठी',
     product: 'BBC News',
@@ -38,7 +33,6 @@ export const service: DefaultServiceConfig = {
     service: 'marathi',
     serviceName: 'Marathi',
     languageName: 'Marathi',
-    themeColor: `${C_POSTBOX}`,
     twitterCreator: '@bbcnewsmarathi',
     twitterSite: '@bbcnewsmarathi',
     noBylinesPolicy:
@@ -49,26 +43,20 @@ export const service: DefaultServiceConfig = {
     manifestPath: '/manifest.json',
     swPath: '/sw.js',
     frontPageTitle: 'बातम्या',
-    theming: {
-      brandBackgroundColour: `${C_POSTBOX}`,
-      brandLogoColour: `${C_WHITE}`,
-      brandForegroundColour: `${C_GHOST}`,
-      brandHighlightColour: `${C_WHITE}`,
-      brandBorderColour: `${C_POSTBOX_30}`,
-    },
     showAdPlaceholder: false,
     showRelatedTopics: true,
     podcastPromo: {
-      title: 'पॉडकास्ट',
-      brandTitle: 'तीन गोष्टी',
-      brandDescription: 'दिवसभरातल्या कोरोना आणि इतर घडामोडींचा आढावा',
+      title: 'बीबीसी मराठी व्हॉट्सॲपवर',
+      brandTitle: 'बीबीसी न्यूज मराठी आता व्हॉट्सॲपवर',
+      brandDescription:
+        'तुमच्या कामाच्या गोष्टी आणि बातम्या आता थेट तुमच्या फोनवर',
       image: {
-        src: 'https://ichef.bbci.co.uk/images/ic/$recipe/p0940n6j.jpg',
-        alt: 'तीन गोष्टी',
+        src: 'https://ichef.bbci.co.uk/images/ic/$recipe/p0kptdp6.jpg',
+        alt: 'BBC News मराठी आत्ताच फॉलो करा WhatsApp कर',
       },
       linkLabel: {
-        text: 'भाग',
-        href: 'https://www.bbc.com/marathi/podcasts/p09431p4',
+        text: 'फॉलो करा',
+        href: 'https://www.whatsapp.com/channel/0029Vaa8TxTIyPtQpqWBTh3j',
       },
     },
     translations: {
@@ -93,6 +81,18 @@ export const service: DefaultServiceConfig = {
         mediaPlayer: 'मीडिया प्लेयर',
         audioPlayer: 'ऑडिओ प्लेयर',
         videoPlayer: 'व्हीडिओ प्लेयर',
+      },
+      liveExperiencePage: {
+        liveLabel: 'LIVE',
+        liveCoverage: 'लाईव्ह कव्हरेज',
+        breaking: 'ब्रेकिंग',
+        postedAt: 'वाजता पोस्ट केलं',
+        summary: 'थोडक्यात',
+        shareButtonText: 'शेअर करा',
+      },
+      downloads: {
+        instructions: 'You can download and view today’s news.',
+        title: 'File Download',
       },
       gist: 'थोडक्यात',
       error: {
@@ -147,7 +147,7 @@ export const service: DefaultServiceConfig = {
           },
           accept: 'ओके',
           reject: 'पाहा नेमकं काय बदललंय',
-          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/your-data-matters',
+          rejectUrl: 'https://www.bbc.com/usingthebbc/privacy-policy/',
         },
         cookie: {
           amp: {
@@ -161,7 +161,7 @@ export const service: DefaultServiceConfig = {
                 linkText: 'कुकीज',
                 last: 'सारखं तंत्रज्ञान वापरून तुमचा ब्राऊझिंग डेटा गोळा करत असतो, जेणेकरून तुमचा ऑनलाईन अनुभव सर्वोत्तम व्हावा आणि तुम्हाला खास तुमच्यासाठीचा मजकूर आणि अ‍ॅड दाखवता याव्यात. तुमची याला सहमती असल्याचं आम्हाला कळवा.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
               manage: 'सेटिंग्ज पाहा',
             },
@@ -177,7 +177,7 @@ export const service: DefaultServiceConfig = {
                   'आमची वेबपेजेस सुलभपणे चालावीत यासाठी आम्ही मर्यादित प्रमाणात तुमच्या उपकरणाविषयीची काही माहिती विनाअनुमती साठवतो.',
                 para4: {
                   text: 'वेबपेजेस सुरळीतपणे चालावीत यासाठी तुमच्या उपकरणातील कोणती माहिती साठवली जाते याविषयी वाचा.',
-                  url: 'https://www.bbc.co.uk/usingthebbc/strictly-necessary-cookies/',
+                  url: 'https://www.bbc.com/usingthebbc/cookies/strictly-necessary-cookies/',
                 },
                 para5:
                   'तुमच्या परवानगीचे पर्याय साठवण्यासाठी आम्ही तुमच्या उपकरणातील लोकल स्टोरेजचा वापर करतो.',
@@ -210,13 +210,13 @@ export const service: DefaultServiceConfig = {
                 linkText: 'कुकीज',
                 last: ' वापरून तुमचा ऑनलाईन अनुभव सर्वोत्तम करण्याचा प्रयत्न करतो. सर्व कुकीजच्या बाबतीत तुमची सहमती असल्याचं आम्हाला कळवा.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
             },
             accept: 'हो, माझी सहमती आहे',
             reject: 'नाही, मला सेटिंग्स दाखवा',
             rejectUrl:
-              'https://www.bbc.co.uk/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
+              'https://www.bbc.com/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
           },
         },
       },
@@ -243,6 +243,8 @@ export const service: DefaultServiceConfig = {
         duration: 'वेळ',
         recentEpisodes: 'ताजे एपिसोड',
         podcastExternalLinks: 'हे पॉडकास्ट तुम्ही इथे ऐकू शकता',
+        download: 'एपिसोड डाऊनलोड करा',
+        closeVideo: 'बंद करा',
       },
       socialEmbed: {
         caption: {
@@ -276,18 +278,14 @@ export const service: DefaultServiceConfig = {
         linkText: 'View the full version of the page to see all the content.',
       },
       topStoriesTitle: 'मोठ्या बातम्या',
-      featuresAnalysisTitle: 'Features',
+      featuresAnalysisTitle: 'बीबीसी मराठी स्पेशल',
+      latestMediaTitle: 'नवीनतम',
     },
     mostRead: {
       header: 'सर्वाधिक वाचलेले',
       lastUpdated: 'शेवटचा अपडेट:',
       numberOfItems: 10,
       hasMostRead: true,
-    },
-    mostWatched: {
-      header: 'सर्वाधिक पाहिलेले',
-      numberOfItems: 10,
-      hasMostWatched: true,
     },
     radioSchedule: {
       hasRadioSchedule: false,
@@ -326,14 +324,19 @@ export const service: DefaultServiceConfig = {
           text: 'बीबीसीशी संपर्क साधाा',
         },
         {
+          href: 'https://www.bbc.com/ws/languages',
+          text: 'BBC News इतर भाषांमध्ये',
+        },
+        {
           id: 'COOKIE_SETTINGS',
-          href: 'https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/',
-          text: 'AdChoices / Do Not Sell My Info',
+          href: '#',
+          text: 'Do not share or sell my info',
           lang: 'en-GB',
         },
       ],
       copyrightText:
         'BBC. बीबीसी बाह्य इंटरनेट साइट्सच्या सामग्रीसाठी बीबीसी जबाबदार नाही. बाह्य लिंक्सबद्दल आम्हाल काय वाटतं? इथे वाचा.',
+      collectiveNewsroomText: 'बीबीसीसाठी कलेक्टिव्ह न्यूजरूमचं प्रकाशन',
     },
     timezone: 'Asia/Kolkata',
     navigation: [
@@ -355,7 +358,11 @@ export const service: DefaultServiceConfig = {
       },
       {
         title: 'व्हीडिओ',
-        url: '/marathi/media/video',
+        url: '/marathi/topics/cl29j0epz13t',
+      },
+      {
+        title: 'सोपी गोष्ट',
+        url: '/marathi/topics/cpxrqmrke02t',
       },
       {
         title: 'लोकप्रिय',

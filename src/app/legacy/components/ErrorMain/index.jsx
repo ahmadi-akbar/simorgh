@@ -1,9 +1,7 @@
 import React from 'react';
-import { string, arrayOf, shape } from 'prop-types';
 import styled from '@emotion/styled';
 import InlineLink from '#psammead/psammead-inline-link/src';
 import Paragraph from '#psammead/psammead-paragraph/src';
-import { C_POSTBOX, C_SHADOW } from '#psammead/psammead-styles/src/colours';
 import { getSerifMedium } from '#psammead/psammead-styles/src/font-styles';
 import {
   getCanon,
@@ -12,11 +10,10 @@ import {
 } from '#psammead/gel-foundations/src/typography';
 import idSanitiser from '#lib/utilities/idSanitiser';
 import Grid, { GelPageGrid } from '#components/Grid';
-import { scriptPropType } from '#psammead/gel-foundations/src/prop-types';
 
 const StatusCode = styled.span`
   ${props => (props.script ? getParagon(props.script) : '')}
-  color: ${C_POSTBOX};
+  color: ${props => props.theme.palette.POSTBOX};
   display: block;
   font-family: ${GEL_FF_REITH_SANS};
   font-weight: 600;
@@ -26,7 +23,7 @@ const StatusCode = styled.span`
 const Heading = styled.h1`
   ${({ script }) => script && getCanon(script)}
   ${({ service }) => getSerifMedium(service)}
-  color: ${C_SHADOW};
+  color: ${props => props.theme.palette.SHADOW};
   margin-top: 0;
 `;
 
@@ -43,10 +40,10 @@ const ErrorMain = ({
   title,
   message,
   solutions,
-  callToActionFirst,
+  callToActionFirst = null,
   callToActionLinkText,
   callToActionLinkUrl,
-  callToActionLast,
+  callToActionLast = null,
   script,
   service,
 }) => (
@@ -117,23 +114,5 @@ const ErrorMain = ({
     </Grid>
   </StyledGelPageGrid>
 );
-
-ErrorMain.propTypes = {
-  statusCode: string.isRequired,
-  title: string.isRequired,
-  message: string.isRequired,
-  solutions: arrayOf(string).isRequired,
-  callToActionFirst: string,
-  callToActionLinkText: string.isRequired,
-  callToActionLinkUrl: string.isRequired,
-  callToActionLast: string,
-  script: shape(scriptPropType).isRequired,
-  service: string.isRequired,
-};
-
-ErrorMain.defaultProps = {
-  callToActionFirst: null,
-  callToActionLast: null,
-};
 
 export default ErrorMain;

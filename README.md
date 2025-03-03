@@ -5,13 +5,11 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/cbca275e184057982f27/maintainability)](https://codeclimate.com/github/bbc/simorgh/maintainability)
 [![Storybook](https://cdn.jsdelivr.net/gh/storybooks/brand@master/badge/badge-storybook.svg)](https://bbc.github.io/simorgh/)
 
-BBC World Service News websites are rendered using Simorgh, a ReactJS based Single Page Application which also builds Accelerated Mobile Pages (AMP) for every regular HTML page that it renders. Simorgh also renders AMP pages for BBC Public Service News and BBC Sport.
+BBC World Service News websites are rendered using Simorgh, a ReactJS based application. Simorgh also renders AMP news article pages for World Service, Public Service News and BBC Sport.
 
 Simorgh provides a fast and accessible web experience used by millions of people around the world each month ([see list of websites using Simorgh](https://github.com/bbc/simorgh/blob/latest/docs/Simorgh-Release-Info.mdx)). It is regularly maintained and well documented, and we welcome open source contributors.
 
 Simorgh is primarily maintained by the BBC News Web Engineering teams. It delivers highly trusted news to readers all over the world, currently in ([41 languages](https://www.bbc.com/ws/languages)). We support a wide range of devices and care deeply about scale, performance, and accessibility. We work in agile, flexible teams, and have an exciting roadmap for future development.
-
-We use an open source component library called [Psammead](https://github.com/bbc/psammead/) that we also maintain.
 
 ## Documentation index
 
@@ -20,12 +18,11 @@ Please familiarise yourself with our:
 - [Code of conduct](https://github.com/bbc/simorgh/blob/latest/.github/CODE_OF_CONDUCT.md)
 - [Coding Standards](https://github.com/bbc/simorgh/blob/latest/docs/Coding-Standards/README.md)
 - [Contributing guidelines](https://github.com/bbc/simorgh/blob/latest/CONTRIBUTING.md)
-- [Guide to Code Reviews](https://github.com/bbc/simorgh/blob/latest/docs/Code-Reviews.stories.mdx)
-- [Github Project Board Guide](https://github.com/bbc/simorgh/blob/latest/docs/Project-Board-Guide.stories.mdx)
-- [GPG Signing Guide](docs/GPG-Signing-Guide.stories.mdx)
+- [Guide to Code Reviews](https://github.com/bbc/simorgh/blob/latest/docs/Code-Reviews.mdx)
+- [GPG Signing Guide](https://github.com/bbc/simorgh/blob/latest/docs/GPG-Signing-Guide.mdx)
 - [Primary README](https://github.com/bbc/simorgh/blob/latest/README.md) (you are here)
-- [Recommended Tools](https://github.com/bbc/simorgh/blob/latest/docs/Recommended-Tools.stories.mdx)
-- [Troubleshooting](https://github.com/bbc/simorgh/blob/latest/docs/Troubleshooting.stories.mdx)
+- [Recommended Tools](https://github.com/bbc/simorgh/blob/latest/docs/Recommended-Tools.mdx)
+- [Troubleshooting](https://github.com/bbc/simorgh/blob/latest/docs/Troubleshooting.mdx)
 
 NB there is further documentation colocated with relevant code. The above list is an index of the top-level documentation of our repo.
 
@@ -45,18 +42,6 @@ The Document passes the URL, JSON data, BBC Origin, isAmp and the service to the
 
 Now that the raw HTML has been downloaded, the client-side JS file kicks in and hydrates the initial response with the client side application. During this process react uses the initial JSON payload (available on the global window object `SIMORGH_DATA`) to hydrate the original markup returned by ReactDOMServer. React expects that the rendered content is identical between the server and the client (This is why we send the initial JSON payload with the SSR page, so the hydration phase runs with the same data that the server render used).
 
-#### Onward Journeys - Client Side Render (CSR)
-
-Now that the SPA is bootstrapped on the users device, onward journeys to further Simorgh pages are captured by react-router and rendered entirely on the client.
-
-Clicking on an onward journey triggers the `useEffect` hook in the main App container as the URL path has changed. This effect uses `getRouteProps` again to match the new path against a react-router route, gaining access to the; service and isAmp props, the react container to render and the `getInitialData` function.
-
-The local state is now updated, setting `loading` to `true` and `data` to `null`. This update to state triggers the App container to re-render passing the state values as props to the main container, in this case either ArticlesContainer or FrontPageContainer. These containers compose a set of higher order components (HOC) and each one handles the values from a given props. Currently the loading prop is set to `true` so the `withLoading` HOC will return the loading component showing a visual loading state to the user.
-
-During this time the App container has finished fetching the JSON payload for the onward journey and the state is updated again. Loading is now set to false and data is set to the returned JSON data.
-
-The routes container is rendered again, this time loading is set to false so the `withData` HOC can run some validation against the JSON payload and return either an error component or the original page container e.g. ArticleContainer passing in the JSON data with the pageData prop.
-
 ### Rendering a Page
 
 The JSON payload for an article consists of a number of Blocks. Each block is an object which represents an element on the page, this could be a Heading, an Image, a Paragraph etc. Each of these blocks has a block type and a block type will match up to a specific container in Simorgh e.g. blockType: image will match to the Image container.
@@ -72,12 +57,11 @@ Each render is passed through a set of HOC's (Higher Order Components) to enhanc
 - withVariant
 - withContexts
 - withPageWrapper
-- withLoading
 - withError
 - withData
 - withHashChangeHandler
 
-With a selection of page types passed through withOptimizelyProvider, currently [Article](https://github.com/bbc/simorgh/blob/latest/src/app/pages/ArticlePage/index.jsx) and [Story](https://github.com/bbc/simorgh/blob/latest/src/app/pages/StoryPage/index.jsx) pages.
+With a selection of page types passed through withOptimizelyProvider, that enables usage of Optimizely in the selected page types.
 
 #### withVariant
 
@@ -94,12 +78,6 @@ The withContexts HOC is a wrapper that provides access to the different context 
 #### withPageWrapper
 
 The page wrapper HOC simply wraps the Article or FrontPage containers with a layout, at present we only have a single page layout. This layout includes the header, footer and context providers rendering the main body as a child between the header and the footer.
-
-#### withLoading
-
-The loading HOC checks the value of the loading props, if it is false the Article or FrontPage container is simply returned.
-
-If loading is set to true, the Loading component is returned instead rendering a visual loading view for the user.
 
 #### withError
 
@@ -118,6 +96,20 @@ The withHashChangeHandler HOC is a wrapper applied to all pages that checks for 
 #### withOptimizelyProvider
 
 The withOptimizelyProvider HOC returns components that have been enhanced with access to an Optimizely client, that is used to run our A/B testing. This is done to limit bundle sizes, as we seperate some of our bundles by page type, that means if we're only running A/B testing on certain page types, we can prevent polluting page type bundles with the weight of the SDK library we use for Optimizely.
+
+withOptimizelyProvider should be added as the value of the `handlerBeforeContexts` object key within [applyBasicPageHandlers.js](https://github.com/bbc/simorgh/tree/latest/src/app/pages/utils/applyBasicPageHandlers.js#L8), as the `ckns_mvt` is [set within the UserContext](https://github.com/bbc/simorgh/tree/latest/src/app/contexts/UserContext/index.tsx#L33), so the `withOptimizelyProvider` HOC needs to be applied in the correct order alongside the [withContexts](https://github.com/bbc/simorgh/tree/latest/src/app/pages/utils/applyBasicPageHandlers.js#L13) HOC. This makes the `ckns_mvt` available on first time visits to pass into the `OptimizelyProvider`, along with attributes such as `service`, which is used for determining when Optimizely should enable an experiment.
+
+Example for Article page:
+```jsx
+import withOptimizelyProvider from '#app/legacy/containers/PageHandlers/withOptimizelyProvider';
+import ArticlePage from './ArticlePage';
+import applyBasicPageHandlers from '../utils/applyBasicPageHandlers';
+
+export default applyBasicPageHandlers(ArticlePage, {
+  handlerBeforeContexts: withOptimizelyProvider,
+});
+
+```
 
 ### Adding a new Page type
 
@@ -267,7 +259,7 @@ Please also note that if you would like to see the components rendered with our 
 
 ### Configuring the application to run on a local network
 
-If you want to host the application to be accessible through your local network, follow the instructions [here](https://github.com/bbc/simorgh/blob/latest/docs/A11y-Testing-Cross-Device.stories.mdx).
+If you want to host the application to be accessible through your local network, follow the instructions [here](https://github.com/bbc/simorgh/blob/latest/docs/A11y-Testing-Cross-Device.mdx).
 
 ## Production build locally
 

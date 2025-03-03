@@ -7,7 +7,7 @@ import {
 } from '#psammead/gel-foundations/src/spacings';
 import { grid } from '#psammead/psammead-styles/src/detection';
 import Grid from '#psammead/psammead-grid/src';
-import { arrayOf, number, shape, string } from 'prop-types';
+import useViewTracker from '#app/hooks/useViewTracker';
 import { ServiceContext } from '../../../contexts/ServiceContext';
 import ProgramCard from './ProgramCard';
 import StartTime from './StartTime';
@@ -66,8 +66,21 @@ const programGridProps = {
 
 const RadioSchedule = ({ schedule, ...props }) => {
   const { dir } = useContext(ServiceContext);
+
+  const eventTrackingData = {
+    componentName: 'radio-schedule',
+  };
+
+  const viewRef = useViewTracker(eventTrackingData);
+
   return (
-    <StyledGrid forwardedAs="ul" dir={dir} {...schedulesGridProps} role="list">
+    <StyledGrid
+      forwardedAs="ul"
+      dir={dir}
+      {...schedulesGridProps}
+      role="list"
+      ref={viewRef}
+    >
       {schedule.map(({ id, ...program }) => (
         <StyledFlexGrid
           dir={dir}
@@ -91,19 +104,6 @@ const RadioSchedule = ({ schedule, ...props }) => {
       ))}
     </StyledGrid>
   );
-};
-
-const programPropTypes = shape({
-  state: string.isRequired,
-  startTime: number.isRequired,
-  link: string.isRequired,
-  brandTitle: string.isRequired,
-  summary: string,
-  duration: string.isRequired,
-});
-
-RadioSchedule.propTypes = {
-  schedule: arrayOf(programPropTypes).isRequired,
 };
 
 export default RadioSchedule;

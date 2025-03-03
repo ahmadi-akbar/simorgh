@@ -1,9 +1,3 @@
-import {
-  C_POSTBOX,
-  C_WHITE,
-  C_GHOST,
-  C_POSTBOX_30,
-} from '../../../legacy/psammead/psammead-styles/src/colours';
 import tamil from '../../../components/ThemeProvider/fontScripts/tamil';
 import '#psammead/moment-timezone-include/tz/GMT';
 import '#psammead/psammead-locales/moment/ta';
@@ -18,6 +12,7 @@ export const service: DefaultServiceConfig = {
     articleTimestampSuffix: '',
     atiAnalyticsAppName: 'news-tamil',
     atiAnalyticsProducerId: '87',
+    atiAnalyticsProducerName: 'TAMIL',
     chartbeatDomain: 'tamil.bbc.co.uk',
     brandName: 'BBC News தமிழ்',
     product: 'BBC News',
@@ -38,7 +33,6 @@ export const service: DefaultServiceConfig = {
     service: 'tamil',
     serviceName: 'Tamil',
     languageName: 'Tamil',
-    themeColor: `${C_POSTBOX}`,
     twitterCreator: '@bbctamil',
     twitterSite: '@bbctamil',
     noBylinesPolicy:
@@ -49,13 +43,6 @@ export const service: DefaultServiceConfig = {
     manifestPath: '/manifest.json',
     swPath: '/sw.js',
     frontPageTitle: 'முகப்பு',
-    theming: {
-      brandBackgroundColour: `${C_POSTBOX}`,
-      brandLogoColour: `${C_WHITE}`,
-      brandForegroundColour: `${C_GHOST}`,
-      brandHighlightColour: `${C_WHITE}`,
-      brandBorderColour: `${C_POSTBOX_30}`,
-    },
     showAdPlaceholder: true,
     showRelatedTopics: true,
     translations: {
@@ -80,6 +67,18 @@ export const service: DefaultServiceConfig = {
         mediaPlayer: 'ஊடக இயக்கி',
         audioPlayer: 'கேட்பொலி பிளேயர்',
         videoPlayer: 'காணொளி பிளேயர்',
+      },
+      liveExperiencePage: {
+        liveLabel: 'நேரலை',
+        liveCoverage: 'நேரடி செய்தி/ ஒலி/ஒளிபரப்பு',
+        breaking: 'வந்துகொண்டிருக்கும் செய்தி',
+        postedAt: 'பிரசுரிக்கப்பட்ட நேரம்',
+        summary: 'முக்கிய சாராம்சம்',
+        shareButtonText: 'பகிர்க',
+      },
+      downloads: {
+        instructions: 'You can download and view today’s news.',
+        title: 'File Download',
       },
       gist: 'முக்கிய சாராம்சம்',
       error: {
@@ -143,7 +142,7 @@ export const service: DefaultServiceConfig = {
           },
           accept: 'சரி',
           reject: 'என்ன மாறியுள்ளது என்பதைப் பாருங்கள்.',
-          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/your-data-matters',
+          rejectUrl: 'https://www.bbc.com/usingthebbc/privacy-policy/',
         },
         cookie: {
           amp: {
@@ -158,7 +157,7 @@ export const service: DefaultServiceConfig = {
                 linkText: 'குக்கிகள்',
                 last: ' போன்ற தொழில் நுட்பங்களை பயன்படுத்துகிறோம்; உங்கள் உலாவல் (பிரௌசிங்) தரவுகளையும் திரட்டுகிறோம். இவற்றுக்கு நீங்கள்உடன்படுகிறீர்களா என்பதை எங்களுக்குத் தெரிவியுங்கள்.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
               manage: 'என் செட்டிங்ஸ்-ஐ நிர்வகி',
             },
@@ -174,7 +173,7 @@ export const service: DefaultServiceConfig = {
                   'இணையப் பக்கங்கள் வேலை செய்வதற்காக உங்கள் ஒப்புதல் இல்லாமலேயே உங்கள் கருவியின் மிகச்சில தரவுகளை சேகரிப்போம்',
                 para4: {
                   text: 'இணையப் பக்கம் வேலை செய்ய அவசியமான தரவுகள் சேகரிக்கப்படுவது பற்றி மேலும் படிக்கவும்.',
-                  url: 'https://www.bbc.co.uk/usingthebbc/strictly-necessary-cookies/',
+                  url: 'https://www.bbc.com/usingthebbc/cookies/strictly-necessary-cookies/',
                 },
                 para5:
                   'உங்கள் ஒப்புதலுடன் சேகரிக்கப்படும் தரவுகளுக்கு உங்கள் கருவியின் சேமிப்பகத்தை பயன்படுத்துவோம்',
@@ -207,13 +206,13 @@ export const service: DefaultServiceConfig = {
                 linkText: 'குக்கிகளை',
                 last: ' பயன்படுத்துகிறோம். இந்த குக்கிகள் அனைத்தையும் நீங்கள் ஏற்கிறீர்களா என்பதை எங்களுக்குத் தெரியப்படுத்துங்கள். ',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
             },
             accept: 'சரி. நான் ஏற்கிறேன்',
             reject: 'இல்லை. அமைப்புகள் பக்கத்துக்கு கொண்டு செல்',
             rejectUrl:
-              'https://www.bbc.co.uk/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
+              'https://www.bbc.com/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
           },
         },
       },
@@ -244,6 +243,7 @@ export const service: DefaultServiceConfig = {
         nextRadioShow: 'அடுத்த வானொலி நிகழ்ச்சி',
         duration: 'கால அளவு',
         recentEpisodes: 'முந்தைய நிகழ்ச்சிகள்',
+        closeVideo: 'மூடுக',
       },
       socialEmbed: {
         caption: {
@@ -279,17 +279,80 @@ export const service: DefaultServiceConfig = {
       },
       topStoriesTitle: 'முக்கிய செய்திகள்',
       featuresAnalysisTitle: 'சிறப்புச் செய்திகள்',
+      latestMediaTitle: 'மிகச் சமீபத்தியது',
+      ugc: {
+        // No JavaScript
+        noJsHeading: undefined,
+        noJsDescription: undefined,
+
+        // Optional
+        optional: 'நிரப்புவது கட்டாயமல்ல',
+
+        // File upload
+        fileUploadLiveRegionText: undefined,
+        fileUploadLiveRegionUpdateText: undefined,
+        fileUploadListHeading: 'நீங்கள் இதை பதிவேற்றுகிறீர்கள்...',
+        fileUploadButton: 'கோப்பை தேர்வு செய்ய',
+        fileUploadRemoveButton: undefined,
+
+        // Submit button
+        submitButton: 'அனுப்பு',
+
+        // Validation
+        validationRequired: 'ஏதோ விடுபடுகிறது',
+        validationInvalidEmail: 'சரியான மின்னஞ்சல் முகவரியை உள்ளிடவும்',
+        validationInvalidTelephone: undefined,
+        validationFilesNotEnough:
+          'போதிய கோப்புகள் இல்லை. குறைந்தது {{minFiles}} கோப்புகள் சேர்க்கவும்.',
+        validationFilesTooMany:
+          'அதிக கோப்புகள் உள்ளன. நீங்கள் {{maxFiles}} கோப்புகள் சேர்க்கலாம்.',
+        validationFilesInvalidType:
+          'இந்த வகை கோப்புகளை நாங்கள் பயன்படுத்துவதில்லை. {{fileTypes}} சேர்க்கவும்.',
+        validationFilesTooSmall:
+          'இந்த கோப்பு சரியாக இல்லை. வேறு ஒன்றை முயற்சிக்கவும்.',
+        validationFilesSizeExceeded:
+          'கோப்பின் அளவு பெரிதாக உள்ளது. அதிகபட்சம் 2 ஜி.பி  பதிவேற்றலாம்',
+        validationWordLimit: 'அதிகட்சம் {{wordLimit}} சொற்கள்',
+
+        // Messaging
+        retentionPeriodDays: undefined,
+        referenceNumber: 'குறிப்பு எண்',
+        submissionInfoSignedOutMessage:
+          'இந்த விவரங்களை நீங்கள் குறிப்பெடுத்துக் கொள்ளலாம்',
+        privacyInfoHtml:
+          'கவலை வேண்டாம் உங்கள் தரவுகளை நாங்கள் பாதுகாப்போம். மேலதிக தகவல்களுக்கு அந்தரங்க {{privacyInfoLink}} படிக்கவும்',
+        emailToHtml:
+          'உங்கள் மனம் மாறி இதை பயன்படுத்த வேண்டாம் என நினைத்தால் குறிப்பு எண்ணை சுட்டி, {{emailLink}} என்ற மின்னஞ்சலை தொடர்புகொள்ளவும்.',
+        removalGuidelineText:
+          'ஒரு நிகழ்ச்சி அல்லது இணைய பயன்பாட்டுக்கு நீங்கள் சமர்ப்பித்ததை, நாங்கள் ஏற்கனவே பயன்படுத்தி இருந்தால் அதை நீக்க முடியாது.',
+
+        // Form Screen
+        dataPolicyHeading: undefined,
+
+        // Uploading Screen
+        uploadingHeading: 'பதிவேற்றம் நடக்கிறது...',
+        uploadingDescription: 'முடியும் வரை காத்திருக்கவும்.',
+
+        // Success Screen
+        successHeading: 'செய்தி அனுப்பப்பட்டது',
+        successDescription: 'தொடர்பு கொண்டதற்கு நன்றி',
+        privacyPolicyLinkHref: undefined,
+        privacyPolicyLinkText: undefined,
+
+        // Error Screen
+        errorHeading: 'செய்தி செல்லவில்லை',
+        errorDescription: 'மீண்டும் முயற்சி',
+
+        // Closed Screen
+        closedHeading: 'இப்போது இது மூடப்பட்டுள்ளது.',
+        closedDescription: 'அன்று இது நிறைவடையும் {{date}}.',
+      },
     },
     mostRead: {
       header: 'அதிகம் படிக்கப்பட்டது',
       lastUpdated: 'கடைசியாக புதுப்பிக்கப்பட்டது:',
       numberOfItems: 10,
       hasMostRead: true,
-    },
-    mostWatched: {
-      header: 'அதிகம் பார்க்கப்பட்டது',
-      numberOfItems: 10,
-      hasMostWatched: true,
     },
     radioSchedule: {
       hasRadioSchedule: false,
@@ -332,14 +395,19 @@ export const service: DefaultServiceConfig = {
           text: 'பிபிசியுடன் தொடர்பு கொள்ள',
         },
         {
+          href: 'https://www.bbc.com/ws/languages',
+          text: 'பிபிசி நியூஸ் பிற மொழிகளில்',
+        },
+        {
           id: 'COOKIE_SETTINGS',
-          href: 'https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/',
-          text: 'AdChoices / Do Not Sell My Info',
+          href: '#',
+          text: 'Do not share or sell my info',
           lang: 'en-GB',
         },
       ],
       copyrightText:
         'பிபிசி. வெளியார் இணைய தளங்களின் உள்ளடக்கத்துக்கு பிபிசி பொறுப்பாகாது.',
+      collectiveNewsroomText: 'இது, பிபிசிக்காக கலெக்டிவ் நியூஸ்ரூம் வெளியீடு',
     },
     timezone: 'GMT',
     navigation: [

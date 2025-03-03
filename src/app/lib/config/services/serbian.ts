@@ -1,9 +1,3 @@
-import {
-  C_POSTBOX,
-  C_WHITE,
-  C_GHOST,
-  C_POSTBOX_30,
-} from '../../../legacy/psammead/psammead-styles/src/colours';
 import latinWithDiacritics from '../../../components/ThemeProvider/fontScripts/latinWithDiacritics';
 import cyrillic from '../../../components/ThemeProvider/fontScripts/cyrillic';
 import '#psammead/moment-timezone-include/tz/GMT';
@@ -11,19 +5,19 @@ import '#psammead/psammead-locales/moment/sr-cyrl';
 import '#psammead/psammead-locales/moment/sr';
 import withContext from '../../../contexts/utils/withContext';
 import { SerbianConfig } from '../../../models/types/serviceConfig';
-import { Services } from '../../../models/types/global';
+import { Direction, Services } from '../../../models/types/global';
 
 const baseServiceConfig = {
   articleAuthor: 'https://www.facebook.com/bbcnews',
   atiAnalyticsAppName: 'news-serbian',
   atiAnalyticsProducerId: '81',
+  atiAnalyticsProducerName: 'SERBIAN',
   chartbeatDomain: 'serbian.bbc.co.uk',
   product: 'BBC News',
   defaultImage: 'https://news.files.bbci.co.uk/ws/img/logos/og/serbian.png',
-  dir: `ltr`,
+  dir: 'ltr' as Direction,
   service: 'serbian' as Services,
   languageName: 'Serbian',
-  themeColor: `${C_POSTBOX}`,
   twitterCreator: '@bbcnasrpskom',
   twitterSite: '@bbcnasrpskom',
   isTrustProjectParticipant: true,
@@ -34,13 +28,6 @@ const baseServiceConfig = {
   },
   recommendations: {
     hasStoryRecommendations: false,
-  },
-  theming: {
-    brandBackgroundColour: `${C_POSTBOX}`,
-    brandLogoColour: `${C_WHITE}`,
-    brandForegroundColour: `${C_GHOST}`,
-    brandHighlightColour: `${C_WHITE}`,
-    brandBorderColour: `${C_POSTBOX_30}`,
   },
   showAdPlaceholder: false,
   showRelatedTopics: true,
@@ -105,9 +92,13 @@ export const service: SerbianConfig = {
           text: 'Kontaktirajte BBC',
         },
         {
+          href: 'https://www.bbc.com/ws/languages',
+          text: 'BBC News na drugim jezicima',
+        },
+        {
           id: 'COOKIE_SETTINGS',
-          href: 'https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/',
-          text: 'AdChoices / Do Not Sell My Info',
+          href: '#',
+          text: 'Do not share or sell my info',
           lang: 'en-GB',
         },
       ],
@@ -119,35 +110,30 @@ export const service: SerbianConfig = {
       numberOfItems: 10,
       hasMostRead: true,
     },
-    mostWatched: {
-      header: 'Najgledanije',
-      numberOfItems: 10,
-      hasMostWatched: true,
-    },
     navigation: [
       {
         title: 'Početna strana',
         url: '/serbian/lat',
       },
       {
-        title: 'Ukrajina',
-        url: '/serbian/lat/topics/c5wzvzzz5vrt',
+        title: 'Studentske blokade',
+        url: '/serbian/topics/cly9dd4w09wt/lat',
       },
       {
         title: 'Srbija',
-        url: '/serbian/lat/topics/cr50vdy9q6wt',
+        url: '/serbian/topics/cr50vdy9q6wt/lat',
       },
       {
         title: 'Balkan',
-        url: '/serbian/lat/topics/c06g87137jgt',
+        url: '/serbian/topics/c06g87137jgt/lat',
       },
       {
         title: 'Svet',
-        url: '/serbian/lat/topics/c2lej05e1eqt',
+        url: '/serbian/topics/c2lej05e1eqt/lat',
       },
       {
         title: 'Video',
-        url: '/serbian/lat/media/video',
+        url: '/serbian/topics/c44vyp5g049t/lat',
       },
       {
         title: 'Najpopularnije',
@@ -179,6 +165,18 @@ export const service: SerbianConfig = {
         mediaPlayer: 'Media plejer',
         audioPlayer: 'Audio plejer',
         videoPlayer: 'Video plejer',
+      },
+      liveExperiencePage: {
+        liveLabel: 'Uživo',
+        liveCoverage: 'Pokrivenost uživo',
+        breaking: 'Vanredne',
+        postedAt: 'Objavljeno u',
+        summary: 'Sažetak',
+        shareButtonText: 'Deli',
+      },
+      downloads: {
+        instructions: 'You can download and view today’s news.',
+        title: 'File Download',
       },
       gist: 'Sažetak',
       error: {
@@ -241,7 +239,7 @@ export const service: SerbianConfig = {
           },
           accept: 'U redu',
           reject: 'Saznajte šta se promenilo',
-          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/your-data-matters',
+          rejectUrl: 'https://www.bbc.com/usingthebbc/privacy-policy/',
         },
         cookie: {
           amp: {
@@ -255,7 +253,7 @@ export const service: SerbianConfig = {
                 linkText: 'kolačića',
                 last: ' i prikupljamo podatke pretraživača da bismo vam ponudili najkvalitetnije iskustvo na internetu i personalizovali sadržaj i oglase koji vam se prikazuju. Molimo vas da nas obavestite da li se slažete.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
               manage: 'Promenite moja podešavanja',
             },
@@ -271,7 +269,7 @@ export const service: SerbianConfig = {
                   'Da bi naše internet stranice funkcionisale, čuvamo određenu i ograničenu količinu podataka na vašem uređaju bez vaše saglasnosti.',
                 para4: {
                   text: 'Pročitajte više o neophodnim podacima koje čuvamo na vašem uređaju da bi naše stranice funkcionisale. (na engleskom jeziku)',
-                  url: 'https://www.bbc.co.uk/usingthebbc/strictly-necessary-cookies/',
+                  url: 'https://www.bbc.com/usingthebbc/cookies/strictly-necessary-cookies/',
                 },
                 para5:
                   'Koristimo lokalne servere da bismo sačuvali vaše podatke o saglasnosti na vašem uređaju.',
@@ -304,13 +302,13 @@ export const service: SerbianConfig = {
                 linkText: 'kolačiće',
                 last: ' da bismo vam pružili najbolje iskustvo na internetu. Molimo vas da nas obavestite da li se slažete sa upotrebom svih kolačića.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
             },
             accept: 'Da, slažem se',
             reject: 'Ne, vratite me na podešavanja',
             rejectUrl:
-              'https://www.bbc.co.uk/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
+              'https://www.bbc.com/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
           },
         },
       },
@@ -330,6 +328,7 @@ export const service: SerbianConfig = {
         previousRadioShow: 'Prethodna radio emisija',
         nextRadioShow: 'Sledeća radio emisija',
         duration: 'Trajanje',
+        closeVideo: 'Izađi',
       },
       socialEmbed: {
         caption: {
@@ -364,6 +363,75 @@ export const service: SerbianConfig = {
       },
       topStoriesTitle: 'Najvažnije',
       featuresAnalysisTitle: 'Reportaže',
+      latestMediaTitle: 'Najnovije',
+      ugc: {
+        // No JavaScript
+        noJsHeading: undefined,
+        noJsDescription: undefined,
+
+        // Optional
+        optional: 'opciono',
+
+        // File upload
+        fileUploadLiveRegionText: undefined,
+        fileUploadLiveRegionUpdateText: undefined,
+        fileUploadListHeading: 'Pogledajte šta postavljate',
+        fileUploadButton: 'Odaberite fajl',
+        fileUploadRemoveButton: undefined,
+
+        // Submit button
+        submitButton: 'Pošaljite',
+
+        // Validation
+        validationRequired: 'Nešto nedostaje.',
+        validationInvalidEmail:
+          'Nešto nije u redu. Molimo, unesite odgovarajuću imejl adresu.',
+        validationInvalidTelephone: undefined,
+        validationFilesNotEnough:
+          'Nema dovoljno fajlovsa. Molimo, dodajte najmanje {{minFiles}}',
+        validationFilesTooMany:
+          'Previše je fajlova. Možete dodati najviše {{maxFiles}}.',
+        validationFilesInvalidType:
+          'Izvinite, ne možemo da koristimo ovu vrstu fajlova. Molimo, dodajte {{fileTypes}}',
+        validationFilesTooSmall: 'Ovaj fajl je loš. Pokušajte sa drugim.',
+        validationFilesSizeExceeded:
+          'Izvinite, fajlovi su preveliki. Možete dodati do 1.2 GB u jednom pokušaju.',
+        validationWordLimit: 'Najviše {{wordLimit}} reči',
+
+        // Messaging
+        retentionPeriodDays: undefined,
+        referenceNumber: 'Referentni broj',
+        submissionInfoSignedOutMessage:
+          'Možda biste želeli da zapišete ove detalje za vaše potrebe.',
+        privacyInfoHtml:
+          'Ne brinite, mi štitimo vaše podatke - pročitajte {{privacyInfoLink}} za više detalja.',
+        emailToHtml:
+          'Pošaljite imejl na {{emailLink}} ako se predomislite. Samo navedite referentni broj i napišite da ne želite da koristimo materijal.',
+        removalGuidelineText:
+          'Ako ste poslali materijal za korišćenje u programu ili onlajn, nećemo biti u mogućnosti da ga uklonimo ako ga upotrebimo po prijemu.',
+
+        // Form Screen
+        dataPolicyHeading: undefined,
+
+        // Uploading Screen
+        uploadingHeading: 'Vaši fajlovi se šalju...',
+        uploadingDescription:
+          'Molimo, sačekajte da se završi slanje u potpunosti',
+
+        // Success Screen
+        successHeading: 'Poruka poslata',
+        successDescription: 'Hvala vam što ste nam se javili',
+        privacyPolicyLinkHref: undefined,
+        privacyPolicyLinkText: undefined,
+
+        // Error Screen
+        errorHeading: 'Vaša poruka nije otišla',
+        errorDescription: 'Pokušajte da pošaljete ponovo.',
+
+        // Closed Screen
+        closedHeading: 'Unos je sada zatvoren',
+        closedDescription: 'Unos je zatvoren {{date}}',
+      },
     },
   },
   cyr: {
@@ -422,9 +490,13 @@ export const service: SerbianConfig = {
           text: 'Контактирајте ББЦ',
         },
         {
+          href: 'https://www.bbc.com/ws/languages',
+          text: 'BBC News на другим језицима',
+        },
+        {
           id: 'COOKIE_SETTINGS',
-          href: 'https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/',
-          text: 'AdChoices / Do Not Sell My Info',
+          href: '#',
+          text: 'Do not share or sell my info',
           lang: 'en-GB',
         },
       ],
@@ -436,35 +508,30 @@ export const service: SerbianConfig = {
       numberOfItems: 10,
       hasMostRead: true,
     },
-    mostWatched: {
-      header: 'Најгледаније',
-      numberOfItems: 5,
-      hasMostWatched: true,
-    },
     navigation: [
       {
         title: 'Почетна страна',
         url: '/serbian/cyr',
       },
       {
-        title: 'Украјина',
-        url: '/serbian/cyr/topics/cqwvxvvw9qrt',
+        title: 'Студентске блокаде',
+        url: '/serbian/topics/cly9dd4w09wt/cyr',
       },
       {
         title: 'Србија',
-        url: '/serbian/cyr/topics/cvjp1d3k9dvt',
+        url: '/serbian/topics/cr50vdy9q6wt/cyr',
       },
       {
         title: 'Балкан',
-        url: '/serbian/cyr/topics/c8y9k0k2pvvt',
+        url: '/serbian/topics/c06g87137jgt/cyr',
       },
       {
         title: 'Свет',
-        url: '/serbian/cyr/topics/c3m1x951mljt',
+        url: '/serbian/topics/c2lej05e1eqt/cyr',
       },
       {
         title: 'Видео',
-        url: '/serbian/cyr/media/video',
+        url: '/serbian/topics/c44vyp5g049t/cyr',
       },
       {
         title: 'Најпопуларније',
@@ -496,6 +563,18 @@ export const service: SerbianConfig = {
         mediaPlayer: 'Медиа плејер',
         audioPlayer: 'Аудио плејер',
         videoPlayer: 'Видео плејер',
+      },
+      liveExperiencePage: {
+        liveLabel: 'Уживо',
+        liveCoverage: 'Покривеност уживо',
+        breaking: 'Ванредне',
+        postedAt: 'Објављено у',
+        summary: 'Сажетак',
+        shareButtonText: 'Дели',
+      },
+      downloads: {
+        instructions: 'You can download and view today’s news.',
+        title: 'File Download',
       },
       gist: 'Сажетак',
       error: {
@@ -558,7 +637,7 @@ export const service: SerbianConfig = {
           },
           accept: 'У реду',
           reject: 'Сазнајте шта се променило',
-          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/your-data-matters',
+          rejectUrl: 'https://www.bbc.com/usingthebbc/privacy-policy/',
         },
         cookie: {
           amp: {
@@ -572,7 +651,7 @@ export const service: SerbianConfig = {
                 linkText: 'колачиће',
                 last: ' и прикупљамо податке претраживача да бисмо вам понудили најквалитетније искуство на интернету и персонализовали садржај и огласе који вам се приказују. Молимо вас да нас обавестите да ли се слажете.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
               manage: 'Промените моја подешавања',
             },
@@ -588,7 +667,7 @@ export const service: SerbianConfig = {
                   'Да би наше интернет странице функционисале, чувамо одређену и ограничену количину података на вашем уређају без ваше сагласности.',
                 para4: {
                   text: 'Прочитајте више о неопходним подацима које чувамо на вашем уређају да би наше странице функционисале. (на енглеском језику)',
-                  url: 'https://www.bbc.co.uk/usingthebbc/strictly-necessary-cookies/',
+                  url: 'https://www.bbc.com/usingthebbc/cookies/strictly-necessary-cookies/',
                 },
                 para5:
                   'Користимо локалне сервере да бисмо сачували ваше податке о сагласности на вашем уређају.',
@@ -621,13 +700,13 @@ export const service: SerbianConfig = {
                 linkText: 'колачиће',
                 last: ' и прикупљамо податке претраживача да бисмо вам понудили најквалитетније искуство на интернету и персонализовали садржај и огласе који вам се приказују. Молимо вас да нас обавестите да ли се слажете.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
             },
             accept: 'Да, слажем се',
             reject: 'Не, вратите ме на подешавања',
             rejectUrl:
-              'https://www.bbc.co.uk/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
+              'https://www.bbc.com/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
           },
         },
       },
@@ -648,6 +727,7 @@ export const service: SerbianConfig = {
         nextRadioShow: 'Следећа радио емисија',
         duration: 'Трајање',
         recentEpisodes: 'Претходне епизоде',
+        closeVideo: 'Изађи',
       },
       socialEmbed: {
         caption: {
@@ -681,6 +761,7 @@ export const service: SerbianConfig = {
       },
       topStoriesTitle: 'Најважније',
       featuresAnalysisTitle: 'Репортаже',
+      latestMediaTitle: 'Најновије',
     },
   },
 };

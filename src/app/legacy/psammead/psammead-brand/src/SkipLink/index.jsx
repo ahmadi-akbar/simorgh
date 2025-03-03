@@ -1,6 +1,4 @@
 import styled from '@emotion/styled';
-import { oneOf, string } from 'prop-types';
-import { C_WHITE } from '#psammead/psammead-styles/src/colours';
 import {
   GEL_GROUP_2_SCREEN_WIDTH_MIN,
   GEL_GROUP_2_SCREEN_WIDTH_MAX,
@@ -21,7 +19,7 @@ const SkipLink = styled.a`
   width: 1px;
   overflow: hidden;
   padding: ${TOP_BOTTOM_SPACING} ${GEL_SPACING};
-  background-color: ${C_WHITE};
+  background-color: ${props => props.theme.palette.WHITE};
   border: ${SKIP_LINK_BORDER} solid #000;
   color: ${SKIP_LINK_COLOR};
   text-decoration: none;
@@ -48,12 +46,6 @@ const SkipLink = styled.a`
   }
 `;
 
-SkipLink.propTypes = {
-  dir: oneOf(['ltr', 'rtl']),
-  className: string,
-};
-
-SkipLink.defaultProps = { dir: 'ltr' };
-SkipLink.defaultProps = { className: 'focusIndicatorRemove' };
+SkipLink.defaultProps = { dir: 'ltr', className: 'focusIndicatorRemove' };
 
 export default SkipLink;

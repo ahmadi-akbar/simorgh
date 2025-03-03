@@ -1,15 +1,6 @@
 import React, { cloneElement, useRef } from 'react';
 import styled from '@emotion/styled';
-import { shape, string, bool, func, oneOf, node } from 'prop-types';
-import VisuallyHiddenText from '#psammead/psammead-visually-hidden-text/src';
 import { navigationIcons } from '#psammead/psammead-assets/src/svgs';
-import {
-  C_WHITE,
-  C_POSTBOX,
-  C_GREY_10,
-  C_GREY_3,
-} from '#psammead/psammead-styles/src/colours';
-import { BLACK } from '#app/components/ThemeProvider/palette';
 import {
   GEL_SPACING_HLF,
   GEL_SPACING,
@@ -21,19 +12,19 @@ import {
   GEL_GROUP_B_MIN_WIDTH,
 } from '#psammead/gel-foundations/src/breakpoints';
 import { getPica } from '#psammead/gel-foundations/src/typography';
-import { scriptPropType } from '#psammead/gel-foundations/src/prop-types';
 import { getSansRegular } from '#psammead/psammead-styles/src/font-styles';
+import VisuallyHiddenText from '../../../../../components/VisuallyHiddenText';
 
 export const NAV_BAR_TOP_BOTTOM_SPACING = 0.75; // 12px
 
-const getStyles = dir => {
+const getStyles = (dir, theme) => {
   const direction = dir === 'ltr' ? 'left' : 'right';
-  return `border-${direction}: ${GEL_SPACING_HLF} solid ${C_POSTBOX};
+  return `border-${direction}: ${GEL_SPACING_HLF} solid ${theme.palette.POSTBOX};
           padding-${direction}: ${GEL_SPACING};`;
 };
 
 const StyledDropdown = styled.div`
-  background-color: ${C_WHITE};
+  background-color: ${props => props.theme.palette.WHITE};
   clear: both;
   overflow: hidden;
 
@@ -71,13 +62,8 @@ export const CanonicalDropdown = ({ isOpen, children }) => {
   );
 };
 
-CanonicalDropdown.propTypes = {
-  isOpen: bool.isRequired,
-  children: node.isRequired,
-};
-
 export const AmpDropdown = styled.div`
-  background-color: ${C_WHITE};
+  background-color: ${props => props.theme.palette.WHITE};
   clear: both;
 
   @media (min-width: ${GEL_GROUP_3_SCREEN_WIDTH_MIN}) {
@@ -90,7 +76,7 @@ export const DropdownUl = styled.ul`
   list-style-type: none;
   margin: 0;
   padding: 0 ${GEL_SPACING};
-  border-bottom: 0.0625rem solid ${C_GREY_3};
+  border-bottom: 0.0625rem solid ${props => props.theme.palette.GREY_3};
 `;
 
 DropdownUl.defaultProps = {
@@ -99,7 +85,7 @@ DropdownUl.defaultProps = {
 
 const StyledDropdownLi = styled.li`
   padding: 0.75rem 0;
-  border-bottom: 0.0625rem solid ${C_GREY_3};
+  border-bottom: 0.0625rem solid ${props => props.theme.palette.GREY_3};
 
   &:last-child {
     padding-bottom: ${GEL_SPACING_HLF};
@@ -110,7 +96,7 @@ const StyledDropdownLi = styled.li`
 const StyledDropdownLink = styled.a`
   ${({ script }) => script && getPica(script)};
   ${({ service }) => service && getSansRegular(service)}
-  color: ${C_GREY_10};
+  color: ${props => props.theme.palette.GREY_10};
   text-decoration: none;
   padding: ${GEL_SPACING_HLF_TRPL} 0;
   display: inline-block;
@@ -118,12 +104,12 @@ const StyledDropdownLink = styled.a`
   &:hover,
   &:focus {
     text-decoration: underline;
-    text-decoration-color: ${C_POSTBOX};
+    text-decoration-color: ${props => props.theme.palette.POSTBOX};
   }
 `;
 
 const StyledCurrentLink = styled.span`
-  ${({ dir }) => getStyles(dir)}
+  ${({ dir, theme }) => getStyles(dir, theme)}
 `;
 
 StyledCurrentLink.defaultProps = {
@@ -133,23 +119,26 @@ StyledCurrentLink.defaultProps = {
 export const DropdownLi = ({
   children,
   script,
-  currentPageText,
-  active,
+  clickTrackerHandler = null,
+  currentPageText = null,
+  active = false,
   service,
   url,
-  dir,
+  dir = 'ltr',
+  viewRef = null,
 }) => {
   const ariaId = `dropdownNavigation-${children
     .replace(/\s+/g, '-')
     .toLowerCase()}`;
   return (
     // aria-labelledby is a temporary fix for the a11y nested span's bug experienced in TalkBack, refer to the following issue: https://github.com/bbc/simorgh/issues/9652
-    <StyledDropdownLi role="listitem">
+    <StyledDropdownLi role="listitem" ref={viewRef}>
       <StyledDropdownLink
         script={script}
         service={service}
         href={url}
         aria-labelledby={ariaId}
+        onClick={clickTrackerHandler}
       >
         {active && currentPageText ? (
           // ID is a temporary fix for the a11y nested span's bug experienced in TalkBack, refer to the following issue: https://github.com/bbc/simorgh/issues/9652
@@ -164,22 +153,6 @@ export const DropdownLi = ({
       </StyledDropdownLink>
     </StyledDropdownLi>
   );
-};
-
-DropdownLi.propTypes = {
-  children: string.isRequired,
-  url: string.isRequired,
-  script: shape(scriptPropType).isRequired,
-  service: string.isRequired,
-  active: bool,
-  currentPageText: string,
-  dir: oneOf(['ltr', 'rtl']),
-};
-
-DropdownLi.defaultProps = {
-  active: false,
-  currentPageText: null,
-  dir: 'ltr',
 };
 
 const iconBorderPosition = `
@@ -200,7 +173,6 @@ const getButtonDimensions = lineHeight =>
   `height: ${calculateButtonSide(lineHeight)}rem;
   width: ${calculateButtonSide(lineHeight)}rem;`;
 
-// eslint-disable-next-line react/prop-types
 const Button = ({ script, ...props }) => <button type="button" {...props} />;
 
 const MenuButton = styled(Button)`
@@ -217,10 +189,11 @@ const MenuButton = styled(Button)`
   &:hover,
   &:focus {
     cursor: pointer;
-    box-shadow: inset 0 0 0 ${GEL_SPACING_HLF} ${C_WHITE};
+    box-shadow: inset 0 0 0 ${GEL_SPACING_HLF}
+      ${props => props.theme.palette.WHITE};
     ::after {
       ${iconBorderPosition};
-      border: ${GEL_SPACING_HLF} solid ${BLACK};
+      border: ${GEL_SPACING_HLF} solid ${props => props.theme.palette.BLACK};
     }
   }
 
@@ -242,7 +215,7 @@ export const CanonicalMenuButton = ({
   announcedText,
   isOpen,
   onClick,
-  dir,
+  dir = 'ltr',
   script,
 }) => (
   <MenuButton
@@ -256,18 +229,6 @@ export const CanonicalMenuButton = ({
     <VisuallyHiddenText>{announcedText}</VisuallyHiddenText>
   </MenuButton>
 );
-
-CanonicalMenuButton.propTypes = {
-  announcedText: string.isRequired,
-  onClick: func.isRequired,
-  isOpen: bool.isRequired,
-  dir: oneOf(['ltr', 'rtl']),
-  script: shape(scriptPropType).isRequired,
-};
-
-CanonicalMenuButton.defaultProps = {
-  dir: 'ltr',
-};
 
 const AmpHead = () => (
   <Helmet>
@@ -284,7 +245,12 @@ const expandedHandler =
 
 const initialState = { expanded: false };
 
-export const AmpMenuButton = ({ announcedText, onToggle, dir, script }) => (
+export const AmpMenuButton = ({
+  announcedText,
+  onToggle,
+  dir = 'ltr',
+  script,
+}) => (
   <>
     <AmpHead />
     <amp-state id="menuState">
@@ -313,14 +279,3 @@ export const AmpMenuButton = ({ announcedText, onToggle, dir, script }) => (
     </MenuButton>
   </>
 );
-
-AmpMenuButton.propTypes = {
-  announcedText: string.isRequired,
-  onToggle: string.isRequired,
-  dir: oneOf(['ltr', 'rtl']),
-  script: shape(scriptPropType).isRequired,
-};
-
-AmpMenuButton.defaultProps = {
-  dir: 'ltr',
-};

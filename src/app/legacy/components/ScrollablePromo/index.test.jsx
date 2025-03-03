@@ -1,183 +1,221 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import { shouldMatchSnapshot } from '#psammead/psammead-test-helpers/src';
 import * as viewTracking from '#hooks/useViewTracker';
-import { ToggleContextProvider } from '#contexts/ToggleContext';
 import * as clickTracking from '#hooks/useClickTrackerHandler';
-import { ServiceContext } from '../../../contexts/ServiceContext';
+import { render } from '../../../components/react-testing-library-with-providers';
 import {
   threeLinks,
   oneLinkOnly,
   oneLinkWithNoTitle,
   moreThanThreeLinks,
+  topStoriesBlocks,
+  mostReadBlocks,
 } from './helpers/fixtureData';
 import ScrollablePromo from '.';
 import { edOjA, edOjB } from './fixtures';
-
-// eslint-disable-next-line react/prop-types
-const ScrollablePromoWithContext = ({ blocks, blockGroupIndex }) => (
-  <ToggleContextProvider>
-    <ServiceContext.Provider value={{ service: 'news' }}>
-      <ScrollablePromo blocks={blocks} blockGroupIndex={blockGroupIndex} />
-    </ServiceContext.Provider>
-  </ToggleContextProvider>
-);
+import { MEDIA_ARTICLE_PAGE } from '../../../routes/utils/pageTypes';
 
 describe('ScrollablePromo', () => {
-  it('should return null if no data is passed', () => {
-    const { container } = render(<ScrollablePromoWithContext blocks={{}} />);
-    expect(container).toBeEmptyDOMElement();
-  });
-
-  it('should render max 3 promo items', () => {
-    const { getAllByRole } = render(
-      <ScrollablePromoWithContext blocks={moreThanThreeLinks} />,
-    );
-    expect(getAllByRole('listitem').length).toEqual(3);
-  });
-
-  it('should render single promo item', () => {
-    const { container } = render(
-      <ScrollablePromoWithContext blocks={oneLinkOnly} />,
-    );
-    expect(container.childElementCount).toEqual(1);
-  });
-
-  it('should render single promo item with a title', () => {
-    const { container, getByTestId } = render(
-      <ScrollablePromoWithContext blocks={oneLinkOnly} />,
-    );
-    expect(container.childElementCount).toEqual(1);
-    expect(getByTestId('eoj-recommendations-heading')).toBeInTheDocument();
-  });
-
-  it('should render single promo item without a title', () => {
-    const { container, queryByTestId } = render(
-      <ScrollablePromoWithContext blocks={oneLinkWithNoTitle} />,
-    );
-    expect(container.childElementCount).toEqual(1);
-    expect(
-      queryByTestId('eoj-recommendations-heading'),
-    ).not.toBeInTheDocument();
-  });
-
-  it('should not render a list when there is only one promo', () => {
-    const { queryByRole } = render(
-      <ScrollablePromoWithContext blocks={oneLinkOnly} />,
-    );
-
-    expect(queryByRole('list')).not.toBeInTheDocument();
-    expect(queryByRole('listitem')).not.toBeInTheDocument();
-  });
-
-  it('should render unordered list if more than 1 item', () => {
-    const { queryByRole, getAllByRole } = render(
-      <ScrollablePromoWithContext blocks={threeLinks} />,
-    );
-    expect(queryByRole('list')).toBeInTheDocument();
-    expect(getAllByRole('listitem').length).toEqual(3);
-  });
-
-  describe('event tracking in editorial onward journeys', () => {
-    afterEach(() => {
-      jest.clearAllMocks();
+  describe('Mid Page ScrollablePromo', () => {
+    it('should return null if no data is passed', () => {
+      const { container } = render(<ScrollablePromo blocks={[]} />);
+      expect(container).toBeEmptyDOMElement();
     });
 
-    it('should call the view tracking hook with the correct params with one editorial onward journey', () => {
-      const viewTrackerSpy = jest.spyOn(viewTracking, 'default');
-
-      render(
-        <ScrollablePromoWithContext
-          blocks={edOjA.model.blocks}
-          blockGroupIndex={1}
-        />,
+    it('should render max 3 promo items', () => {
+      const { getAllByRole } = render(
+        <ScrollablePromo blocks={moreThanThreeLinks} />,
       );
+      expect(getAllByRole('listitem').length).toEqual(3);
+    });
 
-      expect(viewTrackerSpy).toHaveBeenCalledWith({
-        componentName: 'edoj1',
-        format: 'CHD=edoj',
+    it('should render single promo item', () => {
+      const { container } = render(<ScrollablePromo blocks={oneLinkOnly} />);
+      expect(container.childElementCount).toEqual(1);
+    });
+
+    it('should render single promo item with a title', () => {
+      const { container, getByTestId } = render(
+        <ScrollablePromo blocks={oneLinkOnly} />,
+      );
+      expect(container.childElementCount).toEqual(1);
+      expect(getByTestId('eoj-recommendations-heading')).toBeInTheDocument();
+    });
+
+    it('should render single promo item without a title', () => {
+      const { container, queryByTestId } = render(
+        <ScrollablePromo blocks={oneLinkWithNoTitle} />,
+      );
+      expect(container.childElementCount).toEqual(1);
+      expect(
+        queryByTestId('eoj-recommendations-heading'),
+      ).not.toBeInTheDocument();
+    });
+
+    it('should not render a list when there is only one promo', () => {
+      const { queryByRole } = render(<ScrollablePromo blocks={oneLinkOnly} />);
+
+      expect(queryByRole('list')).not.toBeInTheDocument();
+      expect(queryByRole('listitem')).not.toBeInTheDocument();
+    });
+
+    it('should render unordered list if more than 1 item', () => {
+      const { queryByRole, getAllByRole } = render(
+        <ScrollablePromo blocks={threeLinks} />,
+      );
+      expect(queryByRole('list')).toBeInTheDocument();
+      expect(getAllByRole('listitem').length).toEqual(3);
+    });
+
+    describe('event tracking in editorial onward journeys', () => {
+      afterEach(() => {
+        jest.clearAllMocks();
+      });
+
+      it('should call the view tracking hook with the correct params with one editorial onward journey', () => {
+        const viewTrackerSpy = jest.spyOn(viewTracking, 'default');
+
+        render(
+          <ScrollablePromo blocks={edOjA.model.blocks} blockGroupIndex={1} />,
+        );
+
+        expect(viewTrackerSpy).toHaveBeenCalledWith({
+          componentName: 'edoj1',
+          format: 'CHD=edoj',
+        });
+      });
+
+      it('should call the view tracking hook with the correct params with multiple editorial onward journeys', () => {
+        const viewTrackerSpy = jest.spyOn(viewTracking, 'default');
+        render(
+          <ScrollablePromo blocks={edOjA.model.blocks} blockGroupIndex={1} />,
+        );
+        render(
+          <ScrollablePromo blocks={edOjB.model.blocks} blockGroupIndex={2} />,
+        );
+
+        expect(viewTrackerSpy).toHaveBeenCalledTimes(2);
+        expect(viewTrackerSpy).toHaveBeenCalledWith({
+          componentName: 'edoj1',
+          format: 'CHD=edoj',
+        });
+        expect(viewTrackerSpy).toHaveBeenCalledWith({
+          componentName: 'edoj2',
+          format: 'CHD=edoj',
+        });
+      });
+
+      it('should call the click tracking hook with one editorial onward journey', () => {
+        const clickTrackerSpy = jest.spyOn(clickTracking, 'default');
+        render(
+          <ScrollablePromo blocks={edOjA.model.blocks} blockGroupIndex={1} />,
+        );
+
+        expect(clickTrackerSpy).toHaveBeenCalledWith({
+          componentName: 'edoj1',
+          format: 'CHD=edoj',
+        });
+      });
+
+      it('should call the click tracking hook with multiple editorial onward journeys', () => {
+        const clickTrackerSpy = jest.spyOn(clickTracking, 'default');
+        render(
+          <ScrollablePromo blocks={edOjA.model.blocks} blockGroupIndex={1} />,
+        );
+        render(
+          <ScrollablePromo blocks={edOjB.model.blocks} blockGroupIndex={2} />,
+        );
+
+        expect(clickTrackerSpy).toHaveBeenCalledTimes(2);
+        expect(clickTrackerSpy).toHaveBeenCalledWith({
+          componentName: 'edoj1',
+          format: 'CHD=edoj',
+        });
+        expect(clickTrackerSpy).toHaveBeenCalledWith({
+          componentName: 'edoj2',
+          format: 'CHD=edoj',
+        });
       });
     });
 
-    it('should call the view tracking hook with the correct params with multiple editorial onward journeys', () => {
-      const viewTrackerSpy = jest.spyOn(viewTracking, 'default');
-      render(
-        <ScrollablePromoWithContext
-          blocks={edOjA.model.blocks}
-          blockGroupIndex={1}
-        />,
-      );
-      render(
-        <ScrollablePromoWithContext
-          blocks={edOjB.model.blocks}
-          blockGroupIndex={2}
-        />,
-      );
-
-      expect(viewTrackerSpy).toHaveBeenCalledTimes(2);
-      expect(viewTrackerSpy).toHaveBeenCalledWith({
-        componentName: 'edoj1',
-        format: 'CHD=edoj',
-      });
-      expect(viewTrackerSpy).toHaveBeenCalledWith({
-        componentName: 'edoj2',
-        format: 'CHD=edoj',
-      });
+    it('it should match a11y snapshot for single card', () => {
+      const { container } = render(<ScrollablePromo blocks={oneLinkOnly} />);
+      expect(container).toMatchSnapshot();
     });
 
-    it('should call the click tracking hook with one editorial onward journey', () => {
-      const clickTrackerSpy = jest.spyOn(clickTracking, 'default');
-      render(
-        <ScrollablePromoWithContext
-          blocks={edOjA.model.blocks}
-          blockGroupIndex={1}
-        />,
-      );
-
-      expect(clickTrackerSpy).toHaveBeenCalledWith({
-        componentName: 'edoj1',
-        format: 'CHD=edoj',
-      });
+    it('it should match a11y snapshot for list', () => {
+      const { container } = render(<ScrollablePromo blocks={threeLinks} />);
+      expect(container).toMatchSnapshot();
     });
 
-    it('should call the click tracking hook with multiple editorial onward journeys', () => {
-      const clickTrackerSpy = jest.spyOn(clickTracking, 'default');
-      render(
-        <ScrollablePromoWithContext
-          blocks={edOjA.model.blocks}
-          blockGroupIndex={1}
-        />,
+    it('it should match a11y snapshot for list with no title', () => {
+      const { container } = render(
+        <ScrollablePromo blocks={oneLinkWithNoTitle} />,
       );
-      render(
-        <ScrollablePromoWithContext
-          blocks={edOjB.model.blocks}
-          blockGroupIndex={2}
-        />,
-      );
+      expect(container).toMatchSnapshot();
+    });
 
-      expect(clickTrackerSpy).toHaveBeenCalledTimes(2);
-      expect(clickTrackerSpy).toHaveBeenCalledWith({
-        componentName: 'edoj1',
-        format: 'CHD=edoj',
-      });
-      expect(clickTrackerSpy).toHaveBeenCalledWith({
-        componentName: 'edoj2',
-        format: 'CHD=edoj',
-      });
+    it('it should match snapshot when in dark ui mode', () => {
+      const { container } = render(
+        <ScrollablePromo blocks={oneLinkWithNoTitle} />,
+        {
+          pageType: MEDIA_ARTICLE_PAGE,
+        },
+      );
+      expect(container).toMatchSnapshot();
     });
   });
 
-  shouldMatchSnapshot(
-    'it should match a11y snapshot for single card',
-    <ScrollablePromoWithContext blocks={oneLinkOnly} />,
-  );
+  describe('OJ Top Bar ScrollablePromo', () => {
+    it('it should display Top Stories label when experimentVariant is A', () => {
+      const { getByText, queryByText } = render(
+        <ScrollablePromo blocks={topStoriesBlocks} experimentVariant="A" />,
+      );
+      expect(getByText('Top Stories')).toBeVisible();
+      expect(queryByText('Most read')).toBeNull();
+    });
 
-  shouldMatchSnapshot(
-    'it should match a11y snapshot for list',
-    <ScrollablePromoWithContext blocks={threeLinks} />,
-  );
-  shouldMatchSnapshot(
-    'it should match a11y snapshot for list with no title',
-    <ScrollablePromoWithContext blocks={oneLinkWithNoTitle} />,
-  );
+    it('it should display Most Read label when experimentVariant is B', () => {
+      const { getByText, queryByText } = render(
+        <ScrollablePromo blocks={mostReadBlocks} experimentVariant="B" />,
+      );
+      expect(getByText('Most read')).toBeVisible();
+      expect(queryByText('Top Stories')).toBeNull();
+    });
+
+    it('it should display 3 promo items with Top Stories when experimentVariant is A', () => {
+      const { getAllByRole } = render(
+        <ScrollablePromo blocks={topStoriesBlocks} experimentVariant="A" />,
+      );
+      expect(getAllByRole('listitem')).toHaveLength(3);
+    });
+
+    it('it should display 5 promo items with Most Read when experimentVariant is B', () => {
+      const { getAllByRole } = render(
+        <ScrollablePromo blocks={mostReadBlocks} experimentVariant="B" />,
+      );
+      expect(getAllByRole('listitem')).toHaveLength(5);
+    });
+
+    it('it should display Top Stories content when experimentVariant is A', () => {
+      const { getAllByRole } = render(
+        <ScrollablePromo blocks={topStoriesBlocks} experimentVariant="A" />,
+      );
+      const expectedFirstHeadline =
+        topStoriesBlocks[0].headlines.promoHeadline.blocks[0].model.blocks[0]
+          .model.text;
+      expect(getAllByRole('listitem')[0]).toHaveTextContent(
+        expectedFirstHeadline,
+      );
+    });
+
+    it('it should display Most Read content when experimentVariant is B', () => {
+      const { getAllByRole } = render(
+        <ScrollablePromo blocks={mostReadBlocks} experimentVariant="B" />,
+      );
+      const expectedFirstHeadline = mostReadBlocks[0].title;
+      expect(getAllByRole('listitem')[0]).toHaveTextContent(
+        expectedFirstHeadline,
+      );
+    });
+  });
 });

@@ -1,9 +1,3 @@
-import {
-  C_POSTBOX,
-  C_WHITE,
-  C_GHOST,
-  C_POSTBOX_30,
-} from '../../../legacy/psammead/psammead-styles/src/colours';
 import latin from '../../../components/ThemeProvider/fontScripts/latin';
 import '#psammead/psammead-locales/moment/en-gb';
 import '#psammead/moment-timezone-include/tz/Europe/London';
@@ -18,6 +12,7 @@ export const service: DefaultServiceConfig = {
     articleTimestampSuffix: '',
     atiAnalyticsAppName: 'news',
     atiAnalyticsProducerId: '64',
+    atiAnalyticsProducerName: 'NEWS',
     chartbeatDomain: 'bbc.co.uk',
     brandName: 'BBC News',
     product: 'BBC News',
@@ -36,7 +31,6 @@ export const service: DefaultServiceConfig = {
     service: 'news',
     serviceName: 'News',
     languageName: 'English',
-    themeColor: `${C_POSTBOX}`,
     twitterCreator: '@BBCNews',
     twitterSite: '@BBCNews',
     noBylinesPolicy: 'https://www.bbc.com/news/help-41670342#authorexpertise',
@@ -45,13 +39,6 @@ export const service: DefaultServiceConfig = {
     script: latin,
     manifestPath: '/articles/manifest.json',
     frontPageTitle: 'Home',
-    theming: {
-      brandBackgroundColour: `${C_POSTBOX}`,
-      brandLogoColour: `${C_WHITE}`,
-      brandForegroundColour: `${C_GHOST}`,
-      brandHighlightColour: `${C_WHITE}`,
-      brandBorderColour: `${C_POSTBOX_30}`,
-    },
     showAdPlaceholder: false,
     showRelatedTopics: true,
     translations: {
@@ -68,6 +55,18 @@ export const service: DefaultServiceConfig = {
         mediaPlayer: 'Media player',
         audioPlayer: 'Audio player',
         videoPlayer: 'Video player',
+      },
+      liveExperiencePage: {
+        liveLabel: 'Live',
+        liveCoverage: 'Live Coverage',
+        breaking: 'Breaking',
+        postedAt: 'Posted at',
+        summary: 'Summary',
+        shareButtonText: 'Share',
+      },
+      downloads: {
+        instructions: 'You can download and view today’s news.',
+        title: 'File Download',
       },
       gist: 'At a glance',
       error: {
@@ -122,7 +121,7 @@ export const service: DefaultServiceConfig = {
           },
           accept: 'OK',
           reject: "Find out what's changed",
-          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/your-data-matters',
+          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/privacy-policy/',
         },
         cookie: {
           amp: {
@@ -209,17 +208,13 @@ export const service: DefaultServiceConfig = {
         duration: 'Duration',
       },
       socialEmbed: {},
+      featuresAnalysisTitle: 'More to explore',
     },
     mostRead: {
       header: 'Most read',
       lastUpdated: 'Last updated:',
       numberOfItems: 10,
       hasMostRead: true,
-    },
-    mostWatched: {
-      header: 'Most watched',
-      numberOfItems: 10,
-      hasMostWatched: false,
     },
     radioSchedule: {
       hasRadioSchedule: false,
@@ -263,8 +258,8 @@ export const service: DefaultServiceConfig = {
         },
         {
           id: 'COOKIE_SETTINGS',
-          href: 'https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/',
-          text: 'AdChoices / Do Not Sell My Info',
+          href: '#',
+          text: 'Do not share or sell my info',
           lang: 'en-GB',
         },
       ],

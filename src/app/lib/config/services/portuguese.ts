@@ -1,9 +1,3 @@
-import {
-  C_POSTBOX,
-  C_WHITE,
-  C_GHOST,
-  C_POSTBOX_30,
-} from '../../../legacy/psammead/psammead-styles/src/colours';
 import latinWithDiacritics from '../../../components/ThemeProvider/fontScripts/latinWithDiacritics';
 import '#psammead/moment-timezone-include/tz/America/Sao_Paulo';
 import '#psammead/psammead-locales/moment/pt-br';
@@ -18,6 +12,7 @@ export const service: DefaultServiceConfig = {
     articleTimestampSuffix: '',
     atiAnalyticsAppName: 'news-portuguese',
     atiAnalyticsProducerId: '33',
+    atiAnalyticsProducerName: 'BRASIL',
     chartbeatDomain: 'brasil.bbc.co.uk', // this is meant to be different to the service name
     brandName: 'BBC News Brasil',
     product: 'BBC News',
@@ -39,7 +34,6 @@ export const service: DefaultServiceConfig = {
     service: 'portuguese',
     serviceName: 'News Brasil',
     languageName: 'Portuguese',
-    themeColor: `${C_POSTBOX}`,
     twitterCreator: '@bbcbrasil',
     twitterSite: '@bbcbrasil',
     noBylinesPolicy:
@@ -52,23 +46,16 @@ export const service: DefaultServiceConfig = {
     swPath: '/sw.js',
     frontPageTitle: 'Notícias, vídeos, análise e contexto em português',
     passportHomes: ['brasil'],
-    theming: {
-      brandBackgroundColour: `${C_POSTBOX}`,
-      brandLogoColour: `${C_WHITE}`,
-      brandForegroundColour: `${C_GHOST}`,
-      brandHighlightColour: `${C_WHITE}`,
-      brandBorderColour: `${C_POSTBOX_30}`,
-    },
     showAdPlaceholder: true,
     showRelatedTopics: true,
     podcastPromo: {
-      title: 'Podcast',
-      brandTitle: 'Brasil Partido',
+      title: 'Novo podcast investigativo: A Raposa',
+      brandTitle: 'Novo podcast investigativo: A Raposa',
       brandDescription:
-        'João Fellet tenta entender como brasileiros chegaram ao grau atual de divisão.',
+        'Uma tonelada de cocaína, três brasileiros inocentes e a busca por um suspeito inglês',
       image: {
-        src: 'https://ichef.bbc.co.uk/images/ic/$recipe/p0d67gkg.jpg',
-        alt: 'Logo: Brasil Partido',
+        src: 'https://ichef.bbc.co.uk/images/ic/$recipe/p0k38tc4.jpg',
+        alt: 'Logo: A Raposa',
       },
       linkLabel: {
         text: 'Episódios',
@@ -102,6 +89,18 @@ export const service: DefaultServiceConfig = {
         mediaPlayer: 'Media player',
         audioPlayer: 'Audio player',
         videoPlayer: 'Video player',
+      },
+      liveExperiencePage: {
+        liveLabel: 'Ao Vivo',
+        liveCoverage: 'Cobertura ao Vivo',
+        breaking: 'Urgente',
+        postedAt: 'Publicado às',
+        summary: 'Pontos-chave',
+        shareButtonText: 'Compartilhar',
+      },
+      downloads: {
+        instructions: 'You can download and view today’s news.',
+        title: 'File Download',
       },
       gist: 'Pontos-chave',
       error: {
@@ -156,7 +155,7 @@ export const service: DefaultServiceConfig = {
           },
           accept: 'OK',
           reject: 'Saiba o que foi alterado',
-          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/your-data-matters',
+          rejectUrl: 'https://www.bbc.com/usingthebbc/privacy-policy/',
         },
         cookie: {
           amp: {
@@ -170,7 +169,7 @@ export const service: DefaultServiceConfig = {
                 linkText: 'cookies',
                 last: ' e coletamos dados durante a navegação para lhe proporcionar a melhor experiência online e para personalizar o conteúdo e os anúncios publicitários que são exibidos para você. Diga-nos se concorda com o uso de todos estes tipos de cookies.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
               manage: 'Administre minhas configurações',
             },
@@ -187,7 +186,7 @@ export const service: DefaultServiceConfig = {
                   'Para que nossas páginas possam funcionar, nós armazenamos em seu dispositivo uma pequena quantidade de informação sem o seu consentimento.',
                 para4: {
                   text: 'Leia mais sobre a informação essencial que foi armazenada no seu dispositivo para que nossas páginas possam funcionar.',
-                  url: 'https://www.bbc.co.uk/usingthebbc/strictly-necessary-cookies/',
+                  url: 'https://www.bbc.com/usingthebbc/cookies/strictly-necessary-cookies/',
                 },
                 para5:
                   'Nós utilizamos capacidade local de armazenamento para guardar no seu dispositivo as preferências de seu consentimento.',
@@ -220,13 +219,13 @@ export const service: DefaultServiceConfig = {
                 linkText: 'cookies',
                 last: ' para lhe proporcionar a melhor experiência online. Diga-nos se concorda com o uso de todos estes tipos de cookies.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
             },
             accept: 'Sim, concordo',
             reject: 'Não concordo, volte para Configurações',
             rejectUrl:
-              'https://www.bbc.co.uk/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
+              'https://www.bbc.com/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
           },
         },
       },
@@ -249,6 +248,8 @@ export const service: DefaultServiceConfig = {
         duration: 'Duration',
         recentEpisodes: 'Mais',
         podcastExternalLinks: 'O podcast está disponível em',
+        download: 'Baixar episódio',
+        closeVideo: 'Sair',
       },
       socialEmbed: {
         caption: {
@@ -284,17 +285,82 @@ export const service: DefaultServiceConfig = {
       },
       topStoriesTitle: 'Principais notícias',
       featuresAnalysisTitle: 'Leia mais',
+      latestMediaTitle: 'Mais recentes',
+      ugc: {
+        // No JavaScript
+        noJsHeading: undefined,
+        noJsDescription: undefined,
+
+        // Optional
+        optional: 'opcional',
+
+        // File upload
+        fileUploadLiveRegionText: 'O que você está uploading:',
+        fileUploadLiveRegionUpdateText: undefined,
+        fileUploadListHeading: 'O que você está uploading:',
+        fileUploadButton: 'Selecione um arquivo',
+        fileUploadRemoveButton: 'Selecione um arquivo',
+
+        // Submit button
+        submitButton: 'Enviar',
+
+        // Validation
+        validationRequired: 'Falta alguma coisa.',
+        validationInvalidEmail:
+          'Algo não está correto. Digite um endereço de email válido.',
+        validationInvalidTelephone: undefined,
+        validationFilesNotEnough:
+          'O número de arquivos não é suficiente. Adicione pelo menos {{minFiles}} arquivos.',
+        validationFilesTooMany:
+          'Existem muitos arquivos. Você pode adicionar até {{maxFiles}} arquivos.',
+        validationFilesInvalidType:
+          'Esse tipo de arquivo não pode ser utilizado. Adicionar {{fileTypes}}.',
+        validationFilesTooSmall:
+          'Este arquivo está corrompido. Tente escolher outro arquivo.',
+        validationFilesSizeExceeded:
+          'Estes arquivos são muito grandes. Você só pode fazer upload de até 1,2GB de cada vez.',
+        validationWordLimit: 'Máximo de {{wordLimit}} palavras',
+
+        // Messaging
+        retentionPeriodDays:
+          'Nós guardaremos a sua mensagem por até {{days}} dias. Caso não usemos o conteúdo, ele será apagado junto a qualquer outra informação que você nos tenha enviado.',
+        referenceNumber: 'Número de referência',
+        submissionInfoSignedOutMessage:
+          'Você deve anotar esses detalhes para sua referência.',
+        privacyInfoHtml:
+          'Não se preocupe, nós protegemos seus dados pessoais — para maiores detalhes, leia {{privacyInfoLink}}.',
+        emailToHtml:
+          'Envie email para {{emailLink}} caso você mude de ideia. Mencione o número de referência e diga apenas que você não quer que o material seja utilizado.',
+        removalGuidelineText: undefined,
+
+        // Form Screen
+        dataPolicyHeading: 'Nossa política de dados',
+
+        // Uploading Screen
+        uploadingHeading: 'Uploading seus arquivos...',
+        uploadingDescription: 'Aguarde até finalizar.',
+
+        // Success Screen
+        successHeading: 'Mensagem enviada',
+        successDescription: 'Obrigado por entrar em contato.',
+        privacyPolicyLinkHref:
+          'https://www.bbc.com/portuguese/articles/cw0w9z6p491o',
+        privacyPolicyLinkText: 'Política de privacidade',
+
+        // Error Screen
+        errorHeading: 'Sua mensagem não foi enviada',
+        errorDescription: 'Tente enviar novamente.',
+
+        // Closed Screen
+        closedHeading: 'Está encerrado',
+        closedDescription: 'Foi encerrado em {{date}}.',
+      },
     },
     mostRead: {
       header: 'Mais lidas',
       lastUpdated: 'Última atualização:',
       numberOfItems: 10,
       hasMostRead: true,
-    },
-    mostWatched: {
-      header: 'Mais assistido',
-      numberOfItems: 10,
-      hasMostWatched: true,
     },
     radioSchedule: {
       hasRadioSchedule: false,
@@ -337,9 +403,13 @@ export const service: DefaultServiceConfig = {
           text: 'Contate a BBC',
         },
         {
+          href: 'https://www.bbc.com/ws/languages',
+          text: 'BBC News em outras línguas',
+        },
+        {
           id: 'COOKIE_SETTINGS',
-          href: 'https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/',
-          text: 'AdChoices / Do Not Sell My Info',
+          href: '#',
+          text: 'Do not share or sell my info',
           lang: 'en-GB',
         },
       ],
@@ -379,6 +449,10 @@ export const service: DefaultServiceConfig = {
       {
         title: 'Vídeos',
         url: '/portuguese/topics/c9y2j35dn2zt',
+      },
+      {
+        title: 'BBC Lê',
+        url: '/portuguese/topics/cxndrr1qgllt',
       },
     ],
   },

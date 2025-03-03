@@ -1,21 +1,19 @@
-import React from 'react';
+/** @jsx jsx */
+import { jsx } from '@emotion/react';
 import Text from '../../../../src/app/components/Text';
-import { Confirm, Close, ExternalLink, Help } from '../Icons/icons';
+import { Confirm, Close, ExternalLink, Help } from '../Icons';
 import styles from './index.styles';
-import VisuallyHiddenText from '../../../../src/app/legacy/psammead/psammead-visually-hidden-text/src';
+import VisuallyHiddenText from '../../../../src/app/components/VisuallyHiddenText';
 import idSanitiser from '../../../../src/app/lib/utilities/idSanitiser';
 
-const SingleDoc = ({
-  label,
-  status,
-  url,
-  urlLabel,
-}: {
+interface SingleDocProps {
   label: string;
   url: string;
   urlLabel: string;
   status?: boolean;
-}) => {
+}
+
+const SingleDoc = ({ label, status, url, urlLabel }: SingleDocProps) => {
   const iconStatusStyle = status ? styles.positive : styles.negative;
   const hasIcon = status ? (
     <Confirm css={styles.icon} />
@@ -40,14 +38,13 @@ const SingleDoc = ({
             styles.iconContainer,
             styles.statusIconContainer,
             typeof status === 'boolean' ? iconStatusStyle : styles.missing,
-            styles.sidebarColumn,
           ]}
         >
           {statusIcon}
         </span>
 
         <Text
-          css={[styles.sidebarColumn, styles.sidebarText]}
+          css={styles.sidebarText}
           size="bodyCopy"
           fontVariant="sansRegular"
           aria-labelledby={ariaLabelId}
@@ -62,13 +59,7 @@ const SingleDoc = ({
         </Text>
       </div>
       <div css={styles.documentationLink}>
-        <Text
-          as="a"
-          href={url}
-          css={styles.link}
-          size="brevier"
-          fontVariant="sansBold"
-        >
+        <Text as="a" href={url} size="brevier" fontVariant="sansBold">
           <span>{urlLabel}</span>
           <span
             aria-hidden

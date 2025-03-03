@@ -1,17 +1,15 @@
 import React from 'react';
-import { node } from 'prop-types';
 import styled from '@emotion/styled';
 import { mediaIcons } from '#psammead/psammead-assets/src/svgs';
 import { getPica } from '#psammead/gel-foundations/src/typography';
 import { getSansRegular } from '#psammead/psammead-styles/src/font-styles';
 import { GEL_SPACING_DBL } from '#psammead/gel-foundations/src/spacings';
-import { C_METAL } from '#psammead/psammead-styles/src/colours';
 
 const EpisodesText = styled.p`
   display: inline;
   ${({ script }) => getPica(script)}
   ${({ service }) => getSansRegular(service)}
-  color: ${C_METAL};
+  color: ${props => props.theme.palette.METAL};
   > svg {
     fill: currentColor;
     color: unset;
@@ -27,16 +25,10 @@ const EpisodesText = styled.p`
 `;
 
 const CardEpisodesText = ({ children, ...props }) => (
-  <>
-    <EpisodesText {...props}>
-      {mediaIcons.seriesstack}
-      {children}
-    </EpisodesText>
-  </>
+  <EpisodesText {...props}>
+    {mediaIcons.seriesstack}
+    {children}
+  </EpisodesText>
 );
-
-CardEpisodesText.propTypes = {
-  children: node.isRequired,
-};
 
 export default CardEpisodesText;

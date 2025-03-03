@@ -1,9 +1,3 @@
-import {
-  C_POSTBOX,
-  C_WHITE,
-  C_GHOST,
-  C_POSTBOX_30,
-} from '../../../legacy/psammead/psammead-styles/src/colours';
 import latin from '../../../components/ThemeProvider/fontScripts/latin';
 import '#psammead/moment-timezone-include/tz/Asia/Jakarta';
 import 'moment/locale/id';
@@ -18,6 +12,7 @@ export const service: DefaultServiceConfig = {
     articleTimestampSuffix: '',
     atiAnalyticsAppName: 'news-indonesia',
     atiAnalyticsProducerId: '54',
+    atiAnalyticsProducerName: 'INDONESIAN',
     chartbeatDomain: 'indonesian.bbc.co.uk', // this is meant to be different to the service name
     brandName: 'BBC News Indonesia',
     product: 'BBC News',
@@ -38,7 +33,6 @@ export const service: DefaultServiceConfig = {
     service: 'indonesia',
     serviceName: 'Indonesia',
     languageName: 'Indonesian',
-    themeColor: `${C_POSTBOX}`,
     twitterCreator: '@bbcindonesia',
     twitterSite: '@bbcindonesia',
     noBylinesPolicy:
@@ -50,27 +44,21 @@ export const service: DefaultServiceConfig = {
     manifestPath: '/manifest.json',
     swPath: '/sw.js',
     frontPageTitle: 'Berita',
-    theming: {
-      brandBackgroundColour: `${C_POSTBOX}`,
-      brandLogoColour: `${C_WHITE}`,
-      brandForegroundColour: `${C_GHOST}`,
-      brandHighlightColour: `${C_WHITE}`,
-      brandBorderColour: `${C_POSTBOX_30}`,
-    },
     showAdPlaceholder: true,
     showRelatedTopics: true,
+    googleSiteVerification: 'D-aEHUiyVaMoUJXjVRbDVkxS0dLTMUZLD3dLPTnWO4Q',
     podcastPromo: {
-      title: 'Podcast',
-      brandTitle: 'Investigasi: Skandal Adopsi',
+      title: 'Whatsapp',
+      brandTitle: 'Akun resmi kami di WhatsApp',
       brandDescription:
-        'Investigasi untuk menyibak tabir adopsi ilegal dari Indonesia ke Belanda di masa lalu',
+        'Liputan mendalam BBC News Indonesia langsung di WhatsApp Anda.',
       image: {
-        src: 'https://ichef.bbci.co.uk/images/ic/448xn/p0btnm4z.jpg',
-        alt: 'Investigasi: Skandal Adopsi',
+        src: 'https://ichef.bbci.co.uk/images/ic/$recipe/p0jtrf6c.png',
+        alt: 'BBC News Indonesia - Kini hadir di',
       },
       linkLabel: {
-        text: 'Episode',
-        href: 'https://www.bbc.com/indonesia/podcasts/p0btnmzx',
+        text: 'Klik di sini',
+        href: 'https://whatsapp.com/channel/0029VafUgPX42DcbVwVCgZ3x',
       },
       skipLink: {
         text: 'Lewati %title% dan lanjutkan membaca',
@@ -99,6 +87,18 @@ export const service: DefaultServiceConfig = {
         mediaPlayer: 'Pemutar Media',
         audioPlayer: 'Pemutar Audio',
         videoPlayer: 'Pemutar Video',
+      },
+      liveExperiencePage: {
+        liveLabel: 'Langsung',
+        liveCoverage: 'Liputan langsung',
+        breaking: 'Terbaru',
+        postedAt: 'Diterbitkan di',
+        summary: 'Rangkuman',
+        shareButtonText: 'Kirim',
+      },
+      downloads: {
+        instructions: 'You can download and view today’s news.',
+        title: 'File Download',
       },
       gist: 'Rangkuman',
       error: {
@@ -161,7 +161,7 @@ export const service: DefaultServiceConfig = {
           },
           accept: 'OKE',
           reject: 'Coba lihat apa yang berubah',
-          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/your-data-matters',
+          rejectUrl: 'https://www.bbc.com/usingthebbc/privacy-policy/',
         },
         cookie: {
           amp: {
@@ -176,7 +176,7 @@ export const service: DefaultServiceConfig = {
                 linkText: 'cookies',
                 last: ', dan mengumpulkan data rambanan untuk memberikan Anda pengalaman daring terbaik dengan konten dan iklan yang ditampilkan disesuaikan dengan keperluan Anda. Mohon beritahu kami bila Anda setuju.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
               manage: 'Atur pengaturan saya',
             },
@@ -192,7 +192,7 @@ export const service: DefaultServiceConfig = {
                   'Agar situs kami tetap berjalan, kami menyimpan sejumlah informasi terbatas dalam perangkat Anda tanpa persetujuan Anda.',
                 para4: {
                   text: 'Baca lebih jauh tentang informasi penting yang kami simpan di perangkat Anda untuk memastikan situs kami berjalan.',
-                  url: 'https://www.bbc.co.uk/usingthebbc/strictly-necessary-cookies/',
+                  url: 'https://www.bbc.com/usingthebbc/cookies/strictly-necessary-cookies/',
                 },
                 para5:
                   'Kami menggunakan penyimpanan lokal untuk menyimpan preferensi yang Anda pilih dalam perangkat Anda.',
@@ -225,13 +225,13 @@ export const service: DefaultServiceConfig = {
                 linkText: 'cookies',
                 last: ' untuk memberikan Anda pengalaman daring terbaik. Mohon beritahu kami, bila Anda setuju dengan semua cookies ini.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
             },
             accept: 'Ya, saya setuju',
             reject: 'Tidak, tampilkan pengaturan',
             rejectUrl:
-              'https://www.bbc.co.uk/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
+              'https://www.bbc.com/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
           },
         },
       },
@@ -244,6 +244,7 @@ export const service: DefaultServiceConfig = {
         video: 'Video',
         listen: 'Dengar',
         watch: 'Tonton',
+        watchMoments: 'Saksikan juga',
         listenLive: 'Mendengarkan langsung',
         listenNext: 'Dengar yang berikut',
         liveLabel: 'LANGSUNG',
@@ -253,6 +254,8 @@ export const service: DefaultServiceConfig = {
         duration: 'Durasi',
         recentEpisodes: 'Siaran sebelumnya',
         podcastExternalLinks: 'Podcast ini juga tersedia di',
+        download: 'Unduh episode',
+        closeVideo: 'Keluar',
       },
       socialEmbed: {
         caption: {
@@ -286,17 +289,13 @@ export const service: DefaultServiceConfig = {
       },
       topStoriesTitle: 'Berita Utama',
       featuresAnalysisTitle: 'Majalah',
+      latestMediaTitle: 'Terbaru',
     },
     mostRead: {
       header: 'Paling banyak dibaca',
       lastUpdated: 'Terakhir diperbarui:',
-      numberOfItems: 10,
-      hasMostRead: true,
-    },
-    mostWatched: {
-      header: 'Terpopuler',
       numberOfItems: 5,
-      hasMostWatched: true,
+      hasMostRead: true,
     },
     radioSchedule: {
       hasRadioSchedule: true,
@@ -333,7 +332,7 @@ export const service: DefaultServiceConfig = {
           text: 'Kebijakan tentang Privasi',
         },
         {
-          href: 'https://www.bbc.co.uk/usingthebbc/cookies/',
+          href: 'https://www.bbc.com/usingthebbc/cookies/',
           text: 'Cookies',
         },
         {
@@ -341,9 +340,13 @@ export const service: DefaultServiceConfig = {
           text: 'Hubungi BBC',
         },
         {
+          href: 'https://www.bbc.com/ws/languages',
+          text: 'BC News dalam bahasa-bahasa lain',
+        },
+        {
           id: 'COOKIE_SETTINGS',
-          href: 'https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/',
-          text: 'AdChoices / Do Not Sell My Info',
+          href: '#',
+          text: 'Do not share or sell my info',
           lang: 'en-GB',
         },
       ],
@@ -361,7 +364,7 @@ export const service: DefaultServiceConfig = {
       },
       {
         title: 'Dunia',
-        url: '/indonesia/dunia',
+        url: '/indonesia/topics/cyz8evpl224t',
       },
       {
         title: 'Viral',
@@ -369,11 +372,11 @@ export const service: DefaultServiceConfig = {
       },
       {
         title: 'Liputan Mendalam',
-        url: '/indonesia/laporan-khusus-51267199',
+        url: '/indonesia/topics/cw9qgeqd18zt',
       },
       {
         title: 'Majalah',
-        url: '/indonesia/majalah-51456120',
+        url: '/indonesia/topics/cpxrqmrkeg8t',
       },
     ],
     timezone: 'Asia/Jakarta',

@@ -1,9 +1,3 @@
-import {
-  C_POSTBOX,
-  C_WHITE,
-  C_GHOST,
-  C_POSTBOX_30,
-} from '../../../legacy/psammead/psammead-styles/src/colours';
 import devanagari from '../../../components/ThemeProvider/fontScripts/devanagari';
 import '#psammead/moment-timezone-include/tz/Asia/Kathmandu';
 import '#psammead/psammead-locales/moment/ne';
@@ -18,6 +12,7 @@ export const service: DefaultServiceConfig = {
     articleTimestampSuffix: 'अद्यावधिक',
     atiAnalyticsAppName: 'news-nepali',
     atiAnalyticsProducerId: '63',
+    atiAnalyticsProducerName: 'NEPALI',
     chartbeatDomain: 'nepali.bbc.co.uk',
     brandName: 'BBC News नेपाली',
     product: 'BBC News',
@@ -38,7 +33,6 @@ export const service: DefaultServiceConfig = {
     service: 'nepali',
     serviceName: 'Nepali',
     languageName: 'Nepali',
-    themeColor: `${C_POSTBOX}`,
     twitterCreator: '@bbcnepali',
     twitterSite: '@bbcnepali',
     noBylinesPolicy:
@@ -49,13 +43,6 @@ export const service: DefaultServiceConfig = {
     manifestPath: '/manifest.json',
     swPath: '/sw.js',
     frontPageTitle: 'मुख पृष्ठ',
-    theming: {
-      brandBackgroundColour: `${C_POSTBOX}`,
-      brandLogoColour: `${C_WHITE}`,
-      brandForegroundColour: `${C_GHOST}`,
-      brandHighlightColour: `${C_WHITE}`,
-      brandBorderColour: `${C_POSTBOX_30}`,
-    },
     showAdPlaceholder: true,
     showRelatedTopics: true,
     translations: {
@@ -79,6 +66,18 @@ export const service: DefaultServiceConfig = {
         mediaPlayer: 'मिडिया प्लेअर',
         audioPlayer: 'अडिओ प्लेअर',
         videoPlayer: 'भिडिओ प्लेअर',
+      },
+      liveExperiencePage: {
+        liveLabel: 'लाइभ',
+        liveCoverage: 'लाइभ कभरेज',
+        breaking: 'ब्रेकिंग',
+        postedAt: 'पोस्ट गरिएको',
+        summary: 'सारांश',
+        shareButtonText: 'शेयर गर्नुहोस्',
+      },
+      downloads: {
+        instructions: 'You can download and view today’s news.',
+        title: 'File Download',
       },
       gist: 'सारांश',
       error: {
@@ -133,7 +132,7 @@ export const service: DefaultServiceConfig = {
           },
           accept: 'मान्य छ।',
           reject: 'परिमार्जित कुरा हेर्नुहोस्।',
-          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/your-data-matters',
+          rejectUrl: 'https://www.bbc.com/usingthebbc/privacy-policy/',
         },
         cookie: {
           amp: {
@@ -148,7 +147,7 @@ export const service: DefaultServiceConfig = {
                 linkText: 'कुकीज',
                 last: 'जस्ता प्रविधि प्रयोग गरेर तपाईँले हाम्रो साइटमा गरेका क्रियाकलापका जानकारी सङ्ग्रह गर्छौँ। कृपया तपाईँलाई यो कुरा मान्य छ भने हामीलाई जानकारी दिनुहोस्।',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
               manage: 'सेटिङ्गको व्यवस्थापन गर्ने',
             },
@@ -164,7 +163,7 @@ export const service: DefaultServiceConfig = {
                   'हाम्रो वेब पेज काम गर्ने बनाउन हामीले तपाईँको सहमति विना नै तपाईँको उपकरणमा केही सिमित जानकारीहरू राखेका छौँ।',
                 para4: {
                   text: 'हाम्रो वेेब पेजलाई काम गर्ने बनाउन तपाईँको उपकरणमा राखिएको अति जरूरी जानकारीकाबारे यहाँ पढ्नुहोस्।',
-                  url: 'https://www.bbc.co.uk/usingthebbc/strictly-necessary-cookies/',
+                  url: 'https://www.bbc.com/usingthebbc/cookies/strictly-necessary-cookies/',
                 },
                 para5:
                   'तपाईँँको उपकरणमा सहमति सम्बन्धी जानकारीकालागि हामीले लोकल स्टोरेज प्रयोग गर्ने गर्छौँ।',
@@ -197,13 +196,13 @@ export const service: DefaultServiceConfig = {
                 linkText: 'कुकीज',
                 last: ' प्रयोग गर्छौँ। कृपया तपाईँलाई कुकीज मान्य छ भने हामीलाई जानकारी दिनुहोस्।',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
             },
             accept: 'मलाई मान्य छ।',
             reject: 'मलाई मान्य छैन, सेटिङ्समा जान चाहन्छु।',
             rejectUrl:
-              'https://www.bbc.co.uk/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
+              'https://www.bbc.com/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
           },
         },
       },
@@ -230,6 +229,8 @@ export const service: DefaultServiceConfig = {
         duration: 'समयावधि',
         recentEpisodes: 'पहिलेका कार्यक्रमहरू',
         podcastExternalLinks: 'यो पडकास्ट सुन्नकालागि यहाँ उपलब्ध छ',
+        download: 'एपिसोड डाउनलोड',
+        closeVideo: 'बाहिरिनुहोस्',
       },
       socialEmbed: {
         caption: {
@@ -268,11 +269,6 @@ export const service: DefaultServiceConfig = {
       lastUpdated: 'मा अन्तिम चोटि अद्यावधिक',
       numberOfItems: 5,
       hasMostRead: true,
-    },
-    mostWatched: {
-      header: 'धेरै हेरिएको',
-      numberOfItems: 10,
-      hasMostWatched: true,
     },
     radioSchedule: {
       hasRadioSchedule: true,
@@ -313,9 +309,13 @@ export const service: DefaultServiceConfig = {
           text: 'बीबीसीलाई सम्पर्क गर्नुहोस्',
         },
         {
+          href: 'https://www.bbc.com/ws/languages',
+          text: 'अरू भाषामा बीबीसी',
+        },
+        {
           id: 'COOKIE_SETTINGS',
-          href: 'https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/',
-          text: 'AdChoices / Do Not Sell My Info',
+          href: '#',
+          text: 'Do not share or sell my info',
           lang: 'en-GB',
         },
       ],
@@ -325,20 +325,28 @@ export const service: DefaultServiceConfig = {
     timezone: 'Asia/Kathmandu',
     navigation: [
       {
-        title: 'मुख पृष्ठ',
+        title: 'समाचार',
         url: '/nepali',
       },
       {
-        title: 'नेपाल निर्वाचन २०७९',
-        url: '/nepali/topics/cp2d78r6qppt',
+        title: 'नेपाल',
+        url: '/nepali/topics/cyx5k2yzyj6t',
       },
       {
-        title: 'पछिल्लो कार्यक्रम',
-        url: '/nepali/media-54029171',
+        title: 'विश्व',
+        url: '/nepali/topics/cy5nkr41gx6t',
       },
       {
-        title: 'भिडिओ',
-        url: '/nepali/topics/cw9kv027nwnt',
+        title: 'स्वास्थ्य',
+        url: '/nepali/topics/c2dwqjg83q0t',
+      },
+      {
+        title: 'विज्ञान तथा प्रविधि',
+        url: '/nepali/topics/c9de5jl3967t',
+      },
+      {
+        title: 'रेडिओ',
+        url: '/nepali/bbc_nepali_radio/programmes/p0340xzv',
       },
     ],
   },

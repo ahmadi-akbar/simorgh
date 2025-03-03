@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react';
 
+import { suppressPropWarnings } from '../../psammead/psammead-test-helpers/src';
 import recommendationsData from '../../../../../data/mundo/recommendations/index.json';
 import { render } from '../../../components/react-testing-library-with-providers';
 import nodeLogger from '../../../../testHelpers/loggerMock';
@@ -8,8 +9,15 @@ import { RECOMMENDATIONS_MISSING_DATA } from '../../../lib/logger.const';
 
 import CpsRecommendations from '.';
 
+jest.mock('#app/hooks/useOptimizelyVariation', () => ({
+  __esModule: true,
+  default: jest.fn(),
+}));
+
 describe('Recommendations - Error Boundary', () => {
   it('should render recommendations when recommendation data is valid', () => {
+    suppressPropWarnings(['optimizely', 'null']);
+
     const { getByRole } = render(
       <CpsRecommendations items={recommendationsData} />,
       {
@@ -32,7 +40,7 @@ describe('Recommendations - Error Boundary', () => {
       (item, index) => {
         // Fake the last item to be invalid
         if (recommendationsData.length - 1 === index) {
-          return '';
+          return {};
         }
         return item;
       },

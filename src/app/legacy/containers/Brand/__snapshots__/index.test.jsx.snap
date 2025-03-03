@@ -10,9 +10,16 @@ exports[`BrandContainer should render correctly 1`] = `
   z-index: 1;
 }
 
+@media (min-width: 15rem) {
+  .emotion-1 {
+    height: 3.75rem;
+    padding: 0 0.5rem;
+  }
+}
+
 @media (min-width: 25rem) {
   .emotion-1 {
-    height: 3.5rem;
+    height: 3.75rem;
     padding: 0 1rem;
   }
 }
@@ -147,6 +154,7 @@ exports[`BrandContainer should render correctly 1`] = `
         class="emotion-7 emotion-8"
         focusable="false"
         height="32"
+        id="brandSvgHeader"
         viewBox="0 0 980 142"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -162,7 +170,7 @@ exports[`BrandContainer should render correctly 1`] = `
         </g>
       </svg>
       <span
-        class="emotion-9 emotion-10"
+        class="emotion-9"
         id="BrandLink-null"
       >
         BBC News

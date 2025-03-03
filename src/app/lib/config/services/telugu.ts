@@ -1,9 +1,3 @@
-import {
-  C_POSTBOX,
-  C_WHITE,
-  C_GHOST,
-  C_POSTBOX_30,
-} from '../../../legacy/psammead/psammead-styles/src/colours';
 import devanagari from '../../../components/ThemeProvider/fontScripts/devanagari';
 import '#psammead/moment-timezone-include/tz/Asia/Kolkata';
 import withContext from '../../../contexts/utils/withContext';
@@ -18,6 +12,7 @@ export const service: DefaultServiceConfig = {
     articleTimestampSuffix: '',
     atiAnalyticsAppName: 'news-telugu',
     atiAnalyticsProducerId: '89',
+    atiAnalyticsProducerName: 'TELUGU',
     chartbeatDomain: 'telugu.bbc.co.uk',
     brandName: 'BBC News తెలుగు',
     product: 'BBC News',
@@ -38,7 +33,6 @@ export const service: DefaultServiceConfig = {
     service: 'telugu',
     serviceName: 'Telugu',
     languageName: 'Telugu',
-    themeColor: `${C_POSTBOX}`,
     twitterCreator: '@bbcnewstelugu',
     twitterSite: '@bbcnewstelugu',
     noBylinesPolicy:
@@ -49,13 +43,6 @@ export const service: DefaultServiceConfig = {
     manifestPath: '/manifest.json',
     swPath: '/sw.js',
     frontPageTitle: 'వార్తలు',
-    theming: {
-      brandBackgroundColour: `${C_POSTBOX}`,
-      brandLogoColour: `${C_WHITE}`,
-      brandForegroundColour: `${C_GHOST}`,
-      brandHighlightColour: `${C_WHITE}`,
-      brandBorderColour: `${C_POSTBOX_30}`,
-    },
     showAdPlaceholder: false,
     showRelatedTopics: true,
     translations: {
@@ -78,6 +65,18 @@ export const service: DefaultServiceConfig = {
         mediaPlayer: 'మీడియా ప్లేయర్',
         audioPlayer: 'ఆడియో ప్లేయర్',
         videoPlayer: 'వీడియో ప్లేయర్',
+      },
+      liveExperiencePage: {
+        liveLabel: 'లైవ్',
+        liveCoverage: 'లైవ్ కవరేజీ',
+        breaking: 'బ్రేకింగ్ న్యూస్',
+        postedAt: 'పోస్ట్ చేసిన సమయం',
+        summary: 'సారాంశం',
+        shareButtonText: 'షేర్ చేయండి',
+      },
+      downloads: {
+        instructions: 'You can download and view today’s news.',
+        title: 'File Download',
       },
       gist: 'సారాంశం',
       error: {
@@ -140,7 +139,7 @@ export const service: DefaultServiceConfig = {
           },
           accept: 'ఓకే',
           reject: 'ఏం మార్పులు చేశామో తెలుసుకోండి',
-          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/your-data-matters',
+          rejectUrl: 'https://www.bbc.com/usingthebbc/privacy-policy/',
         },
         cookie: {
           amp: {
@@ -155,7 +154,7 @@ export const service: DefaultServiceConfig = {
                 linkText: 'వంటి టెక్నాలజీలు',
                 last: ' కుకీలు ఉపయోగించి, బ్రౌజింగ్ వివరాలను సేకరిస్తాం. మీరు దీనికి అంగీకరిస్తే మాకు తెలియచేయండి.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
               manage: 'నా సెటింగ్స్‌ను మేనేజ్ చేయండి.',
             },
@@ -171,7 +170,7 @@ export const service: DefaultServiceConfig = {
                   'మా వెబ్ పేజీ పని చేసేందుకు మీ అనుమతి లేకుండానే మీ డివైస్‌లో కొంత పరిమితిలో సమాచారాన్ని స్టోర్ చేస్తాం.',
                 para4: {
                   text: 'మా వెబ్ పేజీలు పని చేసేందుకు మీ డివైస్‌లో స్టోర్ చేసిన అత్యవసర సమాచారం గురించి మరింత తెలుసుకోండి.',
-                  url: 'https://www.bbc.co.uk/usingthebbc/strictly-necessary-cookies/',
+                  url: 'https://www.bbc.com/usingthebbc/cookies/strictly-necessary-cookies/',
                 },
                 para5:
                   'మీరు అనుమతించిన మీ ప్రాధాన్యాలను మీ డివైస్‌లో స్టోర్ చేసేందుకు మేము లోకల్ స్టోరేజిని ఉపయోగిస్తాం.',
@@ -204,13 +203,13 @@ export const service: DefaultServiceConfig = {
                 linkText: 'కుకీలు',
                 last: ' ఉపయోగిస్తాం. మీరు ఈ కుకీలన్నింటికి అంగీకరిస్తే మాకు తెలియచేయండి.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
             },
             accept: 'అవును, అంగీకరిస్తున్నా',
             reject: 'లేదు, నన్ను సెట్టింగ్స్ పేజీకి తీసుకెళ్లండి',
             rejectUrl:
-              'https://www.bbc.co.uk/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
+              'https://www.bbc.com/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
           },
         },
       },
@@ -236,6 +235,7 @@ export const service: DefaultServiceConfig = {
         nextRadioShow: 'తర్వాత రేడియో షో',
         duration: 'వ్యవధి',
         recentEpisodes: 'ఇటీవలి ఎపిసోడ్లు',
+        closeVideo: 'నిష్క్రమించు',
       },
       socialEmbed: {
         caption: {
@@ -269,17 +269,13 @@ export const service: DefaultServiceConfig = {
       },
       topStoriesTitle: 'ముఖ్యమైన కథనాలు',
       featuresAnalysisTitle: 'ఫీచర్లు',
+      latestMediaTitle: 'తాజా వార్తలు',
     },
     mostRead: {
       header: 'ఎక్కువమంది చదివినవి',
       lastUpdated: 'చివరిగా అప్‌డేట్ అయిన తేదీ:',
       numberOfItems: 10,
       hasMostRead: true,
-    },
-    mostWatched: {
-      header: 'ఎక్కువగా చూసినవి',
-      numberOfItems: 10,
-      hasMostWatched: true,
     },
     radioSchedule: {
       hasRadioSchedule: false,
@@ -318,14 +314,19 @@ export const service: DefaultServiceConfig = {
           text: 'BBCని సంప్రదించండి',
         },
         {
+          href: 'https://www.bbc.com/ws/languages',
+          text: 'ఇతర భాషల్లో బీబీసీ వార్తలు',
+        },
+        {
           id: 'COOKIE_SETTINGS',
-          href: 'https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/',
-          text: 'AdChoices / Do Not Sell My Info',
+          href: '#',
+          text: 'Do not share or sell my info',
           lang: 'en-GB',
         },
       ],
       copyrightText:
         ' BBC. ఇతర వెబ్‌సైట్లలో సమాచారానికి బీబీసీ బాధ్యత వహించదు.',
+      collectiveNewsroomText: 'బీబీసి కోసం కలెక్టివ్ న్యూస్‌రూమ్ ప్రచురణ',
     },
     timezone: 'Asia/Kolkata',
     navigation: [
@@ -335,7 +336,7 @@ export const service: DefaultServiceConfig = {
       },
       {
         title: 'వీడియో',
-        url: '/telugu/media/video',
+        url: '/telugu/topics/cl29j0e3e2dt',
       },
       {
         title: 'ఎక్కువ మంది చదివినవి',

@@ -1,13 +1,7 @@
 import React from 'react';
-import {
-  INDEX_PAGE,
-  ARTICLE_PAGE,
-  FRONT_PAGE,
-  MEDIA_PAGE,
-  MEDIA_ASSET_PAGE,
-  TOPIC_PAGE,
-} from '#app/routes/utils/pageTypes';
+import * as PAGE_TYPES from '#app/routes/utils/pageTypes';
 import userEvent from '@testing-library/user-event';
+import Cookies from 'js-cookie';
 import {
   render,
   screen,
@@ -16,10 +10,19 @@ import {
 import { service as pidginServiceConfig } from '../../../lib/config/services/pidgin';
 import HeaderContainer from './index';
 
+const {
+  AUDIO_PAGE,
+  INDEX_PAGE,
+  ARTICLE_PAGE,
+  FRONT_PAGE,
+  LIVE_RADIO_PAGE,
+  MEDIA_ASSET_PAGE,
+  HOME_PAGE,
+  TOPIC_PAGE,
+  TV_PAGE,
+} = PAGE_TYPES;
+
 const defaultToggleState = {
-  navOnArticles: {
-    enabled: true,
-  },
   scriptLink: {
     enabled: true,
   },
@@ -33,17 +36,19 @@ jest.mock('react-router-dom', () => ({
   useRouteMatch: () => ({ path: '/news', params: {} }),
 }));
 
-/* eslint-disable react/prop-types */
-const HeaderContainerWithContext = ({
-  renderScriptSwitch = true,
-  renderOptions,
-}) =>
-  render(<HeaderContainer renderScriptSwitch={renderScriptSwitch} />, {
+const HeaderContainerWithContext = ({ renderOptions }) =>
+  render(<HeaderContainer />, {
     toggles: defaultToggleState,
     ...renderOptions,
   });
 
 describe(`Header`, () => {
+  beforeEach(() => {
+    Object.keys(Cookies.get()).forEach(cookieName => {
+      Cookies.remove(cookieName);
+    });
+  });
+
   describe('Snapshots', () => {
     it('should render correctly for news article', () => {
       const { container } = HeaderContainerWithContext({
@@ -69,7 +74,27 @@ describe(`Header`, () => {
     it('should render correctly for WS radio page', () => {
       const { container } = HeaderContainerWithContext({
         renderOptions: {
-          pageType: MEDIA_PAGE,
+          pageType: LIVE_RADIO_PAGE,
+        },
+      });
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    it('should render correctly for WS TV page', () => {
+      const { container } = HeaderContainerWithContext({
+        renderOptions: {
+          pageType: TV_PAGE,
+        },
+      });
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    it('should render correctly for WS on demand audio page', () => {
+      const { container } = HeaderContainerWithContext({
+        renderOptions: {
+          pageType: AUDIO_PAGE,
         },
       });
 
@@ -131,17 +156,47 @@ describe(`Header`, () => {
       expect(container.querySelectorAll(scriptLinkSelector).length).toBe(1);
     });
 
-    it('should not render script link on Topic page when missing variant topic ID', () => {
-      const { container } = HeaderContainerWithContext({
-        renderScriptSwitch: false,
-        renderOptions: {
-          pageType: TOPIC_PAGE,
-          service: 'serbian',
-          variant: 'cyr',
-        },
-      });
+    describe('when service is uzbek', () => {
+      describe.each(['cyr', 'lat'])('and variant is %s', variant => {
+        const supportedUzbekPageTypes = [ARTICLE_PAGE, HOME_PAGE, TOPIC_PAGE];
+        const unsupportedUzbekPageTypes = Object.values(PAGE_TYPES).filter(
+          pageType => !supportedUzbekPageTypes.includes(pageType),
+        );
 
-      expect(container.querySelectorAll(scriptLinkSelector).length).toBe(0);
+        it.each(supportedUzbekPageTypes)(
+          'should render script link when page type is %s',
+          pageType => {
+            const { container } = HeaderContainerWithContext({
+              renderOptions: {
+                pageType,
+                service: 'uzbek',
+                variant,
+              },
+            });
+
+            expect(container.querySelectorAll(scriptLinkSelector).length).toBe(
+              1,
+            );
+          },
+        );
+
+        it.each(unsupportedUzbekPageTypes)(
+          'should not render script link when page type is %s',
+          pageType => {
+            const { container } = HeaderContainerWithContext({
+              renderOptions: {
+                pageType,
+                service: 'uzbek',
+                variant,
+              },
+            });
+
+            expect(container.querySelectorAll(scriptLinkSelector).length).toBe(
+              0,
+            );
+          },
+        );
+      });
     });
 
     it('should focus on consent banner heading on mount', () => {
@@ -239,6 +294,50 @@ describe(`Header`, () => {
       userEvent.tab().then(() => {
         expect(container).not.toContainElement(reject);
       });
+    });
+
+    it('should remove the site branding when isApp is set to true', () => {
+      HeaderContainerWithContext({
+        renderOptions: {
+          isApp: true,
+        },
+      });
+
+      expect(
+        document.querySelector(`header[role='banner'] div div:nth-of-type(2)`),
+      ).toBeNull();
+    });
+
+    it('should remove the nav when isApp is set to true', () => {
+      HeaderContainerWithContext({
+        renderOptions: {
+          isApp: true,
+        },
+      });
+
+      expect(document.querySelector(`header[role='banner'] nav`)).toBeNull();
+    });
+
+    it('should remove the privacy/cookie banner when isApp is set to true', () => {
+      const { container } = HeaderContainerWithContext({
+        renderOptions: {
+          isApp: true,
+          service: 'pidgin',
+          pageType: ARTICLE_PAGE,
+        },
+      });
+
+      const pidginPrivacyAcceptText =
+        pidginServiceConfig.default.translations.consentBanner.privacy.accept;
+      const pidginCookieAcceptText =
+        pidginServiceConfig.default.translations.consentBanner.cookie.canonical
+          .accept;
+
+      const privacyBanner = screen.queryByText(pidginPrivacyAcceptText);
+      const cookieBanner = screen.queryByText(pidginCookieAcceptText);
+
+      expect(container).not.toContainElement(privacyBanner);
+      expect(container).not.toContainElement(cookieBanner);
     });
   });
 });

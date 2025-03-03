@@ -1,43 +1,26 @@
 import React from 'react';
 import HealthFactors from '.';
-import ThemeProvider from '../../../src/app/components/ThemeProvider';
-import {
-  allCompletedDocs,
-  threeOutstandingActions,
-  allMissingDocs,
-} from './fixture';
+import { allCompletedDocs, threeOutstandingActions } from './fixture';
 import metadata from './metadata.json';
-import md from './README.md';
-
-// eslint-disable-next-line react/prop-types
-const HealthFactorsComponent = ({ metadataFixture }) => (
-  <ThemeProvider service="news" variant="default">
-    <HealthFactors metadata={metadataFixture} />
-  </ThemeProvider>
-);
+import readme from './README.md';
 
 export default {
   title: 'components/HealthFactors/HealthFactorsComponent',
-  component: HealthFactorsComponent,
+  component: HealthFactors,
   parameters: {
     metadata,
-    docs: {
-      component: {
-        title: 'Health Factors',
-      },
-      page: md,
-    },
+    docs: { readme },
   },
 };
 
 export const HealthFactorsWithCompleteDocs = () => (
-  <HealthFactorsComponent metadataFixture={allCompletedDocs} />
+  <HealthFactors metadata={allCompletedDocs} />
 );
 
 export const HealthFactorsWithOutstandingDocs = () => (
-  <HealthFactorsComponent metadataFixture={threeOutstandingActions} />
+  <HealthFactors metadataFixture={threeOutstandingActions} />
 );
 
 export const HealthFactorsWithNoData = () => (
-  <HealthFactorsComponent metadataFixture={null} />
+  <HealthFactors metadataFixture={null} />
 );

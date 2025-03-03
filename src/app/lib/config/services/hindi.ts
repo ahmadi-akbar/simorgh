@@ -1,9 +1,3 @@
-import {
-  C_POSTBOX,
-  C_WHITE,
-  C_GHOST,
-  C_POSTBOX_30,
-} from '../../../legacy/psammead/psammead-styles/src/colours';
 import devanagari from '../../../components/ThemeProvider/fontScripts/devanagari';
 import '#psammead/moment-timezone-include/tz/Asia/Kolkata';
 import '#psammead/psammead-locales/moment/hi';
@@ -18,6 +12,7 @@ export const service: DefaultServiceConfig = {
     articleTimestampSuffix: '',
     atiAnalyticsAppName: 'news-hindi',
     atiAnalyticsProducerId: '52',
+    atiAnalyticsProducerName: 'HINDI',
     chartbeatDomain: 'hindi.bbc.co.uk',
     brandName: 'BBC News हिंदी',
     product: 'BBC News',
@@ -38,7 +33,6 @@ export const service: DefaultServiceConfig = {
     service: 'hindi',
     serviceName: 'Hindi',
     languageName: 'Hindi',
-    themeColor: `${C_POSTBOX}`,
     twitterCreator: '@bbchindi',
     twitterSite: '@bbchindi',
     noBylinesPolicy:
@@ -50,27 +44,21 @@ export const service: DefaultServiceConfig = {
     swPath: '/sw.js',
     frontPageTitle:
       'ब्रेकिंग न्यूज़ समाचार, ताजा खबर | News, latest news, breaking news',
-    theming: {
-      brandBackgroundColour: `${C_POSTBOX}`,
-      brandLogoColour: `${C_WHITE}`,
-      brandForegroundColour: `${C_GHOST}`,
-      brandHighlightColour: `${C_WHITE}`,
-      brandBorderColour: `${C_POSTBOX_30}`,
-    },
     showAdPlaceholder: true,
     showRelatedTopics: true,
+    googleSiteVerification: 'D-aEHUiyVaMoUJXjVRbDVkxS0dLTMUZLD3dLPTnWO4Q',
     podcastPromo: {
       title: 'पॉडकास्ट',
-      brandTitle: 'दिनभर: पूरा दिन,पूरी ख़बर (Dinbhar)',
+      brandTitle: 'दुनिया जहान',
       brandDescription:
-        'देश और दुनिया की बड़ी ख़बरें और उनका विश्लेषण करता समसामयिक विषयों का कार्यक्रम.',
+        'दुनिया जहान: अंतरराष्ट्रीय विषयों की गहन पड़ताल करता कार्यक्रम.',
       image: {
-        src: 'https://ichef.bbci.co.uk/images/ic/448xn/p09ds7cb.jpg',
-        alt: 'दिनभर: पूरा दिन,पूरी ख़बर',
+        src: 'https://ichef.bbci.co.uk/images/ic/$recipe/p09krv89.jpg',
+        alt: 'मुकेश शर्मा',
       },
       linkLabel: {
         text: 'दिनभर: पूरा दिन,पूरी ख़बर',
-        href: 'https://www.bbc.com/hindi/podcasts/p09ds7zx',
+        href: 'https://www.bbc.com/hindi/podcasts/p05525mc',
       },
       skipLink: {
         text: 'छोड़कर %title% आगे बढ़ें',
@@ -99,6 +87,18 @@ export const service: DefaultServiceConfig = {
         mediaPlayer: 'मीडिया प्लेयर',
         audioPlayer: 'ऑडिया प्लेयर',
         videoPlayer: 'वीडियो प्लेयर',
+      },
+      liveExperiencePage: {
+        liveLabel: 'लाइव',
+        liveCoverage: 'लाइव कवरेज',
+        breaking: 'ब्रेकिंग न्यूज़',
+        postedAt: 'पोस्ट किया गया',
+        summary: 'सारांश',
+        shareButtonText: 'साझा कीजिए',
+      },
+      downloads: {
+        instructions: 'You can download and view today’s news.',
+        title: 'File Download',
       },
       gist: 'सारांश',
       error: {
@@ -160,7 +160,7 @@ export const service: DefaultServiceConfig = {
           },
           accept: 'ओके',
           reject: 'जानें कि क्या बदला है',
-          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/your-data-matters',
+          rejectUrl: 'https://www.bbc.com/usingthebbc/privacy-policy/',
         },
         cookie: {
           amp: {
@@ -175,7 +175,7 @@ export const service: DefaultServiceConfig = {
                 linkText: 'कुकीज़',
                 last: ' का इस्तेमाल करके हम आपके ब्राउज़िंग डेटा की ज़रिए आपको बेहतर और ख़ास तौर पर आपके लिए सेवाएं देेते हैं. इससे हमें आपको सही कंटेंट और उपयुक्त विज्ञापन दिखाने में मदद मिलती है. हमें बताएं कि क्या आप इस पर राज़ी हैं.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
               manage: 'सेटिंग्स मैनेज करें',
             },
@@ -191,7 +191,7 @@ export const service: DefaultServiceConfig = {
                   'अपनी वेबसाइट के ठीक से काम करने के लिए हमें सीमित स्तर पर कुछ जानकारियाँ सेव करनी पड़ती हैं जिसके लिए हम आपसे मंज़ूरी नहीं मांगते.',
                 para4: {
                   text: 'उन जरूरी जानकारी के बारे में और अधिक पढ़ें जो हमने आपके डिवाइस पर स्टोर किए हैं ताकि पेज ठीक से दिख सके.',
-                  url: 'https://www.bbc.co.uk/usingthebbc/strictly-necessary-cookies/',
+                  url: 'https://www.bbc.com/usingthebbc/cookies/strictly-necessary-cookies/',
                 },
                 para5:
                   'हमें आपकी मंज़ूरी और पसंद को आपकी डिवाइस के लोकल स्टोरेज में स्टोर करते हैं.',
@@ -224,13 +224,13 @@ export const service: DefaultServiceConfig = {
                 linkText: 'कुकीज़',
                 last: ' का इस्तेमाल आपको बेहतर ऑनलाइन सेवाएं देने के लिए करते हैं. हमें बताएं कि आप इन सभी कुकीज़ से सहमत हैं.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
             },
             accept: 'हां, मैं राज़ी हूं',
             reject: 'नहीं, मुझे सेटिंग्स पर ले चलें',
             rejectUrl:
-              'https://www.bbc.co.uk/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
+              'https://www.bbc.com/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
           },
         },
       },
@@ -262,6 +262,8 @@ export const service: DefaultServiceConfig = {
         duration: 'अवधि',
         recentEpisodes: 'प्रसारण का समय',
         podcastExternalLinks: 'ये पॉडकास्ट इन प्लेटफ़ॉर्म्स पर भी उपलब्ध है -',
+        download: 'एपिसोड डाउनलोड करें',
+        closeVideo: 'बाहर निकलें',
       },
       socialEmbed: {
         caption: {
@@ -297,17 +299,80 @@ export const service: DefaultServiceConfig = {
       },
       topStoriesTitle: 'टॉप स्टोरी',
       featuresAnalysisTitle: 'ज़रूर पढ़ें',
+      latestMediaTitle: 'ताज़ा',
+      ugc: {
+        // No JavaScript
+        noJsHeading: undefined,
+        noJsDescription: undefined,
+
+        // Optional
+        optional: 'वैकल्पिक',
+
+        // File upload
+        fileUploadLiveRegionText: undefined,
+        fileUploadLiveRegionUpdateText: undefined,
+        fileUploadListHeading: 'आप इसे अपलोड कर रहे हैं:',
+        fileUploadButton: 'एक फाइल चुनें',
+        fileUploadRemoveButton: undefined,
+
+        // Submit button
+        submitButton: 'भेजें',
+
+        // Validation
+        validationRequired: 'कुछ तो गड़बड़ है',
+        validationInvalidEmail:
+          'कुछ गड़बड़ लग रही है. कृपया आप सही ई-मेल लिखें',
+        validationInvalidTelephone: undefined,
+        validationFilesNotEnough:
+          'यहां आवश्यक फाइलों की संख्या पूरी नहीं है. कृपया भेजने के लिए कम से कम फाइलें अपलोड करें {{minFiles}}.',
+        validationFilesTooMany:
+          'यहां पर ज़्यादा फाइलें हैं. आप अधिकतम फाइलें ही भेज सकते हैं {{maxFiles}}.',
+        validationFilesInvalidType:
+          'खेद है. हम इस तरह की फाइल का इस्तेमाल नहीं कर सकते. आप इन फाइलों में से किसी एक तरह की फाइल का चुनाव करें {{fileTypes}}.',
+        validationFilesTooSmall:
+          'इस फाइल में कुछ गड़बड़ है. किसी अन्य फाइल का चुनाव करें',
+        validationFilesSizeExceeded:
+          'खेद है. आपकी फाइलें काफी बड़ी हैं. आप एक बार में केवल 2GB की फाइलें ही अपलोड कर सकते हैं',
+        validationWordLimit:
+          'अधिकतम {{wordLimit}} शब्दों की फाइल ही भेज सकते हैं',
+
+        // Messaging
+        retentionPeriodDays: undefined,
+        referenceNumber: 'रेफरेंस नंबर',
+        submissionInfoSignedOutMessage:
+          'आप अपने रेफरेंस के लिए इन बातो को नोट कर सकते हैं',
+        privacyInfoHtml: undefined,
+        emailToHtml:
+          'ई-मेल {{emailLink}} अगर आप अपना विचार बदलते हैं, तो बस अपने रेफरेंस नंबर के साथ हमें ई-मेल करें कि आप अपनी भेजी सामग्री इस्तेमाल नहीं होने देना चाहते हैं',
+        removalGuidelineText: undefined,
+
+        // Form Screen
+        dataPolicyHeading: undefined,
+
+        // Uploading Screen
+        uploadingHeading: 'आपकी फाइल अपलोड हो रही है...',
+        uploadingDescription: 'जब तक पूरा न हो जाए, तब तक इंतज़ार करें',
+
+        // Success Screen
+        successHeading: 'संदेश भेजा जा चुका है',
+        successDescription: 'हमसे संपर्क करने के लिए आपका शुक्रिया',
+        privacyPolicyLinkHref: undefined,
+        privacyPolicyLinkText: undefined,
+
+        // Error Screen
+        errorHeading: 'आपका संदेश नहीं भेजा गया है',
+        errorDescription: 'कृपया फिर भेजने का प्रयास करें',
+
+        // Closed Screen
+        closedHeading: 'अब यह विकल्प बंद हो चुका है',
+        closedDescription: 'ये इस तारीख़ को बंद हो चुका है {{date}}.',
+      },
     },
     mostRead: {
       header: 'सबसे अधिक पढ़ी गईं',
       lastUpdated: 'अंतिम अपडेट:',
       numberOfItems: 10,
       hasMostRead: true,
-    },
-    mostWatched: {
-      header: 'सबसे ज्यादा देखे गए',
-      numberOfItems: 10,
-      hasMostWatched: true,
     },
     radioSchedule: {
       hasRadioSchedule: false,
@@ -350,14 +415,20 @@ export const service: DefaultServiceConfig = {
           text: 'बीबीसी से संपर्क',
         },
         {
+          href: 'https://www.bbc.com/ws/languages',
+          text: 'अन्य भाषाएँ',
+        },
+        {
           id: 'COOKIE_SETTINGS',
-          href: 'https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/',
-          text: 'AdChoices / Do Not Sell My Info',
+          href: '#',
+          text: 'Do not share or sell my info',
           lang: 'en-GB',
         },
       ],
       copyrightText:
         'BBC. बाहरी साइटों की सामग्री के लिए बीबीसी ज़िम्मेदार नहीं है.',
+      collectiveNewsroomText:
+        'बीबीसी के लिए कलेक्टिव न्यूज़रूम की ओर से प्रकाशित',
     },
     timezone: 'Asia/Kolkata',
     navigation: [
@@ -372,6 +443,10 @@ export const service: DefaultServiceConfig = {
       {
         title: 'विदेश',
         url: '/hindi/topics/c9wpm0en87xt',
+      },
+      {
+        title: 'हेल्थ',
+        url: '/hindi/topics/cr50ykdx5wqt',
       },
       {
         title: 'मनोरंजन',
@@ -391,7 +466,7 @@ export const service: DefaultServiceConfig = {
       },
       {
         title: 'वीडियो',
-        url: '/hindi/media/video',
+        url: '/hindi/topics/cw9kv0kpxydt',
       },
       {
         title: 'पॉडकास्ट',

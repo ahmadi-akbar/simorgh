@@ -1,4 +1,6 @@
-import injectCspHeader, {
+import injectCspHeader from '.';
+
+import {
   generateChildSrc,
   generateConnectSrc,
   generateDefaultSrc,
@@ -9,8 +11,7 @@ import injectCspHeader, {
   generateStyleSrc,
   generateMediaSrc,
   generateWorkerSrc,
-  generatePrefetchSrc,
-} from '.';
+} from './directives';
 
 import { bbcDomains, advertisingServiceCountryDomains } from './domainLists';
 
@@ -50,23 +51,7 @@ describe('cspHeader', () => {
       originExample: 'https://www.bbc.com',
       urlExample: 'https://www.bbc.com/pidgin.amp',
       childSrcExpectation: ['blob:'],
-      connectSrcExpectation: [
-        ...bbcDomains,
-        'https://*.akamaihd.net',
-        'https://cdn.ampproject.org',
-        'https://*.ampproject.net',
-        'https://amp-error-reporting.appspot.com',
-        'https://*.doubleclick.net',
-        'https://*.effectivemeasure.net',
-        'https://*.google.com',
-        'https://*.googlesyndication.com',
-        'https://*.gstatic.com',
-        'https://*.imrworldwide.com',
-        'https://*.twitter.com',
-        'https://connect.facebook.net',
-        'https://cdn.privacy-mgmt.com',
-        "'self'",
-      ].sort(),
+      connectSrcExpectation: ["'self' https:"],
       defaultSrcExpectation: [
         ...bbcDomains,
         'https://*.googlesyndication.com',
@@ -85,7 +70,13 @@ describe('cspHeader', () => {
         'https://www.youtube.com',
         'https://www.youtube-nocookie.com',
         'https://www.facebook.com',
+        'https://*.google.com',
         'https://cdn.privacy-mgmt.com',
+        'https://*.googleadservices.com',
+        'https://*.amazon-adsystem.com',
+        'https://*.teads.tv',
+        'https://*.mapcreator.io',
+        'https://*.thomsonreuters.com',
         "'self'",
       ].sort(),
       imgSrcExpectation: [
@@ -107,6 +98,9 @@ describe('cspHeader', () => {
         'https://*.facebook.com',
         'https://sb.scorecardresearch.com',
         'https://i.ytimg.com',
+        'https://*.amazon-adsystem.com',
+        'https://www.googleadservices.com',
+        'https://*.teads.tv',
         "data: 'self'",
       ].sort(),
       scriptSrcExpectation: [
@@ -114,13 +108,14 @@ describe('cspHeader', () => {
         'https://cdn.ampproject.org',
         'https://*.chartbeat.com',
         'https://*.twitter.com',
+        'https://*.mapcreator.io',
+        'https://*.thomsonreuters.com',
         "'self'",
         "'unsafe-inline'",
       ].sort(),
       styleSrcExpectation: [...bbcDomains, "'unsafe-inline'"].sort(),
-      mediaSrcExpectation: [...bbcDomains].sort(),
+      mediaSrcExpectation: ["'self' blob: https:"],
       workerSrcExpectation: ['blob:', '*.bbc.co.uk', '*.bbc.com'],
-      prefetchSrcExpectation: ['https://*.googlesyndication.com'],
     },
     {
       isAmp: false,
@@ -128,24 +123,7 @@ describe('cspHeader', () => {
       originExample: 'https://www.bbc.com',
       urlExample: 'https://www.bbc.com/pidgin',
       childSrcExpectation: ["'self'"],
-      connectSrcExpectation: [
-        ...bbcDomains,
-        'https://*.akamaihd.net',
-        'https://cognito-identity.eu-west-1.amazonaws.com',
-        'https://dataplane.rum.eu-west-1.amazonaws.com',
-        'https://sts.eu-west-1.amazonaws.com',
-        'https://ws.bbc-reporting-api.app',
-        'https://*.doubleclick.net',
-        'https://*.effectivemeasure.net',
-        'https://*.google.com',
-        'https://*.googlesyndication.com',
-        'https://*.gstatic.com',
-        'https://*.imrworldwide.com',
-        'https://*.optimizely.com',
-        'https://*.wearehearken.eu',
-        'https://cdn.privacy-mgmt.com',
-        "'self'",
-      ].sort(),
+      connectSrcExpectation: ["'self' https:"],
       defaultSrcExpectation: [
         ...bbcDomains,
         'https://*.googlesyndication.com',
@@ -174,7 +152,14 @@ describe('cspHeader', () => {
         'https://edigitalsurvey.com',
         'https://www.tiktok.com',
         'https://*.facebook.com',
+        'https://*.google.com',
         'https://cdn.privacy-mgmt.com',
+        'https://public.flourish.studio',
+        'https://*.googleadservices.com',
+        'https://*.amazon-adsystem.com',
+        'https://*.teads.tv',
+        'https://*.mapcreator.io',
+        'https://*.thomsonreuters.com',
         "'self'",
       ].sort(),
       imgSrcExpectation: [
@@ -195,6 +180,9 @@ describe('cspHeader', () => {
         'https://i.ytimg.com',
         'https://*.tiktokcdn.com',
         'https://*.xx.fbcdn.net',
+        'https://*.amazon-adsystem.com',
+        'https://www.googleadservices.com',
+        'https://*.teads.tv',
         "data: 'self'",
       ].sort(),
       scriptSrcExpectation: [
@@ -205,23 +193,30 @@ describe('cspHeader', () => {
         'https://*.g.doubleclick.net',
         'https://*.effectivemeasure.net',
         'https://public.flourish.studio',
+        'https://www.riddle.com',
         'https://adservice.google.co.uk',
         'https://*.google.com',
         'https://*.googlesyndication.com',
         'https://www.googletagservices.com',
         'https://bbc.gscontxt.net',
         'https://*.imrworldwide.com',
+        'https://*.permutive.com',
         'https://cdn.privacy-mgmt.com',
         'https://www.instagram.com',
         'https://sb.scorecardresearch.com',
         'https://*.twimg.com',
         'https://*.twitter.com',
         'https://*.wearehearken.eu',
+        'https://*.webcontentassessor.com',
         'https://www.tiktok.com',
         'https://lf16-tiktok-web.ttwstatic.com',
         'https://*.facebook.com',
         'https://connect.facebook.net',
         'https://*.xx.fbcdn.net',
+        'https://*.amazon-adsystem.com',
+        'https://*.teads.tv',
+        'https://*.mapcreator.io',
+        'https://*.thomsonreuters.com',
         ...advertisingServiceCountryDomains,
         "'self'",
         "'unsafe-inline'",
@@ -235,9 +230,8 @@ describe('cspHeader', () => {
         'https://*.xx.fbcdn.net',
         "'unsafe-inline'",
       ].sort(),
-      mediaSrcExpectation: [...bbcDomains].sort(),
-      workerSrcExpectation: ["'self'", '*.bbc.co.uk', '*.bbc.com'],
-      prefetchSrcExpectation: ['https://*.googlesyndication.com'],
+      mediaSrcExpectation: ["'self' blob: https:"],
+      workerSrcExpectation: ['blob:', "'self'", '*.bbc.co.uk', '*.bbc.com'],
     },
     {
       isAmp: true,
@@ -245,24 +239,7 @@ describe('cspHeader', () => {
       originExample: 'https://www.test.bbc.com',
       urlExample: 'https://www.test.bbc.com/pidgin.amp',
       childSrcExpectation: ['blob:'],
-      connectSrcExpectation: [
-        ...bbcDomains,
-        'https://*.akamaihd.net',
-        'https://cdn.ampproject.org',
-        'https://*.ampproject.net',
-        'https://amp-error-reporting.appspot.com',
-        'https://logws1363.ati-host.net',
-        'https://*.doubleclick.net',
-        'https://*.effectivemeasure.net',
-        'https://*.google.com',
-        'https://*.googlesyndication.com',
-        'https://*.gstatic.com',
-        'https://*.imrworldwide.com',
-        'https://cdn.privacy-mgmt.com',
-        'https://*.twitter.com',
-        'https://connect.facebook.net',
-        "'self'",
-      ].sort(),
+      connectSrcExpectation: ["'self' https:"],
       defaultSrcExpectation: [
         ...bbcDomains,
         'https://*.googlesyndication.com',
@@ -281,7 +258,13 @@ describe('cspHeader', () => {
         'https://www.youtube-nocookie.com',
         'https://www.tiktok.com',
         'https://www.facebook.com',
+        'https://*.google.com',
         'https://cdn.privacy-mgmt.com',
+        'https://*.googleadservices.com',
+        'https://*.amazon-adsystem.com',
+        'https://*.teads.tv',
+        'https://*.mapcreator.io',
+        'https://*.thomsonreuters.com',
         "'self'",
       ].sort(),
       imgSrcExpectation: [
@@ -305,6 +288,9 @@ describe('cspHeader', () => {
         'https://*.tiktokcdn.com',
         'https://*.facebook.com',
         'https://*.xx.fbcdn.net',
+        'https://*.amazon-adsystem.com',
+        'https://www.googleadservices.com',
+        'https://*.teads.tv',
         "data: 'self'",
       ].sort(),
       scriptSrcExpectation: [
@@ -312,13 +298,14 @@ describe('cspHeader', () => {
         'https://cdn.ampproject.org',
         'https://*.chartbeat.com',
         'https://*.twitter.com',
+        'https://*.mapcreator.io',
+        'https://*.thomsonreuters.com',
         "'self'",
         "'unsafe-inline'",
       ].sort(),
       styleSrcExpectation: [...bbcDomains, "'unsafe-inline'"].sort(),
-      mediaSrcExpectation: [...bbcDomains].sort(),
+      mediaSrcExpectation: ["'self' blob: https:"],
       workerSrcExpectation: ['blob:', '*.bbc.co.uk', '*.bbc.com'],
-      prefetchSrcExpectation: ['https://*.googlesyndication.com'],
     },
     {
       isAmp: false,
@@ -326,25 +313,7 @@ describe('cspHeader', () => {
       originExample: 'https://www.test.bbc.com',
       urlExample: 'https://www.test.bbc.com/pidgin',
       childSrcExpectation: ["'self'"],
-      connectSrcExpectation: [
-        ...bbcDomains,
-        'https://*.akamaihd.net',
-        'https://logws1363.ati-host.net',
-        'https://ws.bbc-reporting-api.app',
-        'https://cognito-identity.eu-west-1.amazonaws.com',
-        'https://dataplane.rum.eu-west-1.amazonaws.com',
-        'https://sts.eu-west-1.amazonaws.com',
-        'https://*.doubleclick.net',
-        'https://*.effectivemeasure.net',
-        'https://*.google.com',
-        'https://*.googlesyndication.com',
-        'https://*.gstatic.com',
-        'https://*.imrworldwide.com',
-        'https://*.optimizely.com',
-        'https://*.wearehearken.eu',
-        'https://cdn.privacy-mgmt.com',
-        "'self'",
-      ].sort(),
+      connectSrcExpectation: ["'self' https:"],
       defaultSrcExpectation: [
         ...bbcDomains,
         'https://*.googlesyndication.com',
@@ -373,7 +342,14 @@ describe('cspHeader', () => {
         'https://www.youtube-nocookie.com',
         'https://www.tiktok.com',
         'https://*.facebook.com',
+        'https://*.google.com',
         'https://cdn.privacy-mgmt.com',
+        'https://public.flourish.studio',
+        'https://*.googleadservices.com',
+        'https://*.amazon-adsystem.com',
+        'https://*.teads.tv',
+        'https://*.mapcreator.io',
+        'https://*.thomsonreuters.com',
         "'self'",
       ].sort(),
       imgSrcExpectation: [
@@ -396,6 +372,9 @@ describe('cspHeader', () => {
         'https://sb.scorecardresearch.com',
         'https://*.tiktokcdn.com',
         'https://*.xx.fbcdn.net',
+        'https://*.amazon-adsystem.com',
+        'https://www.googleadservices.com',
+        'https://*.teads.tv',
         "data: 'self'",
       ].sort(),
       scriptSrcExpectation: [
@@ -408,6 +387,7 @@ describe('cspHeader', () => {
         'https://www.instagram.com',
         'https://*.twimg.com',
         'https://public.flourish.studio',
+        'https://www.riddle.com',
         'https://*.adsafeprotected.com',
         'https://cdn.ampproject.org',
         'https://*.g.doubleclick.net',
@@ -419,12 +399,18 @@ describe('cspHeader', () => {
         'https://bbc.gscontxt.net',
         'https://sb.scorecardresearch.com',
         'https://*.imrworldwide.com',
+        'https://*.permutive.com',
         'https://cdn.privacy-mgmt.com',
         'https://www.tiktok.com',
         'https://lf16-tiktok-web.ttwstatic.com',
         'https://*.facebook.com',
         'https://connect.facebook.net',
         'https://*.xx.fbcdn.net',
+        'https://*.webcontentassessor.com',
+        'https://*.amazon-adsystem.com',
+        'https://*.teads.tv',
+        'https://*.mapcreator.io',
+        'https://*.thomsonreuters.com',
         ...advertisingServiceCountryDomains,
         "'self'",
         "'unsafe-inline'",
@@ -438,9 +424,8 @@ describe('cspHeader', () => {
         'https://*.xx.fbcdn.net',
         "'unsafe-inline'",
       ].sort(),
-      mediaSrcExpectation: [...bbcDomains].sort(),
-      workerSrcExpectation: ["'self'", '*.bbc.co.uk', '*.bbc.com'],
-      prefetchSrcExpectation: ['https://*.googlesyndication.com'].sort(),
+      mediaSrcExpectation: ["'self' blob: https:"],
+      workerSrcExpectation: ['blob:', "'self'", '*.bbc.co.uk', '*.bbc.com'],
     },
   ].forEach(
     ({
@@ -458,7 +443,6 @@ describe('cspHeader', () => {
       styleSrcExpectation,
       mediaSrcExpectation,
       workerSrcExpectation,
-      prefetchSrcExpectation,
     }) => {
       describe(`Given isAmp ${isAmp} & isLive ${isLive}`, () => {
         it(`Then it has this childSrc`, () => {
@@ -468,9 +452,7 @@ describe('cspHeader', () => {
         });
 
         it(`Then it has this connectSrc`, () => {
-          expect(generateConnectSrc({ isAmp, isLive })).toEqual(
-            connectSrcExpectation,
-          );
+          expect(generateConnectSrc()).toEqual(connectSrcExpectation);
         });
 
         it(`Then it has this defaultSrc`, () => {
@@ -508,19 +490,11 @@ describe('cspHeader', () => {
         });
 
         it(`Then it has this mediaSrc`, () => {
-          expect(generateMediaSrc({ isAmp, isLive })).toEqual(
-            mediaSrcExpectation,
-          );
+          expect(generateMediaSrc()).toEqual(mediaSrcExpectation);
         });
 
         it(`Then it has this workerSrc`, () => {
           expect(generateWorkerSrc({ isAmp })).toEqual(workerSrcExpectation);
-        });
-
-        it(`Then it has this prefetchSrc`, () => {
-          expect(generatePrefetchSrc({ isAmp, isLive })).toEqual(
-            prefetchSrcExpectation,
-          );
         });
 
         it(`Then injectCspHeader middleware applies the correct Content-Security-Policy header`, () => {
@@ -541,7 +515,6 @@ describe('cspHeader', () => {
             `style-src ${styleSrcExpectation.join(' ')};` +
             `media-src ${mediaSrcExpectation.join(' ')};` +
             `worker-src ${workerSrcExpectation.join(' ')};` +
-            `prefetch-src ${prefetchSrcExpectation.join(' ')};` +
             `report-to worldsvc;` +
             `upgrade-insecure-requests`;
 

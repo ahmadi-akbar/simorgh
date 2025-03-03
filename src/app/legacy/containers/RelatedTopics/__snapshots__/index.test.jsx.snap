@@ -34,6 +34,13 @@ exports[`Expected use should render correctly with a single tag 1`] = `
 .emotion-5 {
   margin: 0;
   padding: 0;
+  scroll-margin-top: 1rem;
+}
+
+.emotion-5:focus-visible {
+  outline: 0.1875rem solid #000000;
+  box-shadow: 0 0 0 0.1875rem #FFFFFF;
+  outline-offset: 0.1875rem;
 }
 
 .emotion-7 {
@@ -192,6 +199,7 @@ exports[`Expected use should render correctly with a single tag 1`] = `
   <aside
     aria-labelledby="related-topics"
     class="emotion-0 emotion-1"
+    data-testid="related-topics"
     role="complementary"
   >
     <div
@@ -199,6 +207,8 @@ exports[`Expected use should render correctly with a single tag 1`] = `
     >
       <h2
         class="emotion-5 emotion-6"
+        id="section-label-heading-related-topics"
+        tabindex="-1"
       >
         <span
           class="emotion-7 emotion-8"
@@ -268,6 +278,13 @@ exports[`Expected use should render correctly with multiple tags 1`] = `
 .emotion-5 {
   margin: 0;
   padding: 0;
+  scroll-margin-top: 1rem;
+}
+
+.emotion-5:focus-visible {
+  outline: 0.1875rem solid #000000;
+  box-shadow: 0 0 0 0.1875rem #FFFFFF;
+  outline-offset: 0.1875rem;
 }
 
 .emotion-7 {
@@ -427,6 +444,7 @@ exports[`Expected use should render correctly with multiple tags 1`] = `
   <aside
     aria-labelledby="related-topics"
     class="emotion-0 emotion-1"
+    data-testid="related-topics"
     role="complementary"
   >
     <div
@@ -434,6 +452,8 @@ exports[`Expected use should render correctly with multiple tags 1`] = `
     >
       <h2
         class="emotion-5 emotion-6"
+        id="section-label-heading-related-topics"
+        tabindex="-1"
       >
         <span
           class="emotion-7 emotion-8"

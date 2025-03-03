@@ -6,13 +6,15 @@ exports[`Canonical Navigation snapshots should correctly render Canonical naviga
   background-color: #FFFFFF;
 }
 
-.emotion-0::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  border-bottom: 0.0625rem solid #E6E8EA;
+@media (min-width: 62.9375rem) {
+  .emotion-0::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border-bottom: 0.0625rem solid #E6E8EA;
+  }
 }
 
 .emotion-0 .e11sm0on2::after {
@@ -111,7 +113,7 @@ exports[`Canonical Navigation snapshots should correctly render Canonical naviga
 }
 
 @media (max-width: 37.4375rem) {
-  .emotion-12 {
+  .emotion-11 {
     white-space: nowrap;
     overflow-x: scroll;
     scroll-behavior: auto;
@@ -120,15 +122,15 @@ exports[`Canonical Navigation snapshots should correctly render Canonical naviga
     -ms-overflow-style: none;
   }
 
-  .emotion-12::-webkit-scrollbar {
+  .emotion-11::-webkit-scrollbar {
     display: none;
   }
 
-  .emotion-12:focus-visible {
+  .emotion-11:focus-visible {
     outline: none;
   }
 
-  .emotion-12:focus-visible:focus-visible::after {
+  .emotion-11:focus-visible::after {
     outline: 0.1875rem solid #000000;
     content: '';
     position: absolute;
@@ -136,7 +138,7 @@ exports[`Canonical Navigation snapshots should correctly render Canonical naviga
     height: 100%;
   }
 
-  .emotion-12:focus-visible:after {
+  .emotion-11:after {
     content: ' ';
     height: 100%;
     width: 3rem;
@@ -147,20 +149,20 @@ exports[`Canonical Navigation snapshots should correctly render Canonical naviga
     overflow: hidden;
     pointer-events: none;
     background: linear-gradient(
-          to right,
-          rgba(255, 255, 255, 0) 0%,
-          rgba(255, 255, 255, 1) 100%
-        );
+            to right,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 1) 100%
+          );
   }
 
   @media (min-width: 25rem) {
-    .emotion-12:focus-visible:after {
+    .emotion-11:after {
       width: 6rem;
     }
   }
 }
 
-.emotion-14 {
+.emotion-13 {
   background-color: #FFFFFF;
   clear: both;
   overflow: hidden;
@@ -172,16 +174,45 @@ exports[`Canonical Navigation snapshots should correctly render Canonical naviga
 }
 
 @media (min-width: 37.5rem) {
-  .emotion-14 {
+  .emotion-13 {
     display: none;
     visibility: hidden;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .emotion-14 {
+  .emotion-13 {
     -webkit-transition: none;
     transition: none;
+  }
+}
+
+.emotion-15 {
+  position: absolute;
+  width: calc(100vw - 0.8rem);
+  left: 0;
+}
+
+@media (min-width: 1041px) {
+  .emotion-15 {
+    width: calc(100vw + 0.8rem);
+    left: calc(-1 * (100vw - 1014px) / 2);
+  }
+}
+
+.emotion-15::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: -0.8rem;
+  width: calc(100% + 0.8rem);
+  border-bottom: 0.0625rem solid #E6E8EA;
+}
+
+@media (min-width: 1008px) {
+  .emotion-15 {
+    display: none;
   }
 }
 
@@ -216,13 +247,13 @@ exports[`Canonical Navigation snapshots should correctly render Canonical naviga
             />
           </svg>
           <span
-            class="emotion-10 emotion-11"
+            class="emotion-10"
           >
             menu
           </span>
         </button>
         <div
-          class="emotion-12 emotion-13"
+          class="emotion-11 emotion-12"
           data-e2e="scrollable-nav"
           dir="ltr"
         >
@@ -236,7 +267,7 @@ exports[`Canonical Navigation snapshots should correctly render Canonical naviga
         </div>
       </div>
       <div
-        class="emotion-14 emotion-15"
+        class="emotion-13 emotion-14"
         data-e2e="dropdown-nav"
         height="0"
       >
@@ -248,6 +279,9 @@ exports[`Canonical Navigation snapshots should correctly render Canonical naviga
           </li>
         </ul>
       </div>
+      <div
+        class="emotion-15 emotion-16"
+      />
     </div>
   </nav>
 </div>

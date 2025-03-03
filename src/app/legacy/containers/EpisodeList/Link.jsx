@@ -1,12 +1,6 @@
 /* eslint-disable jsx-a11y/aria-role */
 import React from 'react';
-import { node, string, bool, number } from 'prop-types';
 import styled from '@emotion/styled';
-import {
-  C_METAL,
-  C_POSTBOX,
-  C_STONE,
-} from '#psammead/psammead-styles/src/colours';
 import MediaIndicator from './MediaIndicator';
 import { withEpisodeContext } from './helpers';
 
@@ -45,7 +39,7 @@ const StyledAnchor = styled.a`
     .rounded-play-button__ring,
     .rounded-play-button__inner {
       fill: currentColor;
-      color: ${C_POSTBOX};
+      color: ${props => props.theme.palette.POSTBOX};
     }
     .rounded-play-button__triangle {
       fill: transparent;
@@ -53,12 +47,19 @@ const StyledAnchor = styled.a`
   }
   &:visited {
     [class*='--visited'] {
-      color: ${({ darkMode }) => (darkMode ? C_STONE : C_METAL)};
+      color: ${({ theme }) =>
+        theme.isDarkUi ? theme.palette.STONE : theme.palette.METAL};
     }
   }
 `;
 
-const Link = ({ children, showMediaIndicator, dir, index, ...props }) => {
+const Link = ({
+  children,
+  showMediaIndicator = false,
+  dir,
+  index,
+  ...props
+}) => {
   return (
     <StyledAnchor
       showMediaIndicator={showMediaIndicator}
@@ -80,17 +81,6 @@ const Link = ({ children, showMediaIndicator, dir, index, ...props }) => {
       </span>
     </StyledAnchor>
   );
-};
-
-Link.propTypes = {
-  children: node.isRequired,
-  dir: string.isRequired,
-  index: number.isRequired,
-  showMediaIndicator: bool,
-};
-
-Link.defaultProps = {
-  showMediaIndicator: false,
 };
 
 export default withEpisodeContext(Link);
