@@ -1,9 +1,3 @@
-import {
-  C_POSTBOX,
-  C_WHITE,
-  C_GHOST,
-  C_POSTBOX_30,
-} from '../../../legacy/psammead/psammead-styles/src/colours';
 import latin from '../../../components/ThemeProvider/fontScripts/latin';
 import '#psammead/moment-timezone-include/tz/GMT';
 import '#psammead/psammead-locales/moment/ha';
@@ -18,6 +12,7 @@ export const service: DefaultServiceConfig = {
     articleTimestampSuffix: '',
     atiAnalyticsAppName: 'news-hausa',
     atiAnalyticsProducerId: '51',
+    atiAnalyticsProducerName: 'HAUSA',
     chartbeatDomain: 'hausa.bbc.co.uk',
     brandName: 'BBC News Hausa',
     product: 'BBC News',
@@ -38,7 +33,6 @@ export const service: DefaultServiceConfig = {
     service: 'hausa',
     serviceName: 'Hausa',
     languageName: 'Hausa',
-    themeColor: `${C_POSTBOX}`,
     twitterCreator: '@bbchausa',
     twitterSite: '@bbchausa',
     noBylinesPolicy:
@@ -49,13 +43,6 @@ export const service: DefaultServiceConfig = {
     manifestPath: '/manifest.json',
     swPath: '/sw.js',
     frontPageTitle: 'Labaran Duniya',
-    theming: {
-      brandBackgroundColour: `${C_POSTBOX}`,
-      brandLogoColour: `${C_WHITE}`,
-      brandForegroundColour: `${C_GHOST}`,
-      brandHighlightColour: `${C_WHITE}`,
-      brandBorderColour: `${C_POSTBOX_30}`,
-    },
     showAdPlaceholder: true,
     showRelatedTopics: true,
     podcastPromo: {
@@ -93,7 +80,19 @@ export const service: DefaultServiceConfig = {
         audioPlayer: 'Audio player',
         videoPlayer: 'Video player',
       },
-      gist: 'Takaitacce',
+      liveExperiencePage: {
+        liveLabel: 'Kai-tsaye',
+        liveCoverage: 'Rahoto kai-tsaye',
+        breaking: 'Labarai da dumi-dumi',
+        postedAt: 'An wallafa a',
+        summary: 'Taƙaitattu',
+        shareButtonText: 'Aika',
+      },
+      downloads: {
+        instructions: 'You can download and view today’s news.',
+        title: 'File Download',
+      },
+      gist: 'Taƙaitattu',
       error: {
         404: {
           statusCode: '404',
@@ -151,7 +150,7 @@ export const service: DefaultServiceConfig = {
           },
           accept: 'Madalla',
           reject: 'Duba abin da ya sauya',
-          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/your-data-matters',
+          rejectUrl: 'https://www.bbc.com/usingthebbc/privacy-policy/',
         },
         cookie: {
           amp: {
@@ -166,7 +165,7 @@ export const service: DefaultServiceConfig = {
                 linkText: 'tattara',
                 last: ' wasu bayanai game da ku duka domin mu samar maku da abubuwa masu kayatarwa a Intanet',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
               manage: 'Na ba da damar aiwatar da tsare-tsarena',
             },
@@ -182,7 +181,7 @@ export const service: DefaultServiceConfig = {
                   'Domin shafukanmu su gudana, mun tattara wasu ƴan bayanai kan wayarku ba tare da izininku ba.',
                 para4: {
                   text: 'Karanta muhimman bayanan da muka tattara kan wayarku domin inganta shafukanmu.',
-                  url: 'https://www.bbc.co.uk/usingthebbc/strictly-necessary-cookies/',
+                  url: 'https://www.bbc.com/usingthebbc/cookies/strictly-necessary-cookies/',
                 },
                 para5: 'Muna adana bayanan da kuka amice mu ɗauka na wayarku.',
                 heading3: 'Zaɓi kan tara bayanai',
@@ -214,13 +213,13 @@ export const service: DefaultServiceConfig = {
                 linkText: "ka'idoji",
                 last: " domin samar maku da abubuwa masu kayatarwa a Intanet. Muna rokonku da ku sanar da mu idan kun gamsu da duka wadannan ka'idoji.",
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
             },
             accept: 'Eh, na gamsu',
             reject: "A'a, ku kai ni wurin zabar tsari",
             rejectUrl:
-              'https://www.bbc.co.uk/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
+              'https://www.bbc.com/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
           },
         },
       },
@@ -253,6 +252,8 @@ export const service: DefaultServiceConfig = {
         duration: 'Tsawon lokaci',
         recentEpisodes: 'Kari',
         podcastExternalLinks: 'Za a iya samun wannan Podcast din a',
+        download: 'Sauke shiri',
+        closeVideo: 'Fita',
       },
       socialEmbed: {
         caption: {
@@ -285,18 +286,77 @@ export const service: DefaultServiceConfig = {
           'Bude babban shafin domin kallon duka abubuwan da muka wallafa',
       },
       topStoriesTitle: 'Babban Labari',
-      featuresAnalysisTitle: 'Minti Daya Da BBC',
+      featuresAnalysisTitle: 'Labarai na musamman',
+      ugc: {
+        // No JavaScript
+        noJsHeading: undefined,
+        noJsDescription: undefined,
+
+        // Optional
+        optional: 'wannan zaɓi ne',
+
+        // File upload
+        fileUploadLiveRegionText: undefined,
+        fileUploadLiveRegionUpdateText: undefined,
+        fileUploadListHeading: 'Ga abin da kuke dorawa:',
+        fileUploadButton: 'Ku zabi irin abin da za ka tura',
+        fileUploadRemoveButton: undefined,
+
+        // Submit button
+        submitButton: 'Aika',
+
+        // Validation
+        validationRequired: 'Ka manta wani abu',
+        validationInvalidEmail:
+          'Kamar akwai kuskure. Saka adireshin imail na na ƙwarai.',
+        validationInvalidTelephone: undefined,
+        validationFilesNotEnough:
+          'Abubuwan da ka tura ba su isa ba. Ka ƙara a ƙalla {{minFiles}}.',
+        validationFilesTooMany:
+          'Ka sanya abubuwa da yawa. {{maxFiles}} ne iya yawan abin da za ka iya sakawa.',
+        validationFilesInvalidType:
+          'Ba za mu iya amfani da wannan abin ba. Ku ƙara {{fileTypes}}.',
+        validationFilesTooSmall: undefined,
+        validationFilesSizeExceeded:
+          'Waɗannan abubuwan sun yi nauyi. Za ka iya tura abu mai nauyin 12GB ne kawai a lokaci guda.',
+        validationWordLimit: 'Iya yawan kalmomi {{wordLimit}}',
+
+        // Messaging
+        retentionPeriodDays: undefined,
+        referenceNumber: undefined,
+        submissionInfoSignedOutMessage: undefined,
+        privacyInfoHtml: undefined,
+        emailToHtml: undefined,
+        removalGuidelineText:
+          'Idan har kun aiko da wani abu don a sanya a shirye-shirye ko a wallafa, ba za mu iya cire shi ba idan har mun yi amfani da shi.',
+
+        // Form Screen
+        dataPolicyHeading: undefined,
+
+        // Uploading Screen
+        uploadingHeading: 'Saƙon da kake ɗorawa na hawa...',
+        uploadingDescription: 'Ka jira har sai ya kammala.',
+
+        // Success Screen
+        successHeading: 'Saƙonka ya tafi',
+        successDescription: 'Mun gode da tuntuɓarmu.',
+        privacyPolicyLinkHref: undefined,
+        privacyPolicyLinkText: undefined,
+
+        // Error Screen
+        errorHeading: 'Saƙonka bai je ba',
+        errorDescription: 'Sake aikawa.',
+
+        // Closed Screen
+        closedHeading: 'This is now closed',
+        closedDescription: 'This closed on {{date}}.',
+      },
     },
     mostRead: {
       header: 'Wanda aka fi karantawa',
       lastUpdated: 'Na baya-bayan nan:',
       numberOfItems: 5,
       hasMostRead: true,
-    },
-    mostWatched: {
-      header: 'Wadanda aka fi kallo',
-      numberOfItems: 10,
-      hasMostWatched: true,
     },
     radioSchedule: {
       hasRadioSchedule: true,
@@ -338,9 +398,13 @@ export const service: DefaultServiceConfig = {
           text: 'Tuntubi BBC',
         },
         {
+          href: 'https://www.bbc.com/ws/languages',
+          text: 'Labaran BBC a sauran harsuna',
+        },
+        {
           id: 'COOKIE_SETTINGS',
-          href: 'https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/',
-          text: 'AdChoices / Do Not Sell My Info',
+          href: '#',
+          text: 'Do not share or sell my info',
           lang: 'en-GB',
         },
       ],
@@ -367,7 +431,7 @@ export const service: DefaultServiceConfig = {
       },
       {
         title: 'Bidiyo',
-        url: '/hausa/media/video',
+        url: '/hausa/topics/cn09qmz4jryt',
       },
       {
         title: 'Shirye-shirye na Musamman',
@@ -375,7 +439,7 @@ export const service: DefaultServiceConfig = {
       },
       {
         title: 'Shirye-shiryen rediyo',
-        url: '/hausa/media-52219055',
+        url: '/hausa/topics/c4nx34q5724t',
       },
     ],
   },

@@ -1,9 +1,3 @@
-import {
-  C_POSTBOX,
-  C_WHITE,
-  C_GHOST,
-  C_POSTBOX_30,
-} from '../../../legacy/psammead/psammead-styles/src/colours';
 import latin from '../../../components/ThemeProvider/fontScripts/latin';
 import '#psammead/psammead-locales/moment/yo';
 import '#psammead/moment-timezone-include/tz/Africa/Lagos';
@@ -18,6 +12,7 @@ export const service: DefaultServiceConfig = {
     articleTimestampSuffix: '',
     atiAnalyticsAppName: 'news-yoruba',
     atiAnalyticsProducerId: '107',
+    atiAnalyticsProducerName: 'YORUBA',
     chartbeatDomain: 'yoruba.bbc.co.uk',
     brandName: 'BBC News Yorùbá',
     product: 'BBC News',
@@ -38,18 +33,23 @@ export const service: DefaultServiceConfig = {
     service: 'yoruba',
     serviceName: 'Yoruba',
     languageName: 'Yoruba',
-    themeColor: `${C_POSTBOX}`,
     twitterCreator: '@BBCNews', // to be updated
     twitterSite: '@BBCNews', // to be updated
-    theming: {
-      brandBackgroundColour: `${C_POSTBOX}`,
-      brandLogoColour: `${C_WHITE}`,
-      brandForegroundColour: `${C_GHOST}`,
-      brandHighlightColour: `${C_WHITE}`,
-      brandBorderColour: `${C_POSTBOX_30}`,
-    },
     showAdPlaceholder: false,
     showRelatedTopics: true,
+    podcastPromo: {
+      title: 'WhatsApp',
+      brandTitle: 'Èyí ni ìkànnì Whatsapp wa',
+      brandDescription: 'Àjáàbalẹ̀ ìròyìn BBC News Yorùbá lórí WhatsApp rẹ',
+      image: {
+        src: 'https://ichef.bbc.co.uk/images/ic/$recipe/p0kthb9n.jpg',
+        alt: 'BBC News Yorùbá ti wà lórí WhatsApp',
+      },
+      linkLabel: {
+        text: 'Darapọ̀ mọ́ wa nibì',
+        href: 'https://bit.ly/3Xgfl35',
+      },
+    },
     noBylinesPolicy:
       'https://www.bbc.com/yoruba/institutional-48528718#authorexpertise',
     publishingPrinciples: 'https://www.bbc.com/yoruba/institutional-48528718',
@@ -78,6 +78,18 @@ export const service: DefaultServiceConfig = {
         mediaPlayer: 'Media player',
         audioPlayer: 'Audio player',
         videoPlayer: 'Video player',
+      },
+      liveExperiencePage: {
+        liveLabel: 'Lọ́wọ́lọ́wọ́',
+        liveCoverage: 'Ìgbóhùnsáfẹ́fẹ́ tí ń lọ lọ́wọ́',
+        breaking: 'Kókó',
+        postedAt: 'Tí a fiṣọwọ́ ní',
+        summary: 'Ìsọníṣókí',
+        shareButtonText: 'Ṣe alábàápín',
+      },
+      downloads: {
+        instructions: 'You can download and view today’s news.',
+        title: 'File Download',
       },
       gist: 'Ìsọníṣókí',
       error: {
@@ -133,7 +145,7 @@ export const service: DefaultServiceConfig = {
           },
           accept: 'Ó dára bẹ́ẹ̀',
           reject: 'Ẹ ṣe ìwádìí ohun tó yípadà',
-          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/your-data-matters',
+          rejectUrl: 'https://www.bbc.com/usingthebbc/privacy-policy/',
         },
         cookie: {
           amp: {
@@ -146,7 +158,7 @@ export const service: DefaultServiceConfig = {
                 linkText: 'ìlànà òpó ìtàkùn àgbáyé',
                 last: ', láti mọ détà tí ẹ̀ ń lò, ká le è fun yín ní ìrírí lílo ojú òpó yélujára tó dára jùlọ, ká sì tún ri dájú pé ẹyin ìkan ló ń rí àwọn ohun ta kọ àti ìpolówó ọjà tí á ń fi hàn yín.Ẹ jọ̀wọ́, ẹ jẹ́ ká mọ̀ tẹ bá fara mọ́ ọ.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
               manage: 'Mojuto eto mi',
             },
@@ -162,7 +174,7 @@ export const service: DefaultServiceConfig = {
                   'Ki oju opo wa ba a le ṣiṣẹ, a ma n fi awọn akọsilẹ kan pamọ lori foonu rẹ, lai gba aṣẹ lọwọ rẹ.',
                 para4: {
                   text: 'Ka si nipa awọn akọsilẹ to sẹ koko ti a fi pamọ si ori foonu rẹ, ki oju opo wa le ṣiṣẹ.',
-                  url: 'https://www.bbc.co.uk/usingthebbc/strictly-necessary-cookies/',
+                  url: 'https://www.bbc.com/usingthebbc/cookies/strictly-necessary-cookies/',
                 },
                 para5:
                   'A n lo aaye labẹle, lati fi awsn nakn ti o fọwọ si, lori foonu rẹ.',
@@ -195,13 +207,13 @@ export const service: DefaultServiceConfig = {
                 linkText: 'fún ìlànà òpó ìtàkùn àgbáyé',
                 last: ' láti jẹ́ kẹ ní ìrírí tó dára jùlọ lójú òpó ìtàkùn àgbáyé. Ẹ jọ̀wọ́, ẹ jẹ́ ká mọ tẹ bá faramọ gbogbo àwọn ìlàná òpó ìtàkùn àgbáyé wọnyí.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
             },
             accept: 'Bẹ́ẹ̀ni, mo fara mọ́ ọ',
             reject: 'Rárá, ẹ gbé mi padà sí ojú òpó àtúntò (setting)',
             rejectUrl:
-              'https://www.bbc.co.uk/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
+              'https://www.bbc.com/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
           },
         },
       },
@@ -223,6 +235,7 @@ export const service: DefaultServiceConfig = {
         previousRadioShow: 'Previous radio show',
         nextRadioShow: 'Next radio show',
         duration: 'Duration',
+        closeVideo: 'Jáde',
       },
       socialEmbed: {
         caption: {
@@ -251,17 +264,13 @@ export const service: DefaultServiceConfig = {
       },
       topStoriesTitle: 'Ìròyìn tó ṣe kókó',
       featuresAnalysisTitle: 'Ìwádìí kíkún lóríi kókó ìròyìn ',
+      latestMediaTitle: 'Èyí tí ó ṣẹ̀ṣẹ̀dé',
     },
     mostRead: {
       header: 'Èyítí A Ń Kà Jùlọ',
       lastUpdated: 'Tí a mú dójú ìwọ̀n gbẹ̀yìn ní:',
       numberOfItems: 10,
       hasMostRead: true,
-    },
-    mostWatched: {
-      header: 'Èyí tí a wò jùlọ',
-      numberOfItems: 10,
-      hasMostWatched: true,
     },
     radioSchedule: {
       hasRadioSchedule: false,
@@ -275,24 +284,24 @@ export const service: DefaultServiceConfig = {
         text: 'Ìdí tí ẹ fi le è nígbàagbọ́ nínú ìròyìn BBC',
       },
       externalLink: {
-        href: 'https://www.bbc.co.uk/editorialguidelines/guidance/feeds-and-links',
+        href: 'https://www.bbc.com/editorialguidelines/guidance/feeds-and-links',
         text: 'Ọwọ́ tí a fi mú ìbáṣepọ̀ ti ìta.',
       },
       links: [
         {
-          href: 'https://www.bbc.co.uk/usingthebbc/terms/',
+          href: 'https://www.bbc.com/usingthebbc/terms/',
           text: 'Ìlànà Lílò',
         },
         {
-          href: 'https://www.bbc.co.uk/aboutthebbc',
+          href: 'https://www.bbc.com/aboutthebbc',
           text: 'Nípa BBC',
         },
         {
-          href: 'https://www.bbc.co.uk/usingthebbc/privacy/',
+          href: 'https://www.bbc.com/usingthebbc/privacy/',
           text: 'Òfin Àṣírí',
         },
         {
-          href: 'https://www.bbc.co.uk/usingthebbc/cookies/',
+          href: 'https://www.bbc.com/usingthebbc/cookies/',
           text: 'Cookies',
         },
         {
@@ -300,9 +309,13 @@ export const service: DefaultServiceConfig = {
           text: 'Kàn sí BBC',
         },
         {
+          href: 'https://www.bbc.com/ws/languages',
+          text: 'Ka ìròyìn BBC l’èdè míràn nibi',
+        },
+        {
           id: 'COOKIE_SETTINGS',
-          href: 'https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/',
-          text: 'AdChoices / Do Not Sell My Info',
+          href: '#',
+          text: 'Do not share or sell my info',
           lang: 'en-GB',
         },
       ],
@@ -321,7 +334,7 @@ export const service: DefaultServiceConfig = {
       },
       {
         title: 'Fídíò',
-        url: '/yoruba/media/video',
+        url: '/yoruba/topics/ck5rznlk6k3t',
       },
       {
         title: 'Èyí to gbajúmọ̀ jù',

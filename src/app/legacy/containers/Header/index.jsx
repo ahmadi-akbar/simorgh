@@ -1,27 +1,30 @@
 import React, { useContext, useRef, useState } from 'react';
 import SkipLink from '#psammead/psammead-brand/src/SkipLink';
 import { RequestContext } from '#contexts/RequestContext';
-import useToggle from '#hooks/useToggle';
-import { string, bool } from 'prop-types';
 import useOperaMiniDetection from '#hooks/useOperaMiniDetection';
-import { ARTICLE_PAGE } from '#app/routes/utils/pageTypes';
+import ScriptLink from '#app/components/Header/ScriptLink';
+import {
+  ARTICLE_PAGE,
+  HOME_PAGE,
+  TOPIC_PAGE,
+} from '#app/routes/utils/pageTypes';
+import LiteSiteCta from '#app/components/LiteSiteCta';
+import { liteEnabledServices } from '#app/components/LiteSiteCta/liteSiteConfig';
 import { ServiceContext } from '../../../contexts/ServiceContext';
-import ScriptLink from './ScriptLink';
 import ConsentBanner from '../ConsentBanner';
 import NavigationContainer from '../Navigation';
 import BrandContainer from '../Brand';
 
-// eslint-disable-next-line react/prop-types
 const Header = ({ brandRef, borderBottom, skipLink, scriptLink, linkId }) => {
   const [showConsentBanner, setShowConsentBanner] = useState(true);
 
   const handleBannerBlur = event => {
     const isRejectButton =
-      event.target.getAttribute('data-terms-banner') === 'reject' ||
-      event.target.getAttribute('data-cookie-banner') === 'reject';
+      event.target?.getAttribute('data-terms-banner') === 'reject' ||
+      event.target?.getAttribute('data-cookie-banner') === 'reject';
     const isAcceptButton =
-      event.relatedTarget.getAttribute('data-terms-banner') === 'accept' ||
-      event.relatedTarget.getAttribute('data-cookie-banner') === 'accept';
+      event.relatedTarget?.getAttribute('data-terms-banner') === 'accept' ||
+      event.relatedTarget?.getAttribute('data-cookie-banner') === 'accept';
     const hasMovedToContent = !isAcceptButton && event.relatedTarget !== 'null';
 
     if (isRejectButton && hasMovedToContent) {
@@ -44,17 +47,11 @@ const Header = ({ brandRef, borderBottom, skipLink, scriptLink, linkId }) => {
   );
 };
 
-const HeaderContainer = ({ scriptSwitchId, renderScriptSwitch }) => {
-  const { pageType, isAmp } = useContext(RequestContext);
+const HeaderContainer = ({ propsForOJExperiment }) => {
+  const { isAmp, isApp, pageType, isLite } = useContext(RequestContext);
   const { service, script, translations, dir, scriptLink, lang, serviceLang } =
     useContext(ServiceContext);
   const { skipLinkText } = translations;
-
-  // The article page toggles the nav bar based on environment
-  const showNavOnArticles = useToggle('navOnArticles').enabled;
-
-  // All other page types show the nav bar at all times
-  const showNav = showNavOnArticles || pageType !== ARTICLE_PAGE;
 
   const isOperaMini = useOperaMiniDetection();
 
@@ -75,7 +72,22 @@ const HeaderContainer = ({ scriptSwitchId, renderScriptSwitch }) => {
     </SkipLink>
   );
 
-  const shouldRenderScriptSwitch = scriptLink && renderScriptSwitch;
+  let shouldRenderScriptSwitch = false;
+
+  if (scriptLink) {
+    switch (true) {
+      case service === 'uzbek' &&
+        ![ARTICLE_PAGE, HOME_PAGE, TOPIC_PAGE].includes(pageType):
+        shouldRenderScriptSwitch = false;
+        break;
+      default:
+        shouldRenderScriptSwitch = true;
+        break;
+    }
+  }
+  const renderLiteSiteCTA = isLite && liteEnabledServices.includes(service);
+
+  if (isApp) return null;
 
   return (
     <header role="banner" lang={serviceLang}>
@@ -83,36 +95,19 @@ const HeaderContainer = ({ scriptSwitchId, renderScriptSwitch }) => {
         <Header
           linkId="brandLink"
           skipLink={skipLink}
-          scriptLink={
-            shouldRenderScriptSwitch && (
-              <ScriptLink scriptSwitchId={scriptSwitchId} />
-            )
-          }
+          scriptLink={shouldRenderScriptSwitch && <ScriptLink />}
         />
       ) : (
         <Header
           brandRef={brandRef}
           skipLink={skipLink}
-          scriptLink={
-            shouldRenderScriptSwitch && (
-              <ScriptLink scriptSwitchId={scriptSwitchId} />
-            )
-          }
+          scriptLink={shouldRenderScriptSwitch && <ScriptLink />}
         />
       )}
-      {showNav && <NavigationContainer />}
+      {renderLiteSiteCTA && <LiteSiteCta />}
+      <NavigationContainer propsForOJExperiment={propsForOJExperiment} />
     </header>
   );
-};
-
-HeaderContainer.propTypes = {
-  scriptSwitchId: string,
-  renderScriptSwitch: bool,
-};
-
-HeaderContainer.defaultProps = {
-  scriptSwitchId: '',
-  renderScriptSwitch: true,
 };
 
 export default HeaderContainer;

@@ -1,0 +1,154 @@
+{
+  "data": {
+    "title": "BBC News Swahili",
+    "description": "",
+    "pageType": "home",
+    "curations": [
+      {
+        "summaries": [
+          {
+            "type": "article",
+            "title": "Waziri mkuu wa Ethiopia akiri vikosi vya Eritrea vipo Tigray",
+            "firstPublished": "2021-03-24T10:30:07.000Z",
+            "lastPublished": "2021-03-24T10:51:44.000Z",
+            "link": "https://www.bbc.com/swahili/habari-23391955",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/15059/test/_63750168_24febmbezi.jpg",
+            "description": "Abiy, ambaye ni mshindi wa zamani wa Tuzo ya Amani ya Nobel, hakukiri kwamba wanajeshi wa Eritrea walipelekwa katika miji ya Ethiopia.",
+            "imageAlt": "Magufuli",
+            "id": "7766fc81-fc33-486d-9f36-c860b3ae2cc8"
+          },
+          {
+            "type": "article",
+            "title": "Kenya's new banknotes and the battle against corruption",
+            "firstPublished": "2021-03-24T11:54:11.000Z",
+            "lastPublished": "2021-03-24T11:54:11.000Z",
+            "link": "https://www.bbc.com/swahili/habari-23392024",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/46B9/test/_63750181_image1.jpg",
+            "description": "A shake-up of the Kenyan currency has provoked controversy, including several court challenges",
+            "imageAlt": "Kenyans withdrawing cash from an ATM",
+            "id": "30885acd-01e7-4e85-a07e-52b0b0daa63f"
+          },
+          {
+            "type": "article",
+            "title": "China releases largest study on Covid-19 outbreak",
+            "firstPublished": "2020-02-18T08:29:03.000Z",
+            "lastPublished": "2020-02-18T08:29:03.000Z",
+            "link": "https://www.bbc.com/swahili/habari-23267902",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/0DB9/test/_63731530_mediaitem63731529.jpg",
+            "description": "Data shows that more than 80% of the cases have been mild, with the sick and elderly most at risk.",
+            "imageAlt": "Two people walkinh",
+            "id": "7d54728f-fac9-6c49-8942-e5d9e7d4422c"
+          }
+        ],
+        "activePage": 1,
+        "pageCount": 1,
+        "curationId": "urn:bbc:tipo:list:91a7eac2-3391-4858-811f-28181682634d",
+        "curationType": "tipo-curation",
+        "position": 0,
+        "title": "BBC News Swahili Top Stories",
+        "visualProminence": "HIGH",
+        "visualStyle": "COLLECTION"
+      },
+      {
+        "summaries": [
+          {
+            "type": "article",
+            "title": "headlines as usual",
+            "firstPublished": "2017-06-14T14:04:13.000Z",
+            "lastPublished": "2017-06-14T14:04:13.000Z",
+            "link": "https://www.bbc.com/hausa/23132403",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/5A54/test/_63542132_mediaitem63542131.jpg",
+            "description": "This is what appears ABOVE the images",
+            "imageAlt": "as",
+            "id": "a07dc85d-221d-3549-bf70-21327d0ffc0a"
+          },
+          {
+            "type": "article",
+            "title": "Mahujaji Waislamu kuvalishwa bangili za kielektroniki 10",
+            "firstPublished": "2016-07-01T14:41:15.000Z",
+            "lastPublished": "2016-07-01T14:41:15.000Z",
+            "link": "https://www.bbc.com/swahili/23057190",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/9A0F/test/_63493493_160529154036_hajj_624x351_getty.jpg",
+            "description": "Mahujaji Waislamu kuvalishwa bangili za kielektroniki",
+            "imageAlt": "Mahujaji",
+            "id": "9c4ddd78-8a72-3c43-b593-34357a477708"
+          },
+          {
+            "type": "article",
+            "title": "Mahujaji Waislamu kuvalishwa bangili za kielektroniki 11",
+            "firstPublished": "2016-07-01T14:41:25.000Z",
+            "lastPublished": "2016-07-01T14:41:25.000Z",
+            "link": "https://www.bbc.com/swahili/23057191",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/9A0F/test/_63493493_160529154036_hajj_624x351_getty.jpg",
+            "description": "Mahujaji Waislamu kuvalishwa bangili za kielektroniki",
+            "imageAlt": "Mahujaji",
+            "id": "457464d4-526e-c644-ade9-60e6e549dfe3"
+          }
+        ],
+        "activePage": 1,
+        "pageCount": 1,
+        "curationId": "urn:bbc:tipo:list:b91b6660-c9d1-4878-ab2b-b61ea2480e1b",
+        "curationType": "tipo-curation",
+        "position": 1,
+        "title": "Gumzo mitandaoni",
+        "visualProminence": "HIGH",
+        "visualStyle": "COLLECTION"
+      },
+      {
+        "curationId": "urn:bbc:programmes:available-episodes:bbc_swahili_radio",
+        "curationType": "available-episodes",
+        "position": 2,
+        "title": "Radio Schedule",
+        "visualProminence": "NORMAL",
+        "visualStyle": "NONE",
+        "radioSchedule": [
+          {
+            "id": "p0h6p3dc",
+            "state": "next",
+            "startTime": "2024-02-27T15:29:30.000Z",
+            "link": "/swahili/bbc_swahili_radio/w172zkbkk1v5v7s",
+            "brandTitle": "Dira Ya Dunia",
+            "summary": "Kipindi cha habari, makala na mahojiano cha kila siku kuanzia saa kumi na mbili unusu jioni Afrika Mashariki",
+            "duration": "PT1H"
+          },
+          {
+            "id": "p0h6kmvt",
+            "state": "onDemand",
+            "startTime": "2024-02-27T03:59:30.000Z",
+            "link": "/swahili/bbc_swahili_radio/w172zkb4tpjssyn",
+            "brandTitle": "Amka Na BBC",
+            "summary": "Kipindi cha habari, mahojiano na makala kila siku saa kumi na mbili na saa moja asubuhi Afrika Mashariki",
+            "duration": "PT29M30S"
+          },
+          {
+            "id": "p0h6js7j",
+            "state": "onDemand",
+            "startTime": "2024-02-27T02:59:30.000Z",
+            "link": "/swahili/bbc_swahili_radio/w172zkb4tpjsp6j",
+            "brandTitle": "Amka Na BBC",
+            "summary": "Kipindi cha habari, mahojiano na makala kila siku saa kumi na mbili na saa moja asubuhi Afrika Mashariki",
+            "duration": "PT29M30S"
+          },
+          {
+            "id": "p0h6h4d2",
+            "state": "onDemand",
+            "startTime": "2024-02-26T15:29:30.000Z",
+            "link": "/swahili/bbc_swahili_radio/w172zkbkk1v2ybp",
+            "brandTitle": "Dira Ya Dunia",
+            "summary": "Kipindi cha habari, makala na mahojiano cha kila siku kuanzia saa kumi na mbili unusu jioni Afrika Mashariki",
+            "duration": "PT1H"
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "atiAnalytics": {
+        "contentId": "urn:bbc:tipo:topic:cw95pllwe11t",
+        "contentType": "index-home",
+        "pageIdentifier": "swahili.page",
+        "pageTitle": "BBC News Swahili"
+      }
+    }
+  },
+  "contentType": "application/json; charset=utf-8"
+}

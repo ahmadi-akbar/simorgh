@@ -1,9 +1,6 @@
 import React, { useContext } from 'react';
 import styled from '@emotion/styled';
-import { number, string, shape, oneOf } from 'prop-types';
 import { GEL_SPACING_HLF } from '#psammead/gel-foundations/src/spacings';
-import { scriptPropType } from '#psammead/gel-foundations/src/prop-types';
-import { C_RHINO, C_PEBBLE } from '#psammead/psammead-styles/src/colours';
 import { getMinion } from '#psammead/gel-foundations/src/typography';
 import { getSansRegular } from '#psammead/psammead-styles/src/font-styles';
 import { coreIcons } from '#psammead/psammead-assets/src/svgs';
@@ -23,7 +20,7 @@ const StyledClock = styled.span`
       ? `padding-right: ${GEL_SPACING_HLF};`
       : `padding-left: ${GEL_SPACING_HLF};`}
   > svg {
-    color: ${C_RHINO};
+    color: ${props => props.theme.palette.RHINO};
     margin: 0;
     overflow: visible;
     @media screen and (forced-colors: active) {
@@ -32,16 +29,8 @@ const StyledClock = styled.span`
   }
 `;
 
-const ClockIcon = ({ dir }) => {
+const ClockIcon = ({ dir = 'ltr' }) => {
   return <StyledClock dir={dir}>{coreIcons.clock}</StyledClock>;
-};
-
-ClockIcon.propTypes = {
-  dir: oneOf(['ltr', 'rtl']),
-};
-
-ClockIcon.defaultProps = {
-  dir: 'ltr',
 };
 
 const StyledTimestamp = styled.span`
@@ -51,14 +40,14 @@ const StyledTimestamp = styled.span`
   width: 100%;
 
   > time {
-    color: ${C_RHINO};
+    color: ${props => props.theme.palette.RHINO};
     ${({ script }) => script && getMinion(script)}
     ${({ service }) => service && getSansRegular(service)}
   }
 
   &::after {
     content: '';
-    border-top: 0.0625rem solid ${C_PEBBLE};
+    border-top: 0.0625rem solid ${props => props.theme.palette.PEBBLE};
     top: ${({ script }) => 0.5 + script.minion.groupA.lineHeight / 2 / 16}rem;
     ${({ dir }) =>
       dir === 'ltr' ? `margin-left: 0.625rem;` : `margin-right: 0.625rem;`}
@@ -68,11 +57,11 @@ const StyledTimestamp = styled.span`
 
 export const StartTimestamp = ({
   timestamp,
-  timezone,
-  locale,
+  timezone = 'Europe/London',
+  locale = 'en-gb',
   script,
   service,
-  dir,
+  dir = 'ltr',
 }) => {
   return (
     <StyledTimestamp
@@ -96,21 +85,6 @@ export const StartTimestamp = ({
   );
 };
 
-StartTimestamp.propTypes = {
-  timestamp: number.isRequired,
-  timezone: string,
-  locale: string,
-  script: shape(scriptPropType).isRequired,
-  service: string.isRequired,
-  dir: oneOf(['ltr', 'rtl']),
-};
-
-StartTimestamp.defaultProps = {
-  timezone: 'Europe/London',
-  locale: 'en-gb',
-  dir: 'ltr',
-};
-
 const StartTime = ({ timestamp }) => {
   const { script, locale, service, timezone, dir } = useContext(ServiceContext);
   return (
@@ -126,10 +100,6 @@ const StartTime = ({ timestamp }) => {
       />
     </Wrapper>
   );
-};
-
-StartTime.propTypes = {
-  timestamp: number.isRequired,
 };
 
 export default StartTime;

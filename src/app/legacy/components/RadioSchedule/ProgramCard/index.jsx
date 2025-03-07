@@ -5,7 +5,6 @@ import {
   GEL_SPACING,
   GEL_SPACING_DBL,
 } from '#psammead/gel-foundations/src/spacings';
-import { C_METAL, C_WHITE } from '#psammead/psammead-styles/src/colours';
 import {
   getSansRegular,
   getSerifMedium,
@@ -15,7 +14,6 @@ import {
   getMinion,
   getPica,
 } from '#psammead/gel-foundations/src/typography';
-import { shape, string, number } from 'prop-types';
 import { formatDuration } from '#psammead/psammead-timestamp-container/src/utilities';
 import { ServiceContext } from '../../../../contexts/ServiceContext';
 import ScheduleItemHeader from '../ScheduleItemHeader';
@@ -23,7 +21,7 @@ import { programStateConfig } from '../utilities';
 
 const CardWrapper = styled.div`
   padding-top: ${GEL_SPACING};
-  background-color: ${C_WHITE};
+  background-color: ${props => props.theme.palette.WHITE};
   display: flex;
   flex-direction: column;
   outline: 0.0625rem solid transparent;
@@ -45,7 +43,7 @@ const StyledH3 = styled.h3`
 const SummaryWrapper = styled.p`
   ${({ service }) => service && getSansRegular(service)}
   ${({ script }) => script && getBrevier(script)}
-  color: ${C_METAL};
+  color: ${props => props.theme.palette.METAL};
   padding-top: ${GEL_SPACING};
   padding-bottom: ${GEL_SPACING_DBL};
   margin: 0; /* Reset */
@@ -126,18 +124,6 @@ const ProgramCard = ({ program, id, ...props }) => {
       </ButtonWrapper>
     </CardWrapper>
   );
-};
-
-ProgramCard.propTypes = {
-  program: shape({
-    state: string.isRequired,
-    duration: string.isRequired,
-    startTime: number.isRequired,
-    summary: string.isRequired,
-    link: string.isRequired,
-    brandTitle: string.isRequired,
-  }).isRequired,
-  id: string.isRequired,
 };
 
 export default ProgramCard;

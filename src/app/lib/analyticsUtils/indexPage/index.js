@@ -1,9 +1,6 @@
+// This file can be removed when the UKChina Decommission is complete
 import pathOr from 'ramda/src/pathOr';
-import {
-  FRONT_PAGE,
-  INDEX_PAGE,
-  FEATURE_INDEX_PAGE,
-} from '#app/routes/utils/pageTypes';
+import { FRONT_PAGE, HOME_PAGE } from '#app/routes/utils/pageTypes';
 
 export const getPageIdentifier = (indexPageData, service) => {
   return pathOr(
@@ -51,11 +48,8 @@ export const getPageTitle = (indexPageData, brandName) => {
 export const getContentType = pageType => {
   switch (pageType) {
     case FRONT_PAGE:
+    case HOME_PAGE:
       return 'index-home';
-    case INDEX_PAGE:
-      return 'index-section';
-    case FEATURE_INDEX_PAGE:
-      return 'index-section';
     default:
       return null;
   }

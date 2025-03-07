@@ -3,15 +3,22 @@ import pixelsToRem from '../../utilities/pixelsToRem';
 import { focusIndicatorThickness } from '../ThemeProvider/focusIndicator';
 
 export default {
-  parent: ({ palette }: Theme) =>
+  parent: ({ palette, isDarkUi }: Theme) =>
     css({
-      backgroundColor: palette.WHITE,
+      backgroundColor: isDarkUi ? palette.GREY_3 : palette.WHITE,
       padding: `${pixelsToRem(16)}rem`,
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'flex-start',
-      border: `${pixelsToRem(1)}rem solid ${palette.GREY_5}`,
+      border: `${pixelsToRem(1)}rem solid ${
+        isDarkUi ? palette.GREY_2 : palette.GREY_5
+      }`,
+    }),
+
+  tranparentBorder: () =>
+    css({
+      border: `${pixelsToRem(1)}rem solid transparent`,
     }),
 
   textBody: ({ spacings, palette }: Theme) =>
@@ -35,19 +42,33 @@ export default {
       },
     }),
 
-  button: ({ spacings, palette }: Theme) =>
+  button: ({ spacings, palette, isDarkUi, mq }: Theme) =>
     css({
-      backgroundColor: palette.WHITE,
-      border: `${pixelsToRem(1)}rem solid ${palette.PHILIPPINE_GREY}`,
+      backgroundColor: isDarkUi ? palette.GREY_3 : palette.WHITE,
+      border: `${pixelsToRem(1)}rem solid ${
+        isDarkUi ? palette.GREY_10 : palette.PHILIPPINE_GREY
+      }`,
       borderRadius: 0,
       padding: `${spacings.FULL}rem`,
       cursor: 'pointer',
+      color: palette.BLACK,
 
       '&:hover, &:focus': {
         backgroundColor: palette.POSTBOX,
         color: palette.WHITE,
         border: `${pixelsToRem(1)}rem solid ${palette.POSTBOX}`,
         textDecoration: 'underline',
+      },
+
+      [mq.FORCED_COLOURS]: {
+        backgroundColor: 'canvas',
+        color: 'canvasText',
+        border: `${pixelsToRem(1)}rem solid canvasText`,
+        '&:hover, &:focus': {
+          backgroundColor: 'canvas',
+          color: 'canvasText',
+          border: `${pixelsToRem(1)}rem solid canvasText`,
+        },
       },
 
       // Applies focus indicator black outline.

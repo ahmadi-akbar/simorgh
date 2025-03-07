@@ -29,3 +29,10 @@ export default interface HealthFactorsMetadata {
   acceptanceCriteria: HealthFactorsItem;
   swarm: HealthFactorsItem;
 }
+
+export interface HealthFactorsProps {
+  metadata?: HealthFactorsMetadata;
+  docs?: {
+    readme?: string;
+  };
+}

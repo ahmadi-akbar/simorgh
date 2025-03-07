@@ -1,9 +1,3 @@
-import {
-  C_POSTBOX,
-  C_WHITE,
-  C_GHOST,
-  C_POSTBOX_30,
-} from '../../../legacy/psammead/psammead-styles/src/colours';
 import arabic from '../../../components/ThemeProvider/fontScripts/arabic';
 import 'moment/locale/fa';
 import '#psammead/moment-timezone-include/tz/GMT';
@@ -20,6 +14,7 @@ export const service: DefaultServiceConfig = {
     articleTimestampSuffix: '',
     atiAnalyticsAppName: 'news-persian',
     atiAnalyticsProducerId: '69',
+    atiAnalyticsProducerName: 'PERSIAN',
     chartbeatDomain: 'persian.bbc.co.uk',
     brandName: 'BBC News فارسی',
     serviceLocalizedName: 'فارسی',
@@ -40,7 +35,6 @@ export const service: DefaultServiceConfig = {
     serviceName: 'Persian',
     languageName: 'Persian',
     altCalendar: jalaali,
-    themeColor: `${C_POSTBOX}`,
     twitterCreator: '@bbcpersian',
     twitterSite: '@bbcpersian',
     noBylinesPolicy:
@@ -51,27 +45,20 @@ export const service: DefaultServiceConfig = {
     manifestPath: '/manifest.json',
     swPath: '/sw.js',
     frontPageTitle: 'صفحه اول',
-    theming: {
-      brandBackgroundColour: `${C_POSTBOX}`,
-      brandLogoColour: `${C_WHITE}`,
-      brandForegroundColour: `${C_GHOST}`,
-      brandHighlightColour: `${C_WHITE}`,
-      brandBorderColour: `${C_POSTBOX_30}`,
-    },
     showAdPlaceholder: true,
     showRelatedTopics: true,
     podcastPromo: {
       title: 'پادکست',
-      brandTitle: 'رادیو فارسی بی‌بی‌سی',
+      brandTitle: 'اسطوره تختی',
       brandDescription:
-        'پادکست چشم‌انداز بامدادی رادیو بی‌بی‌سی – دوشنبه ۱۹ اردیبهشت ۱۴۰۱',
+        'در مجموعه چهار قسمتی «اسطوره تختی» از زندگی شخصی، ورزشی و اجتماعی غلامرضا تختی می‌شنویم.',
       image: {
-        src: 'https://ichef.bbci.co.uk/images/ic/$recipe/p0bq9rkk.jpg',
-        alt: 'پادکست چشم‌انداز بامدادی رادیو بی‌بی‌سی',
+        src: 'https://ichef.bbci.co.uk/images/ic/$recipe/p0jkc7rj.jpg',
+        alt: 'اسطوره تختی',
       },
       linkLabel: {
         text: 'پادکست',
-        href: 'https://www.bbc.com/persian/podcasts/p02pc9mc',
+        href: 'https://www.bbc.com/persian/podcasts/p0703hz7',
       },
       skipLink: {
         text: 'از %title% رد شوید و به خواندن ادامه دهید',
@@ -101,6 +88,18 @@ export const service: DefaultServiceConfig = {
         mediaPlayer: 'پخش صدا و تصویر',
         audioPlayer: 'پخش صدا',
         videoPlayer: 'پخش ویدیو',
+      },
+      liveExperiencePage: {
+        liveLabel: 'زنده',
+        liveCoverage: 'پوشش زنده',
+        breaking: 'خبر فوری',
+        postedAt: 'به روزشده در',
+        summary: 'خلاصه',
+        shareButtonText: 'هم‌رسانی',
+      },
+      downloads: {
+        instructions: 'You can download and view today’s news.',
+        title: 'File Download',
       },
       gist: 'خلاصه',
       error: {
@@ -164,7 +163,7 @@ export const service: DefaultServiceConfig = {
           },
           accept: 'تایید',
           reject: 'ببنید چه تغییراتی ایجاد شده است',
-          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/your-data-matters',
+          rejectUrl: 'https://www.bbc.com/usingthebbc/privacy-policy/',
         },
         cookie: {
           amp: {
@@ -179,7 +178,7 @@ export const service: DefaultServiceConfig = {
                 linkText: 'کوکی ها',
                 last: ' یا برداشت از داده‌های مرورگر شما استفاده می‌کنیم؛ اگر موافق هستید تایید کنید',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
               manage: 'مدیریت تنظیمات',
             },
@@ -195,7 +194,7 @@ export const service: DefaultServiceConfig = {
                   'برای کار با صفحات وب ما، ما اطلاعات محدودی را بدون رضایت شما در دستگاه شما ذخیره می کنیم.',
                 para4: {
                   text: 'درباره اطلاعات اساسی که برای کار با صفحات وب ما در دستگاه شما ذخیره می کنیم بیشتر بخوانید.',
-                  url: 'https://www.bbc.co.uk/usingthebbc/strictly-necessary-cookies/',
+                  url: 'https://www.bbc.com/usingthebbc/cookies/strictly-necessary-cookies/',
                 },
                 para5:
                   'ما اطلاعات مربوط به  رضایت یا عدم رضایت شما را به صورت محلی در دستگاهتان  ذخیره می کنیم.',
@@ -228,13 +227,13 @@ export const service: DefaultServiceConfig = {
                 linkText: 'کوکی',
                 last: ' استفاده می‌کنیم. اگر موافق هستید دریافت کوکی‌ها را تایید کنید',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
             },
             accept: 'بله، موافقم',
             reject: 'خیر، بازگشت به صفحه تنظیمات',
             rejectUrl:
-              'https://www.bbc.co.uk/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
+              'https://www.bbc.com/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
           },
         },
       },
@@ -271,6 +270,8 @@ export const service: DefaultServiceConfig = {
         nextRadioShow: 'برنامه رادیویی بعدی',
         duration: 'مدت',
         podcastExternalLinks: 'این پادکست در این زمان قابل دسترس است',
+        download: 'دانلود برنامه',
+        closeVideo: 'خروج',
       },
       socialEmbed: {
         caption: {
@@ -303,23 +304,84 @@ export const service: DefaultServiceConfig = {
       },
       topStoriesTitle: 'مهمترین خبرها',
       featuresAnalysisTitle: 'گزارش و تحلیل',
+      latestMediaTitle: 'تازه ترین',
+      ugc: {
+        // No JavaScript
+        noJsHeading: undefined,
+        noJsDescription: undefined,
+
+        // Optional
+        optional: 'اختیاری',
+
+        // File upload
+        fileUploadLiveRegionText: undefined,
+        fileUploadLiveRegionUpdateText: undefined,
+        fileUploadListHeading: 'مواردی که آپلود می کنید:',
+        fileUploadButton: 'انتخاب فایل',
+        fileUploadRemoveButton: undefined,
+
+        // Submit button
+        submitButton: 'ارسال',
+
+        // Validation
+        validationRequired: 'موردی تکمیل نشده است.',
+        validationInvalidEmail:
+          'به نظر صحیح نیست. یک آدرس ایمیل درست وارد کنید.',
+        validationInvalidTelephone: undefined,
+        validationFilesNotEnough:
+          'فایل ها به تعداد کافی نیست. کمترین تعداد فایل {{minFiles}} است.',
+        validationFilesTooMany:
+          'تعداد فایل ها زیاد است. حداکثر می توانید {{maxFiles}} فایل اضافه کنید.',
+        validationFilesInvalidType:
+          'نمی توانیم این نوع فایل را استفاده کنیم. انواع فایل قابل قبول اینها هستند {{fileTypes}}.',
+        validationFilesTooSmall:
+          'این فایل مشکل دارد. یک فایل دیگر انتخاب کنید.',
+        validationFilesSizeExceeded:
+          'اندازه فایل ها زیاد است. هر بار حداکثر می توانید ۱/۲ گیگابایت آپلود کنید.',
+        validationWordLimit: 'حداکثر {{wordLimit}} واژه',
+
+        // Messaging
+        removalGuidelineText:
+          'اگر محتوایی را برای استفاده در وبسایت یا برنامه ای ارسال کرده اید، در صورتی که ما از ان محتوا استفاده کرده باشیم دیگرامکان حذف آن موجود نیست.',
+        retentionPeriodDays: undefined,
+        referenceNumber: 'شماره',
+        submissionInfoSignedOutMessage:
+          'شاید بخواهید این جزئیات را برای خود یادداشت کنید.',
+        privacyInfoHtml:
+          'نگران نباشید، ما از اطلاعات شما محافظت می کنیم - برای اطلاعات بیشتر {{privacyInfoLink}} را بخوانید.',
+        emailToHtml:
+          'اگر نظر خود را تغییر داده اید، به ما ایمیل {{emailLink}} بزنید. شماره را ذکر کنید و به ما بگویید که ما از آن استفاده نکنیم.',
+
+        // Form Screen
+        dataPolicyHeading: undefined,
+
+        // Uploading Screen
+        uploadingHeading: 'در حال آپلود فایل ها...',
+        uploadingDescription: 'لطفا صبر کنید تا کامل شود.',
+
+        // Success Screen
+        successHeading: 'پیغام فرستاده شد',
+        successDescription: 'از تماس شما سپاسگزاریم.',
+        privacyPolicyLinkHref: undefined,
+        privacyPolicyLinkText: undefined,
+
+        // Error Screen
+        errorHeading: 'امکان آپلود فایل هایتان وجود ندارد.',
+        errorDescription: 'دوباره آنها را آپلود کنید.',
+
+        // Closed Screen
+        closedHeading: 'امکان ارسال دیگر وجود ندارد.',
+        closedDescription: 'امکان ارسال در {{date}} تمام شد.',
+      },
     },
     mostRead: {
       header: 'پربیننده‌ترین‌ها',
       lastUpdated: 'به روز شده در',
       numberOfItems: 10,
       hasMostRead: true,
-      onIdxPage: true,
-    },
-    mostWatched: {
-      header: 'پربیننده ترین',
-      numberOfItems: 10,
-      hasMostWatched: true,
     },
     radioSchedule: {
       hasRadioSchedule: true,
-      onIdxPage: true,
-      idxPagePosition: 'Features',
       header: 'برنامه‌های رادیو',
       durationLabel: '%duration% المدة الزمنية',
     },
@@ -353,7 +415,7 @@ export const service: DefaultServiceConfig = {
           text: 'سیاست حفظ حریم خصوصی',
         },
         {
-          href: 'https://www.bbc.co.uk/usingthebbc/cookies/',
+          href: 'https://www.bbc.com/usingthebbc/cookies/',
           text: 'کوکی ها',
         },
         {
@@ -361,9 +423,13 @@ export const service: DefaultServiceConfig = {
           text: 'تماس با بی بی سی',
         },
         {
+          href: 'https://www.bbc.com/ws/languages',
+          text: 'اخبار به زبان‌های دیگر',
+        },
+        {
           id: 'COOKIE_SETTINGS',
-          href: 'https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/',
-          text: 'AdChoices / Do Not Sell My Info',
+          href: '#',
+          text: 'Do not share or sell my info',
           lang: 'en-GB',
         },
       ],
@@ -376,8 +442,8 @@ export const service: DefaultServiceConfig = {
         url: '/persian',
       },
       {
-        title: 'اعتراضات ایران',
-        url: '/persian/topics/c5j85v96d92t',
+        title: 'بحران خاورمیانه',
+        url: '/persian/topics/cj31ldvmg1et',
       },
       {
         title: 'پخش زنده',
@@ -385,15 +451,11 @@ export const service: DefaultServiceConfig = {
       },
       {
         title: 'ویدیو',
-        url: '/persian/media/video',
+        url: '/persian/topics/c6z7mnr559gt',
       },
       {
         title: 'تلویزیون',
         url: '/persian/tv-and-radio-37434377',
-      },
-      {
-        title: 'رادیو',
-        url: '/persian/tv-and-radio-37434376',
       },
       {
         title: 'ايران',
@@ -424,8 +486,8 @@ export const service: DefaultServiceConfig = {
         url: '/persian/topics/ckdxnwr4r1yt',
       },
       {
-        title: 'ناظران می‌گویند',
-        url: '/persian/blogs-54099951',
+        title: 'فراتر از خبر',
+        url: '/persian/topics/cxr3ex12k6et',
       },
     ],
   },

@@ -53,11 +53,13 @@ const logCodes = {
   SERVER_SIDE_REQUEST_FAILED: 'ssr_request_failed',
   SERVICE_WORKER_SENDFILE_ERROR: 'server_sendfile_error_sw',
   SERVER_STATUS_ENDPOINT_ERROR: 'server_status_endpoint_error',
+  SLOW_SERVER_RESPONSE_TIME: 'slow_server_response_time',
 
   // Config
   CONFIG_REQUEST_RECEIVED: 'config_request_received',
   CONFIG_FETCH_ERROR: 'config_fetch_error',
   CONFIG_ERROR: 'config_error',
+  CONFIG_RESPONSE_EMPTY_ERROR: 'config_response_empty_error',
 
   // Block Types
   UNSUPPORTED_BLOCK_TYPE: 'unsupported_block_type',
@@ -71,10 +73,6 @@ const logCodes = {
   MOST_READ_CLIENT_REQUEST: 'most_read_client_request',
   MOST_READ_DATA_INCOMPLETE: 'most_read_data_incomplete',
   MOST_READ_STALE_DATA: 'most_read_stale_data',
-
-  // Most Watched
-  MOST_WATCHED_PROCESS_ERROR: 'most_watched_process_error',
-  MOST_WATCHED_STALE_DATA: 'most_watched_stale_data',
 
   // Include
   INCLUDE_ERROR: 'include_error',

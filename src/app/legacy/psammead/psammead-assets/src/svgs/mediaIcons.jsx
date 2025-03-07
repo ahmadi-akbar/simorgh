@@ -1,10 +1,13 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { C_EBON } from '#psammead/psammead-styles/src/colours';
 import {
   GEL_SPACING_HLF,
   GEL_SPACING_DBL,
+  GEL_SPACING_TRPL,
+  GEL_SPACING_QUAD,
 } from '#psammead/gel-foundations/src/spacings';
+
+const GEL_GROUP_1_WIDTH_260PX = '16.25rem';
 
 const defaultAttrs = {
   focusable: 'false',
@@ -15,7 +18,7 @@ const defaultAttrs = {
 const MediaIcon = styled.svg`
   vertical-align: middle;
   margin: 0 ${GEL_SPACING_HLF};
-  color: ${C_EBON};
+  color: ${props => props.theme.palette.EBON};
   fill: currentColor;
 `;
 
@@ -42,6 +45,15 @@ const GuidanceIcon = styled(MediaIcon)`
 const PodcastIcon = styled(MediaIcon)`
   width: ${GEL_SPACING_DBL};
   height: ${GEL_SPACING_DBL};
+  .podcastIconWrapper & {
+    width: ${GEL_SPACING_QUAD};
+    height: ${GEL_SPACING_QUAD};
+    margin: auto;
+    @media (max-width: ${GEL_GROUP_1_WIDTH_260PX}) {
+      width: ${GEL_SPACING_TRPL};
+      height: ${GEL_SPACING_TRPL};
+    }
+  }
 `;
 
 const SeriesStackIcon = styled(MediaIcon)`

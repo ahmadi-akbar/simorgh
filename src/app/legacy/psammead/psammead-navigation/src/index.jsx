@@ -1,15 +1,5 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { shape, string, node, bool, oneOf } from 'prop-types';
-import VisuallyHiddenText from '#psammead/psammead-visually-hidden-text/src';
-import {
-  C_WHITE,
-  C_EBON,
-  C_GREY_10,
-  C_GREY_3,
-  C_POSTBOX,
-} from '#psammead/psammead-styles/src/colours';
-import { BLACK } from '#app/components/ThemeProvider/palette';
 import {
   GEL_SPACING_HLF,
   GEL_SPACING,
@@ -18,13 +8,14 @@ import {
 import {
   GEL_GROUP_2_SCREEN_WIDTH_MAX,
   GEL_GROUP_3_SCREEN_WIDTH_MIN,
+  GEL_GROUP_3_SCREEN_WIDTH_MAX,
   GEL_GROUP_5_SCREEN_WIDTH_MIN,
 } from '#psammead/gel-foundations/src/breakpoints';
 import { getPica } from '#psammead/gel-foundations/src/typography';
-import { scriptPropType } from '#psammead/gel-foundations/src/prop-types';
 import { getSansRegular } from '#psammead/psammead-styles/src/font-styles';
 import { NAV_BAR_TOP_BOTTOM_SPACING } from './DropdownNavigation';
 import { focusIndicatorThickness } from '../../../../components/ThemeProvider/focusIndicator';
+import VisuallyHiddenText from '../../../../components/VisuallyHiddenText';
 
 const SPACING_AROUND_NAV_ITEMS = `${NAV_BAR_TOP_BOTTOM_SPACING}rem`; // 12px
 const CURRENT_ITEM_HOVER_BORDER = '0.3125rem'; // 5px
@@ -33,7 +24,7 @@ const NavWrapper = styled.div`
   position: relative;
   max-width: 63.4rem;
   margin: 0;
-  background-color: ${C_WHITE};
+  background-color: ${props => props.theme.palette.WHITE};
   @media (min-width: ${GEL_GROUP_3_SCREEN_WIDTH_MIN}) {
     margin: 0 0.8rem;
   }
@@ -64,8 +55,7 @@ const ListItemBorder = `
 const StyledLink = styled.a`
   ${({ script }) => script && getPica(script)};
   ${({ service }) => getSansRegular(service)};
-  ${({ brandForegroundColour }) => `color: ${brandForegroundColour};`}
-  color: ${C_GREY_10};
+  color: ${props => props.theme.palette.GREY_10};
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
@@ -78,30 +68,32 @@ const StyledLink = styled.a`
 
   &:hover::after {
     ${ListItemBorder}
-    ${({ brandHighlightColour }) =>
-      `border-bottom: ${GEL_SPACING_HLF} solid ${brandHighlightColour};`}
-    ${({ currentLink, brandHighlightColour }) =>
+    border-bottom: ${GEL_SPACING_HLF} solid ${props =>
+      props.theme.palette.POSTBOX};
+    ${({ currentLink, theme }) =>
       currentLink &&
       `
-        border-bottom: ${CURRENT_ITEM_HOVER_BORDER} solid ${brandHighlightColour};
+        border-bottom: ${CURRENT_ITEM_HOVER_BORDER} solid ${theme.palette.POSTBOX};
       `}
   }
 
   &:focus::after {
     ${ListItemBorder}
-    ${({ brandHighlightColour }) =>
-      `border-bottom: ${GEL_SPACING_HLF} solid ${brandHighlightColour};`}
+    border-bottom: ${GEL_SPACING_HLF} solid ${props =>
+      props.theme.palette.POSTBOX};
     top: 0;
-    border: ${focusIndicatorThickness} solid ${BLACK};
+    border: ${focusIndicatorThickness} solid
+      ${props => props.theme.palette.BLACK};
   }
 
-  // Custom focus indicator styling applied to pseudo-element. Global focus indicator styling has been removed.
+  /* Custom focus indicator styling applied to pseudo-element. Global focus indicator styling has been removed. */
   &:focus-visible::after {
     ${ListItemBorder}
-    ${({ brandHighlightColour }) =>
-      `border-bottom: ${GEL_SPACING_HLF} solid ${brandHighlightColour};`}
+    border-bottom: ${GEL_SPACING_HLF} solid ${props =>
+      props.theme.palette.POSTBOX};
     top: 0;
-    border: ${focusIndicatorThickness} solid ${BLACK};
+    border: ${focusIndicatorThickness} solid
+      ${props => props.theme.palette.BLACK};
   }
 `;
 
@@ -126,8 +118,7 @@ const StyledListItem = styled.li`
       position: absolute;
       bottom: -1px;
       width: ${GEL_GROUP_5_SCREEN_WIDTH_MIN};
-      ${({ brandBorderColour }) =>
-        `border-bottom: 0.0625rem solid ${brandBorderColour};`}
+      border-bottom: 0.0625rem solid ${props => props.theme.palette.GREY_3};
       z-index: -1;
     }
   }
@@ -136,8 +127,8 @@ const StyledListItem = styled.li`
 const StyledSpan = styled.span`
   &::after {
     ${ListItemBorder}
-    ${({ brandHighlightColour }) =>
-      `border-bottom: ${GEL_SPACING_HLF} solid ${brandHighlightColour};`}
+    border-bottom: ${GEL_SPACING_HLF} solid ${props =>
+      props.theme.palette.POSTBOX};
   }
 `;
 
@@ -145,35 +136,19 @@ const CurrentLink = ({
   linkId,
   children: link,
   script,
-  currentPageText,
-  brandHighlightColour,
+  currentPageText = null,
 }) => (
-  <>
-    <StyledSpan
-      // eslint-disable-next-line jsx-a11y/aria-role
-      role="text"
-      script={script}
-      brandHighlightColour={brandHighlightColour}
-      // This is a temporary fix for the a11y nested span's bug experienced in TalkBack, refer to the following issue: https://github.com/bbc/simorgh/issues/9652
-      id={`NavigationLinks-${linkId}`}
-    >
-      <VisuallyHiddenText>{`${currentPageText}, `}</VisuallyHiddenText>
-      {link}
-    </StyledSpan>
-  </>
+  <StyledSpan
+    // eslint-disable-next-line jsx-a11y/aria-role
+    role="text"
+    script={script}
+    // This is a temporary fix for the a11y nested span's bug experienced in TalkBack, refer to the following issue: https://github.com/bbc/simorgh/issues/9652
+    id={`NavigationLinks-${linkId}`}
+  >
+    <VisuallyHiddenText>{`${currentPageText}, `}</VisuallyHiddenText>
+    {link}
+  </StyledSpan>
 );
-
-CurrentLink.propTypes = {
-  linkId: string.isRequired,
-  children: string.isRequired,
-  script: shape(scriptPropType).isRequired,
-  currentPageText: string,
-  brandHighlightColour: string.isRequired,
-};
-
-CurrentLink.defaultProps = {
-  currentPageText: null,
-};
 
 export const NavigationUl = ({ children, ...props }) => (
   <StyledUnorderedList role="list" {...props}>
@@ -181,49 +156,36 @@ export const NavigationUl = ({ children, ...props }) => (
   </StyledUnorderedList>
 );
 
-NavigationUl.propTypes = {
-  children: node.isRequired,
-};
-
 export const NavigationLi = ({
   children: link,
   url,
   script,
-  currentPageText,
-  active,
+  clickTrackerHandler = null,
+  currentPageText = null,
+  active = false,
   service,
-  dir,
-  brandForegroundColour,
-  brandHighlightColour,
-  brandBorderColour,
+  dir = 'ltr',
+  viewRef = null,
   ...props
 }) => {
   return (
-    <StyledListItem
-      dir={dir}
-      role="listitem"
-      brandForegroundColour={brandForegroundColour}
-      brandHighlightColour={brandHighlightColour}
-      brandBorderColour={C_GREY_3}
-    >
+    <StyledListItem dir={dir} role="listitem" ref={viewRef}>
       {active && currentPageText ? (
         <StyledLink
           href={url}
           script={script}
           service={service}
           currentLink
-          brandForegroundColour={brandForegroundColour}
-          brandHighlightColour={C_POSTBOX}
           // This is a temporary fix for the a11y nested span's bug experienced in TalkBack, refer to the following issue: https://github.com/bbc/simorgh/issues/9652
           aria-labelledby={`NavigationLinks-${link}`}
           className="focusIndicatorRemove"
+          onClick={clickTrackerHandler}
           {...props}
         >
           <CurrentLink
             linkId={link}
             script={script}
             currentPageText={currentPageText}
-            brandHighlightColour={C_POSTBOX}
           >
             {link}
           </CurrentLink>
@@ -233,9 +195,8 @@ export const NavigationLi = ({
           href={url}
           script={script}
           service={service}
-          brandForegroundColour={brandForegroundColour}
-          brandHighlightColour={C_POSTBOX}
           className="focusIndicatorRemove"
+          onClick={clickTrackerHandler}
           {...props}
         >
           {link}
@@ -245,51 +206,33 @@ export const NavigationLi = ({
   );
 };
 
-NavigationLi.propTypes = {
-  children: node.isRequired,
-  url: string.isRequired,
-  script: shape(scriptPropType).isRequired,
-  active: bool,
-  currentPageText: string,
-  service: string.isRequired,
-  dir: oneOf(['ltr', 'rtl']),
-  brandForegroundColour: string.isRequired,
-  brandHighlightColour: string.isRequired,
-  brandBorderColour: string.isRequired,
-};
-
-NavigationLi.defaultProps = {
-  active: false,
-  currentPageText: null,
-  dir: 'ltr',
-};
-
 // ampOpenClass is the class added to the Navigation, and is toggled on tap.
 // It indicates whether the menu is open or not. This overrides the background
 // color of the Navigation
 const StyledNav = styled.nav`
   position: relative;
-  ${({ isOpen }) => `background-color: ${isOpen ? C_EBON : C_WHITE};`}
-  ${({ ampOpenClass }) =>
+  background-color: ${({ isOpen }) =>
+    props =>
+      isOpen ? props.theme.palette.EBON : props.theme.palette.WHITE};
+  ${({ ampOpenClass, theme }) =>
     ampOpenClass &&
     `
       &.${ampOpenClass} {
         @media (max-width: ${GEL_GROUP_2_SCREEN_WIDTH_MAX}) {
-          background-color: ${C_EBON};
+          background-color: ${theme.palette.EBON};
         }
       }
     `}
-  
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    border-bottom: 0.0625rem solid ${C_GREY_3};
+  @media (min-width: ${GEL_GROUP_3_SCREEN_WIDTH_MAX}) {
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      border-bottom: 0.0625rem solid ${props => props.theme.palette.GREY_3};
+    }
   }
-
   ${StyledListItem} {
     ${({ dir }) => `
       &::after {
@@ -301,13 +244,9 @@ const StyledNav = styled.nav`
 
 const Navigation = ({
   children,
-  dir,
-  isOpen,
-  ampOpenClass,
-  brandBackgroundColour,
-  brandForegroundColour,
-  brandBorderColour,
-  brandHighlightColour,
+  dir = 'ltr',
+  isOpen = false,
+  ampOpenClass = null,
   ...props
 }) => {
   return (
@@ -316,32 +255,11 @@ const Navigation = ({
       dir={dir}
       isOpen={isOpen}
       ampOpenClass={ampOpenClass}
-      brandBackgroundColour={brandBackgroundColour}
-      brandForegroundColour={brandForegroundColour}
-      brandBorderColour={brandBorderColour}
-      brandHighlightColour={brandHighlightColour}
       {...props}
     >
       <NavWrapper>{children}</NavWrapper>
     </StyledNav>
   );
-};
-
-Navigation.propTypes = {
-  children: node.isRequired,
-  dir: oneOf(['ltr', 'rtl']),
-  isOpen: bool,
-  ampOpenClass: string,
-  brandBackgroundColour: string.isRequired,
-  brandForegroundColour: string.isRequired,
-  brandBorderColour: string.isRequired,
-  brandHighlightColour: string.isRequired,
-};
-
-Navigation.defaultProps = {
-  dir: 'ltr',
-  isOpen: false,
-  ampOpenClass: null,
 };
 
 export default Navigation;

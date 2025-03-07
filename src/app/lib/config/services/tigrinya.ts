@@ -1,9 +1,3 @@
-import {
-  C_POSTBOX,
-  C_WHITE,
-  C_GHOST,
-  C_POSTBOX_30,
-} from '../../../legacy/psammead/psammead-styles/src/colours';
 import noAscendersOrDescenders from '../../../components/ThemeProvider/fontScripts/noAscOrDesc';
 import '#psammead/moment-timezone-include/tz/Africa/Addis_Ababa';
 import '#psammead/psammead-locales/moment/ti';
@@ -18,6 +12,7 @@ export const service: DefaultServiceConfig = {
     articleTimestampSuffix: '',
     atiAnalyticsAppName: 'news-tigrinya',
     atiAnalyticsProducerId: '91',
+    atiAnalyticsProducerName: 'TIGRINYA',
     chartbeatDomain: 'tigrinya.bbc.co.uk',
     brandName: 'BBC News ትግርኛ',
     product: 'BBC News',
@@ -38,7 +33,6 @@ export const service: DefaultServiceConfig = {
     service: 'tigrinya',
     serviceName: 'Tigrinya',
     languageName: 'Tigrinya',
-    themeColor: `${C_POSTBOX}`,
     twitterCreator: '@bbcnews',
     twitterSite: '@bbcnews',
     noBylinesPolicy:
@@ -49,13 +43,6 @@ export const service: DefaultServiceConfig = {
     manifestPath: '/manifest.json',
     swPath: '/sw.js',
     frontPageTitle: 'ዜና',
-    theming: {
-      brandBackgroundColour: `${C_POSTBOX}`,
-      brandLogoColour: `${C_WHITE}`,
-      brandForegroundColour: `${C_GHOST}`,
-      brandHighlightColour: `${C_WHITE}`,
-      brandBorderColour: `${C_POSTBOX_30}`,
-    },
     showAdPlaceholder: false,
     showRelatedTopics: true,
     translations: {
@@ -78,6 +65,18 @@ export const service: DefaultServiceConfig = {
         mediaPlayer: 'Media player',
         audioPlayer: 'Audio player',
         videoPlayer: 'Video player',
+      },
+      liveExperiencePage: {
+        liveLabel: 'ቀጥታ',
+        liveCoverage: 'ቀጥታዊ ሸፈነ',
+        breaking: 'ሓድሽ ዜና',
+        postedAt: 'ዝተለጠፈሉ',
+        summary: 'ጽማቝ ሓበሬታ',
+        shareButtonText: 'ኣባፅሑ',
+      },
+      downloads: {
+        instructions: 'You can download and view today’s news.',
+        title: 'File Download',
       },
       error: {
         404: {
@@ -126,7 +125,7 @@ export const service: DefaultServiceConfig = {
           },
           accept: 'ሕራይ',
           reject: 'እንታይ ከምዝተለወጠ ረኣዩ',
-          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/your-data-matters',
+          rejectUrl: 'https://www.bbc.com/usingthebbc/privacy-policy/',
         },
         cookie: {
           amp: {
@@ -139,7 +138,7 @@ export const service: DefaultServiceConfig = {
                 linkText: 'ኩኪስ',
                 last: "  ዝኣመሰሉ ቴክኖሎጂ ክንጥቀም ዘድልየና፡ ብዛዕባ ናይ ኢንተርነት ኣጠቓቕማኹም ሓበሬታ ብምውህላል ንዓኹም ውልቃዊ ኣገዳስነት ዘለዎ ትሕዝቶ ወይ መወዓውዒ ብዝበለጸ ኣገባብ ንምቕራብ'ዩ። ትሰማምዑ እንተ ዄንኩም ኣፍልጡና።",
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
               manage: 'መሳርዕ ምርጫታተይ ክውስን',
             },
@@ -155,7 +154,7 @@ export const service: DefaultServiceConfig = {
                   'ናይ መርበብ ገጻትና ብግቡእ ንክሰርሕ፡ ብዛዕባ እቲ ንገጻትና ንምክትታል ትጥቀምሉ መሳርሒታት ዉሱን ሓበሬታ ብዘይ ፍቓድኩም ንዕቅብ ኢና።',
                 para4: {
                   text: 'ብዛዕባ ናይ መርበብ ገጻትና ብግቡእ ክሰርሑ ንምግባር ዝሕግዘና ኣብቲ እትጥቀምሉ መሳርሒ እንዕቅቦ ኣገዳሲ ሓበሬታ ንምፍላጥ ኣብዚ ኣንብቡ።',
-                  url: 'https://www.bbc.co.uk/usingthebbc/strictly-necessary-cookies/',
+                  url: 'https://www.bbc.com/usingthebbc/cookies/strictly-necessary-cookies/',
                 },
                 para5: 'ንእተፍቅድዎ ምርጫታት ኣብቲ ኣብ መሳርሒኹም ዘሎ ማዕከን ኢና ንዕቅቦ',
                 heading3: 'ሓበሬታ ዝእከበሉ ኣማራጺ',
@@ -187,13 +186,13 @@ export const service: DefaultServiceConfig = {
                 linkText: "'ኩኪስ'",
                 last: " እንጥቀም። ንኹሎም እዞም 'ኩኪስ'  ከም እተሰማማዕኩምሎም ኣፍልጡና።",
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
             },
             accept: 'እወ፡ እሰማማዕ እየ።',
             reject: 'ኣይፋል፡ ናብ መተዓራረዪ (ሴቲንግ) ውሰዱኒ።',
             rejectUrl:
-              'https://www.bbc.co.uk/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
+              'https://www.bbc.com/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
           },
         },
       },
@@ -213,6 +212,7 @@ export const service: DefaultServiceConfig = {
         nextRadioShow: 'ዝቕጽል ፈነወ ራድዮ',
         duration: 'ዕምሪ ፈነወ',
         recentEpisodes: 'ዝሓለፉ ክፋላት',
+        closeVideo: 'ออก',
       },
       socialEmbed: {
         caption: {
@@ -242,17 +242,13 @@ export const service: DefaultServiceConfig = {
       },
       topStoriesTitle: 'ዜናታት',
       featuresAnalysisTitle: 'ኣዘራረብቲ ዛዕባታት',
+      latestMediaTitle: 'ናይ መወዳእታ',
     },
     mostRead: {
       header: 'ብብዝሒ ዝተነበ',
       lastUpdated: 'ንመወዳእታ እዋን ዝተመሓየሸሉ:',
       numberOfItems: 10,
       hasMostRead: true,
-    },
-    mostWatched: {
-      header: 'ብብዝሒ ዝተራእየ',
-      numberOfItems: 2,
-      hasMostWatched: false,
     },
     radioSchedule: {
       hasRadioSchedule: true,
@@ -268,24 +264,24 @@ export const service: DefaultServiceConfig = {
         text: 'ስለምንታይ ንቢቢሲ ክትኣምንዎ ከም እትኽእሉ',
       },
       externalLink: {
-        href: 'https://www.bbc.co.uk/editorialguidelines/guidance/feeds-and-links',
+        href: 'https://www.bbc.com/editorialguidelines/guidance/feeds-and-links',
         text: 'ብዛዕባ ምስ ናይ ደገ መርበባት እንገብሮ መላግቦታት ዘለና ኣረኣእያ ንምርዳእ ኣንብቡ።',
       },
       links: [
         {
-          href: 'https://www.bbc.co.uk/usingthebbc/terms/',
+          href: 'https://www.bbc.com/usingthebbc/terms/',
           text: 'ውዕል ተጠቃምነት',
         },
         {
-          href: 'https://www.bbc.co.uk/aboutthebbc',
+          href: 'https://www.bbc.com/aboutthebbc',
           text: 'ብዛዕባ ቢቢሲ',
         },
         {
-          href: 'https://www.bbc.co.uk/usingthebbc/privacy/',
+          href: 'https://www.bbc.com/usingthebbc/privacy/',
           text: 'ናይ ስቱርነት ፖሊሲ',
         },
         {
-          href: 'https://www.bbc.co.uk/usingthebbc/cookies/',
+          href: 'https://www.bbc.com/usingthebbc/cookies/',
           text: 'ኩኪስ',
         },
         {
@@ -293,9 +289,13 @@ export const service: DefaultServiceConfig = {
           text: 'ንቢቢሲ የዛርቡ',
         },
         {
+          href: 'https://www.bbc.com/ws/languages',
+          text: 'ብኻልኦት ቋንቋታት',
+        },
+        {
           id: 'COOKIE_SETTINGS',
-          href: 'https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/',
-          text: 'AdChoices / Do Not Sell My Info',
+          href: '#',
+          text: 'Do not share or sell my info',
           lang: 'en-GB',
         },
       ],
@@ -307,8 +307,28 @@ export const service: DefaultServiceConfig = {
         url: '/tigrinya',
       },
       {
+        title: 'ኤርትራ',
+        url: '/tigrinya/topics/c1gdqrg28zxt',
+      },
+      {
+        title: 'ኢትዮጵያ',
+        url: '/tigrinya/topics/cdr56vrknx6t',
+      },
+      {
+        title: 'ሱዳን',
+        url: '/tigrinya/topics/c5qvp11n2vzt',
+      },
+      {
+        title: 'ማእከላይ ምብራቕ',
+        url: '/tigrinya/topics/c5qvp1qz3q6t',
+      },
+      {
+        title: 'ሳይንስን ጥዕናን',
+        url: '/tigrinya/topics/cx2yler1d05t',
+      },
+      {
         title: 'ቪድዮ',
-        url: '/tigrinya/media/video',
+        url: '/tigrinya/topics/crldzm9n4rdt',
       },
       {
         title: 'ኣመና ፍቱዋት',

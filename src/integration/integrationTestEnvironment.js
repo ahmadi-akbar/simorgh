@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 
-const JsdomEnvironment = require('jest-environment-jsdom');
+const JsdomEnvironment = require('jest-environment-jsdom').TestEnvironment;
 const fetchDom = require('./utils/fetchDom');
 const getPageTypeFromTestPath = require('./utils/getPageTypeFromTestPath');
 const camelCaseToText = require('./utils/camelCaseToText');
@@ -8,22 +8,26 @@ const camelCaseToText = require('./utils/camelCaseToText');
 class IntegrationTestEnvironment extends JsdomEnvironment {
   constructor(config, context) {
     super(config, context);
-    const { platform } = config.testEnvironmentOptions;
+    const { platform } = config.projectConfig.testEnvironmentOptions;
     const {
       pathname,
       service,
       runScripts = 'true',
       displayAds = 'false',
+      isInUK = 'no',
     } = context.docblockPragmas;
     const pageType = getPageTypeFromTestPath(context.testPath);
+
+    const platformForPath = ['amp', 'lite'].includes(platform)
+      ? `.${platform}`
+      : '';
 
     this.pageType = camelCaseToText(pageType);
     this.service = service;
     this.runScripts = runScripts === 'true';
     this.displayAds = displayAds === 'true';
-    this.url = `http://localhost:7080${pathname}${
-      platform === 'amp' ? '.amp' : ''
-    }`;
+    this.isInUK = isInUK;
+    this.url = `http://localhost:7080${pathname}${platformForPath}`;
   }
 
   async setup() {
@@ -33,11 +37,10 @@ class IntegrationTestEnvironment extends JsdomEnvironment {
       const dom = await fetchDom({
         url: this.url,
         runScripts: this.runScripts,
-        ...(this.displayAds && {
-          headers: {
-            'BBC-Adverts': 'true',
-          },
-        }),
+        headers: {
+          ...(this.displayAds && { 'BBC-Adverts': 'true' }),
+          ...{ 'x-bbc-edge-isuk': this.isInUK },
+        },
       });
 
       Object.defineProperties(this.global, {

@@ -1,12 +1,8 @@
-import {
-  runCommonCrossPlatformTests,
-  runMediaPlayerEmbedTests,
-  runTimestampTests,
-} from '../../common';
+import { runCommonCrossPlatformTests, runTimestampTests } from '../../common';
 
 export default service => {
   runCommonCrossPlatformTests(service);
-  runMediaPlayerEmbedTests();
+
   runTimestampTests();
 
   const bulletedListItem = document.querySelector('main ul[role="list"] > li');

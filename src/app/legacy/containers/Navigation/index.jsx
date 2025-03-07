@@ -4,6 +4,8 @@ import {
   DropdownUl,
   DropdownLi,
 } from '#psammead/psammead-navigation/src/DropdownNavigation';
+import useClickTrackerHandler from '#app/hooks/useClickTrackerHandler';
+import useViewTracker from '#app/hooks/useViewTracker';
 import { RequestContext } from '#contexts/RequestContext';
 import { ServiceContext } from '../../../contexts/ServiceContext';
 import Canonical from './index.canonical';
@@ -17,15 +19,17 @@ const renderListItems = (
   service,
   dir,
   activeIndex,
-  brandForegroundColour,
-  brandHighlightColour,
-  brandBorderColour,
+  clickTrackerHandler,
+  viewRef,
+  isLite,
 ) =>
-  navigation.map((item, index) => {
-    const { title, url } = item;
+  navigation.reduce((listAcc, item, index) => {
+    const { title, url, hideOnLiteSite } = item;
     const active = index === activeIndex;
 
-    return (
+    if (hideOnLiteSite && isLite) return listAcc;
+
+    const listItem = (
       <Li
         key={title}
         url={url}
@@ -34,30 +38,44 @@ const renderListItems = (
         currentPageText={currentPage}
         service={service}
         dir={dir}
-        brandForegroundColour={brandForegroundColour}
-        brandHighlightColour={brandHighlightColour}
-        brandBorderColour={brandBorderColour}
+        clickTrackerHandler={clickTrackerHandler}
+        viewRef={viewRef}
       >
         {title}
       </Li>
     );
-  });
 
-const NavigationContainer = () => {
-  const { isAmp } = useContext(RequestContext);
+    return [...listAcc, listItem];
+  }, []);
 
-  const { script, translations, navigation, service, dir, theming } =
+const NavigationContainer = ({ propsForOJExperiment }) => {
+  const { isAmp, isLite } = useContext(RequestContext);
+  const { blocks, experimentVariant } = propsForOJExperiment || {};
+  const { script, translations, navigation, service, dir } =
     useContext(ServiceContext);
-
-  const {
-    brandBackgroundColour,
-    brandForegroundColour,
-    brandHighlightColour,
-    brandBorderColour,
-  } = theming;
 
   const { canonicalLink, origin } = useContext(RequestContext);
   const { currentPage, navMenuText } = translations;
+
+  const scrollableNavEventTrackingData = {
+    componentName: `scrollable-navigation`,
+  };
+
+  const dropdownNavEventTrackingData = {
+    componentName: `dropdown-navigation`,
+  };
+
+  const scrollableNavClickTrackerHandler = useClickTrackerHandler(
+    scrollableNavEventTrackingData,
+  );
+
+  const dropdownNavClickTrackerHandler = useClickTrackerHandler(
+    dropdownNavEventTrackingData,
+  );
+
+  const scrollableNavViewRef = useViewTracker(scrollableNavEventTrackingData);
+
+  const dropdownNavViewRef = useViewTracker(dropdownNavEventTrackingData);
 
   if (!navigation || navigation.length === 0) {
     return null;
@@ -77,9 +95,9 @@ const NavigationContainer = () => {
         service,
         dir,
         activeIndex,
-        brandForegroundColour,
-        brandHighlightColour,
-        brandBorderColour,
+        scrollableNavClickTrackerHandler,
+        scrollableNavViewRef,
+        isLite,
       )}
     </NavigationUl>
   );
@@ -94,6 +112,8 @@ const NavigationContainer = () => {
         service,
         dir,
         activeIndex,
+        dropdownNavClickTrackerHandler,
+        dropdownNavViewRef,
       )}
     </DropdownUl>
   );
@@ -108,10 +128,8 @@ const NavigationContainer = () => {
       dir={dir}
       script={script}
       service={service}
-      brandBackgroundColour={brandBackgroundColour}
-      brandForegroundColour={brandForegroundColour}
-      brandHighlightColour={brandHighlightColour}
-      brandBorderColour={brandBorderColour}
+      blocks={blocks}
+      experimentVariant={experimentVariant}
     />
   );
 };

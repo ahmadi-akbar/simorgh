@@ -3,6 +3,9 @@ export default {
   ads: {
     enabled: false,
   },
+  electionBanner: {
+    enabled: true,
+  },
   chartbeatAnalytics: {
     enabled: true,
   },
@@ -26,12 +29,6 @@ export default {
   mostRead: {
     enabled: true,
   },
-  mostWatched: {
-    enabled: true,
-  },
-  navOnArticles: {
-    enabled: true,
-  },
   nielsenAnalytics: {
     enabled: true,
   },
@@ -41,13 +38,22 @@ export default {
   prerollAds: {
     enabled: true,
   },
-  radioSchedule: {
+  frontPageRadioSchedule: {
+    enabled: true,
+  },
+  liveRadioSchedule: {
+    enabled: true,
+  },
+  onDemandRadioSchedule: {
     enabled: true,
   },
   scriptLink: {
     enabled: true,
   },
   variantCookie: {
+    enabled: true,
+  },
+  webVitalsMonitoring: {
     enabled: true,
   },
 };

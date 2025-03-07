@@ -7,18 +7,20 @@ import {
 import isLive from '#lib/utilities/isLive';
 import onClient from '#lib/utilities/onClient';
 import { GEL_GROUP_3_SCREEN_WIDTH_MAX } from '#psammead/gel-foundations/src/breakpoints';
+import { getEnvConfig } from '#app/lib/utilities/getEnvConfig';
+import Cookie from 'js-cookie';
+import isOperaProxy from '#app/lib/utilities/isOperaProxy';
 import { ServiceContext } from '../../../../contexts/ServiceContext';
-import getOptimizelyUserId from './getOptimizelyUserId';
+import isCypress from './isCypress';
 
-// 004_brasil_recommendations_experiment
-const isCypress = onClient() && window.Cypress;
+const isInCypress = isCypress();
 
-if (isLive() || isCypress) {
+if (isLive() || isInCypress) {
   setLogger(null);
 }
 
 const optimizely = createInstance({
-  sdkKey: process.env.SIMORGH_OPTIMIZELY_SDK_KEY,
+  sdkKey: getEnvConfig().SIMORGH_OPTIMIZELY_SDK_KEY,
   eventBatchSize: 10,
   eventFlushInterval: 1000,
 });
@@ -27,14 +29,17 @@ const withOptimizelyProvider = Component => {
   return props => {
     const { service } = useContext(ServiceContext);
     const isStoryBook = process.env.STORYBOOK;
-    const disableOptimizely = isStoryBook;
+    const disableOptimizely = isStoryBook || isInCypress;
+
+    if (disableOptimizely) return <Component {...props} />;
+
     let mobile;
 
     const getUserId = () => {
-      if (disableOptimizely) {
+      if (disableOptimizely || !onClient() || isOperaProxy()) {
         return null;
       }
-      return getOptimizelyUserId();
+      return Cookie.get('ckns_mvt') ?? null;
     };
 
     if (onClient()) {

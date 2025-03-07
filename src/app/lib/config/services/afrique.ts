@@ -1,10 +1,4 @@
 import latinWithDiacritics from '../../../components/ThemeProvider/fontScripts/latinWithDiacritics';
-import {
-  C_POSTBOX,
-  C_WHITE,
-  C_GHOST,
-  C_POSTBOX_30,
-} from '../../../legacy/psammead/psammead-styles/src/colours';
 import '#psammead/moment-timezone-include/tz/GMT';
 import withContext from '../../../contexts/utils/withContext';
 import 'moment/locale/fr';
@@ -18,6 +12,8 @@ export const service: DefaultServiceConfig = {
     articleTimestampSuffix: '',
     atiAnalyticsAppName: 'news-afrique',
     atiAnalyticsProducerId: '3',
+    atiAnalyticsProducerName: 'AFRIQUE',
+    useReverb: true,
     chartbeatDomain: 'afrique.bbc.co.uk',
     brandName: 'BBC News Afrique',
     product: 'BBC News',
@@ -38,7 +34,6 @@ export const service: DefaultServiceConfig = {
     service: 'afrique',
     serviceName: 'Afrique',
     languageName: 'French',
-    themeColor: `${C_POSTBOX}`,
     twitterCreator: '@bbcafrique',
     twitterSite: '@bbcafrique',
     noBylinesPolicy:
@@ -50,13 +45,6 @@ export const service: DefaultServiceConfig = {
     manifestPath: '/manifest.json',
     swPath: '/sw.js',
     frontPageTitle: 'Accueil',
-    theming: {
-      brandBackgroundColour: `${C_POSTBOX}`,
-      brandLogoColour: `${C_WHITE}`,
-      brandForegroundColour: `${C_GHOST}`,
-      brandHighlightColour: `${C_WHITE}`,
-      brandBorderColour: `${C_POSTBOX_30}`,
-    },
     showAdPlaceholder: true,
     showRelatedTopics: true,
     translations: {
@@ -81,6 +69,18 @@ export const service: DefaultServiceConfig = {
         mediaPlayer: 'Lecteur média',
         audioPlayer: 'Lecteur audio',
         videoPlayer: 'Lecteur vidéo',
+      },
+      liveExperiencePage: {
+        liveLabel: 'En direct',
+        liveCoverage: 'En direct',
+        breaking: 'Urgent',
+        postedAt: 'Posté à',
+        summary: 'Points clés',
+        shareButtonText: 'Partager',
+      },
+      downloads: {
+        instructions: 'You can download and view today’s news.',
+        title: 'File Download',
       },
       gist: 'Points clés',
       error: {
@@ -138,7 +138,7 @@ export const service: DefaultServiceConfig = {
           },
           accept: 'OK',
           reject: 'Découvrez ce qui a changé',
-          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/your-data-matters',
+          rejectUrl: 'https://www.bbc.com/usingthebbc/privacy-policy/',
         },
         cookie: {
           amp: {
@@ -153,7 +153,7 @@ export const service: DefaultServiceConfig = {
                 linkText: 'cookies',
                 last: ", et collectons des données de navigation pour vous offrir la meilleure expérience en ligne et pour personnaliser le contenu et la publicité qui vous sont présentés. Veuillez nous faire savoir si vous êtes d'accord.",
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
               manage: 'Gérer mes paramêtres',
             },
@@ -169,7 +169,7 @@ export const service: DefaultServiceConfig = {
                   'Pour que nos pages web fonctionnent, nous stockons certaines informations limitées sur votre appareil sans votre consentement.',
                 para4: {
                   text: 'En savoir plus sur les informations essentielles que nous stockons sur votre appareil pour faire fonctionner nos pages web.',
-                  url: 'https://www.bbc.co.uk/usingthebbc/strictly-necessary-cookies/',
+                  url: 'https://www.bbc.com/usingthebbc/cookies/strictly-necessary-cookies/',
                 },
                 para5:
                   'Nous utilisons le stockage local pour enregistrer vos préférences de consentement sur votre appareil.',
@@ -202,13 +202,13 @@ export const service: DefaultServiceConfig = {
                 linkText: 'cookies',
                 last: ' pour vous offrir la meilleur expérience en ligne. Veuillez nous faire savoir si vous acceptez tous ces cookies.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
             },
             accept: "Oui, j'accepte",
             reject: 'Non, dirigez-moi vers les réglages',
             rejectUrl:
-              'https://www.bbc.co.uk/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
+              'https://www.bbc.com/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
           },
         },
       },
@@ -237,6 +237,7 @@ export const service: DefaultServiceConfig = {
         nextRadioShow: 'Emission de radio suivante',
         duration: 'Durée',
         recentEpisodes: 'Editions Précédentes',
+        closeVideo: 'Sortir',
       },
       socialEmbed: {
         caption: {
@@ -276,11 +277,6 @@ export const service: DefaultServiceConfig = {
       lastUpdated: 'Dernière mise à jour:',
       numberOfItems: 5,
       hasMostRead: true,
-    },
-    mostWatched: {
-      header: 'Les plus vus',
-      numberOfItems: 10,
-      hasMostWatched: true,
     },
     radioSchedule: {
       hasRadioSchedule: true,
@@ -325,9 +321,13 @@ export const service: DefaultServiceConfig = {
           text: 'Contactez la BBC',
         },
         {
+          href: 'https://www.bbc.com/ws/languages',
+          text: 'Autres langues',
+        },
+        {
           id: 'COOKIE_SETTINGS',
-          href: 'https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/',
-          text: 'AdChoices / Do Not Sell My Info',
+          href: '#',
+          text: 'Do not share or sell my info',
           lang: 'en-GB',
         },
       ],
@@ -339,6 +339,14 @@ export const service: DefaultServiceConfig = {
       {
         title: 'Accueil',
         url: '/afrique',
+      },
+      {
+        title: 'Conflit en RDC',
+        url: '/afrique/topics/cge72ry253jt',
+      },
+      {
+        title: 'Ecoutez en direct',
+        url: '/afrique/bbc_afrique_radio/liveradio',
       },
       {
         title: 'Afrique',
@@ -353,16 +361,8 @@ export const service: DefaultServiceConfig = {
         url: '/afrique/topics/c06gq9jxz3rt',
       },
       {
-        title: 'Bien-être',
-        url: '/afrique/topics/c0vmyy90q8zt',
-      },
-      {
-        title: 'Science',
-        url: '/afrique/topics/cdr561vr57gt',
-      },
-      {
-        title: 'Technologie',
-        url: '/afrique/topics/cnq687nn703t',
+        title: 'Science et technologie',
+        url: '/afrique/topics/crezq2zk0q4t',
       },
       {
         title: 'Economie',
@@ -374,15 +374,11 @@ export const service: DefaultServiceConfig = {
       },
       {
         title: 'Vidéos',
-        url: '/afrique/media/video',
+        url: '/afrique/topics/cz4vn9gyd6rt',
       },
       {
         title: 'Nos émissions',
-        url: '/afrique/media-54074891',
-      },
-      {
-        title: 'Ecoutez en direct',
-        url: '/afrique/bbc_afrique_radio/liveradio',
+        url: '/afrique/topics/c88nzggm8gxt',
       },
     ],
   },

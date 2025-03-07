@@ -1,17 +1,22 @@
 /* eslint-disable jsx-a11y/aria-role */
-import React, { useContext } from 'react';
+/** @jsx jsx */
+import { jsx } from '@emotion/react';
+import { useContext } from 'react';
 import moment from 'moment';
 import path from 'ramda/src/path';
-import VisuallyHiddenText from '#psammead/psammead-visually-hidden-text/src';
 import formatDuration from '#app/lib/utilities/formatDuration';
 import Promo from '#components/Promo';
+import { Summary } from '#app/models/types/curationData';
+import VisuallyHiddenText from '../../VisuallyHiddenText';
 import { ServiceContext } from '../../../contexts/ServiceContext';
-import { Promo as CurationPromoProps } from '../types';
+import { RequestContext } from '../../../contexts/RequestContext';
+import LiveLabel from '../../LiveLabel';
+import styles from './index.styles';
 
 const CurationPromo = ({
   id,
   title,
-  firstPublished,
+  lastPublished,
   imageUrl,
   imageAlt,
   lazy,
@@ -19,7 +24,9 @@ const CurationPromo = ({
   type,
   duration: mediaDuration,
   headingLevel = 2,
-}: CurationPromoProps) => {
+  isLive,
+}: Summary) => {
+  const { isAmp, isLite } = useContext(RequestContext);
   const { translations } = useContext(ServiceContext);
 
   const audioTranslation = path(['media', 'audio'], translations);
@@ -31,7 +38,7 @@ const CurationPromo = ({
   const separator = ',';
 
   const formattedDuration = formatDuration({ duration, separator });
-  const durationString = `${durationTranslation}, ${formattedDuration}`;
+  const durationString = `, ${durationTranslation} ${formattedDuration}`;
 
   const showDuration = mediaDuration && ['video', 'audio'].includes(type);
   const isMedia = ['video', 'audio', 'photogallery'].includes(type);
@@ -41,19 +48,25 @@ const CurationPromo = ({
     (type === 'photogallery' && `${photoGalleryTranslation}, `);
 
   return (
-    <Promo>
-      <Promo.Image src={imageUrl} alt={imageAlt} lazyLoad={lazy}>
-        <Promo.MediaIcon type={type}>
-          {showDuration ? mediaDuration : ''}
-        </Promo.MediaIcon>
-      </Promo.Image>
+    <Promo css={styles.promo} className="">
+      {imageUrl && (
+        <Promo.Image
+          src={imageUrl}
+          alt={imageAlt}
+          lazyLoad={lazy}
+          isAmp={isAmp}
+          {...(isLite && { css: styles.image })}
+        >
+          {isMedia && (
+            <Promo.MediaIcon css={styles.icon} type={type}>
+              {showDuration ? mediaDuration : ''}
+            </Promo.MediaIcon>
+          )}
+        </Promo.Image>
+      )}
       <Promo.Heading as={`h${headingLevel}`}>
         {isMedia ? (
-          <Promo.A
-            href={link}
-            aria-labelledby={id}
-            className="focusIndicatorDisplayBlock"
-          >
+          <Promo.A href={link} aria-labelledby={id}>
             <span id={id} role="text">
               <VisuallyHiddenText data-testid="visually-hidden-text">
                 {typeTranslated}
@@ -65,12 +78,16 @@ const CurationPromo = ({
             </span>
           </Promo.A>
         ) : (
-          <Promo.A href={link} className="focusIndicatorDisplayBlock">
-            {title}
+          <Promo.A href={link}>
+            {isLive ? <LiveLabel>{title}</LiveLabel> : title}
           </Promo.A>
         )}
       </Promo.Heading>
-      <Promo.Timestamp>{firstPublished}</Promo.Timestamp>
+      {!isLive ? (
+        <Promo.Timestamp className="promo-timestamp">
+          {lastPublished}
+        </Promo.Timestamp>
+      ) : null}
     </Promo>
   );
 };

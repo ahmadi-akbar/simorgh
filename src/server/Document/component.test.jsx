@@ -2,12 +2,45 @@ import React from 'react';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { Helmet } from 'react-helmet';
 import { JSDOM } from 'jsdom';
+import dotenv from 'dotenv';
 
 import DocumentComponent from './component';
 
 Helmet.canUseDOM = false;
 
+jest.mock('#src/server/utilities/liteATITracking', () =>
+  function liteATIClickTracking() {
+    return 'Tracking script placeholder';
+  }.toString(),
+);
+
+jest.mock('#src/server/utilities/liteATITracking/clickTracking', () =>
+  function liteATIClickTracking() {
+    return 'Click script placeholder';
+  }.toString(),
+);
+
+jest.mock('#src/server/utilities/liteATITracking/viewTracking', () =>
+  function liteATIClickTracking() {
+    return 'View script placeholder';
+  }.toString(),
+);
+
 describe('Document Component', () => {
+  const originalProcessEnv = process.env;
+
+  // Load environment variables into process.env to ensure CanonicalRenderer
+  // uses values set in the local.env file in lieu of mocked values
+  dotenv.config({ path: './envConfig/local.env' });
+
+  beforeEach(() => {
+    process.env.SIMORGH_APP_ENV = 'local';
+  });
+
+  afterEach(() => {
+    process.env = originalProcessEnv;
+  });
+
   const data = { test: 'data' };
   const legacyScripts = (
     <>
@@ -25,14 +58,13 @@ describe('Document Component', () => {
   );
   const links = (
     <>
-      <link rel="modulePreload" href="modern.main.js" />
-      <link rel="modulePreload" href="modern.vendor.js" />
-      <link rel="modulePreload" href="modern.igbo.js" />
+      <link rel="modulepreload" href="modern.main.js" />
+      <link rel="modulepreload" href="modern.vendor.js" />
+      <link rel="modulepreload" href="modern.igbo.js" />
     </>
   );
 
-  // eslint-disable-next-line react/prop-types
-  const TestDocumentComponent = ({ service, isAmp }) => (
+  const TestDocumentComponent = ({ service, isAmp, isApp, isLite }) => (
     <DocumentComponent
       app={{
         css: '.css-7prgni-StyledLink{display:inline-block;}',
@@ -61,13 +93,17 @@ describe('Document Component', () => {
       modernScripts={modernScripts}
       service={service}
       isAmp={isAmp}
+      isApp={isApp}
+      isLite={isLite}
       links={links}
     />
   );
 
   it('should render correctly', () => {
     const dom = new JSDOM(
-      renderToString(<TestDocumentComponent service="news" isAmp={false} />),
+      renderToString(
+        <TestDocumentComponent service="news" isAmp={false} isApp={false} />,
+      ),
     );
     expect(dom.window.document.documentElement).toMatchSnapshot();
   });
@@ -88,5 +124,44 @@ describe('Document Component', () => {
     const linksHtml = renderToStaticMarkup(links);
 
     expect(head).not.toContainHTML(linksHtml);
+  });
+
+  it('should render APP version correctly', () => {
+    const dom = new JSDOM(
+      renderToString(<TestDocumentComponent service="news" isApp />),
+    );
+    expect(dom.window.document.documentElement).toMatchSnapshot();
+  });
+
+  it('should render LITE version correctly', () => {
+    const dom = new JSDOM(
+      renderToString(<TestDocumentComponent service="news" isLite />),
+    );
+    expect(dom.window.document.documentElement).toMatchSnapshot();
+  });
+
+  it('should render "noindex" meta tag on APP version', () => {
+    const dom = new JSDOM(
+      renderToString(<TestDocumentComponent service="news" isApp />),
+    );
+
+    const head = dom.window.document.querySelector('head');
+
+    expect(head).toContainHTML('<meta name="robots" content="noindex" />');
+  });
+
+  it('should render the "window.SIMORGH_DATA" object as the first script tag in the body', () => {
+    const dom = new JSDOM(
+      renderToString(<TestDocumentComponent service="news" />),
+    );
+
+    const body = dom.window.document.querySelector('body');
+    const scripts = body.querySelectorAll('script');
+
+    const firstScript = scripts[0];
+
+    expect(firstScript.innerHTML).toBe(
+      `window.SIMORGH_DATA=${JSON.stringify(data)}`,
+    );
   });
 });

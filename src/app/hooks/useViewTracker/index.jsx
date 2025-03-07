@@ -1,24 +1,31 @@
 import { useContext, useEffect, useState, useRef } from 'react';
-import path from 'ramda/src/path';
-import pathOr from 'ramda/src/pathOr';
 import prop from 'ramda/src/prop';
 
-import { sendEventBeacon } from '#containers/ATIAnalytics/beacon';
-import { EventTrackingContext } from '#app/contexts/EventTrackingContext';
-import useTrackingToggle from '#hooks/useTrackingToggle';
-import OPTIMIZELY_CONFIG from '#lib/config/optimizely';
+import { RequestContext } from '#app/contexts/RequestContext';
+import { sendEventBeacon } from '../../components/ATIAnalytics/beacon';
+import { EventTrackingContext } from '../../contexts/EventTrackingContext';
+import useTrackingToggle from '../useTrackingToggle';
+import OPTIMIZELY_CONFIG from '../../lib/config/optimizely';
 import { ServiceContext } from '../../contexts/ServiceContext';
+import { useConstructLiteSiteATIEventTrackUrl } from '../useClickTrackerHandler';
 
-const EVENT_TYPE = 'view';
+const VIEW_EVENT = 'view';
 const VIEWED_DURATION_MS = 1000;
 const MIN_VIEWED_PERCENT = 0.5;
+export const LITE_ATI_VIEW_TRACKING = 'data-lite-ati-view-tracking';
 
+/**
+ *
+ * @returns {Ref<HTMLElement> | undefined}
+ */
 const useViewTracker = (props = {}) => {
-  const componentName = path(['componentName'], props);
-  const format = path(['format'], props);
-  const advertiserID = path(['advertiserID'], props);
-  const url = path(['url'], props);
-  const optimizely = path(['optimizely'], props);
+  const componentName = props?.componentName;
+  const format = props?.format;
+  const advertiserID = props?.advertiserID;
+  const url = props?.url;
+  const optimizely = props?.optimizely;
+  const optimizelyMetricNameOverride = props?.optimizelyMetricNameOverride;
+  const detailedPlacement = props?.detailedPlacement;
 
   const observer = useRef();
   const timer = useRef(null);
@@ -26,14 +33,17 @@ const useViewTracker = (props = {}) => {
   const [eventSent, setEventSent] = useState(false);
   const { trackingIsEnabled } = useTrackingToggle(componentName);
   const eventTrackingContext = useContext(EventTrackingContext);
-  const { pageIdentifier, platform, producerId, statsDestination } =
-    eventTrackingContext;
-  const campaignID = pathOr(
-    path(['campaignID'], eventTrackingContext),
-    ['campaignID'],
-    props,
-  );
-  const { service } = useContext(ServiceContext);
+
+  const {
+    pageIdentifier,
+    platform,
+    producerId,
+    producerName,
+    statsDestination,
+  } = eventTrackingContext;
+  const campaignID = props?.campaignID || eventTrackingContext?.campaignID;
+
+  const { service, useReverb } = useContext(ServiceContext);
 
   const initObserver = async () => {
     if (typeof window.IntersectionObserver === 'undefined') {
@@ -61,6 +71,7 @@ const useViewTracker = (props = {}) => {
           pageIdentifier,
           platform,
           producerId,
+          producerName,
           service,
           statsDestination,
         ].every(Boolean);
@@ -73,17 +84,24 @@ const useViewTracker = (props = {}) => {
 
         if (shouldSendEvent) {
           if (optimizely) {
+            const eventName = OPTIMIZELY_CONFIG.viewClickAttributeId;
+
             const overrideAttributes = {
               ...optimizely.user.attributes,
-              [`viewed_${OPTIMIZELY_CONFIG.viewClickAttributeId}`]: true,
+              [`viewed_${eventName}`]: true,
             };
 
             optimizely.track(
-              'component_views',
+              optimizelyMetricNameOverride
+                ? `${optimizelyMetricNameOverride}_views`
+                : 'component_views',
               optimizely.user.id,
               overrideAttributes,
             );
           }
+
+          const optimizelyVariation =
+            optimizely?.getVariation(OPTIMIZELY_CONFIG.ruleKey) || null;
 
           sendEventBeacon({
             campaignID,
@@ -92,11 +110,18 @@ const useViewTracker = (props = {}) => {
             pageIdentifier,
             platform,
             producerId,
+            producerName,
             service,
             statsDestination,
-            type: EVENT_TYPE,
+            type: VIEW_EVENT,
             advertiserID,
             url,
+            detailedPlacement,
+            useReverb,
+            ...(optimizelyVariation &&
+              optimizelyVariation !== 'off' && {
+                experimentVariant: optimizelyVariation,
+              }),
           });
           setEventSent(true);
           observer.current.disconnect();
@@ -120,6 +145,7 @@ const useViewTracker = (props = {}) => {
     pageIdentifier,
     platform,
     producerId,
+    producerName,
     service,
     statsDestination,
     trackingIsEnabled,
@@ -127,6 +153,9 @@ const useViewTracker = (props = {}) => {
     advertiserID,
     url,
     optimizely,
+    optimizelyMetricNameOverride,
+    detailedPlacement,
+    useReverb,
   ]);
 
   return async element => {
@@ -139,6 +168,16 @@ const useViewTracker = (props = {}) => {
 
     observer.current.observe(element);
   };
+};
+
+export const useLiteViewTracker = (props = {}) => {
+  const { isLite } = useContext(RequestContext);
+  const liteHandler = useConstructLiteSiteATIEventTrackUrl({
+    props,
+    eventType: VIEW_EVENT,
+  });
+
+  return isLite ? { [LITE_ATI_VIEW_TRACKING]: liteHandler } : null;
 };
 
 export default useViewTracker;

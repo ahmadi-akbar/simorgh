@@ -1,13 +1,6 @@
 import React, { useContext } from 'react';
-import { string, number, bool } from 'prop-types';
 import styled from '@emotion/styled';
 import { Headline } from '#psammead/psammead-headings/src';
-import VisuallyHiddenText from '#psammead/psammead-visually-hidden-text/src';
-import {
-  GEL_SPACING,
-  GEL_SPACING_DBL,
-  GEL_SPACING_TRPL,
-} from '#psammead/gel-foundations/src/spacings';
 import {
   MEDIA_QUERY_TYPOGRAPHY,
   GEL_GROUP_2_SCREEN_WIDTH_MAX,
@@ -19,17 +12,18 @@ import {
   getParagon,
 } from '#psammead/gel-foundations/src/typography';
 import { getSansRegular } from '#psammead/psammead-styles/src/font-styles';
+import VisuallyHiddenText from '../../../components/VisuallyHiddenText';
 import { ServiceContext } from '../../../contexts/ServiceContext';
 
 const BrandTitle = styled.span`
   display: block;
   line-height: 1;
   width: 100%;
-  padding-bottom: ${GEL_SPACING};
+  padding-bottom: ${({ theme }) => `${theme.spacings.FULL}rem`};
   word-break: break-word;
-  ${({ script, darkMode }) => (darkMode ? '' : script && getParagon(script))}
+  ${({ script, theme }) => (theme.isDarkUi ? '' : script && getParagon(script))}
   ${MEDIA_QUERY_TYPOGRAPHY.LAPTOP_AND_LARGER} {
-    padding-bottom: ${GEL_SPACING_DBL};
+    padding-bottom: ${({ theme }) => `${theme.spacings.DOUBLE}rem`};
     word-break: break-word;
     line-height: 1.09;
   }
@@ -46,22 +40,21 @@ const Subheading = styled.span`
   }
   @media (max-width: ${GEL_GROUP_2_SCREEN_WIDTH_MAX}) {
     font-size: 1.25rem;
-    line-height: ${GEL_SPACING_TRPL};
+    line-height: ${({ theme }) => `${theme.spacings.TRIPLE}rem`};
   }
   ${MEDIA_QUERY_TYPOGRAPHY.LAPTOP_AND_LARGER} {
-    font-size: ${GEL_SPACING_TRPL};
+    font-size: ${({ theme }) => `${theme.spacings.TRIPLE}rem`};
     line-height: 1.75rem;
   }
 `;
 
 const OnDemandHeadingContainer = ({
-  idAttr,
+  idAttr = null,
   brandTitle,
   releaseDateTimeStamp,
-  episodeTitle,
-  ariaHidden,
-  darkMode,
-  className,
+  episodeTitle = '',
+  ariaHidden = false,
+  className = '',
 }) => {
   const { script, service, timezone, datetimeLocale } =
     useContext(ServiceContext);
@@ -81,40 +74,21 @@ const OnDemandHeadingContainer = ({
       script={script}
       service={service}
       id={idAttr}
-      darkMode={darkMode}
-      className={className}
+      {...(className ? { className } : undefined)}
       {...(idAttr === 'content' && { tabIndex: '-1' })}
       {...(ariaHidden && { as: 'strong', 'aria-hidden': 'true' })}
     >
       <TextWrapper {...(ariaHidden ? {} : { role: 'text' })}>
-        <BrandTitle script={script} darkMode={darkMode}>
+        <BrandTitle script={script} data-testid="brand-title">
           {brandTitle}
         </BrandTitle>
         <VisuallyHiddenText>, </VisuallyHiddenText>
-        <Subheading script={script} service={service}>
+        <Subheading script={script} service={service} data-testid="sub-heading">
           {episodeTitle || formattedTimestamp}
         </Subheading>
       </TextWrapper>
     </Headline>
   );
-};
-
-OnDemandHeadingContainer.propTypes = {
-  idAttr: string,
-  brandTitle: string.isRequired,
-  releaseDateTimeStamp: number.isRequired,
-  episodeTitle: string,
-  ariaHidden: bool,
-  darkMode: bool,
-  className: string,
-};
-
-OnDemandHeadingContainer.defaultProps = {
-  idAttr: null,
-  episodeTitle: null,
-  ariaHidden: false,
-  darkMode: false,
-  className: '',
 };
 
 export default OnDemandHeadingContainer;

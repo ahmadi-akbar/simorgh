@@ -1,9 +1,3 @@
-import {
-  C_POSTBOX,
-  C_WHITE,
-  C_GHOST,
-  C_POSTBOX_30,
-} from '../../../legacy/psammead/psammead-styles/src/colours';
 import noAscendersOrDescenders from '../../../components/ThemeProvider/fontScripts/noAscOrDesc';
 import '#psammead/moment-timezone-include/tz/Africa/Addis_Ababa';
 import '#psammead/psammead-locales/moment/am';
@@ -18,6 +12,8 @@ export const service: DefaultServiceConfig = {
     articleTimestampSuffix: '',
     atiAnalyticsAppName: 'news-amharic',
     atiAnalyticsProducerId: '4',
+    atiAnalyticsProducerName: 'AMHARIC',
+    useReverb: true,
     chartbeatDomain: 'amharic.bbc.co.uk',
     brandName: 'BBC News አማርኛ',
     product: 'BBC News',
@@ -38,7 +34,6 @@ export const service: DefaultServiceConfig = {
     service: 'amharic',
     serviceName: 'Amharic',
     languageName: 'Amharic',
-    themeColor: `${C_POSTBOX}`,
     twitterCreator: '@bbcnews',
     twitterSite: '@bbcnews',
     noBylinesPolicy:
@@ -49,15 +44,21 @@ export const service: DefaultServiceConfig = {
     manifestPath: '/manifest.json',
     swPath: '/sw.js',
     frontPageTitle: 'ዜና',
-    theming: {
-      brandBackgroundColour: `${C_POSTBOX}`,
-      brandLogoColour: `${C_WHITE}`,
-      brandForegroundColour: `${C_GHOST}`,
-      brandHighlightColour: `${C_WHITE}`,
-      brandBorderColour: `${C_POSTBOX_30}`,
-    },
     showAdPlaceholder: false,
     showRelatedTopics: true,
+    podcastPromo: {
+      title: 'ቢቢሲ አማርኛ በዋትስአፕ',
+      brandTitle: 'የቢቢሲ አማርኛ ዋትስአፕ ቻናል',
+      brandDescription: 'ዜና፣ ትንታኔ እና ታሪኮችን በቀጥታ በዋትስአፕ ለማግኘት',
+      image: {
+        src: 'https://ichef.bbci.co.uk/images/ic/$recipe//p0krq6vq.png',
+        alt: 'የቢቢሲ አማርኛ ዋትስአፕ ቻናል',
+      },
+      linkLabel: {
+        text: 'ይህን በመጫን የቻናላችን አባል ይሁኑ!',
+        href: 'https://bit.ly/4gsoTyI',
+      },
+    },
     translations: {
       pagination: {
         page: 'ገፁ',
@@ -79,6 +80,18 @@ export const service: DefaultServiceConfig = {
         mediaPlayer: 'Media player',
         audioPlayer: 'Audio player',
         videoPlayer: 'Video player',
+      },
+      liveExperiencePage: {
+        liveLabel: 'ቀጥታ',
+        liveCoverage: 'የቀጥታ ሽፋን',
+        breaking: 'ሰበር',
+        postedAt: 'የታተመዉ',
+        summary: 'ጭምቅ ሃሳብ',
+        shareButtonText: 'ያጋሩ',
+      },
+      downloads: {
+        instructions: 'You can download and view today’s news.',
+        title: 'File Download',
       },
       gist: 'ጭምቅ ሃሳብ',
       error: {
@@ -136,7 +149,7 @@ export const service: DefaultServiceConfig = {
           },
           accept: 'እሺ',
           reject: 'ምን እንደተቀየረ ይመልከቱ',
-          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/your-data-matters',
+          rejectUrl: 'https://www.bbc.com/usingthebbc/privacy-policy/',
         },
         cookie: {
           amp: {
@@ -149,7 +162,7 @@ export const service: DefaultServiceConfig = {
                 linkText: 'ኩኪዎችን',
                 last: 'የመሳሰሉ ቴክኖሎጂዎችን የምንጠቀመውና መረጃዎችን የምንሰብስበው እርስዎ የሚፈልጉት መረጃና ማስታወቂያ ቅድሚያ እንዲደርስዎና የላቀ የድረገጽ አገልግሎት እንዲያገኙ ለማድረግ ነው። እባክዎ መስማማትዎን ያሳውቁን።',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
               manage: 'የአጠቃቀም ምርጫዎን ለማስተካከል',
             },
@@ -164,7 +177,7 @@ export const service: DefaultServiceConfig = {
                   'ድረ ገጻችን እንዲሰራ ለማድረግ የእርስዎ ፈቃድ ሳያስፈልግ የተወሰኑ መረጃዎችን በሚገለገሉበት መሳሪያ ላይ እናስቀምጣለን።',
                 para4: {
                   text: 'ድረ ገጻችን እንዲሰራ ለማድረግ በሚገለገሉበት መሳሪያ ላይ ያስቀመጥነውን ጠቃሚ መረጃን በተመለከተ ተጨማሪ ያንብቡ',
-                  url: 'https://www.bbc.co.uk/usingthebbc/strictly-necessary-cookies/',
+                  url: 'https://www.bbc.com/usingthebbc/cookies/strictly-necessary-cookies/',
                 },
                 para5: 'በመገልገያ መሳሪያዎ ላይ የስምምነት ምርጫዎችዎን እናስቀምጣለን።',
                 heading3: 'የግድ ያልሆነ መረጃ',
@@ -196,13 +209,13 @@ export const service: DefaultServiceConfig = {
                 linkText: 'የምናቀርበውን አገልግሎት ለማሻሻል በማሰብ ኩኪዎችን',
                 last: ' እንጠቀማለን። ኩኪዎችን መጠቀም ላይ መስማማትዎን እባክዎ ያሳውቁን.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
             },
             accept: 'እሺ፣ እስማማለሁ',
             reject: 'ወደ ማውጫ መመለስ እፈልጋለሁ',
             rejectUrl:
-              'https://www.bbc.co.uk/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
+              'https://www.bbc.com/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
           },
         },
       },
@@ -223,6 +236,7 @@ export const service: DefaultServiceConfig = {
         nextRadioShow: 'ቀጣይ የሬዲዮ ስርጭት',
         duration: 'ርዝመት',
         recentEpisodes: 'ያለፉ ዝግጅቶች’',
+        closeVideo: 'ይውጡ',
       },
       socialEmbed: {
         caption: {
@@ -254,17 +268,76 @@ export const service: DefaultServiceConfig = {
       },
       topStoriesTitle: 'እንዳያመልጥዎ',
       featuresAnalysisTitle: 'ከየፈርጁ',
+      latestMediaTitle: 'የቅርብ ጊዜ',
+      ugc: {
+        // No JavaScript
+        noJsHeading: undefined,
+        noJsDescription: undefined,
+
+        // Optional
+        optional: 'ግዴት አይደለም',
+
+        // File upload
+        fileUploadLiveRegionText: undefined,
+        fileUploadLiveRegionUpdateText: undefined,
+        fileUploadListHeading: 'እየጫኑ ያሉት ይህ ነው፡',
+        fileUploadButton: 'ፋይል ይምረጡ',
+        fileUploadRemoveButton: undefined,
+
+        // Submit button
+        submitButton: 'ላክ',
+
+        // Validation
+        validationRequired: 'አንድ የጎደለ ነገር አለ',
+        validationInvalidEmail: 'ትክክል አይመስልም። እባክዎ ትክክለኛ የኢሜይል አድራሻ ያስገቡ።',
+        validationInvalidTelephone: undefined,
+        validationFilesNotEnough: 'በቂ ፋይሎች አይደሉም። እባክዎ ቢያንስ {{minFiles}} ያስገቡ።',
+        validationFilesTooMany: 'ብዙ ፋይሎች ናቸው። መጫን የሚችሉት የፋይል መጠን {{maxFiles}}።',
+        validationFilesInvalidType:
+          'ይቅርታ፤ እንደዚህ አይነት ፋይሎችን መጠቀም አንችልም። እባክዎ {{fileTypes}} አይነት ፋይሎችን ይጨምሩ።',
+        validationFilesTooSmall: 'ፋይሉ ስህተት አለው። እባክዎ ሌላ ፋይል ይምረጡ።',
+        validationFilesSizeExceeded:
+          'ይቅርታ፤ እነዚህ ፋይሎች መጠናቸው ከፍ ያለ ነው። በአንድ ግዜ መጫን የሚችሉት 1.2GB ፋይል ነው።',
+        validationWordLimit: 'የሚፈቀደው የቃላት መጠን {{wordLimit}}',
+
+        // Messaging
+        retentionPeriodDays: undefined,
+        referenceNumber: 'መለያ ቁጥር',
+        submissionInfoSignedOutMessage: 'ለማስታወስ ያክል ዝርዝሩን በግልዎ መዝግበው መያዝ ይችላሉ።',
+        privacyInfoHtml:
+          'የግላዊ መረጃዎ ምስጢራዊነት የተጠበቀ ይሆናል፤ ዝርዝሩን ለማወቅ {{privacyInfoLink}} ክፍል ያንብቡ።',
+        emailToHtml:
+          'ሃሳብዎን ቀይረው መጠቀም ካልፈለጉ፤ በዚህ አድራሻ ኢሜይል ይላኩ {{emailLink}}። የማጣቀሻ ቁጥሩንም ከመጻፍ አይዘንጉ።',
+        removalGuidelineText:
+          'በፕሮግራም ወይም በኦንላይን ላይ አንዳች ነገር አቅርበው ጥቅም ላይ ከዋለ በኋላ ልናነሳው አንችልም።',
+
+        // Form Screen
+        dataPolicyHeading: undefined,
+
+        // Uploading Screen
+        uploadingHeading: 'በመጫን ላይ . . .',
+        uploadingDescription: 'እባክዎ እስኪጠናቀቅ ድረስ ይጠብቁ።',
+
+        // Success Screen
+        successHeading: 'መልዕክቱ ተልኳል',
+        successDescription: 'መልዕክት ስለላኩ እናመሰግናለን',
+        privacyPolicyLinkHref: undefined,
+        privacyPolicyLinkText: undefined,
+
+        // Error Screen
+        errorHeading: 'መልዕክትዎ አልተጫነም',
+        errorDescription: 'በድጋሚ ለመጫን ይሞክሩ',
+
+        // Closed Screen
+        closedHeading: 'ይህ አሁን ዝግ ነው',
+        closedDescription: 'ይህ የተዘጋው {{date}} ነው።',
+      },
     },
     mostRead: {
       header: 'ብዙ የተነበቡ',
       lastUpdated: 'በመጨረሻ ማሻሻያ የተደረገበት',
       numberOfItems: 10,
       hasMostRead: true,
-    },
-    mostWatched: {
-      header: 'በብዛት የታዩ',
-      numberOfItems: 5,
-      hasMostWatched: true,
     },
     radioSchedule: {
       hasRadioSchedule: true,
@@ -305,9 +378,13 @@ export const service: DefaultServiceConfig = {
           text: 'ቢቢሲን ያግኙ',
         },
         {
+          href: 'https://www.bbc.com/ws/languages',
+          text: 'ቢቢሲን በተለያዩ ቋንቋዎች',
+        },
+        {
           id: 'COOKIE_SETTINGS',
-          href: 'https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/',
-          text: 'AdChoices / Do Not Sell My Info',
+          href: '#',
+          text: 'Do not share or sell my info',
           lang: 'en-GB',
         },
       ],
@@ -323,8 +400,36 @@ export const service: DefaultServiceConfig = {
         url: '/amharic/topics/c7zp57r92v5t',
       },
       {
+        title: 'ፖለቲካ',
+        url: '/amharic/topics/cg7265pj1jvt',
+      },
+      {
+        title: 'ሴቶች',
+        url: '/amharic/topics/cnq681w4dq6t',
+      },
+      {
+        title: 'ጤና',
+        url: '/amharic/topics/cxnyk76p0q2t',
+      },
+      {
+        title: 'ስፖርት',
+        url: '/amharic/topics/cdr56g2x71dt',
+      },
+      {
+        title: 'ጥበብ',
+        url: '/amharic/topics/cr50yvqzzwpt',
+      },
+      {
+        title: 'ቴክኖሎጂ',
+        url: '/amharic/topics/c06gq8wx467t',
+      },
+      {
+        title: 'ምጣኔ ሃብት',
+        url: '/amharic/topics/cnq6815jj3xt',
+      },
+      {
         title: 'ቪዲዮ',
-        url: '/amharic/media/video',
+        url: '/amharic/topics/c917ezk2pmvt',
       },
       {
         title: 'በጣም የተወደዱ',

@@ -1,9 +1,3 @@
-import {
-  C_POSTBOX,
-  C_WHITE,
-  C_GHOST,
-  C_POSTBOX_30,
-} from '../../../legacy/psammead/psammead-styles/src/colours';
 import devanagari from '../../../components/ThemeProvider/fontScripts/devanagari';
 import '#psammead/moment-timezone-include/tz/Asia/Kolkata';
 import '#psammead/psammead-locales/moment/gu';
@@ -18,6 +12,8 @@ export const service: DefaultServiceConfig = {
     articleTimestampSuffix: '',
     atiAnalyticsAppName: 'news-gujarati',
     atiAnalyticsProducerId: '50',
+    atiAnalyticsProducerName: 'GUJARATI',
+    useReverb: true,
     chartbeatDomain: 'gujarati.bbc.co.uk',
     brandName: 'BBC News ગુજરાતી',
     product: 'BBC News',
@@ -38,7 +34,6 @@ export const service: DefaultServiceConfig = {
     service: 'gujarati',
     serviceName: 'Gujarati',
     languageName: 'Gujarati',
-    themeColor: `${C_POSTBOX}`,
     twitterCreator: '@bbcnewsgujarati',
     twitterSite: '@bbcnewsgujarati',
     noBylinesPolicy:
@@ -49,13 +44,6 @@ export const service: DefaultServiceConfig = {
     manifestPath: '/manifest.json',
     swPath: '/sw.js',
     frontPageTitle: 'સમાચાર',
-    theming: {
-      brandBackgroundColour: `${C_POSTBOX}`,
-      brandLogoColour: `${C_WHITE}`,
-      brandForegroundColour: `${C_GHOST}`,
-      brandHighlightColour: `${C_WHITE}`,
-      brandBorderColour: `${C_POSTBOX_30}`,
-    },
     showAdPlaceholder: false,
     showRelatedTopics: true,
     translations: {
@@ -78,6 +66,18 @@ export const service: DefaultServiceConfig = {
         mediaPlayer: 'મીડિયા પ્લેયર',
         audioPlayer: 'ઓડિયો પ્લેયર',
         videoPlayer: 'વીડિયો પ્લેયર',
+      },
+      liveExperiencePage: {
+        liveLabel: 'લાઇવ',
+        liveCoverage: 'લાઇવ કવરેજ',
+        breaking: 'બ્રેકિંગ',
+        postedAt: 'અહીં પોસ્ટ કર્યું',
+        summary: 'સારાંશ',
+        shareButtonText: 'શેર કરો',
+      },
+      downloads: {
+        instructions: 'You can download and view today’s news.',
+        title: 'File Download',
       },
       gist: 'સારાંશ',
       error: {
@@ -140,7 +140,7 @@ export const service: DefaultServiceConfig = {
           },
           accept: 'ઓકે',
           reject: 'જાણો, શું ફેરફારો થયા છે',
-          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/your-data-matters',
+          rejectUrl: 'https://www.bbc.com/usingthebbc/privacy-policy/',
         },
         cookie: {
           amp: {
@@ -155,7 +155,7 @@ export const service: DefaultServiceConfig = {
                 linkText: 'કુકીઝ',
                 last: ' નો ઉપયોગ કરીને અમે બ્રાઉઝિંગ ડેટા દ્વારા તમને સારી અને ખાસ પ્રકારની સેવાઓ આપીએ છીએ. જેનાથી અમને તમારા માટે ખાસ કન્ટેન્ટ અને યોગ્ય જાહેરાત દર્શાવવામાં મદદ મળે છે. અમને જણાવો કે તમે આ અંગે સહમત છો.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
               manage: 'સેટિંગ્સ મૅનેજ કરો.',
             },
@@ -171,7 +171,7 @@ export const service: DefaultServiceConfig = {
                   'અમારી વેબસાઇટને યોગ્ય રીતે કાર્યરત રાખવા માટે સીમિત સ્તરે કેટલીક જાણકારીઓ સેવ કરવી પડે છે જેના માટે અમે આપની મંજૂરી નથી માગતા.',
                 para4: {
                   text: 'એ જરૂરી જાણકારીઓ વિશે વધારે વાંચો જે અમે આપની ડિવાઇસ પર સ્ટોર કર્યું છે જેથી અમારું પેજ આપને યોગ્ય રીતે દેખાય.',
-                  url: 'https://www.bbc.co.uk/usingthebbc/strictly-necessary-cookies/',
+                  url: 'https://www.bbc.com/usingthebbc/cookies/strictly-necessary-cookies/',
                 },
                 para5:
                   'અમે આપની મંજૂરી અને પસંદગીઓને આપની ડિવાઇસના લોકલ સ્ટોરેજમાં સ્ટોર કરીએ છીએ.',
@@ -204,13 +204,13 @@ export const service: DefaultServiceConfig = {
                 linkText: 'કુકીઝ',
                 last: ' નો ઉપયોગ કરીએ છીએ. અમને જણાવો કે તમે આ તમામ કુકીઝથી સહમત છો.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
             },
             accept: 'હાં, હું સહમત છું',
             reject: 'ના, મને સેટિંગ્સમાં લઈ જાવ',
             rejectUrl:
-              'https://www.bbc.co.uk/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
+              'https://www.bbc.com/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
           },
         },
       },
@@ -234,6 +234,7 @@ export const service: DefaultServiceConfig = {
         nextRadioShow: 'આગામી રેડિયો શો',
         duration: 'અવધિ',
         recentEpisodes: 'તાજેતરનાં એપિસોડ્સ',
+        closeVideo: 'બહાર નીકળો',
       },
       socialEmbed: {
         caption: {
@@ -266,17 +267,13 @@ export const service: DefaultServiceConfig = {
       },
       topStoriesTitle: 'નવાજૂની',
       featuresAnalysisTitle: 'બીબીસી વિશેષ',
+      latestMediaTitle: 'લેટેસ્ટ',
     },
     mostRead: {
       header: 'સૌથી વધારે વંચાયેલા સમાચાર',
       lastUpdated: 'લાસ્ટ અપડેટ:',
       numberOfItems: 10,
       hasMostRead: true,
-    },
-    mostWatched: {
-      header: 'સૌથી વધુ જોવાયેલ',
-      numberOfItems: 10,
-      hasMostWatched: true,
     },
     radioSchedule: {
       hasRadioSchedule: false,
@@ -315,13 +312,18 @@ export const service: DefaultServiceConfig = {
           text: 'BBC નો સંપર્ક કરો',
         },
         {
+          href: 'https://www.bbc.com/ws/languages',
+          text: 'BBC News અન્ય ભાષાઓમાં',
+        },
+        {
           id: 'COOKIE_SETTINGS',
-          href: 'https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/',
-          text: 'AdChoices / Do Not Sell My Info',
+          href: '#',
+          text: 'Do not share or sell my info',
           lang: 'en-GB',
         },
       ],
       copyrightText: 'BBC. બહારની વેબસાઇટ્સની સામગ્રી માટે બીબીસી જવાબદાર નથી.',
+      collectiveNewsroomText: 'બીબીસી માટે કલેક્ટિવ ન્યૂઝરૂમનું પ્રકાશન',
     },
     timezone: 'Asia/Kolkata',
     navigation: [
@@ -330,20 +332,36 @@ export const service: DefaultServiceConfig = {
         url: '/gujarati',
       },
       {
-        title: 'વીડિયો',
-        url: '/gujarati/media/video',
-      },
-      {
-        title: 'લોકપ્રિય',
-        url: '/gujarati/popular/read',
+        title: 'ગુજરાત',
+        url: '/gujarati/topics/cz74kjn4j5wt',
       },
       {
         title: 'ભારત',
         url: '/gujarati/topics/c06gq3993v3t',
       },
       {
-        title: 'આંતરરાષ્ટ્રીય',
+        title: 'વિદેશ',
         url: '/gujarati/topics/c83plvezd90t',
+      },
+      {
+        title: 'હવામાન સમાચાર',
+        url: '/gujarati/topics/cv2gk3nze31t',
+      },
+      {
+        title: 'સ્પોર્ટ્સ',
+        url: '/gujarati/topics/c404vn5qxq9t',
+      },
+      {
+        title: 'વીડિયો',
+        url: '/gujarati/topics/cpev7m0rry0t',
+      },
+      {
+        title: 'મૅગેઝિન',
+        url: '/gujarati/topics/c89lm5l6w4pt',
+      },
+      {
+        title: 'લોકપ્રિય',
+        url: '/gujarati/popular/read',
       },
     ],
   },

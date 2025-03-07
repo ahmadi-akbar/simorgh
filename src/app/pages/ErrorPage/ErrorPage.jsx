@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { number, oneOf, string, shape } from 'prop-types';
 import { Helmet } from 'react-helmet';
 import ErrorMain from '#components/ErrorMain';
+import { useTheme } from '@emotion/react';
 import { ServiceContext } from '../../contexts/ServiceContext';
 
 /*
@@ -34,9 +34,13 @@ const ErrorMetadata = ({ dir, lang, messaging, brandName, themeColor }) => {
 };
 
 const ErrorPage = ({ errorCode }) => {
-  const { brandName, dir, lang, script, service, themeColor, translations } =
+  const { brandName, dir, lang, script, service, translations } =
     useContext(ServiceContext);
   const messaging = translations.error[errorCode] || translations.error[500];
+
+  const {
+    palette: { BRAND_BACKGROUND },
+  } = useTheme();
 
   return (
     <>
@@ -45,23 +49,11 @@ const ErrorPage = ({ errorCode }) => {
         dir={dir}
         lang={lang}
         messaging={messaging}
-        themeColor={themeColor}
+        themeColor={BRAND_BACKGROUND}
       />
       <ErrorMain {...messaging} dir={dir} script={script} service={service} />
     </>
   );
-};
-
-ErrorPage.propTypes = {
-  errorCode: number.isRequired,
-};
-
-ErrorMetadata.propTypes = {
-  dir: oneOf(['rtl', 'ltr']).isRequired,
-  lang: string.isRequired,
-  messaging: shape({ title: string.isRequired }).isRequired,
-  brandName: string.isRequired,
-  themeColor: string.isRequired,
 };
 
 export default ErrorPage;

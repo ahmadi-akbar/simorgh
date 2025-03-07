@@ -1,0 +1,875 @@
+{
+  "data": {
+    "article": {
+      "metadata": {
+        "atiAnalytics": {
+          "categoryName": "Film~Kannywood~Music",
+          "contentId": "urn:bbc:optimo:asset:cw43vy8zdjvo",
+          "contentType": "article-sfv",
+          "language": "ha",
+          "ldpThingIds": "2611f753-ece7-47ea-9782-f912bc1e4088~2c1768f1-4f46-4cad-8b85-38ceb898dfe3~de648736-7268-454c-a7b1-dbff416f2865",
+          "ldpThingLabels": "Film~Kannywood~Music",
+          "nationsProducer": null,
+          "pageIdentifier": "hausa.articles.cw43vy8zdjvo.page",
+          "pageTitle": "...Daga Bakin Mai Ita tare da Sa'a ta fim din Labarina\n",
+          "timePublished": "2023-02-23T04:26:43.402Z",
+          "timeUpdated": "2023-02-23T04:26:43.402Z"
+        },
+        "id": "urn:bbc:ares::article:cw43vy8zdjvo",
+        "locators": {
+          "optimoUrn": "urn:bbc:optimo:asset:cw43vy8zdjvo",
+          "canonicalUrl": "https://www.bbc.com/hausa/articles/cw43vy8zdjvo"
+        },
+        "type": "article",
+        "createdBy": "Hausa",
+        "language": "ha",
+        "firstPublished": 1677126403402,
+        "lastPublished": 1677126403402,
+        "analyticsLabels": {
+          "ldp_tags": "Film~Kannywood~Music",
+          "page": "hausa.articles.cw43vy8zdjvo.page",
+          "irisKeyword": null,
+          "audience_motivation": "Divert me",
+          "ldp_ids": "2611f753-ece7-47ea-9782-f912bc1e4088~2c1768f1-4f46-4cad-8b85-38ceb898dfe3~de648736-7268-454c-a7b1-dbff416f2865",
+          "contentId": "urn:bbc:optimo:asset:cw43vy8zdjvo",
+          "producer": "Hausa"
+        },
+        "passport": {
+          "language": "ha",
+          "home": "http://www.bbc.co.uk/ontologies/passport/home/Hausa",
+          "taggings": [
+            {
+              "predicate": "http://www.bbc.co.uk/ontologies/audience/motivation",
+              "value": "http://www.bbc.co.uk/things/e1deed1e-0cab-4965-8e92-897b195f7a47#id"
+            },
+            {
+              "predicate": "http://www.bbc.co.uk/ontologies/creativework/about",
+              "value": "http://www.bbc.co.uk/things/de648736-7268-454c-a7b1-dbff416f2865#id"
+            },
+            {
+              "predicate": "http://www.bbc.co.uk/ontologies/bbc/editorialSensitivity",
+              "value": "http://www.bbc.co.uk/things/c6979033-cb72-4d07-9897-adc348a4332e#id"
+            },
+            {
+              "predicate": "http://www.bbc.co.uk/ontologies/creativework/about",
+              "value": "http://www.bbc.co.uk/things/2611f753-ece7-47ea-9782-f912bc1e4088#id"
+            },
+            {
+              "predicate": "http://www.bbc.co.uk/ontologies/bbc/infoClass",
+              "value": "http://www.bbc.co.uk/things/0db2b959-cbf8-4661-965f-050974a69bb5#id"
+            },
+            {
+              "predicate": "http://www.bbc.co.uk/ontologies/creativework/about",
+              "value": "http://www.bbc.co.uk/things/2c1768f1-4f46-4cad-8b85-38ceb898dfe3#id"
+            },
+            {
+              "predicate": "http://www.bbc.co.uk/ontologies/bbc/primaryMediaType",
+              "value": "http://www.bbc.co.uk/things/ffc98bca-8cff-4ee6-9beb-a6ff6ef3ef9f#id"
+            }
+          ],
+          "predicates": {
+            "about": [
+              {
+                "value": "http://www.bbc.co.uk/things/2611f753-ece7-47ea-9782-f912bc1e4088#id",
+                "thingLabel": "Fim",
+                "thingUri": "http://www.bbc.co.uk/things/2611f753-ece7-47ea-9782-f912bc1e4088#id",
+                "thingId": "2611f753-ece7-47ea-9782-f912bc1e4088",
+                "thingType": [
+                  "tagging:AmbiguousTerm",
+                  "tagging:Format",
+                  "tagging:TagConcept",
+                  "core:Theme",
+                  "core:Thing"
+                ],
+                "thingSameAs": [
+                  "http://www.wikidata.org/entity/Q11424",
+                  "http://dbpedia.org/resource/Film"
+                ],
+                "thingEnglishLabel": "Film",
+                "type": "about"
+              },
+              {
+                "value": "http://www.bbc.co.uk/things/2c1768f1-4f46-4cad-8b85-38ceb898dfe3#id",
+                "thingLabel": "Kannywood",
+                "thingUri": "http://www.bbc.co.uk/things/2c1768f1-4f46-4cad-8b85-38ceb898dfe3#id",
+                "thingId": "2c1768f1-4f46-4cad-8b85-38ceb898dfe3",
+                "thingType": ["core:Thing", "tagging:TagConcept", "core:Theme"],
+                "thingSameAs": [
+                  "http://dbpedia.org/resource/Cinema_of_Northern_Nigeria"
+                ],
+                "thingEnglishLabel": "Kannywood",
+                "type": "about"
+              },
+              {
+                "value": "http://www.bbc.co.uk/things/de648736-7268-454c-a7b1-dbff416f2865#id",
+                "thingLabel": "Kade-kade",
+                "thingUri": "http://www.bbc.co.uk/things/de648736-7268-454c-a7b1-dbff416f2865#id",
+                "thingId": "de648736-7268-454c-a7b1-dbff416f2865",
+                "thingType": [
+                  "tagging:Genre",
+                  "tagging:TagConcept",
+                  "tagging:AmbiguousTerm",
+                  "core:Thing",
+                  "core:Theme"
+                ],
+                "thingSameAs": [
+                  "http://www.wikidata.org/entity/Q638",
+                  "http://dbpedia.org/resource/Music"
+                ],
+                "thingEnglishLabel": "Music",
+                "type": "about"
+              }
+            ],
+            "primaryMediaType": [
+              {
+                "value": "http://www.bbc.co.uk/things/ffc98bca-8cff-4ee6-9beb-a6ff6ef3ef9f#id",
+                "type": "primaryMediaType"
+              }
+            ],
+            "infoClass": [
+              {
+                "value": "http://www.bbc.co.uk/things/0db2b959-cbf8-4661-965f-050974a69bb5#id",
+                "type": "infoClass"
+              }
+            ],
+            "editorialSensitivity": [
+              {
+                "value": "http://www.bbc.co.uk/things/c6979033-cb72-4d07-9897-adc348a4332e#id",
+                "type": "editorialSensitivity"
+              }
+            ]
+          }
+        },
+        "tags": {
+          "about": [
+            {
+              "thingLabel": "Fim",
+              "thingUri": "http://www.bbc.co.uk/things/2611f753-ece7-47ea-9782-f912bc1e4088#id",
+              "thingId": "2611f753-ece7-47ea-9782-f912bc1e4088",
+              "thingType": [
+                "tagging:AmbiguousTerm",
+                "tagging:Format",
+                "tagging:TagConcept",
+                "core:Theme",
+                "core:Thing"
+              ],
+              "thingSameAs": [
+                "http://www.wikidata.org/entity/Q11424",
+                "http://dbpedia.org/resource/Film"
+              ],
+              "topicName": "Fim",
+              "topicId": "c7zp510kj4gt",
+              "curationList": [
+                {
+                  "curationId": "dff3dfb0-df82-45b4-ae24-ecfc606790d2",
+                  "curationType": "vivo-stream"
+                }
+              ],
+              "thingEnglishLabel": "Film",
+              "thingLabelLanguage": "ha",
+              "thingPreferredLabel": "Film"
+            },
+            {
+              "thingLabel": "Kannywood",
+              "thingUri": "http://www.bbc.co.uk/things/2c1768f1-4f46-4cad-8b85-38ceb898dfe3#id",
+              "thingId": "2c1768f1-4f46-4cad-8b85-38ceb898dfe3",
+              "thingType": ["core:Thing", "tagging:TagConcept", "core:Theme"],
+              "thingSameAs": [
+                "http://dbpedia.org/resource/Cinema_of_Northern_Nigeria"
+              ],
+              "topicName": "Kannywood",
+              "topicId": "c1gdq2vk3x8t",
+              "curationList": [
+                {
+                  "curationId": "587bfa7b-492c-4271-9e6b-8c4afaf8497b",
+                  "curationType": "vivo-stream"
+                }
+              ],
+              "thingEnglishLabel": "Kannywood",
+              "thingLabelLanguage": "ha",
+              "thingPreferredLabel": "Kannywood"
+            },
+            {
+              "thingLabel": "Kade-kade",
+              "thingUri": "http://www.bbc.co.uk/things/de648736-7268-454c-a7b1-dbff416f2865#id",
+              "thingId": "de648736-7268-454c-a7b1-dbff416f2865",
+              "thingType": [
+                "tagging:Genre",
+                "tagging:TagConcept",
+                "tagging:AmbiguousTerm",
+                "core:Thing",
+                "core:Theme"
+              ],
+              "thingSameAs": [
+                "http://www.wikidata.org/entity/Q638",
+                "http://dbpedia.org/resource/Music"
+              ],
+              "topicName": "Kade-kade",
+              "topicId": "c1gdq2vd98yt",
+              "curationList": [
+                {
+                  "curationId": "f6c02650-dfac-4a93-8835-a16f3c846673",
+                  "curationType": "vivo-stream"
+                }
+              ],
+              "thingEnglishLabel": "Music",
+              "thingLabelLanguage": "ha",
+              "thingPreferredLabel": "Music"
+            }
+          ]
+        },
+        "blockTypes": [
+          "headline",
+          "text",
+          "paragraph",
+          "fragment",
+          "video",
+          "caption",
+          "aresMedia",
+          "aresMediaMetadata",
+          "image",
+          "rawImage",
+          "altText"
+        ],
+        "topics": [
+          {
+            "topicName": "Kade-kade",
+            "topicId": "c1gdq2vd98yt",
+            "subjectList": [
+              {
+                "subjectId": "http://www.bbc.co.uk/things/de648736-7268-454c-a7b1-dbff416f2865#id",
+                "subjectType": "tag"
+              }
+            ],
+            "curationList": [
+              {
+                "curationId": "f6c02650-dfac-4a93-8835-a16f3c846673",
+                "curationType": "vivo-stream",
+                "visualProminence": "NORMAL"
+              }
+            ],
+            "types": [
+              "tagging:Genre",
+              "tagging:TagConcept",
+              "tagging:AmbiguousTerm",
+              "core:Thing",
+              "core:Theme"
+            ],
+            "home": "http://www.bbc.co.uk/ontologies/passport/home/Hausa",
+            "topicUrl": "/hausa/topics/c1gdq2vd98yt"
+          },
+          {
+            "topicName": "Kannywood",
+            "topicId": "c1gdq2vk3x8t",
+            "subjectList": [
+              {
+                "subjectId": "http://www.bbc.co.uk/things/2c1768f1-4f46-4cad-8b85-38ceb898dfe3#id",
+                "subjectType": "tag"
+              }
+            ],
+            "curationList": [
+              {
+                "curationId": "587bfa7b-492c-4271-9e6b-8c4afaf8497b",
+                "curationType": "vivo-stream",
+                "visualProminence": "NORMAL"
+              }
+            ],
+            "types": ["core:Thing", "tagging:TagConcept", "core:Theme"],
+            "home": "http://www.bbc.co.uk/ontologies/passport/home/Hausa",
+            "topicUrl": "/hausa/topics/c1gdq2vk3x8t"
+          },
+          {
+            "topicName": "Fim",
+            "topicId": "c7zp510kj4gt",
+            "subjectList": [
+              {
+                "subjectId": "http://www.bbc.co.uk/things/2611f753-ece7-47ea-9782-f912bc1e4088#id",
+                "subjectType": "tag"
+              }
+            ],
+            "curationList": [
+              {
+                "curationId": "dff3dfb0-df82-45b4-ae24-ecfc606790d2",
+                "curationType": "vivo-stream",
+                "visualProminence": "NORMAL"
+              }
+            ],
+            "types": [
+              "tagging:AmbiguousTerm",
+              "tagging:Format",
+              "tagging:TagConcept",
+              "core:Theme",
+              "core:Thing"
+            ],
+            "home": "http://www.bbc.co.uk/ontologies/passport/home/Hausa",
+            "topicUrl": "/hausa/topics/c7zp510kj4gt"
+          }
+        ],
+        "consumableAsSFV": true,
+        "allowAdvertising": true,
+        "consumableOnRedButton": false,
+        "consumableOnlyOnRedButton": false,
+        "useSensitiveOnwardJourneys": false
+      },
+      "content": {
+        "model": {
+          "blocks": [
+            {
+              "id": "c9bd3e53",
+              "type": "visuallyHiddenHeadline",
+              "model": {
+                "blocks": [
+                  {
+                    "id": "896d4aaf",
+                    "type": "text",
+                    "model": {
+                      "blocks": [
+                        {
+                          "id": "600748a3",
+                          "type": "paragraph",
+                          "model": {
+                            "text": "...Daga Bakin Mai Ita tare da Sa'a ta fim din Labarina",
+                            "blocks": [
+                              {
+                                "id": "e53675f9",
+                                "type": "fragment",
+                                "model": {
+                                  "text": "...Daga Bakin Mai Ita tare da Sa'a ta fim din Labarina",
+                                  "attributes": []
+                                },
+                                "position": [1, 1, 1, 1]
+                              }
+                            ]
+                          },
+                          "position": [1, 1, 1]
+                        }
+                      ]
+                    },
+                    "position": [1, 1]
+                  }
+                ]
+              },
+              "position": [1]
+            },
+            {
+              "id": "4321b19c",
+              "type": "video",
+              "model": {
+                "locator": "urn:bbc:pips:pid:p0f4ss9v",
+                "blocks": [
+                  {
+                    "id": "1622bc39",
+                    "type": "caption",
+                    "model": {
+                      "blocks": [
+                        {
+                          "id": "a87de0ec",
+                          "type": "text",
+                          "model": {
+                            "blocks": [
+                              {
+                                "id": "4502aa87",
+                                "type": "paragraph",
+                                "model": {
+                                  "text": "Taɓa alamar lasifikar da ke sama domin kallo",
+                                  "blocks": [
+                                    {
+                                      "id": "9eaeae95",
+                                      "type": "fragment",
+                                      "model": {
+                                        "text": "Taɓa alamar lasifikar da ke sama domin kallo",
+                                        "attributes": []
+                                      },
+                                      "position": [2, 1, 1, 1, 1]
+                                    }
+                                  ]
+                                },
+                                "position": [2, 1, 1, 1]
+                              }
+                            ]
+                          },
+                          "position": [2, 1, 1]
+                        }
+                      ]
+                    },
+                    "position": [2, 1]
+                  },
+                  {
+                    "id": "f4e5d53e",
+                    "type": "aresMedia",
+                    "model": {
+                      "blocks": [
+                        {
+                          "id": "8f7bea82",
+                          "blockId": "urn:bbc:ares::clip:p0f4ss9v",
+                          "type": "aresMediaMetadata",
+                          "model": {
+                            "id": "p0f4ss9v",
+                            "subType": "clip",
+                            "format": "video",
+                            "title": "Daga Bakin Mai Ita tare da Ummi Gayu - Sa'a a fim din Labarina",
+                            "synopses": {
+                              "short": "Daga Bakin Mai Ita tare da Ummi Gayu - Sa'a a fim din Labarina",
+                              "long": "Daga Bakin Mai Ita tare da Ummi Gayu - Sa'a a fim din Labarina",
+                              "medium": "Daga Bakin Mai Ita tare da Ummi Gayu - Sa'a a fim din Labarina"
+                            },
+                            "imageUrl": "ichef.bbci.co.uk/images/ic/$recipe/p0f4ssr4.jpg",
+                            "embedding": true,
+                            "advertising": true,
+                            "caption": "Daga Bakin Mai Ita tare da Ummi Gayu - Sa'a a fim din Labarina",
+                            "versions": [
+                              {
+                                "versionId": "p0f4ss9z",
+                                "types": ["Original"],
+                                "duration": 382,
+                                "durationISO8601": "PT6M22S",
+                                "warnings": {},
+                                "availableTerritories": {
+                                  "uk": true,
+                                  "nonUk": true
+                                },
+                                "availableFrom": 1677095270000
+                              }
+                            ],
+                            "syndication": { "destinations": [] },
+                            "smpKind": "programme"
+                          },
+                          "position": [2, 2, 1]
+                        },
+                        {
+                          "id": "5a6df58c",
+                          "type": "image",
+                          "model": {
+                            "blocks": [
+                              {
+                                "id": "9175a898",
+                                "type": "rawImage",
+                                "model": {
+                                  "width": 806,
+                                  "height": 453,
+                                  "locator": "ichef.bbci.co.uk/images/ic/$widthxn/p0f4ssr4.jpg",
+                                  "originCode": "mpv"
+                                },
+                                "position": [2, 2, 2, 1]
+                              },
+                              {
+                                "id": "8968e49a",
+                                "type": "altText",
+                                "model": {
+                                  "blocks": [
+                                    {
+                                      "id": "29db1ac6",
+                                      "type": "text",
+                                      "model": {
+                                        "blocks": [
+                                          {
+                                            "id": "5c96694a",
+                                            "type": "paragraph",
+                                            "model": {
+                                              "text": "Daga Bakin Mai Ita tare da Ummi Gayu - Sa'a a fim din Labarina",
+                                              "blocks": [
+                                                {
+                                                  "id": "c822c269",
+                                                  "type": "fragment",
+                                                  "model": {
+                                                    "text": "Daga Bakin Mai Ita tare da Ummi Gayu - Sa'a a fim din Labarina",
+                                                    "attributes": []
+                                                  },
+                                                  "position": [
+                                                    2, 2, 2, 2, 1, 1, 1
+                                                  ]
+                                                }
+                                              ]
+                                            },
+                                            "position": [2, 2, 2, 2, 1, 1]
+                                          }
+                                        ]
+                                      },
+                                      "position": [2, 2, 2, 2, 1]
+                                    }
+                                  ]
+                                },
+                                "position": [2, 2, 2, 2]
+                              }
+                            ]
+                          },
+                          "position": [2, 2, 2]
+                        }
+                      ]
+                    },
+                    "position": [2, 2]
+                  }
+                ]
+              },
+              "position": [2]
+            },
+            {
+              "id": "005a0a00",
+              "type": "fauxHeadline",
+              "model": {
+                "blocks": [
+                  {
+                    "id": "8935696a",
+                    "type": "text",
+                    "model": {
+                      "blocks": [
+                        {
+                          "id": "383ba864",
+                          "type": "paragraph",
+                          "model": {
+                            "text": "...Daga Bakin Mai Ita tare da Sa'a ta fim din Labarina",
+                            "blocks": [
+                              {
+                                "id": "c2ef2ff7",
+                                "type": "fragment",
+                                "model": {
+                                  "text": "...Daga Bakin Mai Ita tare da Sa'a ta fim din Labarina",
+                                  "attributes": []
+                                },
+                                "position": [3, 1, 1, 1]
+                              }
+                            ]
+                          },
+                          "position": [3, 1, 1]
+                        }
+                      ]
+                    },
+                    "position": [3, 1]
+                  }
+                ]
+              },
+              "position": [3]
+            },
+            {
+              "id": "159cc5c7",
+              "type": "timestamp",
+              "model": {
+                "firstPublished": 1677126403402,
+                "lastPublished": 1677126403402
+              },
+              "position": [4]
+            },
+            {
+              "id": "478269f6",
+              "type": "text",
+              "model": {
+                "blocks": [
+                  {
+                    "id": "60f78e5a",
+                    "type": "paragraph",
+                    "model": {
+                      "text": "...Daga Bakin Mai Ita shiri ne na BBC Hausa da ke kawo muku hira da fitattun taurari da mawaƙan fina-finan Hausa da sauran masu ruwa da tsaki a Kannywood kan abubuwan da suka shafi rayuwarsu.",
+                      "blocks": [
+                        {
+                          "id": "57213af2",
+                          "type": "fragment",
+                          "model": {
+                            "text": "...Daga Bakin Mai Ita shiri ne na BBC Hausa da ke kawo muku hira da fitattun taurari da mawaƙan fina-finan Hausa da sauran masu ruwa da tsaki a Kannywood kan abubuwan da suka shafi rayuwarsu.",
+                            "attributes": []
+                          },
+                          "position": [5, 1, 1]
+                        }
+                      ]
+                    },
+                    "position": [5, 1]
+                  },
+                  {
+                    "id": "ffab842d",
+                    "type": "paragraph",
+                    "model": {
+                      "text": "A wannan kashi na 137, mun tattauna da Ummulkhairi Usman ko Ummi Gayu wadda aka fi sani da Sa'a a fim ɗin Labarina.",
+                      "blocks": [
+                        {
+                          "id": "1f927083",
+                          "type": "fragment",
+                          "model": {
+                            "text": "A wannan kashi na 137, mun tattauna da Ummulkhairi Usman ko Ummi Gayu wadda aka fi sani da Sa'a a fim ɗin Labarina.",
+                            "attributes": []
+                          },
+                          "position": [5, 2, 1]
+                        }
+                      ]
+                    },
+                    "position": [5, 2]
+                  },
+                  {
+                    "id": "9e787a38",
+                    "type": "paragraph",
+                    "model": {
+                      "text": "Tauraruwar ta amsa wasu tambayoyin da za ku so ji.",
+                      "blocks": [
+                        {
+                          "id": "3d42e4bf",
+                          "type": "fragment",
+                          "model": {
+                            "text": "Tauraruwar ta amsa wasu tambayoyin da za ku so ji.",
+                            "attributes": []
+                          },
+                          "position": [5, 3, 1]
+                        }
+                      ]
+                    },
+                    "position": [5, 3]
+                  }
+                ]
+              },
+              "position": [5]
+            },
+            {
+              "id": "390a3eda",
+              "type": "wsoj",
+              "model": { "type": "recommendations" },
+              "position": [6]
+            }
+          ]
+        }
+      },
+      "promo": {
+        "headlines": {
+          "seoHeadline": "...Daga Bakin Mai Ita tare da Sa'a ta fim din Labarina\n",
+          "promoHeadline": {
+            "blocks": [
+              {
+                "type": "text",
+                "model": {
+                  "blocks": [
+                    {
+                      "type": "paragraph",
+                      "model": {
+                        "text": "...Daga Bakin Mai Ita tare da Sa'a ta fim din Labarina",
+                        "blocks": [
+                          {
+                            "type": "fragment",
+                            "model": {
+                              "text": "...Daga Bakin Mai Ita tare da Sa'a ta fim din Labarina",
+                              "attributes": []
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "summary": {
+          "blocks": [
+            {
+              "type": "text",
+              "model": {
+                "blocks": [
+                  {
+                    "type": "paragraph",
+                    "model": {
+                      "text": "...Daga Bakin Mai Ita tare da Ummi Gayu - Sa'a ta fim din Labarina",
+                      "blocks": [
+                        {
+                          "type": "fragment",
+                          "model": {
+                            "text": "...Daga Bakin Mai Ita tare da Ummi Gayu - Sa'a ta fim din Labarina",
+                            "attributes": []
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "consumableAsSFV": true,
+        "media": {
+          "blocks": [
+            {
+              "type": "video",
+              "model": {
+                "locator": "urn:bbc:pips:pid:p0f4ss9v",
+                "blocks": [
+                  {
+                    "type": "caption",
+                    "model": {
+                      "blocks": [
+                        {
+                          "type": "text",
+                          "model": {
+                            "blocks": [
+                              {
+                                "type": "paragraph",
+                                "model": {
+                                  "text": "Taɓa alamar lasifikar da ke sama domin kallo",
+                                  "blocks": [
+                                    {
+                                      "type": "fragment",
+                                      "model": {
+                                        "text": "Taɓa alamar lasifikar da ke sama domin kallo",
+                                        "attributes": []
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "aresMedia",
+                    "model": {
+                      "blocks": [
+                        {
+                          "blockId": "urn:bbc:ares::clip:p0f4ss9v",
+                          "type": "aresMediaMetadata",
+                          "model": {
+                            "id": "p0f4ss9v",
+                            "subType": "clip",
+                            "format": "video",
+                            "title": "Daga Bakin Mai Ita tare da Ummi Gayu - Sa'a a fim din Labarina",
+                            "synopses": {
+                              "short": "Daga Bakin Mai Ita tare da Ummi Gayu - Sa'a a fim din Labarina",
+                              "long": "Daga Bakin Mai Ita tare da Ummi Gayu - Sa'a a fim din Labarina",
+                              "medium": "Daga Bakin Mai Ita tare da Ummi Gayu - Sa'a a fim din Labarina"
+                            },
+                            "imageUrl": "ichef.bbci.co.uk/images/ic/$recipe/p0f4ssr4.jpg",
+                            "embedding": true,
+                            "advertising": true,
+                            "caption": "Daga Bakin Mai Ita tare da Ummi Gayu - Sa'a a fim din Labarina",
+                            "versions": [
+                              {
+                                "versionId": "p0f4ss9z",
+                                "types": ["Original"],
+                                "duration": 382,
+                                "durationISO8601": "PT6M22S",
+                                "warnings": {},
+                                "availableTerritories": {
+                                  "uk": true,
+                                  "nonUk": true
+                                },
+                                "availableFrom": 1677095270000
+                              }
+                            ],
+                            "syndication": { "destinations": [] },
+                            "smpKind": "programme"
+                          }
+                        },
+                        {
+                          "type": "image",
+                          "model": {
+                            "blocks": [
+                              {
+                                "type": "rawImage",
+                                "model": {
+                                  "width": 806,
+                                  "height": 453,
+                                  "locator": "ichef.bbci.co.uk/images/ic/$widthxn/p0f4ssr4.jpg",
+                                  "originCode": "mpv"
+                                }
+                              },
+                              {
+                                "type": "altText",
+                                "model": {
+                                  "blocks": [
+                                    {
+                                      "type": "text",
+                                      "model": {
+                                        "blocks": [
+                                          {
+                                            "type": "paragraph",
+                                            "model": {
+                                              "text": "Daga Bakin Mai Ita tare da Ummi Gayu - Sa'a a fim din Labarina",
+                                              "blocks": [
+                                                {
+                                                  "type": "fragment",
+                                                  "model": {
+                                                    "text": "Daga Bakin Mai Ita tare da Ummi Gayu - Sa'a a fim din Labarina",
+                                                    "attributes": []
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    "secondaryData": {
+      "topStories": null,
+      "features": null,
+      "mostRead": null,
+      "latestMedia": [
+        {
+          "type": "video",
+          "duration": "PT9M6S",
+          "isLive": false,
+          "title": "Ku San Malamanku tare da Farfesa Yahuza Abdullahi Muhammad",
+          "firstPublished": "2025-02-14T04:14:42.847Z",
+          "lastPublished": "2025-02-14T04:14:42.847Z",
+          "link": "https://www.bbc.com/hausa/articles/cd9q37k22j5o",
+          "imageUrl": "https://ichef.bbci.co.uk/ace/ws/{width}/cpsprodpb/58fe/live/5c36e840-ea45-11ef-a319-fb4e7360c4ec.png.webp",
+          "description": "A wannan makon za mu kawo muku Sheikh Farfesa Yahuza Abdullahi Muhammad a filinmu na Ku San Malamanku wanda malami ne a birnin Maiduguri.",
+          "imageAlt": "Sheikh Yahuza",
+          "id": "cd9q37k22j5o"
+        },
+        {
+          "type": "video",
+          "duration": "PT5M46S",
+          "isLive": false,
+          "title": "... Daga Bakin Mai Ita tare da Gundura Zaria",
+          "firstPublished": "2025-02-13T04:09:09.509Z",
+          "lastPublished": "2025-02-13T04:09:09.509Z",
+          "link": "https://www.bbc.com/hausa/articles/c9d5w8qpgw4o",
+          "imageUrl": "https://ichef.bbci.co.uk/ace/ws/{width}/cpsprodpb/d8c1/live/35fc99c0-e97f-11ef-bd1b-d536627785f2.png.webp",
+          "description": "Ya samo sunan Gundura tun yana jam'iar Ahmadu Bello da ke Zaria, saboda yadda mutanen suke matsa masa cewar ya takura musu, ya gundire su, daga nan ya sami sunan, kuma ya bishi.",
+          "imageAlt": ".",
+          "id": "c9d5w8qpgw4o"
+        },
+        {
+          "type": "video",
+          "duration": "PT2M38S",
+          "isLive": false,
+          "title": "Langa: Wasan gargajiyar Bahaushe da ke siffanta yaƙi da jarumta",
+          "firstPublished": "2025-02-09T14:14:08.596Z",
+          "lastPublished": "2025-02-09T14:14:08.596Z",
+          "link": "https://www.bbc.com/hausa/articles/ce3npev437eo",
+          "imageUrl": "https://ichef.bbci.co.uk/ace/ws/{width}/cpsprodpb/c13a/live/37088ea0-e565-11ef-a819-277e390a7a08.jpg.webp",
+          "description": "Langa wasa ne da ke nuna juriya da ƙwazo da kuma tunani mai zurfi. \"Al'ummar Hausawa na yi wa langa kallon wasan masu ƙarfi, kuma jarumai,'' kamar yadda Khalid Hussein, shugaban ƙungiyar masu wasan Langa ta jihar Kano ya shaida wa sashen wasanni na BBC.",
+          "imageAlt": "...",
+          "id": "ce3npev437eo"
+        },
+        {
+          "type": "video",
+          "duration": "PT6M33S",
+          "isLive": false,
+          "title": "Ku San Malamanku tare da Sheikh Sabo Ibrahim Sani",
+          "firstPublished": "2025-02-07T04:11:55.566Z",
+          "lastPublished": "2025-02-07T04:11:55.566Z",
+          "link": "https://www.bbc.com/hausa/articles/c2k52vnndx9o",
+          "imageUrl": "https://ichef.bbci.co.uk/ace/ws/{width}/cpsprodpb/53bf/live/e08ed4a0-e4c2-11ef-a819-277e390a7a08.png.webp",
+          "description": "A wannan makon za mu kawo shugaban makarantar Sabilarrashad a jihar Nasarawa, Sheikh Sabo Ibrahim Sani.",
+          "imageAlt": "Sheikh",
+          "id": "c2k52vnndx9o"
+        }
+      ]
+    }
+  },
+  "contentType": "application/json; charset=utf-8"
+}

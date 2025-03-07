@@ -1,61 +1,76 @@
+##
+# Review permissions available to this workflow before modifying it: https://docs.github.com/en/rest/overview/permissions-required-for-github-apps?apiVersion=2022-11-28#repository-permissions-for-contents
+##
 name: Simorgh CI - Automatic Release
 on:
   push:
     branches:
       - latest
+
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [22.x]
     env:
       CI: true
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: '0'
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
       - name: Get New Release TagName
         id: newReleaseTagName
-        if: github.event.pull_request.head.repo.full_name == 'bbc/simorgh' # Only run when not on a fork
         run: |
-          NEW_RELEASE_TAG_NAME = $(curl \
-          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-          -H "Accept: application/vnd.github+json" \
-          -H "X-GitHub-Api-Version: 2022-11-28" \
-          https://api.github.com/repos/bbc/${{ github.repository }}/releases/latest \
+          JSON_RESPONSE=$(curl \
+          -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          -H 'Accept: application/vnd.github+json' \
+          -H 'X-GitHub-Api-Version: 2022-11-28' \
+          https://api.github.com/repos/${{ github.repository }}/releases/latest \
           --fail \
           | jq -r '.tag_name' \
-          | awk 'BEGIN{FS=OFS="."} {$2+=1} 1)' >> $GITHUB_OUTPUT
+          | awk 'BEGIN{FS=OFS="."} {$2+=1} 1')
+          echo $JSON_RESPONSE
+          echo "NEW_RELEASE_TAG_NAME=$JSON_RESPONSE" >> $GITHUB_OUTPUT
 
       - name: Get New Release Commit Message
         id: newReleaseMessage
-        if: github.event.pull_request.head.repo.full_name == 'bbc/simorgh' # Only run when not on a fork
         run: |
-          NEW_RELEASE_MESSSAGE = $(curl \
-          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-          -H "Accept: application/vnd.github+json" \
-          -H "X-GitHub-Api-Version: 2022-11-28" \
-          https://api.github.com/repos/bbc/${{ github.repository }}/commits/latest \
+          NEW_RELEASE_MESSSAGE=$(curl \
+          -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          -H 'Accept: application/vnd.github+json' \
+          -H 'X-GitHub-Api-Version: 2022-11-28' \
+          https://api.github.com/repos/${{ github.repository }}/commits/latest \
           --fail \
-          | jq -r '.commit.message') >> $GITHUB_OUTPUT
+          | jq -r '.commit.message' \
+          | sed 's/#[0-9]\{1,\}/\<a href="https:\/\/github.com\/bbc\/simorgh\/pull\/&\"\>&\<\/a\>/' \
+          | sed 's/pull\/\#\{1,\}/pull\//' \
+          | sed -e 's/"/\\"/g' -e 's/$/<br>/g' -e "s/'/%27/g" \
+          | tr '\n' ' ' \
+          | tr '\r' ' ' \
+          )
 
-      - name: Publish 
-        if: github.event.pull_request.head.repo.full_name == 'bbc/simorgh' # Only run when not on a fork
+          echo $NEW_RELEASE_MESSSAGE
+          echo "NEW_RELEASE_MESSSAGE=$NEW_RELEASE_MESSSAGE" >> $GITHUB_OUTPUT
+
+      - name: Publish
         run: |
           curl \
           -X POST \
           -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
           -H "Accept: application/vnd.github+json" \
           -H "X-GitHub-Api-Version: 2022-11-28" \
-          https://api.github.com/repos/bbc/${{ github.repository }}/releases \
+          https://api.github.com/repos/${{ github.repository }}/releases \
           -d '{
             "tag_name": "${{ steps.newReleaseTagName.outputs.NEW_RELEASE_TAG_NAME }}", 
             "target_commitish": "latest", 

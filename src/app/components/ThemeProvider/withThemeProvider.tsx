@@ -22,17 +22,24 @@ import {
   DARK_SALTIRE,
   DIM_GREY,
   EBON,
+  ERROR_CORE,
   GHOST,
   GREY_10,
   GREY_11,
+  GREY_1,
   GREY_2,
   GREY_3,
+  GREY_4,
   GREY_5,
   GREY_6,
   GREY_7,
   GREY_8,
   KINGFISHER,
   LE_TEAL,
+  LIVE_LIGHT,
+  LIVE_MEDIUM,
+  LIVE_DARK,
+  LIVE_CORE,
   LUNAR,
   LUNAR_LIGHT,
   METAL,
@@ -46,6 +53,8 @@ import {
   POSTBOX,
   POSTBOX_30,
   RHINO,
+  SERVICE_NEUTRAL_CORE,
+  SERVICE_NEUTRAL_DARK,
   SHADOW,
   SPORT_MIST,
   SPORT_SILVER,
@@ -53,6 +62,7 @@ import {
   SPORT_YELLOW_30,
   STONE,
   STORM,
+  SUCCESS_CORE,
   WEATHER_BLUE,
   WHITE,
 } from './palette';
@@ -64,6 +74,7 @@ import {
   GROUP_2_MAX_WIDTH,
   GROUP_2_MIN_WIDTH,
   GROUP_2_ONLY,
+  GROUP_1_AND_GROUP_2,
   GROUP_3_MAX_WIDTH,
   GROUP_3_MIN_WIDTH,
   GROUP_3_ONLY,
@@ -71,7 +82,7 @@ import {
   GROUP_4_MIN_WIDTH,
   GROUP_4_ONLY,
   GROUP_5_MIN_WIDTH,
-  HIGH_CONTRAST,
+  FORCED_COLOURS,
 } from './mediaQueries';
 import {
   HALF,
@@ -119,7 +130,14 @@ import {
   GROUP_D_MIN_WIDTH,
 } from './fontMediaQueries';
 
+import gridWidths from './gridWidths';
+
+import { MEDIA_ARTICLE_PAGE, TV_PAGE } from '../../routes/utils/pageTypes';
 import { BrandPalette, Typography, BrandSVG } from '../../models/types/theming';
+import { PageTypes } from '../../models/types/global';
+
+const isDarkUiPage = (pageType: PageTypes) =>
+  pageType === MEDIA_ARTICLE_PAGE || pageType === TV_PAGE;
 
 type Props = {
   children: React.ReactNode;
@@ -142,7 +160,7 @@ const withThemeProvider = ({
     BRAND_HIGHLIGHT,
     BRAND_BORDER,
   } = brandPalette;
-  const theme: Theme = {
+  const themeConfig: Theme = {
     fontSizes: {
       atlas: getAtlasSize(script),
       elephant: getElephantSize(script),
@@ -187,6 +205,7 @@ const withThemeProvider = ({
       GROUP_2_MAX_WIDTH,
       GROUP_2_MIN_WIDTH,
       GROUP_2_ONLY,
+      GROUP_1_AND_GROUP_2,
       GROUP_3_MAX_WIDTH,
       GROUP_3_MIN_WIDTH,
       GROUP_3_ONLY,
@@ -194,7 +213,7 @@ const withThemeProvider = ({
       GROUP_4_MIN_WIDTH,
       GROUP_4_ONLY,
       GROUP_5_MIN_WIDTH,
-      HIGH_CONTRAST,
+      FORCED_COLOURS,
     },
     palette: {
       ARCHIVE_BLUE,
@@ -211,17 +230,24 @@ const withThemeProvider = ({
       DARK_SALTIRE,
       DIM_GREY,
       EBON,
+      ERROR_CORE,
       GHOST,
       GREY_10,
       GREY_11,
+      GREY_1,
       GREY_2,
       GREY_3,
+      GREY_4,
       GREY_5,
       GREY_6,
       GREY_7,
       GREY_8,
       KINGFISHER,
       LE_TEAL,
+      LIVE_LIGHT,
+      LIVE_MEDIUM,
+      LIVE_DARK,
+      LIVE_CORE,
       LUNAR,
       LUNAR_LIGHT,
       METAL,
@@ -235,6 +261,8 @@ const withThemeProvider = ({
       POSTBOX,
       POSTBOX_30,
       RHINO,
+      SERVICE_NEUTRAL_CORE,
+      SERVICE_NEUTRAL_DARK,
       SHADOW,
       SPORT_MIST,
       SPORT_SILVER,
@@ -242,6 +270,7 @@ const withThemeProvider = ({
       SPORT_YELLOW_30,
       STONE,
       STORM,
+      SUCCESS_CORE,
       WEATHER_BLUE,
       WHITE,
       BRAND_BACKGROUND,
@@ -260,10 +289,20 @@ const withThemeProvider = ({
       SEXTUPLE,
     },
     brandSVG,
+    gridWidths,
+    isDarkUi: false,
+    isLite: false,
   };
 
   const ThemeProvider: React.FC<Props> = ({ children }) => {
-    const { isAmp } = useContext(RequestContext) as { isAmp: boolean };
+    const { isAmp, isLite, pageType } = useContext(RequestContext);
+
+    const theme = {
+      ...themeConfig,
+      isDarkUi: isDarkUiPage(pageType),
+      isLite,
+    };
+
     return (
       <EmotionThemeProvider theme={theme}>
         {children}

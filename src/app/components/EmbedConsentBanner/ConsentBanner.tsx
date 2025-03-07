@@ -1,9 +1,10 @@
-/** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
 import { useContext, MouseEvent } from 'react';
 import pathOr from 'ramda/src/pathOr';
 
+import { RequestContext } from '#app/contexts/RequestContext';
+import { LIVE_PAGE } from '#app/routes/utils/pageTypes';
 import Text from '../Text';
 import Paragraph from '../Paragraph';
 import { ServiceContext } from '../../contexts/ServiceContext';
@@ -15,10 +16,10 @@ import { ConsentBannerProviders, getEventTrackingData } from '.';
 
 type BannerUrls = {
   cookiesUrl: {
-    [key in ConsentBannerProviders]: string;
+    [_key in ConsentBannerProviders]: string;
   };
   privacyUrl: {
-    [key in ConsentBannerProviders]: string;
+    [_key in ConsentBannerProviders]: string;
   };
 };
 
@@ -28,14 +29,14 @@ const BANNER_URLS: BannerUrls = {
     tiktok: 'https://www.tiktok.com/legal/cookie-policy',
     facebook: 'https://www.facebook.com/privacy/policies/cookies',
     instagram: 'https://privacycenter.instagram.com/policies/cookies/',
-    twitter: 'https://help.twitter.com/en/rules-and-policies/twitter-cookies',
+    twitter: 'https://help.x.com/en/rules-and-policies/x-cookies',
   },
   privacyUrl: {
     youtube: 'https://policies.google.com/privacy',
     tiktok: 'https://www.tiktok.com/legal/privacy-policy',
     facebook: 'https://www.facebook.com/privacy/policy/',
     instagram: 'https://privacycenter.instagram.com/policy',
-    twitter: 'https://twitter.com/en/privacy',
+    twitter: 'https://x.com/en/privacy',
   },
 };
 
@@ -51,7 +52,7 @@ const getProviderName = (provider: ConsentBannerProviders) => {
     tiktok: 'TikTok',
     facebook: 'Facebook',
     instagram: 'Instagram',
-    twitter: 'Twitter',
+    twitter: 'X',
   }[provider];
 };
 
@@ -173,6 +174,8 @@ const ConsentBanner = ({
   id,
 }: ConsentBannerContentProps) => {
   const { externalLinkText, translations } = useContext(ServiceContext);
+  const { pageType } = useContext(RequestContext);
+  const isLive = pageType === LIVE_PAGE;
 
   const consentTranslations = getTranslations(
     provider,
@@ -186,7 +189,10 @@ const ConsentBanner = ({
     <div
       data-testid="consentBanner"
       id={`consentBanner${id ? `-${id}` : ''}`}
-      css={consentBannerCss.parent}
+      css={[
+        consentBannerCss.parent,
+        isLive && consentBannerCss.tranparentBorder,
+      ]}
       ref={viewRef}
     >
       <Text

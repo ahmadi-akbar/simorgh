@@ -1,9 +1,15 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { TOPIC_PAGE } from '#app/routes/utils/pageTypes';
-import { data as kyrgyzTopicWithMessageBanners } from '#data/kyrgyz/topics/cvpv9djp9qqt.json';
+import { suppressPropWarnings } from '#psammead/psammead-test-helpers/src';
 import { data as mundoBannerVariations } from '#data/mundo/topics/cw90edn9kw4t.json';
-import { VISUAL_PROMINENCE, VISUAL_STYLE } from '#models/types/promoData';
+import {
+  VISUAL_PROMINENCE,
+  VISUAL_STYLE,
+} from '#app/models/types/curationData';
+import { Helmet } from 'react-helmet';
+import { data as kyrgyzTopicWithMessageBanners } from '#data/kyrgyz/topics/cvpv9djp9qqt.json';
+import { data as persianAfghanistan } from '#data/persian/topics/crezq2dg9zwt.json';
+import { TOPIC_PAGE } from '../../routes/utils/pageTypes';
 import { render } from '../../components/react-testing-library-with-providers';
 import TopicPage from './TopicPage';
 import {
@@ -12,11 +18,13 @@ import {
   mundoWithBadgeAndDescr,
   mundoMultipleCurations,
   amharicOnlyTitle,
+  amharicSingleItemNoCurationTitle,
+  pidginSingleCurationEmptyStringSubheading,
 } from './fixtures';
 
 jest.mock('../../components/ThemeProvider');
-jest.mock('../../legacy/containers/ChartbeatAnalytics', () => {
-  const ChartbeatAnalytics = () => <div>chartbeat</div>;
+jest.mock('../../components/ChartbeatAnalytics', () => {
+  const ChartbeatAnalytics = () => <div>Chartbeat Analytics</div>;
   return ChartbeatAnalytics;
 });
 
@@ -35,10 +43,17 @@ const getOptionParams = ({
     ads: {
       enabled: adsToggledOn,
     },
+    frontPageRadioSchedule: {
+      enabled: true,
+    },
   },
 });
 
 describe('Topic Page', () => {
+  suppressPropWarnings(['children', 'string', 'MediaIcon']);
+  suppressPropWarnings(['timestamp', 'TimestampContainer', 'undefined']);
+  suppressPropWarnings(['children', 'PromoTimestamp', 'undefined']);
+
   it('should not render an unordered list when there is only one promo', () => {
     const { queryByRole } = render(
       <TopicPage pageData={amharicSingleItem} />,
@@ -80,8 +95,34 @@ describe('Topic Page', () => {
     );
     expect(container.getElementsByTagName('section').length).toEqual(0);
   });
+  it('should render promos with h2s when there is a single curation with a curation title', () => {
+    const { container } = render(
+      <TopicPage pageData={amharicSingleItem} />,
+      getOptionParams({ service: 'amharic', lang: 'am' }),
+    );
+    expect(container.getElementsByTagName('h2').length).toEqual(1);
+    expect(container.getElementsByTagName('h3').length).toEqual(0);
+  });
 
-  it('should render curation subheading when curation title exists', () => {
+  it('should render promos with h2s when there is a single curation without a curation title', () => {
+    const { container } = render(
+      <TopicPage pageData={amharicSingleItemNoCurationTitle} />,
+      getOptionParams({ service: 'amharic', lang: 'am' }),
+    );
+    expect(container.getElementsByTagName('h2').length).toEqual(1);
+    expect(container.getElementsByTagName('h3').length).toEqual(0);
+  });
+
+  it('should render promos with h2s when there is a single curation with an empty string for the title', () => {
+    const { container } = render(
+      <TopicPage pageData={pidginSingleCurationEmptyStringSubheading} />,
+      getOptionParams({ service: 'amharic', lang: 'am' }),
+    );
+    expect(container.getElementsByTagName('h2').length).toEqual(24);
+    expect(container.getElementsByTagName('h3').length).toEqual(0);
+  });
+
+  it('should render curation subheading as h2 when curation title exists', () => {
     const { container } = render(
       <TopicPage pageData={mundoMultipleCurations} />,
       getOptionParams({ service: 'mundo', lang: 'es' }),
@@ -99,7 +140,7 @@ describe('Topic Page', () => {
     expect(container.getElementsByTagName('h2').length).toEqual(2);
   });
 
-  it('should render promo headings as h2 when there is no curation subheading', () => {
+  it('should render promo headings in multiple curations as h2 when there is no curation subheading', () => {
     const { container } = render(
       <TopicPage pageData={pidginMultipleItems} service="pidgin" />,
       getOptionParams(),
@@ -117,6 +158,22 @@ describe('Topic Page', () => {
 
     expect(queryByTestId('topic-badge')).toBeInTheDocument();
     expect(container.getElementsByTagName('p').length).toEqual(1);
+  });
+
+  it('should resize the badge image from 480 to 128', () => {
+    const { queryByTestId } = render(
+      <TopicPage pageData={mundoWithBadgeAndDescr} />,
+      getOptionParams({ service: 'mundo', lang: 'es' }),
+    );
+
+    const topicBadge = queryByTestId('topic-badge');
+
+    expect(topicBadge).toBeInTheDocument();
+    const topicBadgeSrc = topicBadge.getAttribute('src');
+    expect(topicBadgeSrc).not.toBe(mundoWithBadgeAndDescr.imageData.url);
+    expect(topicBadgeSrc).toBe(
+      mundoWithBadgeAndDescr.imageData.url.replace('/480/', '/128/'),
+    );
   });
 
   it('should render description without badge', () => {
@@ -161,6 +218,16 @@ describe('Topic Page', () => {
         expect(adElement).not.toBeInTheDocument();
       }
     });
+  });
+
+  it('should render the main html tag with an attribute of role with the value of main', () => {
+    const { container } = render(
+      <TopicPage pageData={pidginMultipleItems} />,
+      getOptionParams(),
+    );
+    const mainTag = container.querySelector('main');
+    expect(mainTag).toBeInTheDocument();
+    expect(mainTag).toHaveAttribute('role', 'main');
   });
 
   describe('Message Banner', () => {
@@ -224,21 +291,65 @@ describe('Topic Page', () => {
     });
 
     it('should only render the first summary if there is more than one summary in the curation', () => {
-      const messageBannerCuration =
-        kyrgyzTopicWithMessageBanners.curations.find(
-          ({ visualStyle, visualProminence, summaries }) =>
-            visualProminence === VISUAL_PROMINENCE.NORMAL &&
-            visualStyle === VISUAL_STYLE.BANNER &&
-            summaries.length > 1,
-        );
+      const messageBannerCuration = mundoBannerVariations.curations.find(
+        ({ visualStyle, visualProminence, summaries }) =>
+          visualProminence === VISUAL_PROMINENCE.NORMAL &&
+          visualStyle === VISUAL_STYLE.BANNER &&
+          summaries.length > 1,
+      );
       const { queryAllByRole } = render(
-        <TopicPage pageData={kyrgyzTopicWithMessageBanners} />,
-        getOptionParams({ service: 'kyrgyz', lang: 'ky' }),
+        <TopicPage pageData={mundoBannerVariations} />,
+        getOptionParams({ service: 'mundo', lang: 'es' }),
       );
       const messageBanners = queryAllByRole('region', {
         name: messageBannerCuration.title,
       });
       expect(messageBanners).toHaveLength(1);
+    });
+  });
+
+  describe('Analytics', () => {
+    it('should render a Chartbeat component', () => {
+      const { getByText } = render(
+        <TopicPage pageData={amharicSingleItem} />,
+        getOptionParams({ service: 'amharic', lang: 'am' }),
+      );
+
+      expect(getByText('Chartbeat Analytics')).toBeInTheDocument();
+    });
+  });
+
+  describe('SEO', () => {
+    it('should correctly render linked data', () => {
+      render(<TopicPage pageData={pidginMultipleItems} />, getOptionParams());
+
+      const getLinkedDataOutput = () => {
+        return JSON.parse(Helmet.peek().scriptTags[1].innerHTML);
+      };
+
+      expect(getLinkedDataOutput()).toMatchSnapshot();
+    });
+  });
+
+  describe('Radio Schedule', () => {
+    it('should render if there is a curation with radio schedule data', () => {
+      const { getByTestId } = render(
+        <TopicPage pageData={persianAfghanistan} />,
+        getOptionParams({ service: 'persian' }),
+      );
+
+      expect(getByTestId('radio-schedule')).toBeInTheDocument();
+    });
+  });
+
+  describe('Embed', () => {
+    it('should render if there is a curation with embed data', () => {
+      const { getByTestId } = render(
+        <TopicPage pageData={persianAfghanistan} />,
+        getOptionParams({ service: 'persian' }),
+      );
+
+      expect(getByTestId('embed')).toBeInTheDocument();
     });
   });
 });

@@ -1,0 +1,108 @@
+{
+  "data": {
+    "title": "BBC News Amharic",
+    "description": "this is testing the description!",
+    "pageType": "home",
+    "curations": [
+      {
+        "summaries": [
+          {
+            "type": "article",
+            "title": "Rugby World Cup: New Zealand Wins",
+            "firstPublished": "2019-01-31T12:25:39.000Z",
+            "lastPublished": "2019-01-31T12:25:39.000Z",
+            "link": "https://www.bbc.com/amharic/23229261",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/14C6B/test/_63699058_051933947-1.jpg",
+            "description": "Pomp and colour at the Rugby World Cup as New Zealand emerge as winners",
+            "imageAlt": "New Zealand Rugby Player takes picture with fans",
+            "id": "e096c511-44e0-e94d-8ef0-4bafba8ca05d"
+          },
+          {
+            "type": "article",
+            "title": "Royal Wedding Picture Collections",
+            "firstPublished": "2019-01-31T12:13:13.000Z",
+            "lastPublished": "2019-01-31T12:13:13.000Z",
+            "link": "https://www.bbc.com/amharic/23229137",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/E66D/test/_63698985_53969591-7ee0-483a-b4c5-1ac33e66894a.jpg",
+            "description": "Royal Weddings: world's lavish weddings",
+            "imageAlt": "Wedding of Prince Harry and Ms. Meghan Markle",
+            "id": "71e8229f-1f16-5e4e-b104-2bf7ef3dfba6"
+          },
+          {
+            "type": "video",
+            "title": "''አይ.ኤስን መቀላቀል የፈለኩበት ምክንያት. . . ''",
+            "firstPublished": "2017-04-26T10:31:31.000Z",
+            "lastPublished": "2017-04-26T10:31:31.000Z",
+            "link": "https://www.bbc.com/amharic/23118972",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/E1DA/test/_63581875_p01cj70g.jpg",
+            "description": "''አይ.ኤስን መቀላቀል የፈለኩበት ምክንያት. . . ''",
+            "imageAlt": "''አይ.ኤስን መቀላቀል የፈለኩበት ምክንያት. . . ''",
+            "id": "55f39340-5469-9d47-8466-61b16bed755a"
+          }
+        ],
+        "activePage": 1,
+        "pageCount": 1,
+        "curationId": "urn:bbc:tipo:list:dd19838b-6e3d-40d1-9b68-084c7535021c",
+        "curationType": "tipo-curation",
+        "position": 0,
+        "title": "BBC News Amharic Top Stories",
+        "visualProminence": "HIGH",
+        "visualStyle": "COLLECTION"
+      },
+      {
+        "summaries": [
+          {
+            "type": "article",
+            "title": "ዓለምን የቀየረው የሁለቱ ተማሪዎች ፕሮጀክት!",
+            "firstPublished": "2017-08-21T09:01:45.000Z",
+            "lastPublished": "2017-08-21T09:01:45.000Z",
+            "link": "https://www.bbc.com/amharic/news-23149061",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/400E/test/_63589361__95031565_gettyimages-630609020.jpg",
+            "description": "ጉግል-ዓለምን የቀየረው የሁለቱ ተማሪዎች ፕሮጀክት!",
+            "imageAlt": "ጉግል",
+            "id": "2e281fd5-18e9-9f4b-bfcf-694f45c66a31"
+          },
+          {
+            "type": "article",
+            "title": "በቀን አንድ ስኒ ተጨማሪ ቡና መጠጣት አድሜን በሶት ወር ያስረዝማል",
+            "firstPublished": "2017-08-22T08:40:30.000Z",
+            "lastPublished": "2017-08-22T08:40:30.000Z",
+            "link": "https://www.bbc.com/amharic/news-23140545",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/B480/test/_63580264__96887457_gettyimages-629111916.jpg",
+            "description": "በአስር አውሮፓ ሃገሮች ውስጥ በግማሸ ሚሊየን ሰዎች ላይ በተሰራው ጥናት መሰረት ከሆነ በቀን ሶስት ስኒ ቡና የሚጠጡ ሰዎች ረጅም እድሜ እንደሚኖሩ አረጋገጠ።",
+            "imageAlt": "ቡና ለጤና የሚሰጠው ጥቅም",
+            "id": "6486e4a7-26e0-a04c-9b10-8305848c1a82"
+          },
+          {
+            "type": "article",
+            "title": "ፕሮፋይል-ፕሬዝደንት ኢሳያስ አፈወርቂ",
+            "firstPublished": "2017-08-22T09:06:18.000Z",
+            "lastPublished": "2017-08-22T09:06:18.000Z",
+            "link": "https://www.bbc.com/amharic/23143844",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/77A4/test/_63582603_c7cdb71b-e25d-4b4a-9288-db1ae8029302.jpg",
+            "description": "ኤርትራ ነጻነቷን ካገኘችበት ከ1983 ዓ.ም አንስቶ ኤርትራን በፕሬዝደነትነት ሲመሯት ቆይተዋል። ኢሳያስ አፈወርቂ የሚመሩት ፓርቲ በሃገሪቷ የሚገኘው ብቸኛው የፖለቲካ ፓርቲ ነው",
+            "imageAlt": "የኤርትራው ፕሬዝደንት ኢሳያስ አፍወርቂን የሚያሳይ ምስል",
+            "id": "036997cd-4fee-5b4a-beae-aea3fa979bf9"
+          }
+        ],
+        "activePage": 1,
+        "pageCount": 1,
+        "curationId": "urn:bbc:tipo:list:0290d038-7a90-4b2a-ab76-5b5fc22f68a5",
+        "curationType": "tipo-curation",
+        "position": 1,
+        "title": "የኛ ምርጫ",
+        "visualProminence": "HIGH",
+        "visualStyle": "COLLECTION"
+      }
+    ],
+    "metadata": {
+      "atiAnalytics": {
+        "contentId": "urn:bbc:tipo:topic:cx35pee6zw8t",
+        "contentType": "index-home",
+        "pageIdentifier": "amharic.page",
+        "pageTitle": "BBC News Amharic"
+      }
+    }
+  },
+  "contentType": "application/json; charset=utf-8"
+}

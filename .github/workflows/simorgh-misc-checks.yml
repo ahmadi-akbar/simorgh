@@ -1,53 +1,77 @@
 name: Simorgh CI - Licences, Dependencies, Lint, Chromatic UI, NPM Audit
 on:
-  create:
-    branches:
-      - '**'
   pull_request:
     branches:
       - '**'
   push:
     branches:
-      - latest
+      - 'latest'
+
+permissions:
+  statuses: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [22.x]
     env:
       CI: true
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: '0'
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
       - name: Cache Node Modules
         id: cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
-          path: node_modules
-          key: node-modules-${{ hashFiles('yarn.lock') }}
+          path: |
+            node_modules
+            ws-nextjs-app/node_modules
+          key: node-modules-${{ hashFiles('yarn.lock', 'ws-nextjs-app/yarn.lock') }}
 
       - name: Install Node Modules
         if: steps.cache.outputs.cache-hit != 'true'
         run: ./scripts/installNodeModules.sh
 
+      - name: Chromatic UI Tests
+        uses: chromaui/action@latest
+        if: github.ref != 'refs/heads/latest' && github.event.pull_request.head.repo.full_name == 'bbc/simorgh' # Only run when not on latest or not a fork.
+        with:
+          token: ${{ secrets.SIMORGH_DEV_STORYBOOK_RELEASE }}
+          projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
+          buildScriptName: 'build:storybook'
+          exitOnceUploaded: true
+          onlyChanged: true
+
+      - name: Chromatic UI Tests - Latest
+        uses: chromaui/action@latest
+        if: github.ref == 'refs/heads/latest' # Only run on latest branch
+        with:
+          token: ${{ secrets.SIMORGH_DEV_STORYBOOK_RELEASE }}
+          projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
+          buildScriptName: 'build:storybook'
+          exitOnceUploaded: true
+          onlyChanged: true
+          autoAcceptChanges: true # Auto accept changes to accept a new baseline when merging to latest
+
       - name: Get Storybook Branch Permalink
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         id: get-storybook-permalink
         with:
           script: |
             const storybookBranch = '${{ github.event.pull_request.head.ref }}'.toLowerCase().replaceAll(/[/.]/g, '-').trim('-').substring(0, 37);
             const storybookPermalink = `https://${storybookBranch}--5d28eb3fe163f6002046d6fa.chromatic.com`;
             core.setOutput('STORYBOOK_PERMALINK', storybookPermalink);
-      
+
       - name: Publish Storybook Branch Permalink
         if: github.event.pull_request.head.repo.full_name == 'bbc/simorgh' # Only run when not on a fork
         run: |
@@ -65,30 +89,11 @@ jobs:
           }' \
           --fail
 
-      - name: Chromatic UI Tests
-        uses: chromaui/action@v1
-        if: github.ref != 'refs/heads/latest' && github.event.pull_request.head.repo.full_name == 'bbc/simorgh' # Only run when not on latest or not a fork.
-        with:
-          token: ${{ secrets.SIMORGH_DEV_STORYBOOK_RELEASE }}
-          projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
-          buildScriptName: 'build:storybook'
-          exitOnceUploaded: true
-
-      - name: Chromatic UI Tests - Latest
-        uses: chromaui/action@v1
-        if: github.ref == 'refs/heads/latest' # Only run on latest branch
-        with:
-          token: ${{ secrets.SIMORGH_DEV_STORYBOOK_RELEASE }}
-          projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
-          buildScriptName: 'build:storybook'
-          exitOnceUploaded: true
-          autoAcceptChanges: true # Auto accept changes to accept a new baseline when merging to latest
-
       - name: Duplicate Dependency Checker
         run: yarn test:dependencies
 
       - name: Linting
-        run: yarn test:lint
+        run: yarn build && yarn test:lint
 
       - name: NPM Audit
-        run: npx audit-ci --config audit-ci.json
+        run: yarn npm audit --all --severity low --no-deprecations

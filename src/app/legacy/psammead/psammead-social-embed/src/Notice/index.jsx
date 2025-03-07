@@ -1,12 +1,5 @@
 import React, { memo } from 'react';
-import { string } from 'prop-types';
 import styled from '@emotion/styled';
-import {
-  C_PEBBLE,
-  C_METAL,
-  C_EBON,
-  C_SHADOW,
-} from '#psammead/psammead-styles/src/colours';
 import {
   getSansRegular,
   getSansBold,
@@ -27,9 +20,9 @@ const BORDER_WEIGHT = '0.0625rem';
 const Wrapper = styled.div`
   ${({ service }) => getSansRegular(service)}
   ${GEL_BODY_COPY}
-  border: ${BORDER_WEIGHT} solid ${C_PEBBLE};
+  border: ${BORDER_WEIGHT} solid ${props => props.theme.palette.PEBBLE};
   border-radius: ${GEL_SPACING};
-  color: ${C_SHADOW};
+  color: ${props => props.theme.palette.SHADOW};
   padding: ${GEL_SPACING_DBL};
 
   p {
@@ -44,11 +37,11 @@ const Wrapper = styled.div`
 
   a {
     ${({ service }) => getSansBold(service)}
-    color: ${C_EBON};
+    color: ${props => props.theme.palette.EBON};
     text-decoration: none;
 
     &:visited {
-      color: ${C_METAL};
+      color: ${props => props.theme.palette.METAL};
     }
 
     &:hover,
@@ -68,9 +61,9 @@ const Notice = ({
   service,
   text,
   linkText,
-  linkTextSuffixVisuallyHidden,
+  linkTextSuffixVisuallyHidden = null,
   linkHref,
-  warningText,
+  warningText = null,
 }) => {
   const dictionary = dictionaryFactory({ provider });
   const [detokenisedLinkText, detokenisedLinkTextSuffix] = [
@@ -95,21 +88,6 @@ const Notice = ({
       {warningText && <small>{warningText}</small>}
     </Wrapper>
   );
-};
-
-Notice.defaultProps = {
-  linkTextSuffixVisuallyHidden: null,
-  warningText: null,
-};
-
-Notice.propTypes = {
-  provider: string.isRequired,
-  service: string.isRequired,
-  text: string.isRequired,
-  linkText: string.isRequired,
-  linkTextSuffixVisuallyHidden: string,
-  linkHref: string.isRequired,
-  warningText: string,
 };
 
 export default memo(Notice);

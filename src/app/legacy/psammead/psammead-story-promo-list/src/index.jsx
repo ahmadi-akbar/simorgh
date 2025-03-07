@@ -1,6 +1,4 @@
 import styled from '@emotion/styled';
-import { node, bool } from 'prop-types';
-import { C_LUNAR } from '#psammead/psammead-styles/src/colours';
 import {
   GEL_SPACING,
   GEL_SPACING_DBL,
@@ -11,11 +9,7 @@ import {
   GEL_GROUP_3_SCREEN_WIDTH_MAX,
   GEL_GROUP_4_SCREEN_WIDTH_MIN,
 } from '#psammead/gel-foundations/src/breakpoints';
-
-const promoListPropTypes = {
-  children: node.isRequired,
-  border: bool,
-};
+import { LUNAR } from '../../../../components/ThemeProvider/palette';
 
 const promoListDefaultProps = {
   border: true,
@@ -26,7 +20,7 @@ export const StoryPromoLiBase = styled.li`
     border &&
     `
     @media (max-width: ${GEL_GROUP_3_SCREEN_WIDTH_MAX}) {
-      border-bottom: 0.0625rem solid ${C_LUNAR};
+      border-bottom: 0.0625rem solid ${LUNAR};
     }
   `}
 
@@ -34,8 +28,6 @@ export const StoryPromoLiBase = styled.li`
     border: none;
   }
 `;
-
-StoryPromoLiBase.propTypes = promoListPropTypes;
 
 StoryPromoLiBase.defaultProps = {
   role: 'listitem',
@@ -65,8 +57,6 @@ export const StoryPromoLi = styled(StoryPromoLiBase)`
   }
 `;
 
-StoryPromoLi.propTypes = promoListPropTypes;
-
 StoryPromoLi.defaultProps = promoListDefaultProps;
 
 export const StoryPromoUl = styled.ul`
@@ -74,10 +64,6 @@ export const StoryPromoUl = styled.ul`
   margin: 0;
   padding: 0;
 `;
-
-StoryPromoUl.propTypes = {
-  children: node.isRequired,
-};
 
 StoryPromoUl.defaultProps = {
   role: 'list',

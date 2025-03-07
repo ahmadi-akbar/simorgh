@@ -1,0 +1,154 @@
+{
+  "data": {
+    "title": "BBC News Hausa",
+    "description": "",
+    "pageType": "home",
+    "curations": [
+      {
+        "summaries": [
+          {
+            "type": "article",
+            "title": "Ɗanɗano: Ƙa’idar hira da baƙì - Ɓ ɓ ɗ Ɗ ƙ Ƙ",
+            "firstPublished": "2019-08-20T12:21:00.000Z",
+            "lastPublished": "2019-08-20T12:21:00.000Z",
+            "link": "https://www.bbc.com/hausa/labarai-23246985",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/1745C/test/_63542359_hi035712328.jpg",
+            "description": "French football fans sing God Save The Queen ahead of the match between France and England in tribute to the victims of attacks in London and Manchester.",
+            "imageAlt": "hai;le",
+            "id": "142c7232-ebaf-2d4e-8e70-6b68dda2f199"
+          },
+          {
+            "type": "article",
+            "title": "Facebook zai rinka watsa intanet ta jirgin sama",
+            "firstPublished": "2016-07-26T12:42:27.000Z",
+            "lastPublished": "2016-07-26T12:42:27.000Z",
+            "link": "https://www.bbc.com/hausa/labarai-23062696",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/D14B/test/_63497535_astronauta.jpg",
+            "description": "Injiniya Andy Cox, wanda ya sayar da ma'aikatar ga Facebook, shi ne jagoran wannan tsari.",
+            "imageAlt": "Astronaut",
+            "id": "f42b6bed-cca6-6e48-a889-0acb8a78a012"
+          },
+          {
+            "type": "article",
+            "title": "Zuma ya fuskanci koma baya kan cin hanci 1",
+            "firstPublished": "2016-06-24T13:34:14.000Z",
+            "lastPublished": "2016-06-24T13:34:14.000Z",
+            "link": "https://www.bbc.com/hausa/23055776",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/D1E1/test/_63492735_160429093140_jacob_zuma_640x360_reuters.jpg",
+            "description": "Zuma ya fuskanci koma baya kan cin hanci",
+            "imageAlt": "Wannan shi ne koma baya ta fannin shari'a na baya-bayan nan da Jacob Zuma ke fuskanta",
+            "id": "56d61904-73f4-2c41-a9c8-f0262babb5cb"
+          }
+        ],
+        "activePage": 1,
+        "pageCount": 1,
+        "curationId": "urn:bbc:tipo:list:92edcf14-984d-4f71-820e-49af2da47431",
+        "curationType": "tipo-curation",
+        "position": 0,
+        "title": "Top stories",
+        "visualProminence": "HIGH",
+        "visualStyle": "COLLECTION"
+      },
+      {
+        "summaries": [
+          {
+            "type": "article",
+            "title": "Uhuru withdraw from Kenya election",
+            "firstPublished": "2017-06-12T11:45:53.000Z",
+            "lastPublished": "2017-06-12T11:50:55.000Z",
+            "link": "https://www.bbc.com/hausa/labarai-23131325",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/13758/test/_63540797_mediaitem63540796.jpg",
+            "description": "So this is a single sentence in present or future tense and can be as long as you like.",
+            "imageAlt": "David Beckham needed a haircut",
+            "id": "ea5f99ae-7ca8-fd4a-a297-69b7f4078008"
+          },
+          {
+            "type": "video",
+            "title": "Ina son habaka tattalin arzikin Nigeria — Murtala",
+            "firstPublished": "2016-07-19T13:45:00.000Z",
+            "lastPublished": "2016-07-19T13:45:00.000Z",
+            "link": "https://www.bbc.com/hausa/media-23061485",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/2AD9/test/_63496901_p014p0q4.jpg",
+            "description": "Ina son habaka tattalin arzikin Nigeria — Murtala medium synopsis summary",
+            "imageAlt": "Amurka na binciken hadarin mota marar matuki",
+            "id": "2c0f5dc1-d7e5-aa47-9a00-fe7f14c01911"
+          },
+          {
+            "type": "audio",
+            "title": "France beat England in a friendly",
+            "firstPublished": "2017-06-14T12:08:43.000Z",
+            "lastPublished": "2017-06-14T12:08:43.000Z",
+            "link": "https://www.bbc.com/hausa/23132710",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/13A28/test/_63542408_p01b7w9z.jpg",
+            "description": "hgasjkgdja jkghd hkdh gyebnawh duiagd uw qwjdgufg bdfagafms c bgfiubaggd doiabnasmbfui",
+            "imageAlt": "सेहवागनं 'असा' पाहिला मुंबई-पुणे सामना",
+            "id": "939fe657-b46c-fc44-b620-b5ff7113c17f"
+          }
+        ],
+        "activePage": 1,
+        "pageCount": 1,
+        "curationId": "urn:bbc:tipo:list:3302e7be-c4a3-4eb4-b785-5603864c5bb1",
+        "curationType": "tipo-curation",
+        "position": 1,
+        "title": "Labarai da Rahotanni Na Musamman",
+        "visualProminence": "HIGH",
+        "visualStyle": "COLLECTION"
+      },
+      {
+        "curationId": "urn:bbc:programmes:available-episodes:bbc_hausa_radio",
+        "curationType": "available-episodes",
+        "position": 2,
+        "title": "Radio Schedule",
+        "visualProminence": "NORMAL",
+        "visualStyle": "NONE",
+        "radioSchedule": [
+          {
+            "id": "p0h6nbrn",
+            "state": "next",
+            "startTime": "2024-02-27T13:59:30.000Z",
+            "link": "/hausa/bbc_hausa_radio/w3ct655y",
+            "brandTitle": "Shirin Rana",
+            "summary": "Shiri ne na minti 30 wanda ya kunshi labaru da rahotanni daga sassa daban na duniya.",
+            "duration": "PT30M"
+          },
+          {
+            "id": "p0h6kmpj",
+            "state": "onDemand",
+            "startTime": "2024-02-27T06:30:00.000Z",
+            "link": "/hausa/bbc_hausa_radio/w172zjpf3d5y88h",
+            "brandTitle": "Shirin Hantsi",
+            "summary": "Shiri ne na minti 30 wanda ya kunshi labaru da rahotanni daga sassa daban na duniya.",
+            "duration": "PT29M30S"
+          },
+          {
+            "id": "p0h6kmpg",
+            "state": "onDemand",
+            "startTime": "2024-02-27T05:29:30.000Z",
+            "link": "/hausa/bbc_hausa_radio/w3ct65fv",
+            "brandTitle": "Shirin Safe",
+            "summary": "Shiri ne na minti 30 wanda ya kunshi labaru da rahotanni daga sassa daban na duniya.",
+            "duration": "PT30M"
+          },
+          {
+            "id": "p0h6j50j",
+            "state": "onDemand",
+            "startTime": "2024-02-26T19:29:30.000Z",
+            "link": "/hausa/bbc_hausa_radio/w3ct65j3",
+            "brandTitle": "Shirin Yamma",
+            "summary": "Shiri ne na minti 30 wanda ya kunshi labaru da rahotanni daga sassa daban na duniya.",
+            "duration": "PT30M"
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "atiAnalytics": {
+        "contentId": "urn:bbc:tipo:topic:cvp5j11g223t",
+        "contentType": "index-home",
+        "pageIdentifier": "hausa.page",
+        "pageTitle": "BBC News Hausa"
+      }
+    }
+  },
+  "contentType": "application/json; charset=utf-8"
+}

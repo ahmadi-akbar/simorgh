@@ -22,33 +22,4 @@ describe('getRecommendationsUrl - getRecommendationsUrl', () => {
       'http://mock-recommendations-path/recommendations/mundo/123456?Engine=unirecs_datalab',
     );
   });
-
-  describe('Optimizely Experiments', () => {
-    describe('004_brasil_recommendations_experiment', () => {
-      it('should return portuguese experimentation endpoint with engine', () => {
-        expect(
-          getRecommendationsUrl({
-            assetUri: '/portuguese/brasil-59876053',
-            service: 'portuguese',
-            engine: 'unirecs_datalab',
-          }),
-        ).toBe(
-          'http://mock-recommendations-path/recommendations/portuguese/brasil-59876053?Engine=unirecs_datalab',
-        );
-      });
-
-      it('should return portuguese experimentation endpoint with engine and engine variant', () => {
-        expect(
-          getRecommendationsUrl({
-            assetUri: '/portuguese/brasil-59876053',
-            service: 'portuguese',
-            engine: 'unirecs_datalab',
-            engineVariant: 'hybrid',
-          }),
-        ).toBe(
-          'http://mock-recommendations-path/recommendations/portuguese/brasil-59876053?Engine=unirecs_datalab&EngineVariant=hybrid',
-        );
-      });
-    });
-  });
 });

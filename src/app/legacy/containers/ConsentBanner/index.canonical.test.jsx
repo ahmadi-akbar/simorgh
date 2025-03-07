@@ -1,11 +1,16 @@
 /* eslint-disable global-require */
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+
 import Cookies from 'js-cookie';
 
 import { RequestContextProvider } from '#contexts/RequestContext';
 import { ToggleContextProvider } from '#contexts/ToggleContext';
 import { UserContextProvider } from '#contexts/UserContext';
+import {
+  render,
+  screen,
+  fireEvent,
+} from '../../../components/react-testing-library-with-providers';
 import { ServiceContextProvider } from '../../../contexts/ServiceContext';
 import ConsentBanner from '.';
 
@@ -17,7 +22,9 @@ const PRIVACY_BANNER_TEXT =
   "We've made some important changes to our Privacy and Cookies Policy and we want you to know what this means for you and your data.";
 const COOKIE_BANNER_TEXT = 'Let us know you agree to cookies';
 
-const renderFixture = () =>
+const renderFixture = (
+  privacyPolicy = { enabled: true, value: DEFAULT_PRIVACY_COOKIE },
+) =>
   render(
     <RequestContextProvider
       bbcOrigin="https://www.test.bbc.co.uk"
@@ -29,7 +36,7 @@ const renderFixture = () =>
       pathname="/pathname"
     >
       <ServiceContextProvider service="news">
-        <ToggleContextProvider toggles={{}}>
+        <ToggleContextProvider toggles={{ privacyPolicy }}>
           <UserContextProvider>
             <ConsentBanner />
           </UserContextProvider>
@@ -99,6 +106,16 @@ describe('Canonical Consent Banner', () => {
     const okButtonEl = screen.queryByText('OK');
 
     fireEvent.click(okButtonEl);
+
+    const cookieBannerHeadingEl = screen.queryByText(COOKIE_BANNER_TEXT);
+    const privacyBannerHeadingEl = screen.queryByText(PRIVACY_BANNER_TEXT);
+
+    expect(cookieBannerHeadingEl).toBeInTheDocument();
+    expect(privacyBannerHeadingEl).not.toBeInTheDocument();
+  });
+
+  it('should render only the cookie banner when the privacyPolicyToggle is set to false', async () => {
+    renderFixture({ enabled: false, value: undefined });
 
     const cookieBannerHeadingEl = screen.queryByText(COOKIE_BANNER_TEXT);
     const privacyBannerHeadingEl = screen.queryByText(PRIVACY_BANNER_TEXT);

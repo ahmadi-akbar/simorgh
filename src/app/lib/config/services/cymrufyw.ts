@@ -1,9 +1,3 @@
-import {
-  C_POSTBOX,
-  C_WHITE,
-  C_GHOST,
-  C_POSTBOX_30,
-} from '../../../legacy/psammead/psammead-styles/src/colours';
 import '#psammead/moment-timezone-include/tz/Europe/London';
 import latinWithDiacritics from '../../../components/ThemeProvider/fontScripts/latinWithDiacritics';
 import withContext from '../../../contexts/utils/withContext';
@@ -18,6 +12,7 @@ export const service: DefaultServiceConfig = {
     articleTimestampSuffix: '',
     atiAnalyticsAppName: 'news-cymrufyw',
     atiAnalyticsProducerId: '100',
+    atiAnalyticsProducerName: 'WALES',
     chartbeatDomain: 'cymrufyw.bbc.co.uk',
     brandName: 'BBC Cymru Fyw',
     product: 'BBC News',
@@ -37,7 +32,6 @@ export const service: DefaultServiceConfig = {
     service: 'cymrufyw',
     serviceName: 'Cymru Fyw',
     languageName: 'Welsh',
-    themeColor: `${C_POSTBOX}`,
     twitterCreator: '@BBCCymruFyw',
     twitterSite: '@BBCCymruFyw',
     noBylinesPolicy: 'https://www.bbc.com/news/help-41670342#authorexpertise',
@@ -46,13 +40,6 @@ export const service: DefaultServiceConfig = {
     script: latinWithDiacritics,
     manifestPath: '/articles/manifest.json',
     frontPageTitle: 'Newyddion a mwy',
-    theming: {
-      brandBackgroundColour: `${C_POSTBOX}`,
-      brandLogoColour: `${C_WHITE}`,
-      brandForegroundColour: `${C_GHOST}`,
-      brandHighlightColour: `${C_WHITE}`,
-      brandBorderColour: `${C_POSTBOX_30}`,
-    },
     showAdPlaceholder: false,
     showRelatedTopics: true,
     translations: {
@@ -72,7 +59,19 @@ export const service: DefaultServiceConfig = {
         audioPlayer: 'Audio player',
         videoPlayer: 'Video player',
       },
-      gist: 'At a glance',
+      liveExperiencePage: {
+        liveLabel: 'Yn Fyw',
+        liveCoverage: 'Darlledu’n Fyw',
+        breaking: 'Newydd dorri',
+        postedAt: 'Cyhoeddwyd am',
+        summary: 'Crynodeb',
+        shareButtonText: 'Rhannu',
+      },
+      downloads: {
+        instructions: 'You can download and view today’s news.',
+        title: 'File Download',
+      },
+      gist: 'Cipolwg',
       error: {
         404: {
           statusCode: '404',
@@ -103,6 +102,12 @@ export const service: DefaultServiceConfig = {
           callToActionLinkUrl: 'https://www.bbc.com/cymrufyw',
         },
       },
+      byline: {
+        articleInformation: 'Gwybodaeth am yr erthygl',
+        author: 'Awdur',
+        reportingFrom: 'Yn gohebu o',
+        role: 'Swydd',
+      },
       consentBanner: {
         privacy: {
           title: 'Rydyn ni wedi diweddaru ein Polisi Preifatrwydd a Chwcis',
@@ -124,7 +129,7 @@ export const service: DefaultServiceConfig = {
           },
           accept: 'Iawn',
           reject: 'Beth sydd wedi newid',
-          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/your-data-matters/cy',
+          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/privacy-policy/cy',
         },
         cookie: {
           amp: {
@@ -212,18 +217,107 @@ export const service: DefaultServiceConfig = {
         nextRadioShow: 'Next radio show',
         duration: 'Duration',
       },
-      socialEmbed: {},
+      socialEmbed: {
+        caption: {
+          textPrefixVisuallyHidden: 'Disgrifiad, ',
+          text: 'Gallai hysbysebion ymddangos yng nghynnwys',
+          articleText:
+            "Dyw'r BBC ddim yn gyfrifol am gynnwys gwefannau allanol.",
+          articleAdditionalText:
+            'Gallai hysbysebion ymddangos yng nghynnwys %provider_name%.',
+        },
+        fallback: {
+          text: 'Mae’n flin gennym ein bod yn cael trafferth dangos y post hwn.',
+          linkText: 'Gwylio’r post gwreiddiol ar %provider_name%',
+          linkTextSuffixVisuallyHidden: ', dolen allanol',
+          warningText:
+            "Dyw'r BBC ddim yn gyfrifol am gynnwys gwefannau allanol.",
+        },
+        skipLink: {
+          text: 'I osgoi neges %provider_name%',
+          endTextVisuallyHidden: 'Diwedd neges %provider_name%',
+        },
+        consentBanner: {
+          heading: `Caniatáu cynnwys [social_media_site]?`,
+          body: `Mae’r erthygl hon yn cynnwys deunydd gan [social_media_site]. Gofynnwn am eich caniatâd cyn llwytho unrhyw beth, gan y gallai Twitter ddefnyddio cwcis neu dechnoleg arall. Mae’n bosib eich bod am ddarllen [link] polisi cwcis [/link] [social_media_site] a [link] pholisi preifatrwydd [/link] cyn derbyn. Er mwyn gweld y cynnwys dewiswch ‘derbyn a pharhau’.`,
+          button: 'Derbyn a pharhau',
+        },
+      },
+      topStoriesTitle: 'Prif Straeon',
+      featuresAnalysisTitle: 'Cylchgrawn',
+      ugc: {
+        // No JavaScript
+        noJsHeading: undefined,
+        noJsDescription: undefined,
+
+        // Optional
+        optional: 'dewisol',
+
+        // File upload
+        fileUploadLiveRegionText: undefined,
+        fileUploadLiveRegionUpdateText: undefined,
+        fileUploadListHeading: "Dyma beth rwyt ti'n ei lwytho i fyny:",
+        fileUploadButton: 'Dewisa ffeil',
+        fileUploadRemoveButton: undefined,
+
+        // Submit button
+        submitButton: 'Anfon',
+
+        // Validation
+        validationRequired: 'Mae rhywbeth ar goll.',
+        validationInvalidEmail:
+          'Dydy hynny ddim yn edrych yn iawn. Rho gyfeiriad e-bost cywir.',
+        validationInvalidTelephone: undefined,
+        validationFilesNotEnough:
+          'Does dim digon o ffeiliau. Ychwanega o leiaf {{minFiles}}.',
+        validationFilesTooMany:
+          'Mae gormod o ffeiliau. Mae modd ychwanegu {{maxFiles}}.',
+        validationFilesInvalidType:
+          "Yn anffodus, allwn ni ddim defnyddio'r math yma o ffeil. Ychwanega {{fileTypes}}.",
+        validationFilesTooSmall: "Mae'r ffeil yma wedi torri. Dewisa un arall.",
+        validationFilesSizeExceeded:
+          "Yn anffodus, mae'r ffeiliau yma'n rhy fawr. Dim ond 1.2 GB mae modd ei lwytho ar y tro.",
+        validationWordLimit: 'Dim mwy na {{wordLimit}} gair',
+
+        // Messaging
+        removalGuidelineText:
+          'Os ydych wedi cyflwyno rhywbeth ar gyfer rhaglen neu ar-lein, allwn ni ddim ei dynnu unwaith fyddwn wedi ei ddefnyddio.',
+        retentionPeriodDays: undefined,
+        referenceNumber: 'Cyfeirnod',
+        submissionInfoSignedOutMessage:
+          "Efallai y byddi di'n dymuno gwneud nodyn o'r manylion hyn ar gyfer dy gofnodion.",
+        privacyInfoHtml:
+          "Paid â phoeni, rydyn ni'n diogelu dy wybodaeth — darllena'r {{privacyInfoLink}} i gael rhagor o fanylion.",
+        emailToHtml:
+          "E-bostia {{emailLink}} os byddi di'n newid dy feddwl. Noda'r cyfeirnod a dweda wrthym ni nad wyt ti eisiau i ni ei ddefnyddio.",
+
+        // Form Screen
+        dataPolicyHeading: undefined,
+
+        // Uploading Screen
+        uploadingHeading: "Wrthi'n llwytho dy ffeiliau i fyny...",
+        uploadingDescription: 'Arhosa nes bydd wedi gorffen.',
+
+        // Success Screen
+        successHeading: 'Wedi anfon y neges',
+        successDescription: 'Diolch am gysylltu â ni.',
+        privacyPolicyLinkHref: undefined,
+        privacyPolicyLinkText: undefined,
+
+        // Error Screen
+        errorHeading: 'Dydy dy ffeiliau ddim wedi cael eu llwytho i fyny.',
+        errorDescription: 'Ceisia eu llwytho i fyny eto.',
+
+        // Closed Screen
+        closedHeading: 'Mae hwn wedi cau nawr',
+        closedDescription: 'Fe wnaeth hwn gau ar {{date}}.',
+      },
     },
     mostRead: {
       header: 'Mwyaf poblogaidd',
       lastUpdated: 'Diweddariad diwethaf:',
       numberOfItems: 5,
       hasMostRead: false,
-    },
-    mostWatched: {
-      header: 'Mwyaf poblogaidd',
-      numberOfItems: 5,
-      hasMostWatched: false,
     },
     radioSchedule: {
       hasRadioSchedule: false,
@@ -259,8 +353,8 @@ export const service: DefaultServiceConfig = {
         },
         {
           id: 'COOKIE_SETTINGS',
-          href: 'https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/',
-          text: 'AdChoices / Do Not Sell My Info',
+          href: '#',
+          text: 'Do not share or sell my info',
           lang: 'en-GB',
         },
       ],

@@ -1,0 +1,176 @@
+{
+  "data": {
+    "title": "Korean",
+    "description": "",
+    "pageType": "home",
+    "curations": [
+      {
+        "summaries": [
+          {
+            "type": "article",
+            "title": "이것이이 테스트 기사의 헤드 라인입니다.",
+            "firstPublished": "2019-11-27T11:45:47.209Z",
+            "lastPublished": "2019-11-27T11:45:47.209Z",
+            "link": "https://www.bbc.com/korean/articles/c3mn1lvz65xo",
+            "imageUrl": "https://ichef.bbci.co.uk/ace/standard/{width}/cpsdevpb/4017/test/ba378f90-110a-11ea-acaa-cd607a38aea4.jpg",
+            "description": "",
+            "imageAlt": "이 테스트 이미지 인 저작권 BBC는 프랑스지도를 보여줍니다. 이미지는 처음 세 블록에 있으며이 캡션이 있습니다.",
+            "id": "c3mn1lvz65xo"
+          }
+        ],
+        "activePage": 1,
+        "pageCount": 1,
+        "curationId": "urn:bbc:optimo:asset:c3mn1lvz65xo",
+        "curationType": "optimo",
+        "position": 0,
+        "visualProminence": "NORMAL",
+        "intent": "overview"
+      },
+      {
+        "summaries": [
+          {
+            "type": "article",
+            "title": "NHS staff with long Covid face losing their pay",
+            "firstPublished": "2023-01-30T15:09:32.000Z",
+            "lastPublished": "2023-01-30T15:14:02.000Z",
+            "link": "https://www.bbc.com/news/health-23553049",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/12153/test/_63976047_jellyfish.jpg",
+            "description": "Analysis by BBC Panorama suggests between 5,00 and 10,00 NHS staff risk losing their pay.",
+            "imageAlt": "A jellyfish",
+            "id": "753f9c8e-99ba-45e1-ac97-525e9bae18d2"
+          },
+          {
+            "type": "article",
+            "title": "British actor reported missing in California",
+            "firstPublished": "2023-01-19T12:49:34.000Z",
+            "lastPublished": "2023-01-19T12:49:34.000Z",
+            "link": "https://www.bbc.com/news/world-us-canada-23550649",
+            "imageUrl": "https://ichef.test.bbci.co.uk/ace/standard/{width}/cpsdevpb/548F/test/_63974612_penguins.jpg",
+            "description": "Julian Sands, 65, was last seen hiking in the San Gabriel mountains last week during bad weather.",
+            "imageAlt": "Penguins",
+            "id": "89a3491b-33a2-490d-8ada-fd6997f16e6a"
+          },
+          {
+            "type": "article",
+            "title": "Template article",
+            "firstPublished": "2023-08-15T14:08:38.586Z",
+            "lastPublished": "2023-08-15T14:08:38.586Z",
+            "link": "https://www.bbc.com/mundo/articles/cpl7wdr5404o",
+            "imageUrl": "https://ichef.bbci.co.uk/ace/standard/{width}/cpsdevpb/4414/test/146c2c30-3b75-11ee-93b4-83c41441672b.jpg",
+            "description": "Probo lorem partem pro ex, unum prima expetenda eos ne. Melius viderer quaestio nec te.",
+            "imageAlt": "Bird",
+            "id": "cpl7wdr5404o"
+          },
+          {
+            "type": "article",
+            "title": "Template article 2",
+            "firstPublished": "2023-08-15T14:11:01.498Z",
+            "lastPublished": "2023-08-15T14:11:01.498Z",
+            "link": "https://www.bbc.com/mundo/articles/czmw5gx64nzo",
+            "imageUrl": "https://ichef.bbci.co.uk/ace/standard/{width}/cpsdevpb/4414/test/146c2c30-3b75-11ee-93b4-83c41441672b.jpg",
+            "description": "Probo lorem partem pro ex, unum prima expetenda eos ne. Melius viderer quaestio nec te.",
+            "imageAlt": "Bird",
+            "id": "czmw5gx64nzo"
+          },
+          {
+            "type": "article",
+            "title": "Template article 3",
+            "firstPublished": "2023-08-15T14:11:28.287Z",
+            "lastPublished": "2023-08-15T14:11:28.287Z",
+            "link": "https://www.bbc.com/mundo/articles/czmkdrzdwkno",
+            "imageUrl": "https://ichef.bbci.co.uk/ace/standard/{width}/cpsdevpb/4414/test/146c2c30-3b75-11ee-93b4-83c41441672b.jpg",
+            "description": "Probo lorem partem pro ex, unum prima expetenda eos ne. Melius viderer quaestio nec te.",
+            "imageAlt": "Bird",
+            "id": "czmkdrzdwkno"
+          },
+          {
+            "type": "article",
+            "title": "Template article 4",
+            "firstPublished": "2023-08-15T14:12:01.110Z",
+            "lastPublished": "2023-08-15T14:12:01.110Z",
+            "link": "https://www.bbc.com/mundo/articles/c0ny73k281vo",
+            "imageUrl": "https://ichef.bbci.co.uk/ace/standard/{width}/cpsdevpb/4414/test/146c2c30-3b75-11ee-93b4-83c41441672b.jpg",
+            "description": "Probo lorem partem pro ex, unum prima expetenda eos ne. Melius viderer quaestio nec te.",
+            "imageAlt": "Bird",
+            "id": "c0ny73k281vo"
+          }
+        ],
+        "activePage": 1,
+        "pageCount": 1,
+        "curationId": "urn:bbc:tipo:list:f0931a63-a1c7-4354-b929-4a1db0bb236a",
+        "curationType": "tipo-curation",
+        "position": 1,
+        "title": "이 시간 이슈",
+        "visualProminence": "HIGH",
+        "visualStyle": "COLLECTION"
+      },
+      {
+        "summaries": [],
+        "activePage": 1,
+        "pageCount": 1,
+        "link": "https://www.bbc.com/korean/topics/cnwng7v0e54t",
+        "curationId": "urn:bbc:vivo:curation:9414dfb5-1571-4345-b69c-c43d7e255223",
+        "curationType": "vivo-stream",
+        "position": 2,
+        "title": "비디오",
+        "visualProminence": "NORMAL",
+        "visualStyle": "FEED"
+      },
+      {
+        "curationId": "urn:bbc:programmes:available-episodes:bbc_korean_radio",
+        "curationType": "available-episodes",
+        "position": 3,
+        "title": "Radio Schedule",
+        "visualProminence": "NORMAL",
+        "visualStyle": "NONE",
+        "radioSchedule": [
+          {
+            "id": "p0h6v313",
+            "state": "next",
+            "startTime": "2024-02-28T12:29:30.000Z",
+            "link": "/korean/bbc_korean_radio/w3ct65xk",
+            "brandTitle": "BBC 코리아 라디오",
+            "summary": "한반도와 세계 곳곳의 다양한 소식을 공정하고 객관적으로 전달해 드립니다.",
+            "duration": "PT15M"
+          },
+          {
+            "id": "p0h6mywj",
+            "state": "onDemand",
+            "startTime": "2024-02-27T12:29:30.000Z",
+            "link": "/korean/bbc_korean_radio/w3ct65wf",
+            "brandTitle": "BBC 코리아 라디오",
+            "summary": "한반도와 세계 곳곳의 다양한 소식을 공정하고 객관적으로 전달해 드립니다.",
+            "duration": "PT15M"
+          },
+          {
+            "id": "p0h6g3zq",
+            "state": "onDemand",
+            "startTime": "2024-02-26T12:29:30.000Z",
+            "link": "/korean/bbc_korean_radio/w3ct65t5",
+            "brandTitle": "BBC 코리아 라디오",
+            "summary": "한반도와 세계 곳곳의 다양한 소식을 공정하고 객관적으로 전달해 드립니다.",
+            "duration": "PT15M"
+          },
+          {
+            "id": "p0h60gg9",
+            "state": "onDemand",
+            "startTime": "2024-02-23T12:29:30.000Z",
+            "link": "/korean/bbc_korean_radio/w3ct65s0",
+            "brandTitle": "BBC 코리아 라디오",
+            "summary": "한반도와 세계 곳곳의 다양한 소식을 공정하고 객관적으로 전달해 드립니다.",
+            "duration": "PT15M"
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "atiAnalytics": {
+        "contentId": "urn:bbc:tipo:topic:c44evppzrvjt",
+        "contentType": "index-home",
+        "pageIdentifier": "korean.page",
+        "pageTitle": "Korean"
+      }
+    }
+  },
+  "contentType": "application/json; charset=utf-8"
+}

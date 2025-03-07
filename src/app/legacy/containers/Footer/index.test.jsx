@@ -3,21 +3,9 @@ import React from 'react';
 import { render } from '../../../components/react-testing-library-with-providers';
 import FooterContainer from '.';
 
-const RealDate = Date;
-
 describe(`FooterContainer`, () => {
   beforeEach(() => {
-    // eslint-disable-next-line prettier/prettier
-    global.Date = class extends RealDate {
-      constructor() {
-        super();
-        return new RealDate('3000-01-01T12:00:00');
-      }
-    };
-  });
-
-  afterEach(() => {
-    global.Date = RealDate;
+    jest.useFakeTimers().setSystemTime(new Date('3000-01-01T12:00:00Z'));
   });
 
   describe('snapshots', () => {
@@ -63,6 +51,14 @@ describe(`FooterContainer`, () => {
       expect(externalLink.textContent).toEqual(
         'Read about our approach to external linking.',
       );
+    });
+
+    it('should omit the footer when isApp is set to true', () => {
+      const { container } = render(<FooterContainer />, { isApp: true });
+
+      const footer = container.querySelector("footer[role='contentinfo']");
+
+      expect(footer).toBeNull();
     });
   });
 });

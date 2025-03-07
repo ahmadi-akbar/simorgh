@@ -1,9 +1,3 @@
-import {
-  C_POSTBOX,
-  C_WHITE,
-  C_GHOST,
-  C_POSTBOX_30,
-} from '../../../legacy/psammead/psammead-styles/src/colours';
 import bengali from '../../../components/ThemeProvider/fontScripts/bengali';
 import '#psammead/moment-timezone-include/tz/Asia/Dhaka';
 import '#psammead/psammead-locales/moment/bn';
@@ -18,6 +12,8 @@ export const service: DefaultServiceConfig = {
     articleTimestampSuffix: '',
     atiAnalyticsAppName: 'news-bengali',
     atiAnalyticsProducerId: '31',
+    atiAnalyticsProducerName: 'BENGALI',
+    useReverb: true,
     chartbeatDomain: 'bengali.bbc.co.uk',
     brandName: 'BBC News বাংলা',
     product: 'BBC News',
@@ -38,7 +34,6 @@ export const service: DefaultServiceConfig = {
     service: 'bengali',
     serviceName: 'Bengali',
     languageName: 'Bengali',
-    themeColor: `${C_POSTBOX}`,
     twitterCreator: '@bbcbangla',
     twitterSite: '@bbcbangla',
     noBylinesPolicy:
@@ -50,15 +45,9 @@ export const service: DefaultServiceConfig = {
     swPath: '/sw.js',
     frontPageTitle:
       'খবর, সর্বশেষ খবর, ব্রেকিং নিউজ | News, latest news, breaking news',
-    theming: {
-      brandBackgroundColour: `${C_POSTBOX}`,
-      brandLogoColour: `${C_WHITE}`,
-      brandForegroundColour: `${C_GHOST}`,
-      brandHighlightColour: `${C_WHITE}`,
-      brandBorderColour: `${C_POSTBOX_30}`,
-    },
     showAdPlaceholder: true,
     showRelatedTopics: true,
+    googleSiteVerification: 'D-aEHUiyVaMoUJXjVRbDVkxS0dLTMUZLD3dLPTnWO4Q',
     translations: {
       pagination: {
         page: 'পৃষ্ঠা',
@@ -81,6 +70,18 @@ export const service: DefaultServiceConfig = {
         mediaPlayer: 'মিডিয়া প্লেয়ার',
         audioPlayer: 'অডিও প্লেয়ার',
         videoPlayer: 'ভিডিও প্লেয়ার',
+      },
+      liveExperiencePage: {
+        liveLabel: 'লাইভ',
+        liveCoverage: 'সরাসরি কভারেজ',
+        breaking: 'ব্রেকিং',
+        postedAt: 'পোস্ট করা হয়েছে',
+        summary: 'সার সংক্ষেপ',
+        shareButtonText: 'শেয়ার করুন',
+      },
+      downloads: {
+        instructions: 'You can download and view today’s news.',
+        title: 'File Download',
       },
       gist: 'সার সংক্ষেপ',
       error: {
@@ -135,7 +136,7 @@ export const service: DefaultServiceConfig = {
           },
           accept: 'ঠিক আছে।',
           reject: 'কী পরিবর্তন হয়েছে দেখুন।',
-          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/your-data-matters',
+          rejectUrl: 'https://www.bbc.com/usingthebbc/privacy-policy/',
         },
         cookie: {
           amp: {
@@ -150,7 +151,7 @@ export const service: DefaultServiceConfig = {
                 linkText: 'কুকিগুলো',
                 last: ' তাতে অনলাইনে আপনার বিচরণ স্বচ্ছন্দ হয় এবং শুধু আপনার পছন্দমত বিষয় ও বিজ্ঞাপন যাতে আপনি দেখেন তার জন্য আপনার ব্রাউজিং ডেটা সংগ্রহ করা হয়। আপনি এতে সম্মতি দিচ্ছেন কিনা জানান।',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
               manage: 'আমার সেটিং ম্যানেজ করার বোতাম',
             },
@@ -166,7 +167,7 @@ export const service: DefaultServiceConfig = {
                   'আমাদেের ওয়েবপেজ যাতে ঠিকমত কাজ করে তার জন্য আপনার সম্মতি ছাড়াই আপনার ডিভাইসে সীমিত কিছু তথ্য আমরা সংগ্রহ করে রেখেছি।',
                 para4: {
                   text: 'আমাদের ওয়েবপেজ যাতে কাজ করে তার জন্য আপনার ডিভাইসে জরুরি যেসব তথ্য আমরা মজুত রেখেছি সেগুলো এখানে পড়তে পারবেন',
-                  url: 'https://www.bbc.co.uk/usingthebbc/strictly-necessary-cookies/',
+                  url: 'https://www.bbc.com/usingthebbc/cookies/strictly-necessary-cookies/',
                 },
                 para5:
                   'আপনার ডিভাইসে আপনার পছন্দ সংক্রান্ত সম্মতিগুলো আমরা স্থানীয়ভাবে মজুত করে রেখেছি।',
@@ -199,13 +200,13 @@ export const service: DefaultServiceConfig = {
                 linkText: 'কুকি',
                 last: ' ব্যবহার করি যাতে অনলাইনে আপনার বিচরণ স্বচ্ছন্দ হয়।সবগুলো কুকি ব্যবহারের জন্য আপনি সম্মতি দিচ্ছেন কিনা জানান।',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
             },
             accept: 'হ্যাঁ, আমি সম্মতি দিচ্ছি।',
             reject: 'না, আমাকে সেটিং-এ ফেরত নিয়ে যান।',
             rejectUrl:
-              'https://www.bbc.co.uk/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
+              'https://www.bbc.com/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
           },
         },
       },
@@ -229,6 +230,7 @@ export const service: DefaultServiceConfig = {
         nextRadioShow: 'পরবর্তী রেডিও অনুষ্ঠান',
         duration: 'স্থিতিকাল',
         recentEpisodes: 'পুরনো অনুষ্ঠান',
+        closeVideo: 'বন্ধ করুন',
       },
       socialEmbed: {
         caption: {
@@ -261,18 +263,14 @@ export const service: DefaultServiceConfig = {
         linkText: 'View the full version of the page to see all the content.',
       },
       topStoriesTitle: 'প্রধান খবর',
-      featuresAnalysisTitle: 'চিঠিপত্র ও মতামত',
+      featuresAnalysisTitle: 'নির্বাচিত খবর',
+      latestMediaTitle: 'সর্বশেষ',
     },
     mostRead: {
       header: 'সর্বাধিক পঠিত',
       lastUpdated: 'সর্বশেষ আপডেট হয়েছে:',
       numberOfItems: 5,
       hasMostRead: true,
-    },
-    mostWatched: {
-      header: 'সবচেয়ে বেশি দেখা হয়েছে',
-      numberOfItems: 10,
-      hasMostWatched: true,
     },
     radioSchedule: {
       hasRadioSchedule: true,
@@ -317,9 +315,13 @@ export const service: DefaultServiceConfig = {
           text: 'বিবিসির সাথে যোগাযোগ করুন',
         },
         {
+          href: 'https://www.bbc.com/ws/languages',
+          text: 'অন্যান্য ভাষায় বিবিসির সংবাদ',
+        },
+        {
           id: 'COOKIE_SETTINGS',
-          href: 'https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/',
-          text: 'AdChoices / Do Not Sell My Info',
+          href: '#',
+          text: 'Do not share or sell my info',
           lang: 'en-GB',
         },
       ],
@@ -331,6 +333,34 @@ export const service: DefaultServiceConfig = {
       {
         title: 'মূলপাতা',
         url: '/bengali',
+      },
+      {
+        title: 'রাজনীতি',
+        url: '/bengali/topics/cqywj91rkg6t',
+      },
+      {
+        title: 'সর্বাধিক পঠিত',
+        url: '/bengali/popular/read',
+      },
+      {
+        title: 'বিশ্ব',
+        url: '/bengali/topics/c907347rezkt',
+      },
+      {
+        title: 'অর্থনীতি',
+        url: '/bengali/topics/cjgn7233zk5t',
+      },
+      {
+        title: 'স্বাস্থ্য',
+        url: '/bengali/topics/cg7265yyxn1t',
+      },
+      {
+        title: 'খেলা',
+        url: '/bengali/topics/cdr56g57y01t',
+      },
+      {
+        title: 'প্রযুক্তি',
+        url: '/bengali/topics/c8y94k95v52t',
       },
       {
         title: 'ভিডিও',

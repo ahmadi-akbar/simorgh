@@ -1,11 +1,6 @@
 import React, { forwardRef } from 'react';
-import { string, shape, node, func } from 'prop-types';
 import styled from '@emotion/styled';
-import {
-  C_LUNAR,
-  C_EBON,
-  C_METAL,
-} from '#psammead/psammead-styles/src/colours';
+import { LUNAR } from '#app/components/ThemeProvider/palette';
 import {
   GEL_SPACING_HLF,
   GEL_SPACING,
@@ -13,7 +8,6 @@ import {
 } from '#psammead/gel-foundations/src/spacings';
 import { getSansRegular } from '#psammead/psammead-styles/src/font-styles';
 import { getBrevier } from '#psammead/gel-foundations/src/typography';
-import { scriptPropType } from '#psammead/gel-foundations/src/prop-types';
 
 const MIN_TAG_HEIGHT = '2.75rem'; // 44px
 
@@ -49,86 +43,66 @@ const SingleTopicTagItem = styled.div`
     min-height: ${MIN_TAG_HEIGHT};
     padding: ${GEL_SPACING} ${GEL_SPACING_DBL};
     align-items: center;
-    background-color: ${({ backgroundColour }) => backgroundColour};
+    background-color: ${({ backgroundColour, theme }) =>
+      theme.isDarkUi ? theme.palette.GREY_7 : backgroundColour};
     text-decoration: none;
-    color: ${C_EBON};
+    color: ${({ theme }) =>
+      theme.isDarkUi ? theme.palette.GREY_2 : theme.palette.EBON};
 
     &:hover,
     &:focus {
       text-decoration: underline;
     }
     &:visited {
-      color: ${C_METAL};
+      color: ${({ theme }) =>
+        theme.isDarkUi ? theme.palette.GREY_2 : theme.palette.METAL};
     }
   }
 `;
 
-export const TopicTag = forwardRef(({ name, link, onClick }, ref) => (
-  <a href={link} onClick={onClick} ref={ref}>
-    {name}
-  </a>
-));
+export const TopicTag = forwardRef(
+  ({ name, link, onClick = null, liteViewTracker = null }, ref) => (
+    <a href={link} onClick={onClick} ref={ref} {...liteViewTracker}>
+      {name}
+    </a>
+  ),
+);
 
 export const TopicTags = ({
-  children,
+  children = [],
   script,
   service,
-  tagBackgroundColour,
+  tagBackgroundColour = LUNAR,
 }) => {
   const hasMultipleChildren = children.length > 1;
 
-  return (
-    <>
-      {hasMultipleChildren ? (
-        <TopicsList role="list" service={service} script={script}>
-          {children.map((child, index) => {
-            if (child.type !== TopicTag) return null;
-
-            return (
-              <SingleTopicTagItem
-                as="li"
-                backgroundColour={tagBackgroundColour}
-                // eslint-disable-next-line react/no-array-index-key
-                key={index}
-                service={service}
-                script={script}
-              >
-                {child}
-              </SingleTopicTagItem>
-            );
-          })}
-        </TopicsList>
-      ) : (
-        <SingleTopicTagContainer service={service} script={script}>
+  return hasMultipleChildren ? (
+    <TopicsList role="list" service={service} script={script}>
+      {children.map((child, index) => {
+        if (child.type !== TopicTag) return null;
+        return (
           <SingleTopicTagItem
+            as="li"
+            backgroundColour={tagBackgroundColour}
+            // eslint-disable-next-line react/no-array-index-key
+            key={index}
             service={service}
             script={script}
-            backgroundColour={tagBackgroundColour}
           >
-            {children.type === TopicTag && children}
+            {child}
           </SingleTopicTagItem>
-        </SingleTopicTagContainer>
-      )}
-    </>
+        );
+      })}
+    </TopicsList>
+  ) : (
+    <SingleTopicTagContainer service={service} script={script}>
+      <SingleTopicTagItem
+        service={service}
+        script={script}
+        backgroundColour={tagBackgroundColour}
+      >
+        {children.type === TopicTag && children}
+      </SingleTopicTagItem>
+    </SingleTopicTagContainer>
   );
-};
-
-TopicTag.propTypes = {
-  name: string.isRequired,
-  link: string.isRequired,
-  onClick: func,
-};
-
-TopicTag.defaultProps = { onClick: null };
-
-TopicTags.propTypes = {
-  children: node,
-  script: shape(scriptPropType).isRequired,
-  service: string.isRequired,
-  tagBackgroundColour: string,
-};
-
-TopicTags.defaultProps = {
-  children: [],
-  tagBackgroundColour: C_LUNAR,
 };

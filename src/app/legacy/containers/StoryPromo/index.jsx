@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { shape, bool, oneOf, oneOfType, string, number } from 'prop-types';
 import styled from '@emotion/styled';
 import StoryPromo, {
   Headline,
@@ -8,9 +7,8 @@ import StoryPromo, {
 } from '#psammead/psammead-story-promo/src';
 import { GEL_GROUP_4_SCREEN_WIDTH_MIN } from '#psammead/gel-foundations/src/breakpoints';
 import pathOr from 'ramda/src/pathOr';
-import LiveLabel from '#psammead/psammead-live-label/src';
+import LiveLabel from '#app/components/LiveLabel';
 import ImagePlaceholder from '#psammead/psammead-image-placeholder/src';
-import { storyItem, linkPromo } from '#models/propTypes/storyItem';
 import { RequestContext } from '#contexts/RequestContext';
 import { createSrcsets } from '#lib/utilities/srcSet';
 import buildIChefURL from '#lib/utilities/ichefURL';
@@ -36,28 +34,67 @@ import useCombinedClickTrackerHandler from './useCombinedClickTrackerHandler';
 
 const logger = loggerNode(__filename);
 
-const PROMO_TYPES = ['top', 'regular', 'leading'];
-
 const SingleColumnStoryPromo = styled(StoryPromo)`
   @media (min-width: ${GEL_GROUP_4_SCREEN_WIDTH_MIN}) {
     display: grid;
   }
 `;
 
+// eslint-disable-next-line consistent-return
+const extractAltText = blocks => {
+  // eslint-disable-next-line no-restricted-syntax
+  for (const block of blocks) {
+    if (block.type === 'paragraph') {
+      return block.model.text;
+    }
+    if (block.model && block.model.blocks) {
+      return extractAltText(block.model.blocks);
+    }
+  }
+};
+
+const getBlockByType = (blocks, blockType) => {
+  let blockData;
+  blocks.forEach(block => {
+    if (!blockData && block.type === blockType) {
+      blockData = block;
+    }
+  });
+  return blockData;
+};
+
 const StoryPromoImage = ({
-  isAmp,
+  isAmp = false,
   useLargeImages,
-  imageValues,
-  lazyLoad,
-  pageType,
+  imageValues = {
+    path: '',
+    altText: '',
+    height: '',
+    width: '',
+  },
+  lazyLoad = false,
+  pageType = '',
 }) => {
   if (!imageValues) {
     const landscapeRatio = (9 / 16) * 100;
     return <ImagePlaceholder ratio={landscapeRatio} />;
   }
-  const { height, width, path, altText, copyrightHolder } = imageValues;
-  const originCode = getOriginCode(path);
-  const locator = getLocator(path);
+
+  // eslint-disable-next-line prefer-const
+  let { height, width, path, altText, copyrightHolder } = imageValues;
+  let originCode = getOriginCode(path);
+  let locator = getLocator(path);
+  if (imageValues.defaultPromoImage) {
+    const { blocks } = imageValues.defaultPromoImage;
+    const rawImageBlock = getBlockByType(blocks, 'rawImage').model;
+    const altTextBlocks = getBlockByType(blocks, 'altText').model.blocks;
+    altText = extractAltText(altTextBlocks);
+    height = rawImageBlock.height;
+    width = rawImageBlock.width;
+    locator = rawImageBlock.locator;
+    originCode = rawImageBlock.originCode;
+    copyrightHolder = rawImageBlock.copyrightHolder;
+  }
   const imageResolutions = [70, 95, 144, 183, 240, 320, 660];
   const { primarySrcset, primaryMimeType, fallbackSrcset, fallbackMimeType } =
     createSrcsets({
@@ -97,42 +134,22 @@ const StoryPromoImage = ({
   );
 };
 
-StoryPromoImage.propTypes = {
-  isAmp: bool,
-  useLargeImages: bool.isRequired,
-  lazyLoad: bool,
-  imageValues: storyItem.indexImage,
-  pageType: string,
-};
-
-StoryPromoImage.defaultProps = {
-  isAmp: false,
-  lazyLoad: false,
-  imageValues: shape({
-    path: '',
-    altText: '',
-    height: '',
-    width: '',
-  }),
-  pageType: '',
-};
-
 const StoryPromoContainer = ({
   item,
-  index,
-  promoType,
-  lazyLoadImage,
-  dir,
-  displayImage,
-  displaySummary,
-  isSingleColumnLayout,
-  serviceDatetimeLocale,
-  eventTrackingData,
-  labelId,
-  sectionType,
+  index = 0,
+  promoType = 'regular',
+  lazyLoadImage = true,
+  dir = 'ltr',
+  displayImage = true,
+  displaySummary = true,
+  isSingleColumnLayout = false,
+  serviceDatetimeLocale = null,
+  eventTrackingData = null,
+  labelId = '',
+  sectionType = '',
 }) => {
-  const { script, service, translations } = useContext(ServiceContext);
-  const { isAmp, pageType } = useContext(RequestContext);
+  const { script, service } = useContext(ServiceContext);
+  const { isAmp, isLite, pageType, variant } = useContext(RequestContext);
   const handleClickTracking = useCombinedClickTrackerHandler(eventTrackingData);
 
   const linkId = buildUniquePromoId({
@@ -142,12 +159,6 @@ const StoryPromoContainer = ({
     promoIndex: index,
   });
 
-  const liveLabel = pathOr('LIVE', ['media', 'liveLabel'], translations);
-
-  // As screenreaders mispronounce the word 'LIVE', we use visually hidden
-  // text to read 'Live' instead, which screenreaders pronounce correctly.
-  const liveLabelIsEnglish = liveLabel === 'LIVE';
-
   const isAssetTypeCode = getAssetTypeCode(item);
   const isStoryPromoPodcast =
     isAssetTypeCode === 'PRO' &&
@@ -156,7 +167,8 @@ const StoryPromoContainer = ({
     isAssetTypeCode === 'PRO' &&
     pathOr(null, ['contentType'], item) === 'Guide';
   const headline = getHeadline(item);
-  const url = getUrl(item);
+
+  const url = getUrl(item, variant);
   const isLive = getIsLive(item);
 
   const overtypedSummary = pathOr(null, ['overtypedSummary'], item);
@@ -200,7 +212,9 @@ const StoryPromoContainer = ({
     return null;
   }
 
-  const useLargeImages = promoType === 'top' || promoType === 'leading';
+  const isTopOrLeadingPromo = promoType === 'top' || promoType === 'leading';
+
+  const isFirstPromo = index === 0 && isTopOrLeadingPromo;
 
   const headingTagOverride =
     item.headingTag ||
@@ -232,11 +246,9 @@ const StoryPromoContainer = ({
           {isLive ? (
             <LiveLabel
               id={linkId}
-              service={service}
-              dir={dir}
-              liveText={liveLabel}
-              ariaHidden={liveLabelIsEnglish}
-              offScreenText={liveLabelIsEnglish ? 'Live' : null}
+              {...(isFirstPromo && {
+                className: 'first-promo',
+              })}
             >
               {linkcontents}
             </LiveLabel>
@@ -270,8 +282,8 @@ const StoryPromoContainer = ({
       )}
     </>
   );
-
-  const imageValues = pathOr(null, ['indexImage'], item);
+  const imageValues =
+    pathOr(null, ['indexImage'], item) || pathOr(null, ['images'], item);
 
   const MediaIndicator = (
     <MediaIndicatorContainer
@@ -286,14 +298,13 @@ const StoryPromoContainer = ({
   const StoryPromoComponent = isSingleColumnLayout
     ? SingleColumnStoryPromo
     : StoryPromo;
-
   return (
     <StoryPromoComponent
       data-e2e="story-promo"
       image={
         <StoryPromoImage
           isAmp={isAmp}
-          useLargeImages={useLargeImages}
+          useLargeImages={isTopOrLeadingPromo}
           lazyLoad={lazyLoadImage}
           imageValues={imageValues}
           pageType={pageType}
@@ -303,47 +314,9 @@ const StoryPromoContainer = ({
       mediaIndicator={MediaIndicator}
       promoType={promoType}
       dir={dir}
-      displayImage={displayImage}
+      displayImage={displayImage && !isLite}
     />
   );
-};
-
-StoryPromoContainer.propTypes = {
-  item: oneOfType([shape(storyItem), shape(linkPromo)]).isRequired,
-  promoType: oneOf(PROMO_TYPES),
-  lazyLoadImage: bool,
-  dir: oneOf(['ltr', 'rtl']),
-  displayImage: bool,
-  displaySummary: bool,
-  isSingleColumnLayout: bool,
-  serviceDatetimeLocale: string,
-  eventTrackingData: shape({
-    block: shape({
-      componentName: string,
-    }),
-    link: shape({
-      componentName: string,
-      url: string,
-      format: string,
-    }),
-  }),
-  labelId: string,
-  index: number,
-  sectionType: string,
-};
-
-StoryPromoContainer.defaultProps = {
-  promoType: 'regular',
-  lazyLoadImage: true,
-  dir: 'ltr',
-  displayImage: true,
-  displaySummary: true,
-  isSingleColumnLayout: false,
-  serviceDatetimeLocale: null,
-  eventTrackingData: null,
-  labelId: '',
-  index: 0,
-  sectionType: '',
 };
 
 export default StoryPromoContainer;

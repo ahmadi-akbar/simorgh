@@ -1,9 +1,3 @@
-import {
-  C_POSTBOX,
-  C_WHITE,
-  C_GHOST,
-  C_POSTBOX_30,
-} from '../../../legacy/psammead/psammead-styles/src/colours';
 import latin from '../../../components/ThemeProvider/fontScripts/latin';
 import '#psammead/psammead-locales/moment/ig';
 import '#psammead/moment-timezone-include/tz/Africa/Lagos';
@@ -18,6 +12,8 @@ export const service: DefaultServiceConfig = {
     articleTimestampSuffix: '',
     atiAnalyticsAppName: 'news-igbo',
     atiAnalyticsProducerId: '53',
+    atiAnalyticsProducerName: 'IGBO',
+    useReverb: true,
     chartbeatDomain: 'igbo.bbc.co.uk',
     brandName: 'BBC News Ìgbò',
     product: 'BBC News',
@@ -46,16 +42,8 @@ export const service: DefaultServiceConfig = {
       'https://www.bbc.com/igbo/institutional-48529074#authorexpertise',
     publishingPrinciples: 'https://www.bbc.com/igbo/institutional-48529074',
     isTrustProjectParticipant: true,
-    themeColor: `${C_POSTBOX}`,
     twitterCreator: '@BBCNews', // to be updated
     twitterSite: '@BBCNews', // to be updated
-    theming: {
-      brandBackgroundColour: `${C_POSTBOX}`,
-      brandLogoColour: `${C_WHITE}`,
-      brandForegroundColour: `${C_GHOST}`,
-      brandHighlightColour: `${C_WHITE}`,
-      brandBorderColour: `${C_POSTBOX_30}`,
-    },
     showAdPlaceholder: false,
     showRelatedTopics: true,
     translations: {
@@ -78,6 +66,18 @@ export const service: DefaultServiceConfig = {
         mediaPlayer: 'Media player',
         audioPlayer: 'Audio player',
         videoPlayer: 'Video player',
+      },
+      liveExperiencePage: {
+        liveLabel: 'Na Eme Ozugbo',
+        liveCoverage: 'Mkpuchi Na Eme Ozugbo',
+        breaking: 'Na Akpọtụ Ugbu A',
+        postedAt: 'Ebisara na',
+        summary: 'Nchịkọta',
+        shareButtonText: 'Kekọrịta',
+      },
+      downloads: {
+        instructions: 'You can download and view today’s news.',
+        title: 'File Download',
       },
       gist: 'Nchịkọta',
       error: {
@@ -143,7 +143,7 @@ export const service: DefaultServiceConfig = {
           },
           accept: 'Ọ dị mma',
           reject: 'Chọpụta ihe gbanwere',
-          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/your-data-matters',
+          rejectUrl: 'https://www.bbc.com/usingthebbc/privacy-policy/',
         },
         cookie: {
           amp: {
@@ -157,7 +157,7 @@ export const service: DefaultServiceConfig = {
                 linkText: 'cookies',
                 last: ', were na-amịị ozi banyere gị iji were na-enye gị ụdị ihe ị chọrọ dịka o si gbasaa ihe akụkọ anyị na ozi azụmahịa anyị na-egosi gị. Biko me ka anyị mata ma ọ dị gị mma.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
               manage: 'Hazie akara usoro m',
             },
@@ -173,7 +173,7 @@ export const service: DefaultServiceConfig = {
                   "Ime ka peeji anyị rụọ ọrụ, anyị na-edowe ozi ụfọdụ n'ekwenti gị na-agwaghị gị.",
                 para4: {
                   text: "Gụkọọ maka ozi dị mkpa anyị na-edowe n'igwe ekwenti gị n'iji me ka peeji websaịt anyị rụọ ọrụ.",
-                  url: 'https://www.bbc.co.uk/usingthebbc/strictly-necessary-cookies/',
+                  url: 'https://www.bbc.com/usingthebbc/cookies/strictly-necessary-cookies/',
                 },
                 para5: "Anyị na-edowe nnabata gị n'ime igwe ekwenti gị.",
                 heading3: 'Nnabata gị ma ịchọ',
@@ -205,13 +205,13 @@ export const service: DefaultServiceConfig = {
                 linkText: 'cookies',
                 last: ' enye gị nke kacha mkpa na ịntanetị. Biko me ka anyị mata ma i kwenyere.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
             },
             accept: 'Eeh, ekwere m',
             reject: "Mba, duga m n'ebe mwube",
             rejectUrl:
-              'https://www.bbc.co.uk/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
+              'https://www.bbc.com/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
           },
         },
       },
@@ -233,6 +233,7 @@ export const service: DefaultServiceConfig = {
         previousRadioShow: 'Previous radio show',
         nextRadioShow: 'Next radio show',
         duration: 'Duration',
+        closeVideo: 'Wepu',
       },
       socialEmbed: {
         caption: {
@@ -266,17 +267,13 @@ export const service: DefaultServiceConfig = {
       },
       topStoriesTitle: 'Isi akụkọ',
       featuresAnalysisTitle: 'Kọwaara m isi akụkọ',
+      latestMediaTitle: 'Kachasị ọhụrụ',
     },
     mostRead: {
       header: 'Akachasị Gụọ',
       lastUpdated: 'Emelitere ikpeazụ na:',
-      numberOfItems: 10,
+      numberOfItems: 5,
       hasMostRead: true,
-    },
-    mostWatched: {
-      header: 'Elelere',
-      numberOfItems: 10,
-      hasMostWatched: true,
     },
     radioSchedule: {
       hasRadioSchedule: false,
@@ -295,7 +292,7 @@ export const service: DefaultServiceConfig = {
       },
       {
         title: 'Ihe nkiri',
-        url: '/igbo/media/video',
+        url: '/igbo/topics/c3l19z3qjmyt',
       },
       {
         title: 'Nke ka ewuewu',
@@ -308,24 +305,24 @@ export const service: DefaultServiceConfig = {
         text: 'Ihe mere ị ga-eji nwee ntụkwasiobi na BBC News',
       },
       externalLink: {
-        href: 'https://www.bbc.co.uk/editorialguidelines/guidance/feeds-and-links',
+        href: 'https://www.bbc.com/editorialguidelines/guidance/feeds-and-links',
         text: 'Usoro anyị maka njikọ dị na mpụga.',
       },
       links: [
         {
-          href: 'https://www.bbc.co.uk/usingthebbc/terms',
+          href: 'https://www.bbc.com/usingthebbc/terms',
           text: 'Usoro Ojiji',
         },
         {
-          href: 'https://www.bbc.co.uk/aboutthebbc',
+          href: 'https://www.bbc.com/aboutthebbc',
           text: 'Gbasara BBC',
         },
         {
-          href: 'https://www.bbc.co.uk/usingthebbc/privacy/',
+          href: 'https://www.bbc.com/usingthebbc/privacy/',
           text: 'Iwu Nzuzo',
         },
         {
-          href: 'https://www.bbc.co.uk/usingthebbc/cookies/',
+          href: 'https://www.bbc.com/usingthebbc/cookies/',
           text: 'Kuki',
         },
         {
@@ -333,9 +330,13 @@ export const service: DefaultServiceConfig = {
           text: 'Kpọtụrụ BBC',
         },
         {
+          href: 'https://www.bbc.com/ws/languages',
+          text: 'Akụkọ BBC n’asụsụ ndị ọzọ',
+        },
+        {
           id: 'COOKIE_SETTINGS',
-          href: 'https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/',
-          text: 'AdChoices / Do Not Sell My Info',
+          href: '#',
+          text: 'Do not share or sell my info',
           lang: 'en-GB',
         },
       ],

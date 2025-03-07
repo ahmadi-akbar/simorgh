@@ -1,9 +1,3 @@
-import {
-  C_POSTBOX,
-  C_WHITE,
-  C_GHOST,
-  C_POSTBOX_30,
-} from '../../../legacy/psammead/psammead-styles/src/colours';
 import arabic from '../../../components/ThemeProvider/fontScripts/arabic';
 import '#psammead/psammead-locales/moment/ar';
 import '#psammead/moment-timezone-include/tz/GMT';
@@ -18,6 +12,8 @@ export const service: DefaultServiceConfig = {
     articleTimestampSuffix: '',
     atiAnalyticsAppName: 'news-arabic',
     atiAnalyticsProducerId: '5',
+    atiAnalyticsProducerName: 'ARABIC',
+    useReverb: true,
     chartbeatDomain: 'arabic.bbc.co.uk',
     brandName: 'BBC News عربي',
     product: 'BBC News',
@@ -38,7 +34,6 @@ export const service: DefaultServiceConfig = {
     service: 'arabic',
     serviceName: 'Arabic',
     languageName: 'Arabic',
-    themeColor: `${C_POSTBOX}`,
     twitterCreator: '@BBCArabic',
     twitterSite: '@BBCArabic',
     noBylinesPolicy:
@@ -50,26 +45,21 @@ export const service: DefaultServiceConfig = {
     swPath: '/sw.js',
     frontPageTitle: 'الرئيسية',
     iTunesAppId: 558497376,
-    theming: {
-      brandBackgroundColour: `${C_POSTBOX}`,
-      brandLogoColour: `${C_WHITE}`,
-      brandForegroundColour: `${C_GHOST}`,
-      brandHighlightColour: `${C_WHITE}`,
-      brandBorderColour: `${C_POSTBOX_30}`,
-    },
     showAdPlaceholder: true,
     showRelatedTopics: true,
+    googleSiteVerification: 'D-aEHUiyVaMoUJXjVRbDVkxS0dLTMUZLD3dLPTnWO4Q',
     podcastPromo: {
-      title: 'البودكاست',
-      brandTitle: 'تغيير بسيط (A Simple Change)',
-      brandDescription: 'تغيير بسيط: ما علاقة سلة مشترياتك بتغير المناخ؟',
+      title: 'يستحق الانتباه',
+      brandTitle: 'حسابنا الرسمي على واتساب',
+      brandDescription:
+        'تابعوا التغطية الشاملة من بي بي سي نيوز عربي على واتساب.',
       image: {
-        src: 'https://ichef.bbci.co.uk/images/ic/$recipe/p0c9wp5c.jpg',
-        alt: 'تغيير بسيط',
+        src: 'https://ichef.bbci.co.uk/images/ic/$recipe/p0k7ksmj.png',
+        alt: 'حسابنا الرسمي على واتساب',
       },
       linkLabel: {
-        text: 'الحلقات',
-        href: 'https://www.bbc.com/arabic/podcasts/p0c9wp0l',
+        text: 'اضغط هنا',
+        href: 'https://www.whatsapp.com/channel/0029Val8KlE5a24BsTvuVd2e',
       },
       skipLink: {
         text: 'تخطى %title% وواصل القراءة',
@@ -93,12 +83,24 @@ export const service: DefaultServiceConfig = {
       currentPage: 'الصفحة الحالية',
       skipLinkText: 'إذهب الى المحتوى',
       relatedContent: 'المزيد حول هذه القصة',
-      relatedTopics: 'مواضيع ذات صلة',
+      relatedTopics: 'كلمات مفتاحية',
       navMenuText: 'أقسام',
       mediaAssetPage: {
         mediaPlayer: 'مشغل وسائط',
         audioPlayer: 'مشغل ملف صوتي',
         videoPlayer: 'مشغل فيديو',
+      },
+      liveExperiencePage: {
+        liveLabel: 'مباشر',
+        liveCoverage: 'تغطية مباشرة',
+        breaking: 'عاجل',
+        postedAt: 'توقيت النشر',
+        summary: 'ملخص',
+        shareButtonText: 'شارك',
+      },
+      downloads: {
+        instructions: 'You can download and view today’s news.',
+        title: 'File Download',
       },
       gist: 'ملخص',
       error: {
@@ -155,7 +157,7 @@ export const service: DefaultServiceConfig = {
           },
           accept: 'موافق',
           reject: 'إطلع على التغييرات',
-          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/your-data-matters',
+          rejectUrl: 'https://www.bbc.com/usingthebbc/privacy-policy/',
         },
         cookie: {
           amp: {
@@ -168,7 +170,7 @@ export const service: DefaultServiceConfig = {
                 linkText: 'ملفات الارتباط',
                 last: '، كما نقوم بجمع معلومات خاصة بالتصفح من أجل توفير أفضل خدمة رقمية ولجعل المحتوى والاعلانات، الموجهة إليك، شخصية. الرجاء إعلامنا إذا كنت موافقا على ذلك.',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
               manage: 'ادارة خياراتي',
             },
@@ -184,7 +186,7 @@ export const service: DefaultServiceConfig = {
                   'لأجل ضمان عمل صفحاتنا بشكل سلس ومقبول، نقوم بخزن بعض المعلومات المحدودة على أجهزتكم دون الحصول على موافقتكم.',
                 para4: {
                   text: 'إقرأوا المزيد عن المعلومات الضرورية والحيوية التي نقوم بخزنها على أجهزتكم من أجل ضمان عمل صفحاتنا بشكل جيد.',
-                  url: 'https://www.bbc.co.uk/usingthebbc/strictly-necessary-cookies/',
+                  url: 'https://www.bbc.com/usingthebbc/cookies/strictly-necessary-cookies/',
                 },
                 para5: 'نقوم بخزن أفضلياتكم التي صرحتم بها في أجهزتكم.',
                 heading3: 'شروط اختيارية لجمع المعلومات',
@@ -216,13 +218,13 @@ export const service: DefaultServiceConfig = {
                 linkText: 'ملفات ارتباط',
                 last: ' لمنحك أفضل خدمة رقمية. الرجاء أحطنا علما إذا كنت توافق على تحميل كل هذه الملفات cookies .',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
             },
             accept: 'نعم، موافق',
             reject: 'كلا، أعدني إلى الإعدادات',
             rejectUrl:
-              'https://www.bbc.co.uk/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
+              'https://www.bbc.com/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
           },
         },
       },
@@ -240,6 +242,7 @@ export const service: DefaultServiceConfig = {
         },
         listen: 'استمع',
         watch: 'شاهد',
+        watchMoments: 'لحظات للمشاهدة',
         listenLive: 'استمع للبث المباشر',
         listenNext: 'واصل الاستماع',
         liveLabel: 'مباشر',
@@ -249,6 +252,8 @@ export const service: DefaultServiceConfig = {
         duration: 'المدة',
         recentEpisodes: 'البرامج السابقة',
         podcastExternalLinks: 'هذا البودكاست متاح عبر',
+        download: 'تحميل الحلقة',
+        closeVideo: 'خروج',
       },
       socialEmbed: {
         caption: {
@@ -280,17 +285,78 @@ export const service: DefaultServiceConfig = {
       },
       topStoriesTitle: 'الأخبار الرئيسية',
       featuresAnalysisTitle: 'اخترنا لكم',
+      ugc: {
+        // No JavaScript
+        noJsHeading: undefined,
+        noJsDescription: undefined,
+
+        // Optional
+        optional: 'اختياري',
+
+        // File upload
+        fileUploadLiveRegionText: undefined,
+        fileUploadLiveRegionUpdateText: undefined,
+        fileUploadListHeading: 'هذا ما تحمّله:',
+        fileUploadButton: 'اختر ملفا',
+        fileUploadRemoveButton: undefined,
+
+        // Submit button
+        submitButton: 'إرسال',
+
+        // Validation
+        validationRequired: 'رجاء املأ هذه الخانة الإلزامية.',
+        validationInvalidEmail:
+          'هذا لا يبدو صحيحا. يرجى إدخال بريد إلكتروني صحيح.',
+        validationInvalidTelephone: undefined,
+        validationFilesTooMany:
+          'لقد أضفت ملفات أكثر من المسموح. الحد الأقصى لعدد الملفات {{maxFiles}}.',
+        validationFilesNotEnough:
+          'لا توجد ملفات كافية. يرجى إضافة {{minFiles}} على الأقل.',
+        validationFilesSizeExceeded:
+          'عذرا، حجم هذه الملفات أكبر من المسموح. يمكنك تحميل ملفات يصل حجمها إلى 1.2 غيغابايت في المرة الواحدة.',
+        validationFilesTooSmall: 'هذا الملف لا يصلح. جرب ملفا آخر.',
+        validationFilesInvalidType:
+          'عذرا، لا يمكننا استقبال هذا النوع من الملفات. يرجى إضافة ملفات من الأنواع التالية {{fileTypes}}.',
+        submissionInfoSignedOutMessage:
+          'ربما تود الاحتفاظ بنسخة من تلك البيانات للرجوع إليها وقت الحاجة.',
+        validationWordLimit: 'الحد الأقصى للكلمات {{wordLimit}}',
+
+        // Messaging
+        retentionPeriodDays: undefined,
+        removalGuidelineText: undefined,
+        referenceNumber: 'رقم المرجع',
+        emailToHtml:
+          'إذا غيرت رأيك راسلنا عبر {{emailLink}}. فقط اذكر رقم المرجع وأوضح أنك لا تريد أن نستخدمه.',
+        privacyInfoHtml:
+          'لا تقلق، نحن نحافظ على بياناتك — لمزيد من التفاصيل اقرأ {{privacyInfoLink}}.',
+
+        // Form Screen
+        dataPolicyHeading: undefined,
+
+        // Uploading Screen
+        uploadingHeading: 'جاري تحميل الملفات...',
+        uploadingDescription: 'يرجى الانتظار حتى اكتمال الإرسال.',
+
+        // Success Screen
+        successHeading: 'لقد تم الإرسال',
+        successDescription: 'شكرا لاتصالك.',
+        privacyPolicyLinkHref: undefined,
+        privacyPolicyLinkText: undefined,
+
+        // Error Screen
+        errorHeading: 'تعذر تحميل ملفاتك ',
+        errorDescription: 'جرب التحميل مرة أخرى.',
+
+        // Closed Screen
+        closedHeading: 'أغلق باب المشاركة',
+        closedDescription: 'أغلق باب المشاركة يوم {{date}}.',
+      },
     },
     mostRead: {
       header: 'الأكثر قراءة',
       lastUpdated: 'آخر تحديث',
       numberOfItems: 10,
       hasMostRead: true,
-    },
-    mostWatched: {
-      header: 'الأكثر مشاهدة',
-      numberOfItems: 10,
-      hasMostWatched: true,
     },
     radioSchedule: {
       hasRadioSchedule: true,
@@ -337,9 +403,13 @@ export const service: DefaultServiceConfig = {
           text: 'اتصل بـ بي بي سي',
         },
         {
+          href: 'https://www.bbc.com/ws/languages',
+          text: 'بي بي سي نيوز عربي في لغات أخرى',
+        },
+        {
           id: 'COOKIE_SETTINGS',
-          href: 'https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/',
-          text: 'AdChoices / Do Not Sell My Info',
+          href: '#',
+          text: 'Do not share or sell my info',
           lang: 'en-GB',
         },
       ],
@@ -353,44 +423,40 @@ export const service: DefaultServiceConfig = {
         url: '/arabic',
       },
       {
-        title: 'شرق أوسط',
-        url: '/arabic/topics/ckdxnj6g4znt',
+        title: 'شاهد البث المباشر',
+        url: '/arabic/media-49522519',
       },
       {
-        title: 'عالم',
-        url: '/arabic/topics/c719d2el19nt',
+        title: 'أخبار',
+        url: '/arabic/topics/cv2xyrnr8dnt',
       },
       {
-        title: 'علوم وتكنولوجيا',
-        url: '/arabic/topics/c719d2ely7xt',
+        title: 'اقتصاد',
+        url: '/arabic/topics/cqywj97d487t',
       },
       {
-        title: 'صحة',
-        url: '/arabic/topics/c95y3q70znjt',
+        title: 'صحة وعلوم',
+        url: '/arabic/topics/clmj3d7282gt',
+      },
+      {
+        title: 'رياضة',
+        url: '/arabic/topics/cyx5kw7g1j2t',
       },
       {
         title: 'فيديو',
-        url: '/arabic/media-54706728',
-      },
-      {
-        title: 'صحافة',
-        url: '/arabic/topics/c08gmd9rp97t',
-      },
-      {
-        title: 'ترند',
-        url: '/arabic/topics/c404vr23x4dt',
+        url: '/arabic/topics/cz9mm6r1q5et',
       },
       {
         title: 'تحقيقات',
-        url: '/arabic/tv-and-radio-42414864',
+        url: '/arabic/topics/c51nnzdeg9zt',
       },
       {
         title: 'بودكاست',
-        url: '/arabic/tv-and-radio-52067221',
+        url: '/arabic/topics/cljddp5lw0dt',
       },
       {
         title: 'برامجنا',
-        url: '/arabic/tv-and-radio-37728883',
+        url: '/arabic/topics/crgyknwdlwnt',
       },
     ],
   },

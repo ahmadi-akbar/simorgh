@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { v4 as uuid } from 'uuid';
-import { shouldMatchSnapshot } from '#psammead/psammead-test-helpers/src';
+import { render } from '../../../components/react-testing-library-with-providers';
 import { ServiceContext } from '../../../contexts/ServiceContext';
 import latin from '../../../components/ThemeProvider/fontScripts/latin';
 import ParagraphContainer from '.';
@@ -63,20 +63,31 @@ const blocksWithInline = [
   inlinePersianBlock,
 ];
 
-const ParagraphContainerWithContext = blocks => (
-  <ServiceContext.Provider value={{ script: latin, service: 'news' }}>
-    <ParagraphContainer blocks={blocks} />
-  </ServiceContext.Provider>
-);
+const ParagraphContainerWithContext = ({ blocks }) => {
+  const memoizedServiceContextValue = useMemo(
+    () => ({ script: latin, service: 'news' }),
+    [],
+  );
+
+  return (
+    <ServiceContext.Provider value={memoizedServiceContextValue}>
+      <ParagraphContainer blocks={blocks} />
+    </ServiceContext.Provider>
+  );
+};
 
 describe('ParagraphContainer', () => {
-  shouldMatchSnapshot(
-    'should render correctly',
-    ParagraphContainerWithContext(blocksMock),
-  );
+  it('should render correctly', () => {
+    const { container } = render(
+      <ParagraphContainerWithContext blocks={blocksMock} />,
+    );
+    expect(container).toMatchSnapshot();
+  });
 
-  shouldMatchSnapshot(
-    'should render correctly with inline block',
-    ParagraphContainerWithContext(blocksWithInline),
-  );
+  it('should render correctly with inline block', () => {
+    const { container } = render(
+      <ParagraphContainerWithContext blocks={blocksWithInline} />,
+    );
+    expect(container).toMatchSnapshot();
+  });
 });

@@ -17,19 +17,19 @@ const renderServerApp = () =>
 describe('ClientApp', () => {
   it('App should be called with the correct props', () => {
     renderClientApp();
-    expect(App).toHaveBeenCalledWith({ initialData: 'someData!' }, {});
+    expect(App).toHaveBeenCalledWith({ initialData: 'someData!' }, undefined);
   });
 
   it('BrowserRouter should be called with the correct props', () => {
     const actualBrowserRouter = ReactRouter.BrowserRouter;
-    ReactRouter.BrowserRouter = jest.fn(() => <></>);
+    ReactRouter.BrowserRouter = jest.fn(() => 'Browser Router');
     renderClientApp();
     expect(ReactRouter.BrowserRouter).toHaveBeenCalledWith(
       {
         children: expect.anything(),
         data: 'someData!',
       },
-      {},
+      undefined,
     );
     ReactRouter.BrowserRouter = actualBrowserRouter; //  restore the original (non-mocked) implementation
   });
@@ -40,7 +40,11 @@ describe('ClientApp', () => {
   });
 
   it('should catch exceptions', () => {
-    jest.mock('./App', () => jest.fn(() => throw Error('Error!')));
+    jest.mock('./App', () =>
+      jest.fn(() => {
+        throw Error('Error!');
+      }),
+    );
     expect(renderClientApp).not.toThrow();
   });
 });
@@ -53,13 +57,13 @@ describe('ServerApp', () => {
         initialData: 'somePassedData',
         bbcOrigin: 'https://www.bbc.com',
       },
-      {},
+      undefined,
     );
   });
 
   it('StaticRouter should be called with the correct props', () => {
     const actualStaticRouter = ReactRouter.StaticRouter;
-    ReactRouter.StaticRouter = jest.fn(() => <></>);
+    ReactRouter.StaticRouter = jest.fn(() => 'Static Router');
     renderServerApp();
     expect(ReactRouter.StaticRouter).toHaveBeenCalledWith(
       {
@@ -67,7 +71,7 @@ describe('ServerApp', () => {
         data: 'somePassedData',
         bbcOrigin: 'https://www.bbc.com',
       },
-      {},
+      undefined,
     );
     ReactRouter.StaticRouter = actualStaticRouter; //  restore the original (non-mocked) implementation
   });

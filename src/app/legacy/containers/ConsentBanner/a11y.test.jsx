@@ -1,9 +1,13 @@
-import React, { createRef } from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import React, { createRef, useMemo } from 'react';
 import { UserContextProvider } from '#contexts/UserContext';
 import { ToggleContext } from '#contexts/ToggleContext';
 import { RequestContextProvider } from '#contexts/RequestContext';
 import { FRONT_PAGE } from '#app/routes/utils/pageTypes';
+import Cookies from 'js-cookie';
+import {
+  render,
+  fireEvent,
+} from '../../../components/react-testing-library-with-providers';
 import { ServiceContext } from '../../../contexts/ServiceContext';
 import { service as pidginServiceConfig } from '../../../lib/config/services/pidgin';
 import ConsentBanner from './index';
@@ -12,11 +16,21 @@ const defaultToggleState = {
   chartbeatAnalytics: {
     enabled: false,
   },
+  privacyPolicy: {
+    enabled: true,
+    value: 'july2019',
+  },
 };
 const mockToggleDispatch = jest.fn();
 
-// eslint-disable-next-line react/prop-types
 const AmpBannerWithContext = ({ service, serviceConfig, variant }) => {
+  const toggleContextValue = useMemo(
+    () => ({
+      toggleState: defaultToggleState,
+      toggleDispatch: mockToggleDispatch,
+    }),
+    [],
+  );
   return (
     <RequestContextProvider
       isAmp
@@ -24,12 +38,7 @@ const AmpBannerWithContext = ({ service, serviceConfig, variant }) => {
       pathname="/"
       service={service}
     >
-      <ToggleContext.Provider
-        value={{
-          toggleState: defaultToggleState,
-          toggleDispatch: mockToggleDispatch,
-        }}
-      >
+      <ToggleContext.Provider value={toggleContextValue}>
         <UserContextProvider>
           <ServiceContext.Provider value={serviceConfig[variant]}>
             <ConsentBanner />
@@ -41,19 +50,20 @@ const AmpBannerWithContext = ({ service, serviceConfig, variant }) => {
 };
 
 const CanonicalBannerWithContext = React.forwardRef(
-  // eslint-disable-next-line react/prop-types
-  ({ serviceConfig, variant }, ref) => {
+  ({ serviceConfig, variant, toggleStateOverride }, ref) => {
+    const toggleContextValue = useMemo(
+      () => ({
+        toggleState: { ...defaultToggleState, ...(toggleStateOverride || {}) },
+        toggleDispatch: mockToggleDispatch,
+      }),
+      [toggleStateOverride],
+    );
     return (
       <>
         <div ref={ref}>
           <a href="/">BBC Brand</a>
         </div>
-        <ToggleContext.Provider
-          value={{
-            toggleState: defaultToggleState,
-            toggleDispatch: mockToggleDispatch,
-          }}
-        >
+        <ToggleContext.Provider value={toggleContextValue}>
           <UserContextProvider>
             <ServiceContext.Provider value={serviceConfig[variant]}>
               <ConsentBanner onDismissFocusRef={ref} />
@@ -66,7 +76,13 @@ const CanonicalBannerWithContext = React.forwardRef(
 );
 
 describe('canonical', () => {
-  it('should focus on canonical consent banner heading on mount on canonical', () => {
+  beforeEach(() => {
+    Object.keys(Cookies.get()).forEach(cookieName => {
+      Cookies.remove(cookieName);
+    });
+  });
+
+  it('should focus on canonical consent privacy banner heading on mount on canonical', () => {
     const { getByText } = render(
       <CanonicalBannerWithContext
         serviceConfig={pidginServiceConfig}
@@ -77,6 +93,25 @@ describe('canonical', () => {
       pidginServiceConfig.default.translations.consentBanner.privacy.title;
 
     expect(document.activeElement).toBe(getByText(pidginPrivacyHeading));
+  });
+
+  it('should focus on canonical consent cookie banner heading on mount on canonical when privacy policy toggle is disabled', () => {
+    const { getByText } = render(
+      <CanonicalBannerWithContext
+        serviceConfig={pidginServiceConfig}
+        variant="default"
+        toggleStateOverride={{
+          privacyPolicy: {
+            enabled: false,
+          },
+        }}
+      />,
+    );
+    const pidginCookieHeading =
+      pidginServiceConfig.default.translations.consentBanner.cookie.canonical
+        .title;
+
+    expect(document.activeElement).toBe(getByText(pidginCookieHeading));
   });
 
   it('should focus on the link within the referenced element after cookie accept on canonical', () => {

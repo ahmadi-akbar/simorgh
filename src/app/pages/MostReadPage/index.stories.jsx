@@ -1,38 +1,62 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Url from 'url-parse';
 import { BrowserRouter } from 'react-router-dom';
-import { getLocalMostReadEndpoint } from '#lib/utilities/getUrlHelpers/getMostReadUrls';
-import pidginMostReadData from '#data/pidgin/mostRead';
-import zhongwenSimpData from '#data/zhongwen/mostRead/simp.json';
 import { MOST_READ_PAGE } from '#app/routes/utils/pageTypes';
 import MostReadPage from '.';
 
-// eslint-disable-next-line react/prop-types
-const Component = ({ service, pageData, variant } = {}) => (
-  <BrowserRouter>
-    <MostReadPage
-      pageType={MOST_READ_PAGE}
-      isAmp={false}
-      pathname="/path"
-      status={200}
-      pageData={pageData}
-      service={service}
-      variant={variant}
-      mostReadEndpointOverride={getLocalMostReadEndpoint({
-        service,
-        variant,
-      })}
-    />
-  </BrowserRouter>
-);
+const Component = ({ service, variant }) => {
+  const [pageData, setPageData] = useState({});
+
+  useEffect(() => {
+    const loadPageData = async () => {
+      const response = await fetch(
+        new Url(
+          `data/${service}/mostRead/${
+            variant === 'default' ? 'index' : variant
+          }.json`,
+        ).toString(),
+      );
+
+      const { data } = await response.json();
+      setPageData(data);
+    };
+
+    loadPageData();
+  }, [service, variant]);
+
+  if (Object.keys(pageData).length === 0) {
+    return <>Unable to render Most Read Page for {service}</>;
+  }
+
+  return (
+    <BrowserRouter>
+      <MostReadPage
+        pageType={MOST_READ_PAGE}
+        isAmp={false}
+        pathname={`/${service}/popular/read`}
+        status={200}
+        pageData={pageData}
+        service={service}
+        variant={variant}
+      />
+    </BrowserRouter>
+  );
+};
 
 export default {
   Component,
   title: 'Pages/Most Read Page',
 };
 
-export const Pidgin = () => (
-  <Component service="pidgin" pageData={pidginMostReadData} />
-);
-export const ZhongwenSimple = () => (
-  <Component service="zhongwen" variant="simp" pageData={zhongwenSimpData} />
-);
+export const Example = {
+  render: (_, { service, variant }) => (<Component service={service} variant={variant} />),
+  parameters: {
+    chromatic: {
+      disableSnapshot: true
+    }
+  }
+};
+
+// This story is for chromatic testing purposes only
+export const Test = (_, { variant }) => <Component service="pidgin" variant={variant}/>;
+Test.tags = ['!dev']

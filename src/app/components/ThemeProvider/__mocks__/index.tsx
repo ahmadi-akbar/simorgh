@@ -1,5 +1,5 @@
 import React from 'react';
-import { Services, Variants } from '../../../models/types/global';
+import { StoryProps } from '../../../models/types/storybook';
 import defaultServiceVariants from '../defaultServiceVariants';
 
 import afaanoromoo from '../themes/afaanoromoo';
@@ -48,13 +48,18 @@ import ukchinaSimp from '../themes/ukchina/simp';
 import ukchinaTrad from '../themes/ukchina/trad';
 import ukrainian from '../themes/ukrainian';
 import urdu from '../themes/urdu';
-import uzbek from '../themes/uzbek';
+import uzbekCyr from '../themes/uzbek/cyr';
+import uzbekLat from '../themes/uzbek/lat';
 import vietnamese from '../themes/vietnamese';
 import yoruba from '../themes/yoruba';
 import zhongwenSimp from '../themes/zhongwen/simp';
 import zhongwenTrad from '../themes/zhongwen/trad';
 
-const themeProviders: { [index: string]: any } = {
+type ThemeProvider = {
+  [index: string]: React.FC<Props> | { [index: string]: React.FC<Props> };
+};
+
+const themeProviders: ThemeProvider = {
   afaanoromoo,
   afrique,
   amharic,
@@ -105,7 +110,10 @@ const themeProviders: { [index: string]: any } = {
   },
   ukrainian,
   urdu,
-  uzbek,
+  uzbek: {
+    cyr: uzbekCyr,
+    lat: uzbekLat,
+  },
   vietnamese,
   yoruba,
   zhongwen: {
@@ -114,18 +122,23 @@ const themeProviders: { [index: string]: any } = {
   },
 };
 
-interface Props {
+interface Props extends StoryProps {
   children: React.ReactNode;
-  service: Services;
-  variant: Variants;
 }
 
 const ThemeProvider = ({ children, service, ...rest }: Props) => {
-  const variant = rest.variant || defaultServiceVariants[service];
+  let variant = rest.variant || defaultServiceVariants[service];
+
+  // replaces 'default' with the primary variant if no variant is supplied
+  if (defaultServiceVariants[service] && variant === 'default') {
+    variant = defaultServiceVariants[service];
+  }
   const ThemeProviderSynchronous =
     variant === 'default' || !variant
       ? themeProviders[service]
-      : themeProviders[service][variant];
+      : // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore - TODO: come back to this
+        themeProviders[service][variant];
 
   return <ThemeProviderSynchronous>{children}</ThemeProviderSynchronous>;
 };

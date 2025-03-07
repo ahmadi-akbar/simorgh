@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
-import { shouldMatchSnapshot } from '#psammead/psammead-test-helpers/src';
+import { suppressPropWarnings } from '#psammead/psammead-test-helpers/src';
 import {
   render,
   screen,
@@ -328,49 +328,59 @@ describe('CanonicalSocialEmbed', () => {
     });
   });
 
-  shouldMatchSnapshot(
-    'should render a notice when the provider is unsupported',
-    <CanonicalSocialEmbed
-      provider="unknown"
-      oEmbed={fixtures.twitter.embed.oembed}
-      skipLink={{
-        text: 'Skip %provider_name% content',
-        endTextId: 'skip-%provider%-content',
-        endTextVisuallyHidden: 'End of %provider_name% content',
-      }}
-      fallback={{
-        text: "Sorry but we're having trouble displaying this content",
-        linkText: 'View content on %provider_name%',
-        linkTextSuffixVisuallyHidden: ', external',
-        linkHref: 'embed-url',
-        warningText: 'Warning: BBC is not responsible for third party content',
-      }}
-      service="news"
-    />,
-  );
+  it('should render a notice when the provider is unsupported', () => {
+    const { container } = render(
+      <CanonicalSocialEmbed
+        provider="unknown"
+        oEmbed={fixtures.twitter.embed.oembed}
+        skipLink={{
+          text: 'Skip %provider_name% content',
+          endTextId: 'skip-%provider%-content',
+          endTextVisuallyHidden: 'End of %provider_name% content',
+        }}
+        fallback={{
+          text: "Sorry but we're having trouble displaying this content",
+          linkText: 'View content on %provider_name%',
+          linkTextSuffixVisuallyHidden: ', external',
+          linkHref: 'embed-url',
+          warningText:
+            'Warning: BBC is not responsible for third party content',
+        }}
+        service="news"
+      />,
+    );
+    expect(container).toMatchSnapshot();
+  });
 
-  shouldMatchSnapshot(
-    'should render a notice when there is no oEmbed response',
-    <CanonicalSocialEmbed
-      provider={fixtures.twitter.source}
-      skipLink={{
-        text: 'Skip %provider_name% content',
-        endTextId: 'skip-%provider%-content',
-        endTextVisuallyHidden: 'End of %provider_name% content',
-      }}
-      fallback={{
-        text: "Sorry but we're having trouble displaying this content",
-        linkText: 'View content on %provider_name%',
-        linkTextSuffixVisuallyHidden: ', external',
-        linkHref: 'embed-url',
-        warningText: 'Warning: BBC is not responsible for third party content',
-      }}
-      service="news"
-    />,
-  );
+  it('should render a notice when there is no oEmbed response', () => {
+    const { container } = render(
+      <CanonicalSocialEmbed
+        provider={fixtures.twitter.source}
+        skipLink={{
+          text: 'Skip %provider_name% content',
+          endTextId: 'skip-%provider%-content',
+          endTextVisuallyHidden: 'End of %provider_name% content',
+        }}
+        fallback={{
+          text: "Sorry but we're having trouble displaying this content",
+          linkText: 'View content on %provider_name%',
+          linkTextSuffixVisuallyHidden: ', external',
+          linkHref: 'embed-url',
+          warningText:
+            'Warning: BBC is not responsible for third party content',
+        }}
+        service="news"
+      />,
+    );
+    expect(container).toMatchSnapshot();
+  });
 });
 
 describe('AmpSocialEmbed', () => {
+  suppressPropWarnings(['id', 'AmpSocialEmbed', 'undefined']);
+  suppressPropWarnings(['source', 'Facebook', 'null']);
+  suppressPropWarnings(['text', 'CaptionWrapper', 'undefined']);
+
   Object.values(fixtures).forEach(fixture => {
     const { source: provider, id, embed } = fixture;
     const caption =
@@ -416,43 +426,49 @@ describe('AmpSocialEmbed', () => {
     });
   });
 
-  shouldMatchSnapshot(
-    'should render a notice when the provider is unsupported',
-    <AmpSocialEmbed
-      provider="unknown"
-      id={fixtures.twitter.id}
-      skipLink={{
-        text: 'Skip %provider_name% content',
-        endTextId: 'skip-%provider%-content',
-        endTextVisuallyHidden: 'End of %provider_name% content',
-      }}
-      fallback={{
-        text: "Sorry but we're having trouble displaying this content",
-        linkText: 'View content on %provider_name%',
-        linkHref: 'embed-url',
-        warningText: 'Warning: BBC is not responsible for third party content',
-      }}
-      service="news"
-    />,
-  );
+  it('should render a notice when the provider is unsupported', () => {
+    const { container } = render(
+      <AmpSocialEmbed
+        provider="unknown"
+        id={fixtures.twitter.id}
+        skipLink={{
+          text: 'Skip %provider_name% content',
+          endTextId: 'skip-%provider%-content',
+          endTextVisuallyHidden: 'End of %provider_name% content',
+        }}
+        fallback={{
+          text: "Sorry but we're having trouble displaying this content",
+          linkText: 'View content on %provider_name%',
+          linkHref: 'embed-url',
+          warningText:
+            'Warning: BBC is not responsible for third party content',
+        }}
+        service="news"
+      />,
+    );
+    expect(container).toMatchSnapshot();
+  });
 
-  shouldMatchSnapshot(
-    'should render null when no social embed ID is provided',
-    <AmpSocialEmbed
-      provider="unknown"
-      id={undefined}
-      skipLink={{
-        text: 'Skip %provider_name% content',
-        endTextId: 'skip-%provider%-content',
-        endTextVisuallyHidden: 'End of %provider_name% content',
-      }}
-      fallback={{
-        text: "Sorry but we're having trouble displaying this content",
-        linkText: 'View content on %provider_name%',
-        linkHref: 'embed-url',
-        warningText: 'Warning: BBC is not responsible for third party content',
-      }}
-      service="news"
-    />,
-  );
+  it('should render null when no social embed ID is provided', () => {
+    const { container } = render(
+      <AmpSocialEmbed
+        provider="unknown"
+        id={undefined}
+        skipLink={{
+          text: 'Skip %provider_name% content',
+          endTextId: 'skip-%provider%-content',
+          endTextVisuallyHidden: 'End of %provider_name% content',
+        }}
+        fallback={{
+          text: "Sorry but we're having trouble displaying this content",
+          linkText: 'View content on %provider_name%',
+          linkHref: 'embed-url',
+          warningText:
+            'Warning: BBC is not responsible for third party content',
+        }}
+        service="news"
+      />,
+    );
+    expect(container).toMatchSnapshot();
+  });
 });

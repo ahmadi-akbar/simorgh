@@ -5,7 +5,10 @@ import envConfig from '../../config/envs';
 export default ({ service }) => {
   describe(`Canonical Ads`, () => {
     it('should be displayed based on whether ads toggle is enabled/disabled', () => {
-      const serviceName = config[service].name;
+      let serviceName = service;
+      if (Object.keys(config).includes(service)) {
+        serviceName = config[service].name;
+      }
 
       cy.getToggles(serviceName).then(() => {
         cy.fixture(`toggles/${serviceName}.json`).then(toggles => {
@@ -43,10 +46,12 @@ export default ({ service }) => {
               });
 
               // Leaderboard & MPU
-              cy.get('[data-e2e="advertisement"]').within(() => {
-                cy.get('[id="dotcom-leaderboard"]').should('exist');
-                cy.get('[id="dotcom-mpu"]').should('exist');
-              });
+              cy.get(
+                '[data-e2e="advertisement"] [id="dotcom-leaderboard"]',
+              ).should('exist');
+              cy.get('[data-e2e="advertisement"] [id="dotcom-mpu"]').should(
+                'exist',
+              );
             });
           } else {
             cy.log(`Ads not enabled for ${service}`);

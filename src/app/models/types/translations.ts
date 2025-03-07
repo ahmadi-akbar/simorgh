@@ -19,10 +19,31 @@ export interface Translations {
   topicsPath?: string;
   relatedTopics?: string;
   navMenuText: string;
+  liteSite?: {
+    onboardingMessage: string;
+    toMainSite: string;
+    informationPage: string;
+    informationPageLink: string;
+    dataSaving: string;
+  };
   mediaAssetPage: {
     mediaPlayer: string;
     audioPlayer: string;
     videoPlayer: string;
+  };
+  liveExperiencePage: {
+    liveLabel: string;
+    liveCoverage: string;
+    breaking: string;
+    postedAt: string;
+    summary: string;
+    shareButtonText: string;
+    postDateTimeFormat?: string;
+    postDateFormat?: string;
+  };
+  downloads?: {
+    instructions?: string;
+    title?: string;
   };
   gist?: string;
   error: {
@@ -138,6 +159,7 @@ export interface Translations {
     bbc_yoruba_radio?: OnDemandRadioTvTranslations;
     listen: string;
     watch: string;
+    watchMoments?: string;
     listenLive?: string;
     listenNext?: string;
     liveLabel?: string;
@@ -148,6 +170,7 @@ export interface Translations {
     recentEpisodes?: string;
     podcastExternalLinks?: string;
     download?: string;
+    closeVideo?: string;
   };
   socialEmbed: {
     caption?: {
@@ -178,6 +201,9 @@ export interface Translations {
   };
   topStoriesTitle?: string;
   featuresAnalysisTitle?: string;
+  latestMediaTitle?: string;
+  infoBannerLabel?: string;
+  ugc?: Partial<UgcTranslations>;
 }
 
 export interface TranslationsError {
@@ -201,4 +227,62 @@ export interface DescriptionStringBuilder {
 export type OnDemandRadioTvTranslations = {
   title?: string;
   subtitle?: string;
+};
+
+export type UgcTranslations = {
+  // No JavaScript
+  noJsHeading: string;
+  noJsDescription: string;
+
+  // Optional
+  optional: string;
+
+  // File upload
+  fileUploadLiveRegionText: string;
+  fileUploadLiveRegionUpdateText: string;
+  fileUploadButton: string;
+  fileUploadListHeading: string;
+  fileUploadRemoveButton: string;
+
+  // Submit
+  submitButton: string;
+
+  // Validation
+  errorSummary: string;
+  validationRequired: string;
+  validationInvalidEmail: string;
+  validationInvalidTelephone: string;
+  validationFilesNotEnough: string;
+  validationFilesTooMany: string;
+  validationFilesInvalidType: string;
+  validationFilesTooSmall: string;
+  validationFilesSizeExceeded: string;
+  validationWordLimit: string;
+  referenceNumber: string;
+  submissionInfoSignedOutMessage: string;
+  retentionPeriodDays: string;
+  privacyInfoHtml: string;
+  emailToHtml: string;
+  removalGuidelineText: string;
+
+  // Form Screen
+  dataPolicyHeading: string;
+
+  // Uploading Screen
+  uploadingHeading: string;
+  uploadingDescription: string;
+
+  // Success Screen
+  successHeading: string;
+  successDescription: string;
+  privacyPolicyLinkHref: string;
+  privacyPolicyLinkText: string;
+
+  // Error Screen
+  errorHeading: string;
+  errorDescription: string;
+
+  // Closed Screen
+  closedHeading: string;
+  closedDescription: string;
 };

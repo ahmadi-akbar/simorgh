@@ -1,9 +1,3 @@
-import {
-  C_POSTBOX,
-  C_WHITE,
-  C_GHOST,
-  C_POSTBOX_30,
-} from '../../../legacy/psammead/psammead-styles/src/colours';
 import noAscendersOrDescenders from '../../../components/ThemeProvider/fontScripts/noAscOrDesc';
 import '#psammead/moment-timezone-include/tz/Asia/Tokyo';
 import 'moment/locale/ja';
@@ -18,6 +12,7 @@ export const service: DefaultServiceConfig = {
     articleTimestampSuffix: '',
     atiAnalyticsAppName: 'news-japanese',
     atiAnalyticsProducerId: '56',
+    atiAnalyticsProducerName: 'JAPANESE',
     chartbeatDomain: 'japanese.bbc.co.uk',
     brandName: 'BBCニュース',
     product: 'BBC News',
@@ -39,7 +34,6 @@ export const service: DefaultServiceConfig = {
     service: 'japanese',
     serviceName: 'Japan',
     languageName: 'Japanese',
-    themeColor: `${C_POSTBOX}`,
     twitterCreator: '@bbcnewsjapan',
     twitterSite: '@bbcnewsjapan',
     noBylinesPolicy:
@@ -50,13 +44,6 @@ export const service: DefaultServiceConfig = {
     manifestPath: '/manifest.json',
     swPath: '/sw.js',
     frontPageTitle: '最新ニュース',
-    theming: {
-      brandBackgroundColour: `${C_POSTBOX}`,
-      brandLogoColour: `${C_WHITE}`,
-      brandForegroundColour: `${C_GHOST}`,
-      brandHighlightColour: `${C_WHITE}`,
-      brandBorderColour: `${C_POSTBOX_30}`,
-    },
     showAdPlaceholder: true,
     showRelatedTopics: true,
     translations: {
@@ -80,6 +67,18 @@ export const service: DefaultServiceConfig = {
         mediaPlayer: 'メディアプレイヤー',
         audioPlayer: '音声プレイヤー',
         videoPlayer: '動画プレイヤー',
+      },
+      liveExperiencePage: {
+        liveLabel: '実況中',
+        liveCoverage: '関連実況',
+        breaking: '速報',
+        postedAt: '投稿時間',
+        summary: '要点',
+        shareButtonText: '共有する',
+      },
+      downloads: {
+        instructions: 'You can download and view today’s news.',
+        title: 'File Download',
       },
       gist: '要点',
       error: {
@@ -131,7 +130,7 @@ export const service: DefaultServiceConfig = {
           },
           accept: 'OK',
           reject: '変更点を見る',
-          rejectUrl: 'https://www.bbc.co.uk/usingthebbc/your-data-matters',
+          rejectUrl: 'https://www.bbc.com/usingthebbc/privacy-policy/',
         },
         cookie: {
           amp: {
@@ -144,7 +143,7 @@ export const service: DefaultServiceConfig = {
                 linkText: 'クッキー',
                 last: ' などの技術を使用し、あなたに最高のオンライン体験をご提供するためネット閲覧データを集め、あなたにあつらえてパーソナライズしたコンテンツや広告を表示します。これに同意するかお知らせください。',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
               manage: '設定を管理する',
             },
@@ -160,7 +159,7 @@ export const service: DefaultServiceConfig = {
                   'サイト上ページの機能維持のため、読者の方の同意なしでご使用端末について限定的な情報を保存しています。',
                 para4: {
                   text: 'サイト上のページを機能させるため保存する、読者の使用端末に関する必要不可欠な情報について、さらに読む。',
-                  url: 'https://www.bbc.co.uk/usingthebbc/strictly-necessary-cookies/',
+                  url: 'https://www.bbc.com/usingthebbc/cookies/strictly-necessary-cookies/',
                 },
                 para5:
                   '読者の使用端末の同意設定をローカル･ストレージに保存しています。',
@@ -193,13 +192,13 @@ export const service: DefaultServiceConfig = {
                 linkText: 'クッキー',
                 last: ' を使用しています。すべてのクッキー使用に同意するか教えてください。',
                 linkUrl:
-                  'https://www.bbc.co.uk/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
+                  'https://www.bbc.com/usingthebbc/cookies/what-do-i-need-to-know-about-cookies/',
               },
             },
             accept: 'はい、同意します',
             reject: 'いいえ、設定ページを開いてください',
             rejectUrl:
-              'https://www.bbc.co.uk/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
+              'https://www.bbc.com/usingthebbc/cookies/how-can-i-change-my-bbc-cookie-settings/',
           },
         },
       },
@@ -218,6 +217,7 @@ export const service: DefaultServiceConfig = {
         nextRadioShow: '次のラジオ番組',
         duration: '所要時間',
         recentEpisodes: 'さらに',
+        closeVideo: '閉じる',
       },
       socialEmbed: {
         caption: {
@@ -257,11 +257,6 @@ export const service: DefaultServiceConfig = {
       numberOfItems: 10,
       hasMostRead: true,
     },
-    mostWatched: {
-      header: 'よく見られています',
-      numberOfItems: 10,
-      hasMostWatched: true,
-    },
     radioSchedule: {
       hasRadioSchedule: false,
     },
@@ -274,7 +269,7 @@ export const service: DefaultServiceConfig = {
         text: 'BBCニュースが信頼できる理由',
       },
       externalLink: {
-        href: 'https://www.bbc.co.uk/japanese/help-33991539',
+        href: 'https://www.bbc.com/japanese/help-33991539',
         text: '本サイトの外部リンク方針はこちら',
       },
       links: [
@@ -291,7 +286,7 @@ export const service: DefaultServiceConfig = {
           text: '個人情報取り扱い方針',
         },
         {
-          href: 'https://www.bbc.co.uk/usingthebbc/cookies/',
+          href: 'https://www.bbc.com/usingthebbc/cookies/',
           text: 'クッキー',
         },
         {
@@ -299,9 +294,13 @@ export const service: DefaultServiceConfig = {
           text: 'BBC に連絡する',
         },
         {
+          href: 'https://www.bbc.com/ws/languages',
+          text: 'BBCニュースを他言語で読む',
+        },
+        {
           id: 'COOKIE_SETTINGS',
-          href: 'https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/',
-          text: 'AdChoices / Do Not Sell My Info',
+          href: '#',
+          text: 'Do not share or sell my info',
           lang: 'en-GB',
         },
       ],
@@ -314,16 +313,16 @@ export const service: DefaultServiceConfig = {
         url: '/japanese',
       },
       {
-        title: 'ウクライナ侵攻',
-        url: '/japanese/60631515',
+        title: '中東危機',
+        url: '/japanese/topics/cn7y603vz3lt',
       },
       {
-        title: 'コロナウイルス',
-        url: '/japanese/52137815',
+        title: 'ウクライナ侵攻',
+        url: '/japanese/topics/c50vpymk750t',
       },
       {
         title: '気候変動',
-        url: '/japanese/58771282',
+        url: '/japanese/topics/c2dwqjr27zjt',
       },
       {
         title: '日本',
@@ -342,15 +341,15 @@ export const service: DefaultServiceConfig = {
         url: '/japanese/topics/cdr56kqdr70t',
       },
       {
-        title: '解説・読み物',
-        url: '/japanese/features-and-analysis-54539120',
+        title: '読み物',
+        url: '/japanese/topics/c2xj7ep5812t',
       },
       {
         title: 'ビデオ',
         url: '/japanese/topics/c132079wln0t',
       },
       {
-        title: 'ワールドニュースTV',
+        title: 'ニュースTV',
         url: 'https://www.bbcworldnews-japan.com/',
       },
     ],

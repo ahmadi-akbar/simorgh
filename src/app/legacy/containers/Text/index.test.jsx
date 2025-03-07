@@ -1,10 +1,10 @@
 import React from 'react';
 import { ToggleContextProvider } from '#contexts/ToggleContext';
 import {
-  shouldMatchSnapshot,
   isNull,
   suppressPropWarnings,
 } from '#psammead/psammead-test-helpers/src';
+import { render } from '../../../components/react-testing-library-with-providers';
 import { ServiceContextProvider } from '../../../contexts/ServiceContext';
 import TextContainer from './index';
 import { paragraphBlock, fragmentBlock } from './fixtures';
@@ -15,7 +15,7 @@ const defaultToggles = {
   },
 };
 
-const listItemBlock = (id = null, listBlocks) => ({
+const listItemBlock = (id, listBlocks) => ({
   id,
   type: 'listItem',
   model: {
@@ -23,7 +23,7 @@ const listItemBlock = (id = null, listBlocks) => ({
   },
 });
 
-const listBlock = (id = null, blocks, type = 'unorderedList') => ({
+const listBlock = (id, blocks, type = 'unorderedList') => ({
   id,
   type,
   model: {
@@ -72,13 +72,15 @@ describe('TextContainer', () => {
       ],
     };
 
-    shouldMatchSnapshot(
-      'should render correctly',
-      <ToggleContextProvider toggles={defaultToggles}>
-        <ServiceContextProvider service="news">
-          <TextContainer {...data} />
-        </ServiceContextProvider>
-      </ToggleContextProvider>,
-    );
+    it('should render correctly', () => {
+      const { container } = render(
+        <ToggleContextProvider toggles={defaultToggles}>
+          <ServiceContextProvider service="news">
+            <TextContainer {...data} />
+          </ServiceContextProvider>
+        </ToggleContextProvider>,
+      );
+      expect(container).toMatchSnapshot();
+    });
   });
 });

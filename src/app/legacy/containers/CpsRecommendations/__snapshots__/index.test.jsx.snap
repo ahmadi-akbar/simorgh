@@ -100,7 +100,7 @@ exports[`CpsRecommendations should render when cpsRecommendations toggle is enab
 }
 
 .emotion-2 {
-  background-color: #FDFDFD;
+  background-color: #F6F6F6;
   margin: 1.5rem 0;
   padding: 1rem 0.5rem;
 }
@@ -196,6 +196,13 @@ exports[`CpsRecommendations should render when cpsRecommendations toggle is enab
 .emotion-11 {
   margin: 0;
   padding: 0;
+  scroll-margin-top: 1rem;
+}
+
+.emotion-11:focus-visible {
+  outline: 0.1875rem solid #000000;
+  box-shadow: 0 0 0 0.1875rem #FFFFFF;
+  outline-offset: 0.1875rem;
 }
 
 .emotion-13 {
@@ -242,7 +249,7 @@ exports[`CpsRecommendations should render when cpsRecommendations toggle is enab
   font-family: ReithSans,Helvetica,Arial,sans-serif;
   font-weight: 700;
   font-style: normal;
-  background-color: #FDFDFD;
+  background-color: #F6F6F6;
   margin: 1rem 0;
   padding-right: 0.5rem;
   display: -webkit-box;
@@ -342,7 +349,7 @@ exports[`CpsRecommendations should render when cpsRecommendations toggle is enab
   position: relative;
   padding: 0.5rem;
   margin-top: 0.5rem;
-  background-color: #F6F6F6;
+  background-color: #FDFDFD;
 }
 
 .emotion-23 {
@@ -677,7 +684,7 @@ exports[`CpsRecommendations should render when cpsRecommendations toggle is enab
 }
 
 .emotion-2 {
-  background-color: #FDFDFD;
+  background-color: #F6F6F6;
   margin: 1.5rem 0;
   padding: 1rem 0.5rem;
 }
@@ -773,6 +780,13 @@ exports[`CpsRecommendations should render when cpsRecommendations toggle is enab
 .emotion-11 {
   margin: 0;
   padding: 0;
+  scroll-margin-top: 1rem;
+}
+
+.emotion-11:focus-visible {
+  outline: 0.1875rem solid #000000;
+  box-shadow: 0 0 0 0.1875rem #FFFFFF;
+  outline-offset: 0.1875rem;
 }
 
 .emotion-13 {
@@ -819,7 +833,7 @@ exports[`CpsRecommendations should render when cpsRecommendations toggle is enab
   font-family: ReithSans,Helvetica,Arial,sans-serif;
   font-weight: 700;
   font-style: normal;
-  background-color: #FDFDFD;
+  background-color: #F6F6F6;
   margin: 1rem 0;
   padding-right: 0.5rem;
   display: -webkit-box;
@@ -1036,7 +1050,7 @@ exports[`CpsRecommendations should render when cpsRecommendations toggle is enab
   position: relative;
   padding: 0.5rem;
   margin-top: 0.5rem;
-  background-color: #F6F6F6;
+  background-color: #FDFDFD;
 }
 
 .emotion-29 {
@@ -1524,7 +1538,7 @@ exports[`CpsRecommendations should render when cpsRecommendations toggle is enab
 }
 
 .emotion-2 {
-  background-color: #FDFDFD;
+  background-color: #F6F6F6;
   margin: 1.5rem 0;
   padding: 1rem 0.5rem;
 }
@@ -1548,7 +1562,7 @@ exports[`CpsRecommendations should render when cpsRecommendations toggle is enab
 }
 
 .emotion-6 {
-  font-family: "BBC Reith Qalam",Arial,Verdana,Geneva,Helvetica,sans-serif;
+  font-family: "BBC Reith Qalam","Times New Roman",Arial,Verdana,Geneva,Helvetica,sans-serif;
   font-weight: 700;
   font-style: normal;
   font-size: 0.875rem;
@@ -1620,6 +1634,13 @@ exports[`CpsRecommendations should render when cpsRecommendations toggle is enab
 .emotion-11 {
   margin: 0;
   padding: 0;
+  scroll-margin-top: 1rem;
+}
+
+.emotion-11:focus-visible {
+  outline: 0.1875rem solid #000000;
+  box-shadow: 0 0 0 0.1875rem #FFFFFF;
+  outline-offset: 0.1875rem;
 }
 
 .emotion-13 {
@@ -1663,10 +1684,10 @@ exports[`CpsRecommendations should render when cpsRecommendations toggle is enab
 .emotion-17 {
   font-size: 1.25rem;
   line-height: 1.75rem;
-  font-family: "BBC Reith Qalam",Arial,Verdana,Geneva,Helvetica,sans-serif;
+  font-family: "BBC Reith Qalam","Times New Roman",Arial,Verdana,Geneva,Helvetica,sans-serif;
   font-weight: 700;
   font-style: normal;
-  background-color: #FDFDFD;
+  background-color: #F6F6F6;
   margin: 1rem 0;
   padding-left: 0.5rem;
   display: -webkit-box;
@@ -1883,7 +1904,7 @@ exports[`CpsRecommendations should render when cpsRecommendations toggle is enab
   position: relative;
   padding: 0.5rem;
   margin-top: 0.5rem;
-  background-color: #F6F6F6;
+  background-color: #FDFDFD;
 }
 
 .emotion-29 {
@@ -1954,7 +1975,7 @@ exports[`CpsRecommendations should render when cpsRecommendations toggle is enab
 }
 
 .emotion-35 {
-  font-family: "BBC Reith Qalam",Arial,Verdana,Geneva,Helvetica,sans-serif;
+  font-family: "BBC Reith Qalam","Times New Roman",Arial,Verdana,Geneva,Helvetica,sans-serif;
   font-weight: 700;
   font-style: normal;
   font-size: 0.9375rem;

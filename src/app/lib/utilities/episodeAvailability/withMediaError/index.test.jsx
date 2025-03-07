@@ -1,11 +1,10 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import withMediaError from '.';
-import { EPISODE_STATUS } from '..';
+import { EPISODE_STATUS } from '../episodeStatus';
 
 jest.mock('../ErrorMessage', () => () => 'Mocked Error Message Component');
 
-// eslint-disable-next-line react/prop-types
 const FixtureComponent = ({ mediaIsAvailable, MediaError }) => (
   <>
     <span>{mediaIsAvailable ? 'Media Available' : 'Media Unavailable'}</span>

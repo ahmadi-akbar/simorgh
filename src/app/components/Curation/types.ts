@@ -1,19 +1,7 @@
-import { Summary } from '#models/types/promoData';
-import { Services, Variants } from '#models/types/global';
-
-export interface Promo extends Summary {
-  mediaType?: 'audio' | 'video' | 'photogallery';
-  duration?: string | number;
-  lazy?: boolean;
-  headingLevel?: number;
-}
+import { Summary } from '#app/models/types/curationData';
 
 export interface CurationGridProps {
-  promos: Promo[];
+  summaries: Summary[];
   headingLevel?: number;
-}
-
-export interface StorybookProps {
-  service: Services;
-  variant: Variants;
+  isFirstCuration?: boolean;
 }
